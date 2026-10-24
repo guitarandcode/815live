@@ -1,0 +1,161 @@
+# 815live.com
+
+Live music listings for the Rockford, IL area (the 815: Rockford, Loves Park,
+Belvidere, …). Static Astro site, deployed to Cloudflare Pages.
+
+## Local development
+
+Requires Node 22.23+ (the repo pins 24 in `.node-version`; `fnm` picks it up).
+
+```sh
+npm install
+npm run dev          # http://localhost:4321
+npm test             # unit tests (date/timezone logic)
+npm run build        # astro check + build to dist/ + JSON-LD validation
+npm run preview      # serve dist/ locally
+npm run test:build   # end-to-end: builds as if on Cloudflare (TZ=UTC) at pinned times
+```
+
+## Data
+
+All listings are JSON files in `data/`, one record per file. **The filename is
+the slug/ID and becomes the URL.** The schemas live in `src/content.config.ts`;
+`npm run build` fails with a clear message if a file doesn't match, or if a show
+references a venue or artist that doesn't exist.
+
+Sample records have `"placeholder": true`. They render with a "Sample" badge,
+get `noindex`, and are left out of `sitemap.xml`. Delete them (or remove the
+flag) once real data is in.
+
+### Add a venue: `data/venues/<slug>.json`
+
+```json
+{
+  "name": "Mary's Place",
+  "address": "602 N Madison St",
+  "city": "Rockford",
+  "state": "IL",
+  "zip": "61107",
+  "lat": 42.27361,
+  "lng": -89.08602,
+  "website": "https://example.com",
+  "description": "One or two sentences."
+}
+```
+
+`website` is optional. Get lat/lng from OpenStreetMap or Google Maps (right-click → coordinates).
+
+### Add an artist: `data/artists/<slug>.json`
+
+```json
+{
+  "name": "Band Name",
+  "genres": ["indie rock"],
+  "hometown": "Rockford, IL",
+  "website": "https://example.com",
+  "socials": { "facebook": "https://facebook.com/…", "instagram": "https://instagram.com/…" },
+  "bio": "Short bio."
+}
+```
+
+`website` and every `socials` key are optional. Allowed socials keys:
+`facebook`, `instagram`, `bandcamp`, `spotify`, `youtube`, `tiktok`.
+
+### Add a show: `data/shows/<YYYY-MM-DD>-<venue-slug>.json`
+
+```json
+{
+  "date": "2026-11-14",
+  "startTime": "21:00",
+  "endTime": "00:30",
+  "venue": "marys-place",
+  "artists": ["headliner-slug", "opener-slug"],
+  "cover": 10,
+  "ticketUrl": "https://…",
+  "notes": "21+",
+  "status": "scheduled",
+  "source": { "type": "facebook", "url": "https://facebook.com/events/…" }
+}
+```
+
+- `date`/`startTime`/`endTime` are **Chicago local time**, 24-hour. An `endTime`
+  earlier than `startTime` means after midnight.
+- `artists` is the bill in order, headliner first.
+- `cover`: a number (dollars) = priced, `null` = **free**, leave it out = **unknown**.
+- `status`: `scheduled` (default), `cancelled` or `postponed`. Cancelled shows
+  stay listed, struck through.
+- `source.type`: `facebook`, `venue-site`, `submission` or `manual`.
+- Optional: `endTime`, `cover`, `ticketUrl`, `notes`, `status`, `source.url`.
+- Two shows at one venue on one day: add a suffix, e.g. `2026-11-14-marys-place-late.json`.
+
+## How "upcoming" works
+
+The site is static, so the list of upcoming shows is fixed when it's built:
+
+- At build time, shows dated before **today in America/Chicago** are dropped.
+  Cloudflare builds run in UTC; everything here uses Chicago dates
+  (`src/lib/time.ts`), so a 6pm build still lists tonight's shows.
+- A small inline script hides days that have passed since the build, also
+  using Chicago's date, not the visitor's timezone.
+- `/this-weekend` is the current Fri–Sun on Friday–Sunday, otherwise the next one.
+
+**To keep pages fresh, rebuild daily.** Create a deploy hook in the Pages
+project (Settings → Builds → Deploy hooks), store its URL as a GitHub secret
+`CF_DEPLOY_HOOK`, and add `.github/workflows/daily-rebuild.yml`:
+
+```yaml
+on:
+  schedule: [{ cron: '15 10 * * *' }]   # 5:15am CDT / 4:15am CST
+  workflow_dispatch:
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - run: curl -fsS -X POST "${{ secrets.CF_DEPLOY_HOOK }}"
+```
+
+`BUILD_NOW=<ISO instant>` overrides the build's clock for testing, e.g.
+`BUILD_NOW=2026-10-24T23:00:00Z npm run build`.
+
+## SEO and feeds
+
+- Show pages: `MusicEvent` JSON-LD (Place + PostalAddress, MusicGroup
+  performers, Offer when priced, `isAccessibleForFree` when free).
+- Venue pages: `MusicVenue`. Artist pages: `MusicGroup`. Home: `WebSite`.
+- Unique title/description, canonical URL and Open Graph tags on every page.
+- `/sitemap.xml`, `/robots.txt`, `/calendar.ics` (upcoming shows), `/rss.xml`.
+- `scripts/check-jsonld.mjs` runs after every build and fails it if any page's
+  JSON-LD is malformed or a show is missing required Event fields.
+
+## Deploy (Cloudflare Pages)
+
+The output is plain static files in `dist/`; no adapter is needed.
+
+**Option A: Git-connected (recommended).** Push to GitHub, then in the
+Cloudflare dashboard: Workers & Pages → Create → Pages → Connect to Git.
+
+- Build command: `npm run build`
+- Build output directory: `dist`
+- Environment variable: `NODE_VERSION=24`
+
+Every push to `main` deploys; other branches get preview URLs.
+
+**Option B: direct upload with wrangler.**
+
+```sh
+npx wrangler login
+npm run build
+npx wrangler pages project create 815live --production-branch main   # first time only
+npx wrangler pages deploy dist
+```
+
+Then add `815live.com` under the project's Custom domains.
+
+`public/_headers` sets content types and caching for the feeds and hashed assets.
+
+## Moving to a database later
+
+The collections are flat on purpose. The table mapping is at the top of
+`src/content.config.ts` (`shows` plus a `show_artists` join table with an
+ordered `position`). Pages read data only through `src/lib/data.ts`, so
+swapping JSON for SQLite/Postgres or a live loader means changing that one module.

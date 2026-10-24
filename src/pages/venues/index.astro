@@ -1,0 +1,20 @@
+---
+import Base from '../../layouts/Base.astro';
+import { loadAll, upcomingShows } from '../../lib/data.ts';
+
+const { venues } = await loadAll();
+const upcoming = await upcomingShows();
+const count = (id: string) => upcoming.filter((s) => s.venue.id === id).length;
+---
+
+<Base title="Venues" description="Bars, breweries and small venues hosting live music in Rockford, Loves Park and Belvidere, IL.">
+  <h1>Venues</h1>
+  <ul class="index-list">
+    {venues.map((v) => (
+      <li>
+        <a href={`/venues/${v.id}`}>{v.data.name}</a>
+        <p>{v.data.address}, {v.data.city} · {count(v.id) || 'No'} upcoming show{count(v.id) === 1 ? '' : 's'}</p>
+      </li>
+    ))}
+  </ul>
+</Base>

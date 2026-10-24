@@ -1,0 +1,11 @@
+{
+  "date": "2026-10-30",
+  "startTime": "20:00",
+  "venue": "the-music-box",
+  "artists": ["belvidere-blues-co", "forest-city-fuzz"],
+  "cover": 10,
+  "ticketUrl": "https://example.com/tickets/815live-sample",
+  "source": { "type": "manual" },
+  "notes": "PLACEHOLDER: sample listing for development.",
+  "placeholder": true
+}

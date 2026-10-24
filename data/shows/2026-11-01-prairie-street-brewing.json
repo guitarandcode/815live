@@ -1,0 +1,10 @@
+{
+  "date": "2026-11-01",
+  "startTime": "14:00",
+  "venue": "prairie-street-brewing",
+  "artists": ["belvidere-blues-co"],
+  "cover": null,
+  "source": { "type": "manual" },
+  "notes": "PLACEHOLDER: sample listing for development.",
+  "placeholder": true
+}
