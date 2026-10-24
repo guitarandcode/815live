@@ -1,5 +1,5 @@
 // Post-build sanity check: every page's JSON-LD parses, and every show page's
-// MusicEvent has the fields Google's Event rich result requires/recommends.
+// event (MusicEvent / ComedyEvent / Event) has the fields Google's Event rich result requires/recommends.
 // Usage: node scripts/check-jsonld.mjs [dist]
 import { readdir, readFile } from 'node:fs/promises';
 import { join, relative } from 'node:path';
@@ -17,12 +17,13 @@ async function* htmlFiles(dir) {
   }
 }
 
+const EVENT_TYPES = ['MusicEvent', 'ComedyEvent', 'Event'];
 const isoWithOffset = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}(:\d{2})?(Z|[+-]\d{2}:\d{2})$/;
 
 function checkEvent(ev, where) {
   const need = (cond, msg) => cond || errors.push(`${where}: ${msg}`);
   need(ev['@context'] === 'https://schema.org', '@context must be https://schema.org');
-  need(ev['@type'] === 'MusicEvent', '@type must be MusicEvent');
+  need(EVENT_TYPES.includes(ev['@type']), `@type must be one of ${EVENT_TYPES.join('/')}`);
   need(typeof ev.name === 'string' && ev.name.length > 0, 'name required');
   need(isoWithOffset.test(ev.startDate ?? ''), `startDate must be ISO 8601 with offset, got ${ev.startDate}`);
   need(/-0[56]:00$/.test(ev.startDate ?? ''), `startDate offset should be Chicago (-05:00/-06:00), got ${ev.startDate}`);
@@ -33,8 +34,10 @@ function checkEvent(ev, where) {
   const addr = loc.address ?? {};
   need(addr['@type'] === 'PostalAddress', 'location.address must be PostalAddress');
   for (const k of ['streetAddress', 'addressLocality', 'addressRegion', 'postalCode', 'addressCountry']) need(addr[k], `address.${k} missing`);
-  need(Array.isArray(ev.performer) && ev.performer.length > 0, 'performer required');
-  for (const p of ev.performer ?? []) need(p['@type'] === 'MusicGroup' && p.name, 'performer entries must be named MusicGroups');
+  if (ev.performer !== undefined) {
+    need(Array.isArray(ev.performer) && ev.performer.length > 0, 'performer must be a non-empty array');
+    for (const p of ev.performer ?? []) need(['MusicGroup', 'Person'].includes(p['@type']) && p.name, 'performers must be named MusicGroup/Person');
+  }
   if (ev.offers) {
     need(ev.offers['@type'] === 'Offer', 'offers must be an Offer');
     need(Number(ev.offers.price) > 0 && ev.offers.priceCurrency === 'USD', 'offers needs price > 0 and USD');
@@ -56,8 +59,8 @@ for await (const file of htmlFiles(dist)) {
     }
   }
   if (rel.startsWith('shows/')) {
-    const ev = parsed.find((o) => o['@type'] === 'MusicEvent');
-    if (!ev) errors.push(`${rel}: no MusicEvent JSON-LD`);
+    const ev = parsed.find((o) => EVENT_TYPES.includes(o['@type']));
+    if (!ev) errors.push(`${rel}: no event JSON-LD`);
     else {
       checkEvent(ev, rel);
       events++;
@@ -74,4 +77,4 @@ if (errors.length) {
   console.error(`JSON-LD check failed:\n  ${errors.join('\n  ')}`);
   process.exit(1);
 }
-console.log(`JSON-LD OK: ${pages} pages scanned, ${events} MusicEvent blocks validated.`);
+console.log(`JSON-LD OK: ${pages} pages scanned, ${events} event blocks validated.`);

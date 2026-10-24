@@ -1,5 +1,6 @@
 ---
-import { billTitle, coverLabel, type Show } from '../lib/data.ts';
+import { CATEGORY_LABEL } from '../lib/categories.ts';
+import { coverLabel, lineup, showTitle, type Show } from '../lib/data.ts';
 import { chicagoIso, formatTime } from '../lib/time.ts';
 
 interface Props {
@@ -14,7 +15,9 @@ const cover = coverLabel(show.cover);
 <article class="show-card" class:list={[show.status !== 'scheduled' && 'is-off']}>
   <time class="show-time" datetime={chicagoIso(show.date, show.startTime)}>{formatTime(show.startTime)}</time>
   <div class="show-body">
-    <h3><a href={`/shows/${show.id}`}>{billTitle(show)}</a></h3>
+    <p class="category">{CATEGORY_LABEL[show.category]}</p>
+    <h3><a href={`/shows/${show.id}`}>{showTitle(show)}</a></h3>
+    {show.title && show.artists.length > 0 && <p class="bill-line">{lineup(show)}</p>}
     <p class="meta">
       {showVenue && <a href={`/venues/${show.venue.id}`}>{show.venue.data.name}</a>}
       {showVenue && <span class="sep"> · </span>}

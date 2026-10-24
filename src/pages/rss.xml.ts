@@ -1,5 +1,5 @@
 import type { APIRoute } from 'astro';
-import { billTitle, coverLabel, NOW, upcomingShows } from '../lib/data.ts';
+import { coverLabel, NOW, showTitle, upcomingShows } from '../lib/data.ts';
 import { formatDay, formatTime } from '../lib/time.ts';
 
 const esc = (s: string) =>
@@ -17,7 +17,7 @@ export const GET: APIRoute = async ({ site }) => {
       .filter(Boolean)
       .join(' ');
     return `    <item>
-      <title>${esc(`${formatDay(show.date)}: ${billTitle(show)} at ${show.venue.data.name}`)}</title>
+      <title>${esc(`${formatDay(show.date)}: ${showTitle(show)} at ${show.venue.data.name}`)}</title>
       <link>${url}</link>
       <guid isPermaLink="true">${url}</guid>
       <description>${esc(desc)}</description>

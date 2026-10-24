@@ -1,0 +1,9 @@
+{
+  "date": "2026-10-30",
+  "startTime": "20:00",
+  "venue": "marys-place",
+  "category": "live-music",
+  "title": "Halloween Hijinks",
+  "artists": ["the-moment", "joie-de-vivre", "warren-franklin", "track-and-field"],
+  "source": { "type": "manual", "url": "http://marysplacebar.com/calendar/" }
+}

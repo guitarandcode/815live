@@ -23,9 +23,8 @@ the slug/ID and becomes the URL.** The schemas live in `src/content.config.ts`;
 `npm run build` fails with a clear message if a file doesn't match, or if a show
 references a venue or artist that doesn't exist.
 
-Sample records have `"placeholder": true`. They render with a "Sample" badge,
-get `noindex`, and are left out of `sitemap.xml`. Delete them (or remove the
-flag) once real data is in.
+Any record can set `"placeholder": true` for test data: it renders with a
+"Sample" badge, gets `noindex`, and is left out of `sitemap.xml`.
 
 ### Add a venue: `data/venues/<slug>.json`
 
@@ -58,7 +57,7 @@ flag) once real data is in.
 }
 ```
 
-`website` and every `socials` key are optional. Allowed socials keys:
+Only `name` is required; `genres`, `hometown`, `website`, `bio` and every `socials` key are optional. Allowed socials keys:
 `facebook`, `instagram`, `bandcamp`, `spotify`, `youtube`, `tiktok`.
 
 ### Add a show: `data/shows/<YYYY-MM-DD>-<venue-slug>.json`
@@ -69,6 +68,8 @@ flag) once real data is in.
   "startTime": "21:00",
   "endTime": "00:30",
   "venue": "marys-place",
+  "category": "live-music",
+  "title": "Halloween Hijinks",
   "artists": ["headliner-slug", "opener-slug"],
   "cover": 10,
   "ticketUrl": "https://…",
@@ -80,13 +81,44 @@ flag) once real data is in.
 
 - `date`/`startTime`/`endTime` are **Chicago local time**, 24-hour. An `endTime`
   earlier than `startTime` means after midnight.
-- `artists` is the bill in order, headliner first.
+- `category`: `live-music` (default), `karaoke`, `comedy` or `open-mic`. It sets
+  the card label and the JSON-LD type (MusicEvent / ComedyEvent / Event).
+- `artists` is the bill in order, headliner first. `title` is the event's own
+  name. A show needs at least one of them; with both, the title is the heading
+  and the bill shows underneath.
 - `cover`: a number (dollars) = priced, `null` = **free**, leave it out = **unknown**.
 - `status`: `scheduled` (default), `cancelled` or `postponed`. Cancelled shows
   stay listed, struck through.
 - `source.type`: `facebook`, `venue-site`, `submission` or `manual`.
-- Optional: `endTime`, `cover`, `ticketUrl`, `notes`, `status`, `source.url`.
+- Optional: `endTime`, `category`, `title`/`artists` (one required), `cover`,
+  `ticketUrl`, `notes`, `status`, `source.url`.
+- Manually entered listings use `source.type: "manual"` with `source.url`
+  pointing at the venue's calendar page. Record facts only; don't copy the
+  venue's description text.
 - Two shows at one venue on one day: add a suffix, e.g. `2026-11-14-marys-place-late.json`.
+
+### Add a weekly event: `data/recurring/<venue-slug>-<name>.json`
+
+```json
+{
+  "venue": "marys-place",
+  "category": "open-mic",
+  "title": "Open Stage",
+  "weekday": "sunday",
+  "startTime": "19:00",
+  "endTime": "23:00",
+  "months": [5, 6, 7, 8, 9],
+  "host": "Host name",
+  "cover": null,
+  "skip": ["2026-12-27"],
+  "source": { "type": "manual", "url": "http://marysplacebar.com/calendar/" }
+}
+```
+
+Each build expands these into dated listings for the next 8 weeks, with IDs
+like `2026-10-25-marys-place-open-stage`. `months` (season), `skip` (dates off),
+`endTime`, `host`, `cover` and `notes` are optional. A one-off show at the same
+venue on the same date, starting within 2 hours of the weekly slot, replaces it.
 
 ## How "upcoming" works
 

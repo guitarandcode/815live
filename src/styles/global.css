@@ -182,6 +182,20 @@ nav a:hover {
   color: inherit;
 }
 
+.category {
+  margin: 0;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+}
+
+.bill-line {
+  margin: 0.1rem 0 0;
+  font-size: 0.95rem;
+}
+
 .free {
   color: var(--free);
   font-weight: 600;

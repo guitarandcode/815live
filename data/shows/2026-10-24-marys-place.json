@@ -1,10 +1,8 @@
 {
   "date": "2026-10-24",
-  "startTime": "21:00",
+  "startTime": "19:30",
   "venue": "marys-place",
-  "artists": ["forest-city-fuzz", "loves-park-lights"],
-  "cover": 5,
-  "source": { "type": "manual" },
-  "notes": "PLACEHOLDER: sample listing for development.",
-  "placeholder": true
+  "category": "live-music",
+  "artists": ["born-in-86", "jon-bon-stamos"],
+  "source": { "type": "manual", "url": "http://marysplacebar.com/calendar/" }
 }

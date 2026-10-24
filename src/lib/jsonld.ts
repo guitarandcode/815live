@@ -1,5 +1,6 @@
 // schema.org structured data builders.
-import { billTitle, endDate, type Artist, type Show, type Venue } from './data.ts';
+import { CATEGORY_SCHEMA } from './categories.ts';
+import { endDate, showTitle, type Artist, type Show, type Venue } from './data.ts';
 import { chicagoIso } from './time.ts';
 
 export const SITE_NAME = '815live';
@@ -31,14 +32,15 @@ const STATUS = {
   postponed: 'https://schema.org/EventPostponed',
 } as const;
 
-export function musicEvent(show: Show, site: URL) {
+/** MusicEvent, ComedyEvent or Event depending on the show's category. */
+export function showEvent(show: Show, site: URL) {
   const v = show.venue;
   const url = abs(`/shows/${show.id}`, site);
   const free = show.cover === null || show.cover === 0;
   return {
     '@context': 'https://schema.org',
-    '@type': 'MusicEvent',
-    name: `${billTitle(show)} at ${v.data.name}`,
+    '@type': CATEGORY_SCHEMA[show.category],
+    name: `${showTitle(show)} at ${v.data.name}`,
     url,
     startDate: chicagoIso(show.date, show.startTime),
     ...(show.endTime && { endDate: chicagoIso(endDate(show), show.endTime) }),
@@ -52,12 +54,15 @@ export function musicEvent(show: Show, site: URL) {
       geo: geo(v),
       url: abs(`/venues/${v.id}`, site),
     },
-    performer: show.artists.map((a) => ({
-      '@type': 'MusicGroup',
-      name: a.data.name,
-      url: abs(`/artists/${a.id}`, site),
-      ...(artistLinks(a).length && { sameAs: artistLinks(a) }),
-    })),
+    ...(show.artists.length > 0 && {
+      performer: show.artists.map((a) => ({
+        '@type': 'MusicGroup',
+        name: a.data.name,
+        url: abs(`/artists/${a.id}`, site),
+        ...(artistLinks(a).length && { sameAs: artistLinks(a) }),
+      })),
+    }),
+    ...(show.host && { performer: [{ '@type': 'Person', name: show.host }] }),
     organizer: {
       '@type': 'Organization',
       name: v.data.name,
@@ -96,9 +101,9 @@ export function musicGroup(a: Artist, site: URL) {
     '@type': 'MusicGroup',
     name: a.data.name,
     url: abs(`/artists/${a.id}`, site),
-    description: a.data.bio,
+    ...(a.data.bio && { description: a.data.bio }),
     ...(a.data.genres.length && { genre: a.data.genres }),
-    foundingLocation: { '@type': 'Place', name: a.data.hometown },
+    ...(a.data.hometown && { foundingLocation: { '@type': 'Place', name: a.data.hometown } }),
     ...(artistLinks(a).length && { sameAs: artistLinks(a) }),
   };
 }
