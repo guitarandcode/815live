@@ -1,9 +1,0 @@
-{
-  "venue": "screw-city-tavern",
-  "category": "karaoke",
-  "title": "Karaoke",
-  "weekday": "thursday",
-  "startTime": "19:00",
-  "endTime": "23:00",
-  "source": { "type": "manual", "url": "https://screwcitytavern.com/events/" }
-}

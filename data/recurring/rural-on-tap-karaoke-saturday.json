@@ -1,0 +1,10 @@
+{
+  "venue": "rural-on-tap",
+  "category": "karaoke",
+  "title": "Karaoke",
+  "weekday": "saturday",
+  "startTime": "21:00",
+  "source": {
+    "type": "manual"
+  }
+}

@@ -15,17 +15,17 @@ permission or a feed from them).
 | The Music Box (Rockford) | themusicboxrockford.com | React app + DICE event-list widget | DICE partner API (`partners-endpoint.dice.fm/api/v2/events`, promoter "Music Box of Rockford LLC") with the venue's widget key; DICE venue page has schema.org JSON-LD | Venue site yes; **dice.fm disallows ClaudeBot** and `/api/` | **ask** (venue or DICE for partner access); manual paste meanwhile |
 | Hard Rock Casino Rockford | casino.hardrock.com/rockford/entertainment/upcoming-events | Sitecore; server-rendered cards | None; `/rockford/sitemap.xml` lists every event page | Yes (blocks only /sitecore/, /internal/, PDFs) | **Automated**: `hard-rock-rockford` adapter (sitemap → event pages) |
 | Prairie Street Brewing Co. (Rockford) | psbrewingco.com/events/ | WordPress + The Events Calendar Pro | `/wp-json/tribe/events/v1/events` (JSON) and `/events/?ical=1` (returned empty) | Yes | **feed** (Tribe REST). Calendar currently has 0 upcoming events; Dockside Live is a summer series page |
-| Screw City Tavern (Rockford) | screwcitytavern.com/events/ | WordPress (agency-built), static page | None | Yes | **recurring** (Thu karaoke, Mon Name That Tune — published); acoustic Fri / band Sat posted on Facebook only |
+| Screw City Tavern (Rockford) | screwcitytavern.com/events/ | WordPress (agency-built), static page | None | Yes | **recurring** (Mon Name That Tune) + **manual** from venue flyers (karaoke every other Thu; Amp-O-Calypse 10/24); acoustic Fri / band Sat posted on Facebook only |
 | Whiskey's Roadhouse (Rockford) | whiskeysroadhouse.com (HTTP; HTTPS cert expired) | WordPress, no calendar | Blog RSS only | Yes (over HTTP) | **recurring** (karaoke Wed & Sun 9 PM — published); first-Friday open mic lacks a time |
 | Pig Minds Brewing (Machesney Park) | pigmindsbrewing.com | Behind Cloudflare challenge | Unknown | Couldn't read robots.txt (challenge) | **ask**; not fetched further |
 | Urban Forest Craft Brewing (Rockford) | urbanforestcraftbrewing.com | Squarespace one-pager, no events | None | Yes | **manual/ask** (Facebook-only events) |
-| Rural on Tap (Rockford) | No website found | Facebook-only | — | — | **ask** |
+| Rural On Tap (Rockford) | No website (ruralontap.com is parked) | Facebook-only; monthly calendar image | — | — | **manual** from flyers (Sat karaoke 9 PM published) / **ask**. Address 1710 Rural St, 61107 (directories + Census) |
 | Broadway Joe's (fka Dusty Boots) (Rockford) | No website found (Facebook page only) | Facebook-only | — | — | **ask** |
 | The Top, Embassy Suites Riverfront (Rockford) | hilton.com dining page; Tock for ticketed events; Toast | Hilton (bot-blocked 403); Tock & Toast behind Cloudflare challenge | None reachable | Blocked by bot protection | **ask** |
 | The GOAT Pub and Grill (Rockford) | No website found | — | — | — | **skip** (no evidence of live music) |
 | New Mill Tap (Rockford) | No website found | — | — | — | **ask** / verify it still has music |
-| Shattered Saloon (Loves Park) | No website found | Facebook; Bandsintown venue page | Bandsintown blocks ClaudeBot | No (Bandsintown) | **ask** |
-| Tad's on the Rock (Loves Park) | No website found | — | — | — | **ask** |
+| Shattered Saloon (Loves Park) | No website found | Facebook; Bandsintown venue page | Bandsintown blocks ClaudeBot | No (Bandsintown) | **manual** from monthly flyers / **ask**. Address 5440 N 2nd St, 61111 (Rock River Current + Census) |
+| Tad's on the Rock (Loves Park) | No website found | — | — | — | **manual** from flyers / **ask**. Address 10 E Riverside Blvd, 61111 (directories, WIFR + Census) |
 | Benny's at Nest (Machesney Park) | Toast page; Facebook | Toast behind Cloudflare challenge | — | Blocked by bot protection | **ask** |
 | G5 Brewing (Beloit, WI) | g5brewing.com | Static HTML; "Events" = private parties | None | Yes (no robots.txt) | **ask** (weekly music posted elsewhere) |
 | Cheezhead Brewing (Beloit, WI) | cheezheadbrewing.com/events | Duda; events page has no listings | None | Yes | **ask** |

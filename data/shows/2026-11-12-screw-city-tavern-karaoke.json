@@ -1,0 +1,13 @@
+{
+  "date": "2026-11-12",
+  "startTime": "19:00",
+  "endTime": "23:00",
+  "venue": "screw-city-tavern",
+  "category": "karaoke",
+  "title": "Karaoke",
+  "artists": [],
+  "source": {
+    "type": "manual",
+    "url": "https://screwcitytavern.com/events/"
+  }
+}

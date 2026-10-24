@@ -1,0 +1,13 @@
+{
+  "date": "2026-10-29",
+  "startTime": "17:30",
+  "endTime": "19:30",
+  "venue": "tads-on-the-rock",
+  "category": "live-music",
+  "artists": [
+    "mike-owens"
+  ],
+  "source": {
+    "type": "manual"
+  }
+}

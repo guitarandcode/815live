@@ -32,10 +32,10 @@ test('04:30 UTC build (11:30pm Chicago, already "tomorrow" in UTC) still lists t
 test('home lists recurring events only for 7 days but still builds 8 weeks of pages', () => {
   const { homeHtml } = buildAt('2026-10-24T23:00:00Z');
   assert.match(homeHtml, /href="\/shows\/2026-10-25-marys-place-open-stage"/); // day 2: listed
-  assert.match(homeHtml, /href="\/shows\/2026-10-29-screw-city-tavern-karaoke"/); // day 6: listed
+  assert.match(homeHtml, /href="\/shows\/2026-10-26-screw-city-tavern-name-that-tune"/); // day 3: listed
   assert.doesNotMatch(homeHtml, /href="\/shows\/2026-11-01-marys-place-open-stage"/); // day 9: not listed
   assert.ok(existsSync('dist/shows/2026-12-13-marys-place-open-stage.html')); // week 8 page exists
-  assert.ok(existsSync('dist/shows/2026-12-17-screw-city-tavern-karaoke.html'));
+  assert.ok(existsSync('dist/shows/2026-12-14-screw-city-tavern-name-that-tune.html'));
   assert.match(homeHtml, /<h2>Every week<\/h2>/);
   const ics = readFileSync('dist/calendar.ics', 'utf8');
   assert.equal(ics.match(/UID:[^\r]*open-stage@/g)?.length, 8);
@@ -52,7 +52,7 @@ test('category pages: hidden filter links for empty categories, empty pages noin
   assert.doesNotMatch(readFileSync('dist/sitemap.xml', 'utf8'), /\/comedy</);
   const karaoke = readFileSync('dist/karaoke.html', 'utf8');
   assert.doesNotMatch(karaoke, /Open Stage/);
-  assert.match(karaoke, /Thursdays, 7–11 PM/);
+  assert.match(karaoke, /Every week<\/h2>[\s\S]*(Sun|Mon|Tues|Wednes|Thurs|Fri|Satur)days, \d/); // weekly rules listed once
 });
 
 test('Monday build: this weekend means the coming Fri–Sun', () => {
