@@ -1,10 +1,12 @@
 ---
 import Base from '../layouts/Base.astro';
+import CategoryNav from '../components/CategoryNav.astro';
 import ShowList from '../components/ShowList.astro';
-import { upcomingShows } from '../lib/data.ts';
+import WeeklyList from '../components/WeeklyList.astro';
+import { pageListing } from '../lib/data.ts';
 import { website } from '../lib/jsonld.ts';
 
-const shows = await upcomingShows();
+const { shows, weekly } = await pageListing();
 ---
 
 <Base
@@ -14,5 +16,7 @@ const shows = await upcomingShows();
 >
   <h1>Live music in the 815</h1>
   <p class="lede">Local bands at Rockford-area bars, breweries and small venues. All times Central.</p>
+  <CategoryNav />
   <ShowList shows={shows} />
+  <WeeklyList rules={weekly} />
 </Base>

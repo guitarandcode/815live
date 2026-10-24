@@ -1,0 +1,38 @@
+---
+import { CATEGORY_LABEL } from '../lib/categories.ts';
+import { coverLabel, type Recurring } from '../lib/data.ts';
+import { formatTimeRange } from '../lib/time.ts';
+
+interface Props {
+  rules: Recurring[];
+}
+
+const { rules } = Astro.props;
+const plural = (weekday: string) => `${weekday.charAt(0).toUpperCase()}${weekday.slice(1)}s`;
+---
+
+{
+  rules.length > 0 && (
+    <section class="weekly">
+      <h2>Every week</h2>
+      <ul class="index-list">
+        {rules.map((r) => {
+          const cover = coverLabel(r.cover);
+          return (
+            <li>
+              {r.title !== CATEGORY_LABEL[r.category] && <p class="category">{CATEGORY_LABEL[r.category]}</p>}
+              <a href={`/shows/${r.next!.id}`}>{r.title}</a>
+              <p>
+                {plural(r.weekday)}, {formatTimeRange(r.startTime, r.endTime)}
+                {' · '}
+                <a class="plain" href={`/venues/${r.venue.id}`}>{r.venue.data.name}</a>
+                {cover && <> · <span class:list={[cover === 'Free' && 'free']}>{cover}</span></>}
+                {r.host && <> · Host: {r.host}</>}
+              </p>
+            </li>
+          );
+        })}
+      </ul>
+    </section>
+  )
+}

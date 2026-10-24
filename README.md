@@ -116,7 +116,9 @@ Only `name` is required; `genres`, `hometown`, `website`, `bio` and every `socia
 ```
 
 Each build expands these into dated listings for the next 8 weeks, with IDs
-like `2026-10-25-marys-place-open-stage`. `months` (season), `skip` (dates off),
+like `2026-10-25-marys-place-open-stage`; all 8 weeks get pages, iCal entries
+and JSON-LD. The home and category pages list a weekly event's dates only
+within the next 7 days, and show each rule once in an "Every week" section. `months` (season), `skip` (dates off),
 `endTime`, `host`, `cover` and `notes` are optional. A one-off show at the same
 venue on the same date, starting within 2 hours of the weekly slot, replaces it.
 
@@ -129,6 +131,9 @@ The site is static, so the list of upcoming shows is fixed when it's built:
   (`src/lib/time.ts`), so a 6pm build still lists tonight's shows.
 - A small inline script hides days that have passed since the build, also
   using Chicago's date, not the visitor's timezone.
+- Category pages (`/live-music`, `/karaoke`, `/open-mic`, `/comedy`) always
+  exist; a category's filter link on the home page is hidden while it has no
+  listings, and its empty page is noindexed and left out of the sitemap.
 - `/this-weekend` is the current Fri–Sun on Friday–Sunday, otherwise the next one.
 
 **Daily rebuild.** `.github/workflows/daily-rebuild.yml` runs at 08:17 UTC

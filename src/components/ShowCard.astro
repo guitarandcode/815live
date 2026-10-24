@@ -15,7 +15,7 @@ const cover = coverLabel(show.cover);
 <article class="show-card" class:list={[show.status !== 'scheduled' && 'is-off']}>
   <time class="show-time" datetime={chicagoIso(show.date, show.startTime)}>{formatTime(show.startTime)}</time>
   <div class="show-body">
-    <p class="category">{CATEGORY_LABEL[show.category]}</p>
+    {show.title !== CATEGORY_LABEL[show.category] && <p class="category">{CATEGORY_LABEL[show.category]}</p>}
     <h3><a href={`/shows/${show.id}`}>{showTitle(show)}</a></h3>
     {show.title && show.artists.length > 0 && <p class="bill-line">{lineup(show)}</p>}
     <p class="meta">

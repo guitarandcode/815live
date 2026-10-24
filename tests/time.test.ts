@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { chicagoDate, chicagoIso, chicagoInstant, weekendRange, formatTime } from '../src/lib/time.ts';
-import { upcoming, thisWeekend, groupByDay, recurringDates, dedupeRecurring } from '../src/lib/shows.ts';
+import { chicagoDate, chicagoIso, chicagoInstant, weekendRange, formatTime, formatTimeRange } from '../src/lib/time.ts';
+import { upcoming, thisWeekend, groupByDay, recurringDates, dedupeRecurring, listing } from '../src/lib/shows.ts';
 
 const shows = [
   { id: 'fri-early', date: '2026-10-23', startTime: '20:00' },
@@ -84,4 +84,17 @@ test('one-off shows replace recurring slots at the same venue and time', () => {
     mk('other-day', 'marys', '2026-11-08', '20:00'), // kept
   ];
   assert.deepEqual(ids(dedupeRecurring(oneOffs, rec)), ['far', 'other-venue', 'other-day']);
+});
+
+test('listing: recurring instances only within 7 days, one-offs any time', () => {
+  const now = new Date('2026-10-24T23:00:00Z');
+  const list = [
+    { id: 'one-off-far', date: '2026-12-01', startTime: '20:00' },
+    { id: 'rec-sun', date: '2026-10-25', startTime: '19:00', recurring: 'r' },
+    { id: 'rec-fri', date: '2026-10-30', startTime: '19:00', recurring: 'r' }, // day 7: last day in window
+    { id: 'rec-sat', date: '2026-10-31', startTime: '19:00', recurring: 'r' }, // day 8: out
+  ];
+  assert.deepEqual(ids(listing(list, now)), ['rec-sun', 'rec-fri', 'one-off-far']);
+  assert.equal(formatTimeRange('19:00', '23:00'), '7–11 PM');
+  assert.equal(formatTimeRange('11:00', '14:00'), '11 AM–2 PM');
 });

@@ -117,3 +117,16 @@ export function website(site: URL) {
     description: 'Live music listings for Rockford, Loves Park, Belvidere and the 815.',
   };
 }
+
+/** Summary-page list for category pages: each item links to its event page. */
+export function itemList(shows: Show[], site: URL) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    itemListElement: shows.map((show, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      url: abs(`/shows/${show.id}`, site),
+    })),
+  };
+}
