@@ -1,0 +1,16 @@
+{
+  "date": "2026-11-20",
+  "startTime": "20:00",
+  "endTime": "22:00",
+  "venue": "the-music-box",
+  "category": "live-music",
+  "artists": [
+    "new-nostalgia"
+  ],
+  "cover": 15.08,
+  "ticketUrl": "https://dice.fm/event/6ac29834e1bbc20001eaf7f8",
+  "source": {
+    "type": "manual",
+    "url": "https://dice.fm/venue/the-music-box-p3nl"
+  }
+}

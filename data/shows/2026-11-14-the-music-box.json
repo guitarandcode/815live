@@ -1,0 +1,16 @@
+{
+  "date": "2026-11-14",
+  "startTime": "20:00",
+  "endTime": "22:00",
+  "venue": "the-music-box",
+  "category": "live-music",
+  "artists": [
+    "matthew-curry"
+  ],
+  "cover": 15.08,
+  "ticketUrl": "https://dice.fm/event/6aa72cc6e698de0001147735",
+  "source": {
+    "type": "manual",
+    "url": "https://dice.fm/venue/the-music-box-p3nl"
+  }
+}

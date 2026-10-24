@@ -1,0 +1,16 @@
+{
+  "date": "2026-11-17",
+  "startTime": "19:00",
+  "endTime": "22:00",
+  "venue": "the-music-box",
+  "category": "karaoke",
+  "title": "Karaoke & Open Mic Night",
+  "artists": [],
+  "cover": null,
+  "ticketUrl": "https://dice.fm/event/6abc27b8b40d1c00010a76d5",
+  "notes": "Hosted by Riley Sanders.",
+  "source": {
+    "type": "manual",
+    "url": "https://dice.fm/venue/the-music-box-p3nl"
+  }
+}
