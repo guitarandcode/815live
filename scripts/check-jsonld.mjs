@@ -73,6 +73,12 @@ for await (const file of htmlFiles(dist)) {
 }
 
 if (events === 0) errors.push('no show pages found');
+// Cloudflare Pages serves the home page (status 200) for unknown URLs unless 404.html exists.
+try {
+  await readFile(join(dist, '404.html'), 'utf8');
+} catch {
+  errors.push('404.html missing: unknown URLs would soft-404 to the home page');
+}
 if (errors.length) {
   console.error(`JSON-LD check failed:\n  ${errors.join('\n  ')}`);
   process.exit(1);
