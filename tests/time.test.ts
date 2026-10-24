@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { chicagoDate, chicagoIso, chicagoInstant, weekendRange, formatTime } from '../src/lib/time.ts';
-import { upcoming, thisWeekend, groupByDay } from '../src/lib/shows.ts';
+import { upcoming, thisWeekend, groupByDay, recurringDates, dedupeRecurring } from '../src/lib/shows.ts';
 
 const shows = [
   { id: 'fri-early', date: '2026-10-23', startTime: '20:00' },
@@ -59,4 +59,29 @@ test('grouping and formatting', () => {
   assert.equal(formatTime('21:00'), '9 PM');
   assert.equal(formatTime('19:30'), '7:30 PM');
   assert.equal(formatTime('00:15'), '12:15 AM');
+});
+
+test('recurring dates: weekday, start day included, 8 weeks', () => {
+  const sundays = recurringDates({ weekday: 'sunday', skip: [] }, '2026-10-25', 8);
+  assert.equal(sundays.length, 8);
+  assert.equal(sundays[0], '2026-10-25');
+  assert.equal(sundays[7], '2026-12-13');
+  assert.equal(recurringDates({ weekday: 'thursday', skip: [] }, '2026-10-24', 2)[0], '2026-10-29');
+});
+
+test('recurring dates: season months and skip dates', () => {
+  const dates = recurringDates({ weekday: 'thursday', months: [10, 11], skip: ['2026-11-26'] }, '2026-10-24', 8);
+  assert.deepEqual(dates, ['2026-10-29', '2026-11-05', '2026-11-12', '2026-11-19']);
+});
+
+test('one-off shows replace recurring slots at the same venue and time', () => {
+  const mk = (id: string, venue: string, date: string, startTime: string) => ({ id, venue: { id: venue }, date, startTime });
+  const oneOffs = [mk('special', 'marys', '2026-11-01', '20:00')];
+  const rec = [
+    mk('clash', 'marys', '2026-11-01', '19:00'), // 1h apart, same venue: dropped
+    mk('far', 'marys', '2026-11-01', '22:00'), // 2h apart: kept
+    mk('other-venue', 'musicbox', '2026-11-01', '20:00'), // kept
+    mk('other-day', 'marys', '2026-11-08', '20:00'), // kept
+  ];
+  assert.deepEqual(ids(dedupeRecurring(oneOffs, rec)), ['far', 'other-venue', 'other-day']);
 });

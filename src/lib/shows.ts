@@ -1,5 +1,5 @@
 // Pure show-list logic, kept free of astro:content so it can be unit-tested.
-import { chicagoDate, weekendRange } from './time.ts';
+import { addDays, chicagoDate, weekday, weekendRange } from './time.ts';
 
 interface Dated {
   date: string;
@@ -38,4 +38,47 @@ export function groupByDay<T extends Dated>(shows: T[]): { date: string; shows: 
     days.set(s.date, [...(days.get(s.date) ?? []), s]);
   }
   return [...days].map(([date, list]) => ({ date, shows: list }));
+}
+
+const WEEKDAYS = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'] as const;
+
+export interface RecurringRule {
+  weekday: (typeof WEEKDAYS)[number];
+  months?: number[];
+  skip: string[];
+}
+
+/** Dates a weekly rule falls on, from `today` through `weeks` weeks out (Chicago dates). */
+export function recurringDates(rule: RecurringRule, today: string, weeks: number): string[] {
+  const target = WEEKDAYS.indexOf(rule.weekday);
+  let date = addDays(today, (target - weekday(today) + 7) % 7);
+  const dates: string[] = [];
+  for (let i = 0; i < weeks; i++, date = addDays(date, 7)) {
+    const month = Number(date.slice(5, 7));
+    if (rule.months && !rule.months.includes(month)) continue;
+    if (rule.skip.includes(date)) continue;
+    dates.push(date);
+  }
+  return dates;
+}
+
+const minutes = (t: string) => Number(t.slice(0, 2)) * 60 + Number(t.slice(3, 5));
+
+/** Window within which a one-off show at the same venue replaces a recurring slot. */
+export const DEDUPE_MINUTES = 120;
+
+/**
+ * Drops recurring instances that collide with a one-off show at the same
+ * venue on the same date, starting within DEDUPE_MINUTES. One-offs win.
+ */
+export function dedupeRecurring<T extends Dated & { venue: { id: string } }>(oneOffs: T[], recurring: T[]): T[] {
+  return recurring.filter(
+    (r) =>
+      !oneOffs.some(
+        (s) =>
+          s.venue.id === r.venue.id &&
+          s.date === r.date &&
+          Math.abs(minutes(s.startTime) - minutes(r.startTime)) < DEDUPE_MINUTES,
+      ),
+  );
 }

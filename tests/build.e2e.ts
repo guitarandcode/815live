@@ -27,8 +27,16 @@ test('04:30 UTC build (11:30pm Chicago, already "tomorrow" in UTC) still lists t
   assert.equal(buildAt('2026-10-25T04:30:00Z').home[0], '2026-10-24');
 });
 
+test('recurring Sunday open stage expands for 8 weeks from the build date', () => {
+  const { home } = buildAt('2026-10-24T23:00:00Z');
+  const sundays = home.filter((d) => new Date(`${d}T12:00:00Z`).getUTCDay() === 0);
+  assert.equal(sundays.length, 8);
+  assert.equal(sundays[0], '2026-10-25');
+  assert.equal(sundays.at(-1), '2026-12-13');
+});
+
 test('Monday build: this weekend means the coming Fri–Sun', () => {
   const { home, weekend } = buildAt('2026-10-26T15:00:00Z');
   assert.ok(!home.includes('2026-10-25'));
-  assert.deepEqual(weekend, ['2026-10-30', '2026-10-31', '2026-11-01']);
+  assert.deepEqual(weekend, ['2026-10-30', '2026-11-01']); // nothing listed Sat Oct 31
 });

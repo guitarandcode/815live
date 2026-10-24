@@ -1,6 +1,7 @@
 // Minimal RFC 5545 calendar writer. Times are emitted in UTC ("Z"), which
 // every client converts correctly and avoids shipping a VTIMEZONE block.
-import { billTitle, coverLabel, endDate, type Show } from './data.ts';
+import { CATEGORY_LABEL } from './categories.ts';
+import { coverLabel, endDate, showTitle, type Show } from './data.ts';
 import { chicagoInstant } from './time.ts';
 
 const DEFAULT_HOURS = 3;
@@ -49,6 +50,7 @@ export function calendar(shows: Show[], site: URL, now: Date): string {
     const v = show.venue.data;
     const desc = [
       show.artists.map((a) => a.data.name).join(', '),
+      show.host && `Host: ${show.host}`,
       coverLabel(show.cover) && `Cover: ${coverLabel(show.cover)}`,
       show.notes,
       url,
@@ -59,9 +61,10 @@ export function calendar(shows: Show[], site: URL, now: Date): string {
       `DTSTAMP:${stamp(now)}`,
       `DTSTART:${stamp(start)}`,
       `DTEND:${stamp(end)}`,
-      `SUMMARY:${escape(`${billTitle(show)} at ${v.name}`)}`,
+      `SUMMARY:${escape(`${showTitle(show)} at ${v.name}`)}`,
       `LOCATION:${escape(`${v.name}, ${v.address}, ${v.city}, ${v.state} ${v.zip}`)}`,
       `GEO:${v.lat};${v.lng}`,
+      `CATEGORIES:${escape(CATEGORY_LABEL[show.category])}`,
       `DESCRIPTION:${escape(desc.join('\n'))}`,
       `URL:${url}`,
       `STATUS:${show.status === 'cancelled' ? 'CANCELLED' : show.status === 'postponed' ? 'TENTATIVE' : 'CONFIRMED'}`,

@@ -19,15 +19,15 @@ const label = (k: string) => k.charAt(0).toUpperCase() + k.slice(1);
 
 <Base
   title={`${a.name}: upcoming shows`}
-  description={`${a.name}${a.genres.length ? ` (${a.genres.join(', ')})` : ''} from ${a.hometown}. Upcoming live shows around Rockford, IL.`}
+  description={`${a.name}${a.genres.length ? ` (${a.genres.join(', ')})` : ''} ${a.hometown ? ` from ${a.hometown}` : ''}. Upcoming live shows around Rockford, IL.`}
   noindex={a.placeholder}
   jsonld={musicGroup(artist, Astro.site!)}
 >
   {a.placeholder && <span class="badge">Sample artist</span>}
   <h1>{a.name}</h1>
-  <p class="meta">{a.hometown}</p>
+  {a.hometown && <p class="meta">{a.hometown}</p>}
   {a.genres.length > 0 && <ul class="chips">{a.genres.map((g) => <li>{g}</li>)}</ul>}
-  <p>{a.bio}</p>
+  {a.bio && <p>{a.bio}</p>}
   {links.length > 0 && (
     <p>{links.map(([k, url], i) => <>{i > 0 && ' · '}<a href={url} rel="noopener">{label(k)}</a></>)}</p>
   )}
