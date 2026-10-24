@@ -28,11 +28,6 @@ the flyer gives no town or address, and searches found no "Town Hall Lounge"
 in the Rockford area. Needs the venue's location (and a website, if any).
 The flyer is still in the inbox.
 
-## Shattered Saloon: Thursday karaoke and open mic
-
-The venue's October flyer says "Karaoke & Open Mic Night every Thursday" with
-no start time. Not published until a time is known. The flyer's live-music
-dates are published.
 
 ## Rue Marché: karaoke Thursday–Saturday
 
@@ -41,13 +36,12 @@ says Rue Marché "dominates karaoke on Thursdays, Fridays, and Saturdays". No
 start time, and the bar has no website of its own. The venue is published;
 the weekly karaoke rules need a start time.
 
-## District: Thursday karaoke, Tuesday jam night
+## District: Tuesday jam night
 
-District's own home page lists Tuesday "District jams night", Wednesday DJ
-battle, Thursday karaoke and live music Friday and Saturday, all "subject to
-change", with no times or performers. The events page and its TicketWeb page
-had no upcoming shows (2026-10-24). The venue is published; the karaoke and
-jam rules need start times.
+District's own home page lists a Tuesday "District jams night" with no time
+(and a Wednesday DJ battle, not listed: not live music). Thursday karaoke is
+published (9 PM, from a District flyer the user sent). The events page and
+its TicketWeb page had no upcoming shows (2026-10-24).
 
 ## Karaoke tips not confirmed (Facebook thread, 2026-10-24)
 
@@ -59,3 +53,12 @@ None could be confirmed from a source we're allowed to use, so nothing is publis
 - **Windsor Pizza Parlor**, **Attitudes Bar & Grill** (Machesney Park),
   **The Office Niteclub** (513 E State St, Sundays), **Rockton Inn**
   (Tue–Fri after 8), the Loves Park food park: no venue source found.
+
+## J&A Karaoke: November schedule
+
+The DJ's flyer is an "October Schedule" (Rock-A-Bago Sun, Benny's Roscoe
+Tue/Sat, Benny's @ Nest Thu, Broadway Joe's Fri), so the Rock-A-Bago, Benny's
+Roscoe and Broadway Joe's rules carry `"months": [10]` and stop after Oct 31.
+Benny's @ Nest's Thursday is weekly per the bar's own "Every Thursday" flyer.
+Extend or replace the rules when the November schedule is out.
+

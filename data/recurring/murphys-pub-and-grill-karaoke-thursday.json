@@ -1,0 +1,8 @@
+{
+  "venue": "murphys-pub-and-grill",
+  "category": "karaoke",
+  "title": "Karaoke",
+  "weekday": "thursday",
+  "startTime": "21:00",
+  "source": { "type": "manual" }
+}

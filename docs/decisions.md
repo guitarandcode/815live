@@ -88,3 +88,21 @@ Calls made while filling out listings unattended (session of 2026-10-24).
   plain sans elsewhere. The og:image is rendered once with headless Chrome
   and committed, so builds don't depend on fonts on the build machine.
 
+- **Karaoke flyers (user's screenshots, 2026-10-24).** Published weekly
+  karaoke from flyers: District Thu 9 PM; Shattered Saloon open mic & karaoke
+  Thu 8 PM (category `open-mic`, one listing rather than two at the same
+  slot); Benny's @ Nest Thu 8–12; Murphy's Pub & Grill Thu 9 PM (the flyer's
+  five-week showdown ended 10/16, but it says karaoke is every Thursday); and
+  the DJ's October schedule, limited to October (`months: [10]`):
+  Rock-A-Bago Sun 7–11 (all ages), Benny's Roscoe Tue and Sat 8–12 (Saturday
+  is contest qualifying), Broadway Joe's Fri 9–1. Left out: DJ and bartender
+  names, drink specials, gift-card giveaways, and a "District with Sammy
+  Heaton" post with no date or time.
+  - Addresses: Rock-A-Bago (4303 W State St, SeatGeek/Roadtrippers listings as
+    "Rock A Bago Hall"), Broadway Joe's (3907 Broadway, Rock River Current via
+    search result and Patch), Murphy's (510 S Perryville Rd, Rockford Chamber
+    directory and iExit). Benny's Roscoe's 5328 Williams Dr comes from a 2022
+    Rockton-Roscoe News listing; a 2024 report confirms the Roscoe location
+    but not the street address, so confirm when possible. Census matched all
+    but Murphy's, whose pin is interpolated between Census's 450 and 600
+    S Perryville Rd matches.

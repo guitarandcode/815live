@@ -1,0 +1,10 @@
+{
+  "venue": "broadway-joes",
+  "category": "karaoke",
+  "title": "Karaoke",
+  "weekday": "friday",
+  "startTime": "21:00",
+  "endTime": "01:00",
+  "months": [10],
+  "source": { "type": "manual" }
+}

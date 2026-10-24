@@ -1,0 +1,8 @@
+{
+  "venue": "shattered-saloon",
+  "category": "open-mic",
+  "title": "Open Mic & Karaoke Night",
+  "weekday": "thursday",
+  "startTime": "20:00",
+  "source": { "type": "manual" }
+}
