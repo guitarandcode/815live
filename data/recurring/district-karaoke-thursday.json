@@ -1,0 +1,8 @@
+{
+  "venue": "district",
+  "category": "karaoke",
+  "title": "Karaoke",
+  "weekday": "thursday",
+  "startTime": "21:00",
+  "source": { "type": "manual", "url": "https://districtdowntown.com/" }
+}

@@ -1,0 +1,11 @@
+{
+  "venue": "rock-a-bago",
+  "category": "karaoke",
+  "title": "Karaoke",
+  "weekday": "sunday",
+  "startTime": "19:00",
+  "endTime": "23:00",
+  "months": [10],
+  "notes": "All ages",
+  "source": { "type": "manual" }
+}
