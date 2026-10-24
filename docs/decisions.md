@@ -25,17 +25,3 @@ Calls made while filling out listings unattended (session of 2026-10-24).
 - **Artist bios** are one line in my own words, built only from facts the
   venue or band states (hometown, genre, line-up type). Unknown hometowns are
   left blank rather than guessed.
-- **The Music Box source.** The venue's own site renders its calendar from
-  DICE (via DICE's partner API with the venue's widget key, which we don't
-  use; `dice.fm/api/` is also robots-disallowed). Listings were taken from
-  DICE's public venue page `dice.fm/venue/the-music-box-p3nl`, which robots.txt
-  allows and which carries the same events as schema.org JSON-LD. Treated as
-  the venue's own listing.
-- **Music Box prices.** `cover` is DICE's listed all-in price (fees included,
-  e.g. $15.08). DICE's `$0.00` events are recorded as free. Every show links
-  its DICE event page as `ticketUrl`.
-- **Music Box names.** DICE titles are in caps ("AN EVENING with ERIK
-  KOSKINEN"); artist names were set in normal case except `BAMM`, kept as-is
-  because the caps may be the band's styling. "Karaoke/Open Mic Night with
-  Riley Sanders" is filed as karaoke (it's both) with the host in notes.
-  End times are DICE's.
