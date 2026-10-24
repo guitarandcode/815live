@@ -1,0 +1,12 @@
+{
+  "date": "2026-10-30",
+  "startTime": "20:00",
+  "venue": "shattered-saloon",
+  "category": "live-music",
+  "artists": [
+    "mothman"
+  ],
+  "source": {
+    "type": "manual"
+  }
+}

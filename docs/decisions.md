@@ -54,3 +54,27 @@ Calls made while filling out listings unattended (session of 2026-10-24).
   and the sitemap daily and only event pages whose `lastmod` changed. The
   bot's own User-Agent is `815liveBot`; the Anthropic-agent robots rule is for
   fetches Claude makes interactively.
+- **Screw City karaoke is every other Thursday.** The venue's events page
+  just says "Thursdays", but the venue's own karaoke flyer (same phone number
+  as the events page) says every other Thursday and lists the dates: 9/3,
+  9/17, 10/1, 10/15, 10/29, 11/12, 12/10. The weekly rule was replaced with
+  one show per listed date (10/29, 11/12, 12/10 still upcoming). The flyer
+  names the host, but no name is stored.
+- **First inbox run (2026-10-24).** From flyers the user collected:
+  Amp-O-Calypse at Screw City (Oct 24, free), Shattered Saloon's last three
+  October dates, Mike Owens at Tad's on the Rock (Oct 29, 5:30–7:30), and
+  Rural On Tap's Saturday karaoke (9 PM, weekly) plus its Oct 31 Halloween
+  karaoke party (the calendar's "every Saturday 9PM" covers that date).
+  - Years: the Shattered flyer and the Rural On Tap calendar give October
+    dates; the calendar says 2026, and the Shattered dates all fall on the
+    weekdays a bar would book in 2026 (Fri/Sat, plus two Wednesdays). Tad's
+    flyer says "Thursday the 29th"; Oct 29, 2026 is a Thursday.
+  - Addresses: Rural On Tap from several directory listings, Shattered
+    Saloon from Rock River Current's 2022 opening story, Tad's from
+    directories and a 2025 WIFR list. All three matched exactly in the Census
+    geocoder. None has a working website (ruralontap.com is parked), so these
+    shows have no `source.url`.
+  - Left out: Rural On Tap's non-music events (bingo, darts, movie trivia,
+    paint night, food specials); the going-away-party details on Tad's flyer;
+    the bartenders' names on the Town Hall flyer.
+
