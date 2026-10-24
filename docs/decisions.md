@@ -36,3 +36,6 @@ Calls made while filling out listings unattended (session of 2026-10-24).
 - **Artist bios** are one line in my own words, built only from facts the
   venue or band states (hometown, genre, line-up type). Unknown hometowns are
   left blank rather than guessed.
+- **New `trivia` category.** Added for music trivia (Screw City's Monday
+  "Name That Tune"), labelled "Music trivia", JSON-LD type `Event`, page
+  `/trivia`. General pub trivia without a music angle isn't listed.
