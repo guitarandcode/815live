@@ -1,0 +1,10 @@
+/calendar.ics
+  Content-Type: text/calendar; charset=utf-8
+  Cache-Control: public, max-age=900
+
+/rss.xml
+  Content-Type: application/rss+xml; charset=utf-8
+  Cache-Control: public, max-age=900
+
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable

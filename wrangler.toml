@@ -1,0 +1,4 @@
+# Cloudflare Pages config. Used by `wrangler pages deploy` and Git-connected builds.
+name = "815live"
+pages_build_output_dir = "dist"
+compatibility_date = "2026-10-01"
