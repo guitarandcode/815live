@@ -1,6 +1,10 @@
 # Venue sources survey
 
-Surveyed 2026-10-24. Every request went through a robots.txt check (including
+Surveyed 2026-10-24. Grand Avenue Pub address (132 W Grand Ave, Beloit WI 53511)
+confirmed via Travel Wisconsin and the Sunset Strip band site; coordinates from
+the Census geocoder.
+
+Originally surveyed 2026-10-24. Every request went through a robots.txt check (including
 groups aimed at Anthropic agents, since Claude did the fetching). "Robots OK"
 is for the specific events URL. No Facebook pages were fetched.
 
@@ -29,6 +33,7 @@ permission or a feed from them).
 | Benny's at Nest (Machesney Park) | Toast page; Facebook | Toast behind Cloudflare challenge | — | Blocked by bot protection | **ask** |
 | G5 Brewing (Beloit, WI) | g5brewing.com | Static HTML; "Events" = private parties | None | Yes (no robots.txt) | **ask** (weekly music posted elsewhere) |
 | Cheezhead Brewing (Beloit, WI) | cheezheadbrewing.com/events | Duda; events page has no listings | None | Yes | **ask** |
+| Grand Avenue Pub (Beloit, WI) | grandavenuebeloit.com | Website-builder site; says "live music every weekend" but has no calendar | None; shows posted on social media | Yes (no robots.txt) | **manual/ask** |
 | Rockford Park District | rockfordparkdistrict.org/events | Squarespace + CalendarWiz embed (`crd=rpdfun`) | CalendarWiz `/calendars/` and `/eventboard/` are **disallowed** | Park site yes; calendar no | **ask** for an export; manual for big series |
 
 ## Bands
