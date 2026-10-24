@@ -1,0 +1,24 @@
+---
+import { CATEGORIES, CATEGORY_LABEL, type Category } from '../lib/categories.ts';
+import { categoryCounts } from '../lib/data.ts';
+
+interface Props {
+  current?: Category;
+}
+
+const { current } = Astro.props;
+const counts = await categoryCounts();
+// A category's link is hidden while it has no listings (unless you're on its page).
+const shown = CATEGORIES.filter((c) => counts[c] > 0 || c === current);
+---
+
+{
+  shown.length > 0 && (
+    <nav class="filters" aria-label="Filter by type">
+      <a href="/" aria-current={current ? undefined : 'page'}>All</a>
+      {shown.map((c) => (
+        <a href={`/${c}`} aria-current={c === current ? 'page' : undefined}>{CATEGORY_LABEL[c]}</a>
+      ))}
+    </nav>
+  )
+}

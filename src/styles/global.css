@@ -243,6 +243,47 @@ nav a:hover {
   color: var(--muted);
 }
 
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0 0 1.5rem;
+}
+
+.filters a {
+  padding: 0.2rem 0.75rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.filters a:hover {
+  color: var(--text);
+}
+
+.filters a[aria-current='page'] {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-text);
+}
+
+.weekly {
+  margin-top: 2.5rem;
+}
+
+.weekly h2 {
+  font-size: 1.25rem;
+}
+
+.index-list a.plain {
+  font-weight: inherit;
+  font-size: inherit;
+  color: inherit;
+}
+
 /* Detail pages */
 .facts {
   display: grid;

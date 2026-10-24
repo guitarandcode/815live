@@ -32,6 +32,19 @@ export function thisWeekend<T extends Dated>(shows: T[], now: Date): T[] {
   return upcoming(shows, now).filter((s) => s.date >= start && s.date <= end);
 }
 
+/** Days ahead (from today, inclusive) that recurring listings appear in dated lists. */
+export const RECURRING_LIST_DAYS = 7;
+
+/**
+ * The dated list for the home and category pages: upcoming one-offs, plus
+ * recurring instances only within the next RECURRING_LIST_DAYS days. The
+ * rest of the recurring instances still get pages, iCal and JSON-LD.
+ */
+export function listing<T extends Dated & { recurring?: string }>(shows: T[], now: Date): T[] {
+  const cutoff = addDays(chicagoDate(now), RECURRING_LIST_DAYS);
+  return upcoming(shows, now).filter((s) => !s.recurring || s.date < cutoff);
+}
+
 export function groupByDay<T extends Dated>(shows: T[]): { date: string; shows: T[] }[] {
   const days = new Map<string, T[]>();
   for (const s of [...shows].sort(byStart)) {
@@ -40,7 +53,7 @@ export function groupByDay<T extends Dated>(shows: T[]): { date: string; shows: 
   return [...days].map(([date, list]) => ({ date, shows: list }));
 }
 
-const WEEKDAYS = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'] as const;
+export const WEEKDAYS = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'] as const;
 
 export interface RecurringRule {
   weekday: (typeof WEEKDAYS)[number];

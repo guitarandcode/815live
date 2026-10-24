@@ -4,6 +4,10 @@
   "title": "Open Stage",
   "weekday": "sunday",
   "startTime": "19:00",
+  "endTime": "23:00",
   "cover": null,
-  "source": { "type": "manual", "url": "http://marysplacebar.com/calendar/" }
+  "source": {
+    "type": "manual",
+    "url": "http://marysplacebar.com/calendar/"
+  }
 }

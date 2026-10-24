@@ -109,6 +109,14 @@ export function formatTime(time: string): string {
   return `${h12}${min ? `:${pad(min)}` : ''} ${h < 12 ? 'AM' : 'PM'}`;
 }
 
+/** '19:00'–'23:00' -> '7–11 PM'; '11:00'–'14:00' -> '11 AM–2 PM'. */
+export function formatTimeRange(start: string, end?: string): string {
+  if (!end) return formatTime(start);
+  const [a, b] = [formatTime(start), formatTime(end)];
+  const [aTime, aMer] = a.split(' ');
+  return aMer === b.split(' ')[1] ? `${aTime}–${b}` : `${a}–${b}`;
+}
+
 const stampFmt = new Intl.DateTimeFormat('en-US', {
   timeZone: TZ,
   month: 'short',
