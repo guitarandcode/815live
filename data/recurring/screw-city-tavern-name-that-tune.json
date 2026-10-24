@@ -1,0 +1,9 @@
+{
+  "venue": "screw-city-tavern",
+  "category": "trivia",
+  "title": "Name That Tune",
+  "weekday": "monday",
+  "startTime": "19:00",
+  "endTime": "21:00",
+  "source": { "type": "manual", "url": "https://screwcitytavern.com/events/" }
+}

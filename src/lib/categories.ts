@@ -1,4 +1,4 @@
-export const CATEGORIES = ['live-music', 'karaoke', 'comedy', 'open-mic'] as const;
+export const CATEGORIES = ['live-music', 'karaoke', 'open-mic', 'trivia', 'comedy'] as const;
 export type Category = (typeof CATEGORIES)[number];
 
 export const CATEGORY_LABEL: Record<Category, string> = {
@@ -6,6 +6,7 @@ export const CATEGORY_LABEL: Record<Category, string> = {
   karaoke: 'Karaoke',
   comedy: 'Comedy',
   'open-mic': 'Open mic',
+  trivia: 'Music trivia',
 };
 
 /** schema.org type per category. */
@@ -14,6 +15,7 @@ export const CATEGORY_SCHEMA: Record<Category, 'MusicEvent' | 'ComedyEvent' | 'E
   karaoke: 'Event',
   comedy: 'ComedyEvent',
   'open-mic': 'Event',
+  trivia: 'Event',
 };
 
 /** Category page copy, keyed by URL slug (/live-music, /karaoke, …). */
@@ -32,6 +34,11 @@ export const CATEGORY_PAGE: Record<Category, { heading: string; title: string; d
     heading: 'Open mic',
     title: 'Open mic nights in Rockford, IL',
     description: 'Open mic and open stage nights in Rockford, Loves Park and Belvidere for musicians and performers.',
+  },
+  trivia: {
+    heading: 'Music trivia',
+    title: 'Music trivia nights in Rockford, IL',
+    description: 'Music trivia and name-that-tune nights at bars in Rockford, Loves Park and Belvidere.',
   },
   comedy: {
     heading: 'Comedy',

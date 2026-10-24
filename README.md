@@ -81,7 +81,7 @@ Only `name` is required; `genres`, `hometown`, `website`, `bio` and every `socia
 
 - `date`/`startTime`/`endTime` are **Chicago local time**, 24-hour. An `endTime`
   earlier than `startTime` means after midnight.
-- `category`: `live-music` (default), `karaoke`, `comedy` or `open-mic`. It sets
+- `category`: `live-music` (default), `karaoke`, `open-mic`, `trivia` (music trivia) or `comedy`. It sets
   the card label and the JSON-LD type (MusicEvent / ComedyEvent / Event).
 - `artists` is the bill in order, headliner first. `title` is the event's own
   name. A show needs at least one of them; with both, the title is the heading
@@ -131,7 +131,7 @@ The site is static, so the list of upcoming shows is fixed when it's built:
   (`src/lib/time.ts`), so a 6pm build still lists tonight's shows.
 - A small inline script hides days that have passed since the build, also
   using Chicago's date, not the visitor's timezone.
-- Category pages (`/live-music`, `/karaoke`, `/open-mic`, `/comedy`) always
+- Category pages (`/live-music`, `/karaoke`, `/open-mic`, `/trivia`, `/comedy`) always
   exist; a category's filter link on the home page is hidden while it has no
   listings, and its empty page is noindexed and left out of the sitemap.
 - `/this-weekend` is the current Fri–Sun on Friday–Sunday, otherwise the next one.
