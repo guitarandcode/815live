@@ -1,0 +1,14 @@
+{
+  "date": "2026-11-25",
+  "startTime": "19:30",
+  "venue": "the-music-box",
+  "category": "live-music",
+  "artists": [
+    "long-shot"
+  ],
+  "cover": null,
+  "source": {
+    "type": "manual",
+    "url": "https://themusicboxrockford.com/"
+  }
+}

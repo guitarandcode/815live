@@ -1,0 +1,15 @@
+{
+  "date": "2026-10-31",
+  "startTime": "20:00",
+  "venue": "the-music-box",
+  "category": "live-music",
+  "title": "Halloween Night",
+  "artists": [
+    "gang-of-martians"
+  ],
+  "cover": null,
+  "source": {
+    "type": "manual",
+    "url": "https://themusicboxrockford.com/"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "date": "2026-12-12",
+  "startTime": "20:00",
+  "venue": "the-music-box",
+  "category": "live-music",
+  "artists": [
+    "shawn-johnson"
+  ],
+  "cover": null,
+  "source": {
+    "type": "manual",
+    "url": "https://themusicboxrockford.com/"
+  }
+}

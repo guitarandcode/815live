@@ -1,0 +1,15 @@
+{
+  "date": "2026-11-28",
+  "startTime": "18:30",
+  "venue": "the-music-box",
+  "category": "live-music",
+  "title": "Stroll on State",
+  "artists": [
+    "redwood-band"
+  ],
+  "cover": null,
+  "source": {
+    "type": "manual",
+    "url": "https://themusicboxrockford.com/"
+  }
+}

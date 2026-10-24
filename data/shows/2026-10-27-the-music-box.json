@@ -1,0 +1,14 @@
+{
+  "date": "2026-10-27",
+  "startTime": "19:30",
+  "venue": "the-music-box",
+  "category": "live-music",
+  "title": "Tuesday Night Music Club",
+  "artists": [],
+  "cover": null,
+  "notes": "Hosted by Mossy Vaughn.",
+  "source": {
+    "type": "manual",
+    "url": "https://themusicboxrockford.com/"
+  }
+}

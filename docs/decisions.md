@@ -39,3 +39,12 @@ Calls made while filling out listings unattended (session of 2026-10-24).
 - **New `trivia` category.** Added for music trivia (Screw City's Monday
   "Name That Tune"), labelled "Music trivia", JSON-LD type `Event`, page
   `/trivia`. General pub trivia without a music angle isn't listed.
+- **Music Box (published from the user's paste).** 20 shows entered from the
+  venue-site listing the user pasted: date, start time, title/artists, price
+  ("From $X" recorded as X; "Free" as free). No ticket links or end times,
+  since the paste had none and the earlier DICE-derived values were dropped.
+- **Sunset Strip shows (from the user's paste of the band's Shows page).**
+  Oct 24 at Grand Avenue Pub (Beloit) and Oct 31 at Benny's @ Nest. The paste
+  had no URL and sunsetstripband.com / sunsetstriprocks.com are parked
+  domains, so `source.url` is blank until the band's real URL is known.
+  Added Grand Avenue Pub and Benny's @ Nest venue records (Census coordinates).
