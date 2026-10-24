@@ -1,0 +1,61 @@
+---
+import type { GetStaticPaths } from 'astro';
+import Base from '../../layouts/Base.astro';
+import { billTitle, coverLabel, loadAll, type Show } from '../../lib/data.ts';
+import { musicEvent } from '../../lib/jsonld.ts';
+import { chicagoIso, formatDay, formatTime } from '../../lib/time.ts';
+
+export const getStaticPaths = (async () => {
+  const { shows } = await loadAll();
+  return shows.map((show) => ({ params: { id: show.id }, props: { show } }));
+}) satisfies GetStaticPaths;
+
+const { show } = Astro.props as { show: Show };
+const v = show.venue;
+const title = `${billTitle(show)} at ${v.data.name}`;
+const when = `${formatDay(show.date)} at ${formatTime(show.startTime)}`;
+const cover = coverLabel(show.cover);
+const mapUrl = `https://www.openstreetmap.org/?mlat=${v.data.lat}&mlon=${v.data.lng}#map=17/${v.data.lat}/${v.data.lng}`;
+---
+
+<Base
+  title={`${title}, ${formatDay(show.date)}`}
+  description={`${title} in ${v.data.city}, IL on ${when}.${cover ? ` Cover: ${cover}.` : ''}`}
+  noindex={show.placeholder}
+  ogType="article"
+  jsonld={musicEvent(show, Astro.site!)}
+>
+  <article>
+    {show.placeholder && <span class="badge">Sample listing</span>}
+    <h1>{billTitle(show)}</h1>
+    {show.status !== 'scheduled' && <p class="status">{show.status === 'cancelled' ? 'Cancelled' : 'Postponed'}</p>}
+    <dl class="facts">
+      <dt>When</dt>
+      <dd>
+        <time datetime={chicagoIso(show.date, show.startTime)}>{when}</time>
+        {show.endTime && <> – {formatTime(show.endTime)}</>} CT
+      </dd>
+      <dt>Where</dt>
+      <dd>
+        <a href={`/venues/${v.id}`}>{v.data.name}</a><br />
+        <a href={mapUrl} rel="noopener">{v.data.address}, {v.data.city}, {v.data.state} {v.data.zip}</a>
+      </dd>
+      <dt>Cover</dt>
+      <dd>{cover ?? 'Not announced'}</dd>
+    </dl>
+    {show.ticketUrl && <p><a class="button" href={show.ticketUrl} rel="noopener">Tickets</a></p>}
+    <section>
+      <h2>The bill</h2>
+      <ol class="bill">
+        {show.artists.map((a) => (
+          <li>
+            <a href={`/artists/${a.id}`}>{a.data.name}</a>
+            {a.data.genres.length > 0 && <span class="meta"> · {a.data.genres.join(', ')}</span>}
+          </li>
+        ))}
+      </ol>
+    </section>
+    {show.notes && <section><h2>Notes</h2><p>{show.notes}</p></section>}
+    {show.source.url && <p class="meta">Source: <a href={show.source.url} rel="noopener nofollow">{show.source.type}</a></p>}
+  </article>
+</Base>

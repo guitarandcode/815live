@@ -1,0 +1,36 @@
+---
+import type { GetStaticPaths } from 'astro';
+import Base from '../../layouts/Base.astro';
+import ShowList from '../../components/ShowList.astro';
+import { loadAll, upcomingShows, type Venue } from '../../lib/data.ts';
+import { musicVenue } from '../../lib/jsonld.ts';
+
+export const getStaticPaths = (async () => {
+  const { venues } = await loadAll();
+  return venues.map((venue) => ({ params: { slug: venue.id }, props: { venue } }));
+}) satisfies GetStaticPaths;
+
+const { venue } = Astro.props as { venue: Venue };
+const v = venue.data;
+const shows = (await upcomingShows()).filter((s) => s.venue.id === venue.id);
+const mapUrl = `https://www.openstreetmap.org/?mlat=${v.lat}&mlon=${v.lng}#map=17/${v.lat}/${v.lng}`;
+---
+
+<Base
+  title={`${v.name}: live music in ${v.city}, IL`}
+  description={`Upcoming live music at ${v.name}, ${v.address} in ${v.city}, IL. ${v.description}`}
+  noindex={v.placeholder}
+  jsonld={musicVenue(venue, Astro.site!)}
+>
+  {v.placeholder && <span class="badge">Sample venue</span>}
+  <h1>{v.name}</h1>
+  <p class="lede">{v.description}</p>
+  <dl class="facts">
+    <dt>Address</dt>
+    <dd><a href={mapUrl} rel="noopener">{v.address}, {v.city}, {v.state} {v.zip}</a></dd>
+    {v.website && <dt>Website</dt>}
+    {v.website && <dd><a href={v.website} rel="noopener">{new URL(v.website).hostname}</a></dd>}
+  </dl>
+  <h2>Upcoming shows</h2>
+  <ShowList shows={shows} showVenue={false} empty={`No upcoming shows listed at ${v.name}.`} />
+</Base>

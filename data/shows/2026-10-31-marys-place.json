@@ -1,0 +1,10 @@
+{
+  "date": "2026-10-31",
+  "startTime": "21:30",
+  "venue": "marys-place",
+  "artists": ["loves-park-lights"],
+  "cover": 8,
+  "source": { "type": "manual" },
+  "notes": "PLACEHOLDER: sample listing for development. Halloween costume contest.",
+  "placeholder": true
+}

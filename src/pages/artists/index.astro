@@ -1,0 +1,18 @@
+---
+import Base from '../../layouts/Base.astro';
+import { loadAll } from '../../lib/data.ts';
+
+const { artists } = await loadAll();
+---
+
+<Base title="Artists" description="Local bands and musicians playing live around Rockford, Loves Park and Belvidere, IL.">
+  <h1>Artists</h1>
+  <ul class="index-list">
+    {artists.map((a) => (
+      <li>
+        <a href={`/artists/${a.id}`}>{a.data.name}</a>
+        <p>{[a.data.genres.join(', '), a.data.hometown].filter(Boolean).join(' · ')}</p>
+      </li>
+    ))}
+  </ul>
+</Base>

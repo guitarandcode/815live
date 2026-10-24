@@ -1,0 +1,86 @@
+---
+import '../styles/global.css';
+import { NOW } from '../lib/data.ts';
+import { SITE_NAME } from '../lib/jsonld.ts';
+import { formatStamp, TZ } from '../lib/time.ts';
+
+interface Props {
+  title: string;
+  description: string;
+  noindex?: boolean;
+  ogType?: 'website' | 'article';
+  jsonld?: object | object[];
+}
+
+const { title, description, noindex = false, ogType = 'website', jsonld } = Astro.props;
+const site = Astro.site!;
+// build.format 'file' reports /venues/x.html at build time; canonical URLs are the clean form.
+const path = Astro.url.pathname.replace(/(\/index)?\.html$/, '') || '/';
+const canonical = new URL(path, site).href;
+const fullTitle = path === '/' ? title : `${title} | ${SITE_NAME}`;
+const ld = jsonld ? (Array.isArray(jsonld) ? jsonld : [jsonld]) : [];
+const nav = [
+  ['/', 'Upcoming'],
+  ['/this-weekend', 'This weekend'],
+  ['/venues', 'Venues'],
+  ['/artists', 'Artists'],
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex" />}
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="alternate" type="application/rss+xml" title="815live upcoming shows" href="/rss.xml" />
+    <link rel="alternate" type="text/calendar" title="815live calendar" href="/calendar.ics" />
+    <meta property="og:site_name" content={SITE_NAME} />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content="en_US" />
+    <meta name="twitter:card" content="summary" />
+    {ld.map((obj) => <script type="application/ld+json" set:html={JSON.stringify(obj).replace(/</g, '\\u003c')} />)}
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="wrap">
+        <a class="logo" href="/">815<span>live</span></a>
+        <nav aria-label="Main">
+          {nav.map(([href, label]) => <a href={href} aria-current={path === href ? 'page' : undefined}>{label}</a>)}
+        </nav>
+      </div>
+    </header>
+    <main class="wrap">
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <div class="wrap">
+        <p>Live music in Rockford, Loves Park, Belvidere and the 815.</p>
+        <p>
+          <a href="/about">About</a> · <a href="/calendar.ics">Calendar (.ics)</a> · <a href="/rss.xml">RSS</a>
+        </p>
+        <p class="updated">Listings updated <time datetime={NOW.toISOString()}>{formatStamp(NOW)}</time></p>
+      </div>
+    </footer>
+    <script is:inline define:vars={{ tz: TZ }}>
+      // The page was built at a fixed time; hide any day that has since passed.
+      // "Today" is computed in America/Chicago, not the visitor's timezone.
+      const today = new Intl.DateTimeFormat('en-CA', { timeZone: tz }).format(new Date());
+      document.querySelectorAll('[data-show-date]').forEach((el) => {
+        if (el.getAttribute('data-show-date') < today) el.hidden = true;
+      });
+      document.querySelectorAll('[data-show-list]').forEach((list) => {
+        const empty = list.querySelector('[data-empty]');
+        if (empty && !list.querySelector('[data-show-date]:not([hidden])')) empty.hidden = false;
+      });
+    </script>
+  </body>
+</html>

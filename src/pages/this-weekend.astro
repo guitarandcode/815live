@@ -1,0 +1,21 @@
+---
+import Base from '../layouts/Base.astro';
+import ShowList from '../components/ShowList.astro';
+import { loadAll, NOW } from '../lib/data.ts';
+import { thisWeekend } from '../lib/shows.ts';
+import { chicagoDate, formatShortDay, weekendRange } from '../lib/time.ts';
+
+const { shows: all } = await loadAll();
+const shows = thisWeekend(all, NOW);
+const { start, end } = weekendRange(chicagoDate(NOW));
+const range = `${formatShortDay(start)} – ${formatShortDay(end)}`;
+---
+
+<Base
+  title="Live music this weekend in Rockford"
+  description={`Live music in Rockford, Loves Park and Belvidere this weekend, ${range}: every local show Friday through Sunday.`}
+>
+  <h1>This weekend</h1>
+  <p class="lede">{range}. All times Central.</p>
+  <ShowList shows={shows} empty="Nothing listed for this weekend yet." />
+</Base>

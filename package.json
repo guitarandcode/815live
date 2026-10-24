@@ -8,13 +8,15 @@
     "build": "astro check && astro build && node scripts/check-jsonld.mjs",
     "preview": "astro preview",
     "check": "astro check",
-    "test": "node --test --experimental-strip-types tests/"
+    "test": "node --test \"tests/**/*.test.ts\"",
+    "test:build": "node --test --test-concurrency=1 tests/build.e2e.ts && npm run build"
   },
   "dependencies": {
     "astro": "^7.4.2"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.12",
+    "@types/node": "^24.19.2",
     "typescript": "^6.0.3"
   }
 }

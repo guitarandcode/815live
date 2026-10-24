@@ -1,0 +1,27 @@
+---
+import type { Show } from '../lib/data.ts';
+import { groupByDay } from '../lib/shows.ts';
+import { formatDay } from '../lib/time.ts';
+import ShowCard from './ShowCard.astro';
+
+interface Props {
+  shows: Show[];
+  showVenue?: boolean;
+  empty?: string;
+}
+
+const { shows, showVenue = true, empty = 'No upcoming shows listed yet.' } = Astro.props;
+const days = groupByDay(shows);
+---
+
+<div class="show-list" data-show-list>
+  {
+    days.map((day) => (
+      <section class="day" data-show-date={day.date}>
+        <h2 class="day-heading">{formatDay(day.date)}</h2>
+        {day.shows.map((show) => <ShowCard show={show} showVenue={showVenue} />)}
+      </section>
+    ))
+  }
+  <p class="empty" data-empty hidden={days.length > 0}>{empty}</p>
+</div>

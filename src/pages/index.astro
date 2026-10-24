@@ -1,0 +1,18 @@
+---
+import Base from '../layouts/Base.astro';
+import ShowList from '../components/ShowList.astro';
+import { upcomingShows } from '../lib/data.ts';
+import { website } from '../lib/jsonld.ts';
+
+const shows = await upcomingShows();
+---
+
+<Base
+  title="815live: Live music in Rockford, IL"
+  description="Upcoming live music in Rockford, Loves Park, Belvidere and the 815: local bands at bars, breweries and small venues, all in one place."
+  jsonld={website(Astro.site!)}
+>
+  <h1>Live music in the 815</h1>
+  <p class="lede">Local bands at Rockford-area bars, breweries and small venues. All times Central.</p>
+  <ShowList shows={shows} />
+</Base>

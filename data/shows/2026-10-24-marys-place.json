@@ -1,0 +1,10 @@
+{
+  "date": "2026-10-24",
+  "startTime": "21:00",
+  "venue": "marys-place",
+  "artists": ["forest-city-fuzz", "loves-park-lights"],
+  "cover": 5,
+  "source": { "type": "manual" },
+  "notes": "PLACEHOLDER: sample listing for development.",
+  "placeholder": true
+}
