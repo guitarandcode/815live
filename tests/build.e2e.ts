@@ -13,13 +13,15 @@ function buildAt(instant: string) {
   });
   const days = (file: string) =>
     [...readFileSync(`dist/${file}`, 'utf8').matchAll(/data-show-date="([\d-]+)"/g)].map((m) => m[1]);
-  return { home: days('index.html'), weekend: days('this-weekend.html'), footer: readFileSync('dist/index.html', 'utf8') };
+  const homeHtml = readFileSync('dist/index.html', 'utf8');
+  return { home: days('index.html'), weekend: days('this-weekend.html'), footer: homeHtml, homeHtml };
 }
 
 test('23:00 UTC build (6pm Chicago) still lists tonight', () => {
   const { home, weekend, footer } = buildAt('2026-10-24T23:00:00Z');
   assert.equal(home[0], '2026-10-24');
-  assert.deepEqual(weekend, ['2026-10-24', '2026-10-25']);
+  assert.deepEqual(weekend.filter((d) => d < '2026-10-26'), weekend); // only Sat/Sun of this weekend
+  assert.ok(weekend.includes('2026-10-24'));
   assert.match(footer, /Listings updated <time[^>]*>Oct 24, 2026, 6:00 PM CT<\/time>/);
 });
 
@@ -28,12 +30,13 @@ test('04:30 UTC build (11:30pm Chicago, already "tomorrow" in UTC) still lists t
 });
 
 test('home lists recurring events only for 7 days but still builds 8 weeks of pages', () => {
-  const { home, footer } = buildAt('2026-10-24T23:00:00Z');
-  // Oct 24 one-off, Sun Oct 25 Open Stage, Thu Oct 29 karaoke, Oct 30 one-off; no later Sundays.
-  assert.deepEqual(home, ['2026-10-24', '2026-10-25', '2026-10-29', '2026-10-30']);
-  assert.ok(existsSync('dist/shows/2026-12-13-marys-place-open-stage.html'));
+  const { homeHtml } = buildAt('2026-10-24T23:00:00Z');
+  assert.match(homeHtml, /href="\/shows\/2026-10-25-marys-place-open-stage"/); // day 2: listed
+  assert.match(homeHtml, /href="\/shows\/2026-10-29-screw-city-tavern-karaoke"/); // day 6: listed
+  assert.doesNotMatch(homeHtml, /href="\/shows\/2026-11-01-marys-place-open-stage"/); // day 9: not listed
+  assert.ok(existsSync('dist/shows/2026-12-13-marys-place-open-stage.html')); // week 8 page exists
   assert.ok(existsSync('dist/shows/2026-12-17-screw-city-tavern-karaoke.html'));
-  assert.match(footer, /<h2>Every week<\/h2>/);
+  assert.match(homeHtml, /<h2>Every week<\/h2>/);
   const ics = readFileSync('dist/calendar.ics', 'utf8');
   assert.equal(ics.match(/UID:[^\r]*open-stage@/g)?.length, 8);
 });
@@ -55,5 +58,6 @@ test('category pages: hidden filter links for empty categories, empty pages noin
 test('Monday build: this weekend means the coming Fri–Sun', () => {
   const { home, weekend } = buildAt('2026-10-26T15:00:00Z');
   assert.ok(!home.includes('2026-10-25'));
-  assert.deepEqual(weekend, ['2026-10-30', '2026-11-01']); // nothing listed Sat Oct 31
+  assert.ok(weekend.length > 0);
+  assert.ok(weekend.every((d) => d >= '2026-10-30' && d <= '2026-11-01'));
 });

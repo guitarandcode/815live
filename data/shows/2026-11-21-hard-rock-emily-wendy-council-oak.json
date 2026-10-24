@@ -1,0 +1,14 @@
+{
+  "date": "2026-11-21",
+  "startTime": "21:00",
+  "venue": "hard-rock-casino-rockford",
+  "category": "live-music",
+  "artists": [
+    "emily-wendy"
+  ],
+  "notes": "In the Council Oak lounge.",
+  "source": {
+    "type": "manual",
+    "url": "https://casino.hardrock.com/rockford/entertainment/upcoming-events/emily-wendy-2"
+  }
+}

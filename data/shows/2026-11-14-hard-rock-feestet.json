@@ -1,0 +1,14 @@
+{
+  "date": "2026-11-14",
+  "startTime": "18:00",
+  "venue": "hard-rock-casino-rockford",
+  "category": "live-music",
+  "artists": [
+    "feestet"
+  ],
+  "notes": "In the Council Oak lounge.",
+  "source": {
+    "type": "manual",
+    "url": "https://casino.hardrock.com/rockford/entertainment/upcoming-events/feestet"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "date": "2026-11-07",
+  "startTime": "21:00",
+  "venue": "hard-rock-casino-rockford",
+  "category": "live-music",
+  "artists": [
+    "stevee-nix"
+  ],
+  "notes": "On the Hard Rock Cafe stage.",
+  "source": {
+    "type": "manual",
+    "url": "https://casino.hardrock.com/rockford/entertainment/upcoming-events/stevee-nix"
+  }
+}
