@@ -115,8 +115,9 @@ Only `name` is required; `genres`, `hometown`, `website`, `bio` and every `socia
 }
 ```
 
-Each build expands these into dated listings for the next 8 weeks, with IDs
-like `2026-10-25-marys-place-open-stage`; all 8 weeks get pages, iCal entries
+Each build expands these into dated listings for the next 9 weeks (enough to
+cover every date page), with IDs like `2026-10-25-marys-place-open-stage`; all
+of them get pages, iCal entries
 and JSON-LD. The home and category pages list a weekly event's dates only
 within the next 7 days, and show each rule once in an "Every week" section. `months` (season), `skip` (dates off),
 `endTime`, `host`, `cover` and `notes` are optional. A one-off show at the same
@@ -135,6 +136,17 @@ The site is static, so the list of upcoming shows is fixed when it's built:
   exist; a category's filter link on the home page is hidden while it has no
   listings, and its empty page is noindexed and left out of the sitemap.
 - `/this-weekend` is the current Fri–Sun on Friday–Sunday, otherwise the next one.
+- The home page leads with **tonight** (or tomorrow, if nothing is listed
+  tonight), then a 7-day strip, a date picker and the rest of the list.
+- `/date/YYYY-MM-DD` exists for today and the next 59 days with that day's
+  listings (one-off and weekly). Empty date pages are noindexed and left out
+  of the sitemap. `/calendar` is a month view of the same days.
+- The date picker is a native `<input type="date">`; the inline script sends
+  it to the date page. Without JS it submits to `/calendar`.
+- The day strip's "Tonight"/"Tomorrow" labels are relabelled by the inline
+  script if the page is viewed on a later day than it was built.
+- `public/og.png` (the social-share card) is generated with headless Chrome
+  by `node scripts/og-image.mjs` and committed; rerun it after brand changes.
 
 **Daily ingest and rebuild.** `.github/workflows/daily.yml` runs at 08:17 UTC
 (3:17am CDT / 2:17am CST):

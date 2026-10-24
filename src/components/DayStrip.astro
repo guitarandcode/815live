@@ -1,0 +1,50 @@
+---
+// Seven days, each linking to its date page: Tonight, Tomorrow, then weekday
+// names. On a date page the strip is centred on that day where it can be.
+// Labels are relative to the build date; Base's inline script relabels them
+// if the page is viewed on a later day.
+import { datePageDates, NOW, showsByDate } from '../lib/data.ts';
+import { addDays, chicagoDate, formatDay } from '../lib/time.ts';
+
+interface Props {
+  /** Highlights this day (a date page's own date). */
+  current?: string;
+}
+
+const { current } = Astro.props;
+const today = chicagoDate(NOW);
+const byDate = await showsByDate();
+const dates = datePageDates();
+const latestStart = dates.at(-7)!;
+const centred = current ? addDays(current, -3) : today;
+const start = centred < today ? today : centred > latestStart ? latestStart : centred;
+const weekdayFmt = new Intl.DateTimeFormat('en-US', { timeZone: 'UTC', weekday: 'short' });
+const days = Array.from({ length: 7 }, (_, i) => {
+  const date = addDays(start, i);
+  const count = byDate.get(date)?.length ?? 0;
+  const label =
+    date === today ? 'Tonight' : date === addDays(today, 1) ? 'Tomorrow' : weekdayFmt.format(new Date(`${date}T00:00:00Z`));
+  return { date, count, label, day: Number(date.slice(8)) };
+});
+---
+
+<nav class="day-strip" aria-label="Pick a day">
+  <ul>
+    {
+      days.map((d) => (
+        <li data-strip-date={d.date}>
+          <a
+            href={`/date/${d.date}`}
+            class:list={['day-chip', d.date === today && 'is-today', d.count === 0 && 'is-empty']}
+            aria-current={d.date === current ? 'page' : undefined}
+          >
+            <span class="dc-label">{d.label}</span>
+            <span class="sr-only">{formatDay(d.date)}</span>
+            <span class="dc-day">{d.day}</span>
+            <span class="dc-count">{d.count === 0 ? '–' : `${d.count} on`}</span>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</nav>

@@ -1,12 +1,24 @@
 ---
 import Base from '../layouts/Base.astro';
 import CategoryNav from '../components/CategoryNav.astro';
+import DateJump from '../components/DateJump.astro';
+import DayStrip from '../components/DayStrip.astro';
+import ShowCard from '../components/ShowCard.astro';
 import ShowList from '../components/ShowList.astro';
 import WeeklyList from '../components/WeeklyList.astro';
-import { pageListing } from '../lib/data.ts';
+import { NOW, pageListing, showsByDate } from '../lib/data.ts';
 import { website } from '../lib/jsonld.ts';
+import { addDays, chicagoDate, formatDay } from '../lib/time.ts';
 
 const { shows, weekly } = await pageListing();
+const byDate = await showsByDate();
+const today = chicagoDate(NOW);
+const tomorrow = addDays(today, 1);
+const tonight = byDate.get(today)!;
+// Nothing tonight: lead with tomorrow instead.
+const lead = tonight.length ? tonight : byDate.get(tomorrow)!;
+const leadDate = tonight.length ? today : tomorrow;
+const rest = shows.filter((s) => s.date > leadDate);
 ---
 
 <Base
@@ -14,9 +26,43 @@ const { shows, weekly } = await pageListing();
   description="Upcoming live music in Rockford, Loves Park, Belvidere and the 815: local bands at bars, breweries and small venues, all in one place."
   jsonld={website(Astro.site!)}
 >
-  <h1>Live music in the 815</h1>
-  <p class="lede">Local bands at Rockford-area bars, breweries and small venues. All times Central.</p>
+  <section class="tonight" aria-labelledby="tonight-heading">
+    <div class="tonight-head">
+      <h1 id="tonight-heading">Tonight in the <span class="accent">815</span></h1>
+      {
+        tonight.length > 0 && (
+          <p class="tonight-count">
+            <span class="num">{tonight.length}</span>
+            <span>
+              {tonight.length === 1 ? 'thing' : 'things'} on tonight
+              <span class="when">{formatDay(today)}</span>
+            </span>
+          </p>
+        )
+      }
+    </div>
+    <DayStrip />
+    {
+      tonight.length === 0 && (
+        <p class="tonight-empty" data-tonight-empty>
+          Nothing's listed for tonight.{' '}
+          {lead.length ? <>Here's tomorrow, {formatDay(tomorrow)}:</> : 'Nothing tomorrow yet either; see what’s coming up below.'}
+        </p>
+      )
+    }
+    {
+      lead.length > 0 && (
+        <div class="tonight-list" data-show-date={leadDate}>
+          {lead.map((show) => <ShowCard show={show} />)}
+        </div>
+      )
+    }
+  </section>
+
+  <DateJump />
   <CategoryNav />
-  <ShowList shows={shows} />
+
+  <h2 class="section-heading">Coming up</h2>
+  <ShowList shows={rest} />
   <WeeklyList rules={weekly} />
 </Base>

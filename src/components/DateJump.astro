@@ -1,0 +1,21 @@
+---
+// Native date input that jumps to /date/YYYY-MM-DD (Base's inline script).
+// Without JS the form submits to /calendar, which links every date page.
+import { datePageDates } from '../lib/data.ts';
+
+interface Props {
+  value?: string;
+  /** Hide the month-view link (on the month view itself). */
+  noMonthLink?: boolean;
+}
+
+const dates = datePageDates();
+const { value = dates[0], noMonthLink = false } = Astro.props;
+---
+
+<form class="date-jump" action="/calendar" method="get" data-date-jump>
+  <label for="date-jump-input">Pick a date</label>
+  <input id="date-jump-input" type="date" name="d" min={dates[0]} max={dates.at(-1)} value={value} required />
+  <button type="submit">Go</button>
+  {!noMonthLink && <a href="/calendar">Month view</a>}
+</form>

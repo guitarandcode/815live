@@ -1,5 +1,5 @@
 ---
-import type { Show } from '../lib/data.ts';
+import { hasDatePage, type Show } from '../lib/data.ts';
 import { groupByDay } from '../lib/shows.ts';
 import { formatDay } from '../lib/time.ts';
 import ShowCard from './ShowCard.astro';
@@ -18,7 +18,9 @@ const days = groupByDay(shows);
   {
     days.map((day) => (
       <section class="day" data-show-date={day.date}>
-        <h2 class="day-heading">{formatDay(day.date)}</h2>
+        <h2 class="day-heading">
+          {hasDatePage(day.date) ? <a href={`/date/${day.date}`}>{formatDay(day.date)}</a> : formatDay(day.date)}
+        </h2>
         {day.shows.map((show) => <ShowCard show={show} showVenue={showVenue} />)}
       </section>
     ))

@@ -23,8 +23,11 @@ export interface Recurring extends Omit<CollectionEntry<'recurring'>['data'], 'v
   next?: Show;
 }
 
-/** How far ahead recurring rules are expanded. */
-export const RECURRING_WEEKS = 8;
+/** Days ahead (from today, inclusive) that get a /date/YYYY-MM-DD page. */
+export const DATE_PAGE_DAYS = 60;
+
+/** How far ahead recurring rules are expanded: far enough to fill every date page. */
+export const RECURRING_WEEKS = Math.ceil(DATE_PAGE_DAYS / 7);
 
 /** Fixed for the whole build so every page agrees on "today". */
 export const NOW = buildNow();
@@ -133,4 +136,23 @@ export function coverLabel(cover: number | null | undefined): string | undefined
   if (cover === undefined) return undefined;
   if (cover === null || cover === 0) return 'Free';
   return `$${Number.isInteger(cover) ? cover : cover.toFixed(2)}`;
+}
+
+/** Every date with a date page, today first. */
+export function datePageDates(): string[] {
+  const today = chicagoDate(NOW);
+  return Array.from({ length: DATE_PAGE_DAYS }, (_, i) => addDays(today, i));
+}
+
+export function hasDatePage(date: string): boolean {
+  const today = chicagoDate(NOW);
+  return date >= today && date < addDays(today, DATE_PAGE_DAYS);
+}
+
+/** All listings (one-off and recurring) on each date page's date, soonest first. */
+export async function showsByDate(): Promise<Map<string, Show[]>> {
+  const { shows } = await loadAll();
+  const byDate = new Map(datePageDates().map((d): [string, Show[]] => [d, []]));
+  for (const s of shows) byDate.get(s.date)?.push(s);
+  return byDate;
 }
