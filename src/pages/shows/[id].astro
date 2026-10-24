@@ -22,7 +22,7 @@ const mapUrl = `https://www.openstreetmap.org/?mlat=${v.data.lat}&mlon=${v.data.
 
 <Base
   title={`${title}, ${formatDay(show.date)}`}
-  description={`${title} in ${v.data.city}, IL on ${when}.${cover ? ` Cover: ${cover}.` : ''}`}
+  description={`${title} in ${v.data.city}, ${v.data.state} on ${when}.${cover ? ` Cover: ${cover}.` : ''}`}
   noindex={show.placeholder}
   ogType="article"
   jsonld={showEvent(show, Astro.site!)}
