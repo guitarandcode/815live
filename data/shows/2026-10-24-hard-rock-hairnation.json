@@ -8,7 +8,8 @@
   ],
   "notes": "On the Hard Rock Cafe stage.",
   "source": {
-    "type": "manual",
-    "url": "https://casino.hardrock.com/rockford/entertainment/upcoming-events/hairnation"
+    "type": "venue-site",
+    "url": "https://casino.hardrock.com/rockford/entertainment/upcoming-events/hairnation",
+    "uid": "hard-rock-rockford:hairnation:2026-10-24T21:00@cafe"
   }
 }

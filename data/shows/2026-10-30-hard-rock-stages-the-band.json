@@ -8,7 +8,8 @@
   ],
   "notes": "In the Council Oak lounge.",
   "source": {
-    "type": "manual",
-    "url": "https://casino.hardrock.com/rockford/entertainment/upcoming-events/stages-the-band"
+    "type": "venue-site",
+    "url": "https://casino.hardrock.com/rockford/entertainment/upcoming-events/stages-the-band",
+    "uid": "hard-rock-rockford:stages-the-band:2026-10-30T18:00@council-oak"
   }
 }

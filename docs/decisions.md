@@ -48,3 +48,9 @@ Calls made while filling out listings unattended (session of 2026-10-24).
   had no URL and sunsetstripband.com / sunsetstriprocks.com are parked
   domains, so `source.url` is blank until the band's real URL is known.
   Added Grand Avenue Pub and Benny's @ Nest venue records (Census coordinates).
+- **Hard Rock adapter (approved).** `scripts/ingest/adapters/hard-rock-rockford.ts`
+  took over the 24 hand-entered Hard Rock shows (same file ids, identical
+  facts; only `source` changed to `venue-site` + `uid`). It fetches robots.txt
+  and the sitemap daily and only event pages whose `lastmod` changed. The
+  bot's own User-Agent is `815liveBot`; the Anthropic-agent robots rule is for
+  fetches Claude makes interactively.

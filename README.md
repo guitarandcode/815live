@@ -136,20 +136,47 @@ The site is static, so the list of upcoming shows is fixed when it's built:
   listings, and its empty page is noindexed and left out of the sitemap.
 - `/this-weekend` is the current Fri–Sun on Friday–Sunday, otherwise the next one.
 
-**Daily rebuild.** `.github/workflows/daily-rebuild.yml` runs at 08:17 UTC
-(3:17am CDT / 2:17am CST) and POSTs to a Cloudflare Pages deploy hook, so the
-listings roll over each day. One-time setup:
+**Daily ingest and rebuild.** `.github/workflows/daily.yml` runs at 08:17 UTC
+(3:17am CDT / 2:17am CST):
 
-1. Pages project → Settings → Builds → Deploy hooks → add a hook for `main`.
-2. GitHub repo → Settings → Secrets and variables → Actions → new secret
-   `CF_PAGES_DEPLOY_HOOK` with the hook URL.
+1. `npm run ingest` runs each adapter in `scripts/ingest/adapters/`, updating
+   `data/shows` (and creating bare artist records marked `"auto": true`).
+2. Tests and the build must pass.
+3. If `data/` changed, the bot commits and pushes; Cloudflare deploys the push.
+   Otherwise it POSTs to the Cloudflare Pages deploy hook in the
+   `CF_PAGES_DEPLOY_HOOK` secret so dates still roll over.
 
-Run it manually from the Actions tab (Daily rebuild → Run workflow). Without
-the secret the job fails with a clear error. Note GitHub pauses scheduled
+A failing adapter doesn't block publishing; the run is marked failed so you
+notice. Run it manually from the Actions tab ("Daily ingest and rebuild" →
+Run workflow; tick "full" to refetch every page). GitHub pauses scheduled
 workflows after 60 days with no repo activity.
 
 `BUILD_NOW=<ISO instant>` overrides the build's clock for testing, e.g.
 `BUILD_NOW=2026-10-24T23:00:00Z npm run build`.
+
+## Ingestion
+
+`scripts/ingest/` (plain Node 24 TypeScript, no dependencies):
+
+- `lib/http.ts` sends `User-Agent: 815liveBot/1.0 (+https://815live.com/about)`,
+  checks robots.txt before every request and every redirect hop, and pauses
+  1s between requests to a host.
+- `lib/store.ts` reconciles. Files an adapter writes carry
+  `source.uid = "<adapter>:<page>:<detail>"`; on a later run, shows from a
+  re-parsed page are replaced, future shows whose page has disappeared are
+  deleted, past shows are kept, and hand-entered files (no `uid`) are never
+  deleted. Unchanged runs write nothing.
+- `data/ingest/<adapter>.json` is per-adapter state (e.g. page → lastmod) so
+  only new or changed pages are fetched.
+
+Adapters:
+
+- **`hard-rock-rockford`**: Hard Rock Casino Rockford's sitemap → event pages;
+  lists the Hard Rock Cafe stage and Council Oak lounge (not Hard Rock Live).
+  A page whose weekday doesn't match its date, or whose year can't be pinned
+  down, is skipped with a warning and retried next run.
+
+Run locally: `npm run ingest` (or `node scripts/ingest/run.ts --full`).
 
 ## SEO and feeds
 

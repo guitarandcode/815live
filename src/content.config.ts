@@ -5,7 +5,7 @@
 //     + artist_genres(artist_slug, genre) + artist_links(artist_slug, platform, url)
 //   shows(id PK, date, start_time, end_time, venue_slug FK, category, title NULL,
 //         cover_cents NULL, cover_known BOOL, ticket_url, notes, status,
-//         source_type, source_url)
+//         source_type, source_url, source_uid UNIQUE NULL)
 //     + show_artists(show_id, artist_slug, position)  -- position = array order
 //   recurring(slug PK, venue_slug FK, category, title, weekday, start_time,
 //             end_time, months, host, cover_cents NULL, cover_known BOOL, notes)
@@ -52,6 +52,7 @@ const artists = defineCollection({
       .partial()
       .default({}),
     bio: z.string().optional(),
+    auto: z.boolean().optional().describe('Created by ingestion from a listing title; worth a manual look'),
     placeholder,
   }),
 });
@@ -66,6 +67,7 @@ const cover = z.number().nonnegative().nullable().optional();
 const source = z.object({
   type: z.enum(['facebook', 'venue-site', 'submission', 'manual']),
   url: z.url().optional(),
+  uid: z.string().optional().describe('Set by ingestion: "<adapter>:<page>:<detail>"; marks the file as adapter-owned'),
 });
 
 const shows = defineCollection({

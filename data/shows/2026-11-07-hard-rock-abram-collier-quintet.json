@@ -8,7 +8,8 @@
   ],
   "notes": "In the Council Oak lounge.",
   "source": {
-    "type": "manual",
-    "url": "https://casino.hardrock.com/rockford/entertainment/upcoming-events/abram-collier-quintet"
+    "type": "venue-site",
+    "url": "https://casino.hardrock.com/rockford/entertainment/upcoming-events/abram-collier-quintet",
+    "uid": "hard-rock-rockford:abram-collier-quintet:2026-11-07T18:00@council-oak"
   }
 }

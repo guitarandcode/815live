@@ -8,7 +8,8 @@
   ],
   "notes": "On the Hard Rock Cafe stage.",
   "source": {
-    "type": "manual",
-    "url": "https://casino.hardrock.com/rockford/entertainment/upcoming-events/sheez-it-duoz"
+    "type": "venue-site",
+    "url": "https://casino.hardrock.com/rockford/entertainment/upcoming-events/sheez-it-duoz",
+    "uid": "hard-rock-rockford:sheez-it-duoz:2026-11-07T18:00@cafe"
   }
 }

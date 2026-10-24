@@ -8,7 +8,8 @@
   ],
   "notes": "In the Council Oak lounge.",
   "source": {
-    "type": "manual",
-    "url": "https://casino.hardrock.com/rockford/entertainment/upcoming-events/thomas-linsk-trio"
+    "type": "venue-site",
+    "url": "https://casino.hardrock.com/rockford/entertainment/upcoming-events/thomas-linsk-trio",
+    "uid": "hard-rock-rockford:thomas-linsk-trio:2026-10-31T18:00@council-oak"
   }
 }
