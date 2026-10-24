@@ -33,3 +33,29 @@ The flyer is still in the inbox.
 The venue's October flyer says "Karaoke & Open Mic Night every Thursday" with
 no start time. Not published until a time is known. The flyer's live-music
 dates are published.
+
+## Rue Marché: karaoke Thursday–Saturday
+
+The River District's bars & nightlife page (riverdistrict.com/bars-nightlife/)
+says Rue Marché "dominates karaoke on Thursdays, Fridays, and Saturdays". No
+start time, and the bar has no website of its own. The venue is published;
+the weekly karaoke rules need a start time.
+
+## District: Thursday karaoke, Tuesday jam night
+
+District's own home page lists Tuesday "District jams night", Wednesday DJ
+battle, Thursday karaoke and live music Friday and Saturday, all "subject to
+change", with no times or performers. The events page and its TicketWeb page
+had no upcoming shows (2026-10-24). The venue is published; the karaoke and
+jam rules need start times.
+
+## Karaoke tips not confirmed (Facebook thread, 2026-10-24)
+
+A "What's Happening in Rockford IL?" group thread the user pasted named these.
+None could be confirmed from a source we're allowed to use, so nothing is published:
+- **Sheila's Daiquiri Lounge** (308 W State St): Thursday karaoke appears only
+  in a Rock River Current article (blocks Claude). Venue site lists hours, no events.
+- **The Filling Station** (New Milford): Fri/Sat 9–2 per commenters; no venue site found.
+- **Windsor Pizza Parlor**, **Attitudes Bar & Grill** (Machesney Park),
+  **The Office Niteclub** (513 E State St, Sundays), **Rockton Inn**
+  (Tue–Fri after 8), the Loves Park food park: no venue source found.

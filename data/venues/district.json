@@ -1,0 +1,11 @@
+{
+  "name": "District",
+  "address": "205 W State St",
+  "city": "Rockford",
+  "state": "IL",
+  "zip": "61101",
+  "lat": 42.27104,
+  "lng": -89.09384,
+  "website": "https://districtdowntown.com/",
+  "description": "Downtown Rockford bar and grill on West State Street with a stage for local, regional and touring acts."
+}

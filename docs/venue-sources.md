@@ -45,10 +45,11 @@ permission or a feed from them).
 
 ## Other venues found
 
-- **Rue Marché** (620 Market St, Rockford): reported karaoke nights; no official site found.
+- **Rue Marché** (620 Market St, Rockford): venue published; River District page says karaoke Thu–Sat, no times (see needs-review.md). No official site.
 - **Kryptonite Bar** (308 W State St): reportedly closed (space re-let in 2023).
 - **Olympic Tavern** (2327 N Main St): no official site or calendar found.
 - **The Office Niteclub**: reported karaoke; not verified.
+- **District** (205 W State St, districtdowntown.com): venue published. Home page lists weekly nights without times; events page + TicketWeb (allowed by robots) had no upcoming shows on 2026-10-24. Check it again for one-off shows.
 
 ## Aggregators (for reference; all block Anthropic agents or event paths)
 
