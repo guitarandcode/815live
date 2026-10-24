@@ -17,8 +17,8 @@ const mapUrl = `https://www.openstreetmap.org/?mlat=${v.lat}&mlon=${v.lng}#map=1
 ---
 
 <Base
-  title={`${v.name}: live music in ${v.city}, IL`}
-  description={`Upcoming live music at ${v.name}, ${v.address} in ${v.city}, IL. ${v.description}`}
+  title={`${v.name}: live music in ${v.city}, ${v.state}`}
+  description={`Upcoming live music at ${v.name}, ${v.address} in ${v.city}, ${v.state}. ${v.description}`}
   noindex={v.placeholder}
   jsonld={musicVenue(venue, Astro.site!)}
 >
