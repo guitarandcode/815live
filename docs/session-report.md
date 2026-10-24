@@ -34,6 +34,10 @@ karaoke, Open Stage ending at 11 PM. New this session: a `trivia` category
   hop before following. An audit of all earlier redirects found none that
   landed on a disallowed URL.
 
+- **Soft 404s.** The site had no 404 page, so Cloudflare Pages served the home
+  page with status 200 for any unknown URL (including reverted or expired
+  show pages). Added `404.astro`; the post-build check now fails without it.
+
 ## In needs-review.md
 
 1. **The Music Box**: ~20 shows Oct 27 – Dec 12 (DICE-sourced; DICE blocks
