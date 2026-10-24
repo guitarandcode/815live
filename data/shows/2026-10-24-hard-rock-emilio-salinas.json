@@ -8,7 +8,8 @@
   ],
   "notes": "On the Hard Rock Cafe stage.",
   "source": {
-    "type": "manual",
-    "url": "https://casino.hardrock.com/rockford/entertainment/upcoming-events/emilio-salinas-2"
+    "type": "venue-site",
+    "url": "https://casino.hardrock.com/rockford/entertainment/upcoming-events/emilio-salinas-2",
+    "uid": "hard-rock-rockford:emilio-salinas-2:2026-10-24T18:00@cafe"
   }
 }

@@ -8,7 +8,8 @@
   ],
   "notes": "In the Council Oak lounge.",
   "source": {
-    "type": "manual",
-    "url": "https://casino.hardrock.com/rockford/entertainment/upcoming-events/feestet"
+    "type": "venue-site",
+    "url": "https://casino.hardrock.com/rockford/entertainment/upcoming-events/feestet",
+    "uid": "hard-rock-rockford:feestet:2026-11-14T18:00@council-oak"
   }
 }

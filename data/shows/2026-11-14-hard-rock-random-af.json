@@ -8,7 +8,8 @@
   ],
   "notes": "On the Hard Rock Cafe stage.",
   "source": {
-    "type": "manual",
-    "url": "https://casino.hardrock.com/rockford/entertainment/upcoming-events/random-af"
+    "type": "venue-site",
+    "url": "https://casino.hardrock.com/rockford/entertainment/upcoming-events/random-af",
+    "uid": "hard-rock-rockford:random-af:2026-11-14T21:00@cafe"
   }
 }

@@ -8,7 +8,8 @@
   ],
   "notes": "On the Hard Rock Cafe stage.",
   "source": {
-    "type": "manual",
-    "url": "https://casino.hardrock.com/rockford/entertainment/upcoming-events/silk-and-satin"
+    "type": "venue-site",
+    "url": "https://casino.hardrock.com/rockford/entertainment/upcoming-events/silk-and-satin",
+    "uid": "hard-rock-rockford:silk-and-satin:2026-10-31T18:00@cafe"
   }
 }

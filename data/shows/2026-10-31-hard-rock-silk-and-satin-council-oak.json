@@ -8,7 +8,8 @@
   ],
   "notes": "In the Council Oak lounge.",
   "source": {
-    "type": "manual",
-    "url": "https://casino.hardrock.com/rockford/entertainment/upcoming-events/silk-and-satin"
+    "type": "venue-site",
+    "url": "https://casino.hardrock.com/rockford/entertainment/upcoming-events/silk-and-satin",
+    "uid": "hard-rock-rockford:silk-and-satin:2026-10-31T21:00@council-oak"
   }
 }
