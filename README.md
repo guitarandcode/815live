@@ -99,20 +99,17 @@ The site is static, so the list of upcoming shows is fixed when it's built:
   using Chicago's date, not the visitor's timezone.
 - `/this-weekend` is the current Fri–Sun on Friday–Sunday, otherwise the next one.
 
-**To keep pages fresh, rebuild daily.** Create a deploy hook in the Pages
-project (Settings → Builds → Deploy hooks), store its URL as a GitHub secret
-`CF_DEPLOY_HOOK`, and add `.github/workflows/daily-rebuild.yml`:
+**Daily rebuild.** `.github/workflows/daily-rebuild.yml` runs at 08:17 UTC
+(3:17am CDT / 2:17am CST) and POSTs to a Cloudflare Pages deploy hook, so the
+listings roll over each day. One-time setup:
 
-```yaml
-on:
-  schedule: [{ cron: '15 10 * * *' }]   # 5:15am CDT / 4:15am CST
-  workflow_dispatch:
-jobs:
-  rebuild:
-    runs-on: ubuntu-latest
-    steps:
-      - run: curl -fsS -X POST "${{ secrets.CF_DEPLOY_HOOK }}"
-```
+1. Pages project → Settings → Builds → Deploy hooks → add a hook for `main`.
+2. GitHub repo → Settings → Secrets and variables → Actions → new secret
+   `CF_PAGES_DEPLOY_HOOK` with the hook URL.
+
+Run it manually from the Actions tab (Daily rebuild → Run workflow). Without
+the secret the job fails with a clear error. Note GitHub pauses scheduled
+workflows after 60 days with no repo activity.
 
 `BUILD_NOW=<ISO instant>` overrides the build's clock for testing, e.g.
 `BUILD_NOW=2026-10-24T23:00:00Z npm run build`.
