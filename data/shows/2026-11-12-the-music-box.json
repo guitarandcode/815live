@@ -1,0 +1,14 @@
+{
+  "date": "2026-11-12",
+  "startTime": "19:30",
+  "venue": "the-music-box",
+  "category": "live-music",
+  "artists": [
+    "erik-koskinen"
+  ],
+  "cover": 20.11,
+  "source": {
+    "type": "manual",
+    "url": "https://themusicboxrockford.com/"
+  }
+}

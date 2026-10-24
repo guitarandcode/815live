@@ -1,0 +1,15 @@
+{
+  "date": "2026-12-04",
+  "startTime": "20:00",
+  "venue": "the-music-box",
+  "category": "live-music",
+  "artists": [
+    "the-steepwater-band"
+  ],
+  "cover": 18.85,
+  "notes": "Album release show.",
+  "source": {
+    "type": "manual",
+    "url": "https://themusicboxrockford.com/"
+  }
+}

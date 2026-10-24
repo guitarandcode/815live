@@ -1,0 +1,15 @@
+{
+  "date": "2026-10-28",
+  "startTime": "19:30",
+  "venue": "the-music-box",
+  "category": "live-music",
+  "artists": [
+    "the-forty-twos",
+    "king-falcon"
+  ],
+  "cover": 18.85,
+  "source": {
+    "type": "manual",
+    "url": "https://themusicboxrockford.com/"
+  }
+}

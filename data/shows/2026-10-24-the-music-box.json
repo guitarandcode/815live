@@ -1,0 +1,14 @@
+{
+  "date": "2026-10-24",
+  "startTime": "20:00",
+  "venue": "the-music-box",
+  "category": "live-music",
+  "artists": [
+    "bamm"
+  ],
+  "cover": 15.08,
+  "source": {
+    "type": "manual",
+    "url": "https://themusicboxrockford.com/"
+  }
+}

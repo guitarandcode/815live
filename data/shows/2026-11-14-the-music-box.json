@@ -1,0 +1,14 @@
+{
+  "date": "2026-11-14",
+  "startTime": "20:00",
+  "venue": "the-music-box",
+  "category": "live-music",
+  "artists": [
+    "matthew-curry"
+  ],
+  "cover": 15.08,
+  "source": {
+    "type": "manual",
+    "url": "https://themusicboxrockford.com/"
+  }
+}

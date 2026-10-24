@@ -1,0 +1,14 @@
+{
+  "date": "2026-11-07",
+  "startTime": "20:00",
+  "venue": "the-music-box",
+  "category": "live-music",
+  "artists": [
+    "j-edwards"
+  ],
+  "cover": 18.85,
+  "source": {
+    "type": "manual",
+    "url": "https://themusicboxrockford.com/"
+  }
+}

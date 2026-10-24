@@ -1,0 +1,15 @@
+{
+  "date": "2026-11-27",
+  "startTime": "21:00",
+  "venue": "the-music-box",
+  "category": "live-music",
+  "artists": [
+    "miles-nielsen-and-the-rusted-hearts"
+  ],
+  "cover": 18.85,
+  "notes": "Late show.",
+  "source": {
+    "type": "manual",
+    "url": "https://themusicboxrockford.com/"
+  }
+}
