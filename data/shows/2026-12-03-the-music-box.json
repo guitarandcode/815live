@@ -1,0 +1,16 @@
+{
+  "date": "2026-12-03",
+  "startTime": "19:00",
+  "endTime": "21:00",
+  "venue": "the-music-box",
+  "category": "live-music",
+  "artists": [
+    "pat-mccurdy"
+  ],
+  "cover": 12.57,
+  "ticketUrl": "https://dice.fm/event/6acf974df4917e00015a6d91",
+  "source": {
+    "type": "manual",
+    "url": "https://dice.fm/venue/the-music-box-p3nl"
+  }
+}

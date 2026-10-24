@@ -1,0 +1,16 @@
+{
+  "date": "2026-11-12",
+  "startTime": "19:30",
+  "endTime": "21:30",
+  "venue": "the-music-box",
+  "category": "live-music",
+  "artists": [
+    "erik-koskinen"
+  ],
+  "cover": 20.11,
+  "ticketUrl": "https://dice.fm/event/6aa71fac24dabd00015a033f",
+  "source": {
+    "type": "manual",
+    "url": "https://dice.fm/venue/the-music-box-p3nl"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "date": "2026-10-24",
+  "startTime": "20:00",
+  "endTime": "22:00",
+  "venue": "the-music-box",
+  "category": "live-music",
+  "artists": [
+    "bamm"
+  ],
+  "cover": 15.08,
+  "ticketUrl": "https://dice.fm/event/6a8e37f17aa29200014795c5",
+  "source": {
+    "type": "manual",
+    "url": "https://dice.fm/venue/the-music-box-p3nl"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "date": "2026-10-31",
+  "startTime": "20:00",
+  "endTime": "00:00",
+  "venue": "the-music-box",
+  "category": "live-music",
+  "title": "Halloween Night",
+  "artists": [
+    "gang-of-martians"
+  ],
+  "cover": null,
+  "ticketUrl": "https://dice.fm/event/6a8e556d6e861a0001381757",
+  "source": {
+    "type": "manual",
+    "url": "https://dice.fm/venue/the-music-box-p3nl"
+  }
+}

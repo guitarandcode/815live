@@ -1,0 +1,17 @@
+{
+  "date": "2026-11-27",
+  "startTime": "21:00",
+  "endTime": "23:00",
+  "venue": "the-music-box",
+  "category": "live-music",
+  "artists": [
+    "miles-nielsen-and-the-rusted-hearts"
+  ],
+  "cover": 18.85,
+  "ticketUrl": "https://dice.fm/event/6abd38d743db07000125f0b9",
+  "notes": "Late show.",
+  "source": {
+    "type": "manual",
+    "url": "https://dice.fm/venue/the-music-box-p3nl"
+  }
+}

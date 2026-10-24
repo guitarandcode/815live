@@ -1,0 +1,16 @@
+{
+  "date": "2026-11-13",
+  "startTime": "20:00",
+  "endTime": "22:00",
+  "venue": "the-music-box",
+  "category": "live-music",
+  "artists": [
+    "six-mile-grove"
+  ],
+  "cover": 15.08,
+  "ticketUrl": "https://dice.fm/event/6a7cc58898c64d00019401b8",
+  "source": {
+    "type": "manual",
+    "url": "https://dice.fm/venue/the-music-box-p3nl"
+  }
+}
