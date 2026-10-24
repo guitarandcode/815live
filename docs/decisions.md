@@ -77,4 +77,14 @@ Calls made while filling out listings unattended (session of 2026-10-24).
   - Left out: Rural On Tap's non-music events (bingo, darts, movie trivia,
     paint night, food specials); the going-away-party details on Tad's flyer;
     the bartenders' names on the Town Hall flyer.
+- **Friendlier home page (2026-10-24).** Leads with "Tonight in the 815"
+  (or tomorrow when tonight is empty) with the 7-day strip directly under the
+  heading, so it's visible without scrolling past tonight's list on a phone.
+  Added `/date/YYYY-MM-DD` for 60 days and `/calendar`; weekly rules now
+  expand 9 weeks so every date page includes them. "This weekend" is labelled
+  "Weekend" in the header so five links fit at phone width. No web fonts:
+  headings use a condensed system-font stack (Avenir Next Condensed on iOS,
+  Roboto Condensed on Android, Bahnschrift on Windows) and fall back to the
+  plain sans elsewhere. The og:image is rendered once with headless Chrome
+  and committed, so builds don't depend on fonts on the build machine.
 

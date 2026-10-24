@@ -1,17 +1,20 @@
 import type { APIRoute } from 'astro';
 import { CATEGORIES } from '../lib/categories.ts';
-import { categoryCounts, loadAll } from '../lib/data.ts';
+import { categoryCounts, loadAll, showsByDate } from '../lib/data.ts';
 
-// Placeholder records and empty category pages (both noindex) are left out; a noindex URL in a sitemap is a mixed signal.
+// Placeholder records, empty category pages and empty date pages (all noindex) are left out; a noindex URL in a sitemap is a mixed signal.
 export const GET: APIRoute = async ({ site }) => {
   const { venues, artists, shows } = await loadAll();
   const counts = await categoryCounts();
+  const byDate = await showsByDate();
   const paths = [
     '/',
     '/this-weekend',
+    '/calendar',
     '/venues',
     '/artists',
     '/about',
+    ...[...byDate].filter(([, list]) => list.length > 0).map(([date]) => `/date/${date}`),
     ...CATEGORIES.filter((c) => counts[c] > 0).map((c) => `/${c}`),
     ...venues.filter((v) => !v.data.placeholder).map((v) => `/venues/${v.id}`),
     ...artists.filter((a) => !a.data.placeholder).map((a) => `/artists/${a.id}`),

@@ -1,0 +1,63 @@
+---
+import type { GetStaticPaths } from 'astro';
+import Base from '../../layouts/Base.astro';
+import DateJump from '../../components/DateJump.astro';
+import DayStrip from '../../components/DayStrip.astro';
+import ShowCard from '../../components/ShowCard.astro';
+import { datePageDates, NOW, showsByDate, showTitle } from '../../lib/data.ts';
+import { itemList } from '../../lib/jsonld.ts';
+import { addDays, chicagoDate, formatDay, formatShortDay } from '../../lib/time.ts';
+
+export const getStaticPaths = (() => datePageDates().map((date) => ({ params: { date } }))) satisfies GetStaticPaths;
+
+const { date } = Astro.params as { date: string };
+const shows = (await showsByDate()).get(date)!;
+const dates = datePageDates();
+const today = chicagoDate(NOW);
+const day = formatDay(date);
+const prev = addDays(date, -1);
+const next = addDays(date, 1);
+const relative = date === today ? 'Tonight' : date === addDays(today, 1) ? 'Tomorrow' : undefined;
+
+const named = shows.slice(0, 3).map((s) => `${showTitle(s)} at ${s.venue.data.name}`);
+const more = shows.length - named.length;
+const description = shows.length
+  ? `On ${day} in Rockford, Loves Park and Belvidere: ${named.join('; ')}${more ? `, and ${more} more` : ''}.`
+  : `Nothing is listed yet for ${day} in Rockford, Loves Park and Belvidere. See the calendar for other days.`;
+---
+
+<Base
+  title={`Live music in Rockford on ${day}`}
+  description={description}
+  noindex={shows.length === 0}
+  jsonld={shows.length ? itemList(shows, Astro.site!) : undefined}
+>
+  <p class="eyebrow"><a href="/calendar">Calendar</a>{relative && <span> · {relative}</span>}</p>
+  <h1>{day}</h1>
+  <p class="lede">
+    {shows.length ? `${shows.length} ${shows.length === 1 ? 'thing' : 'things'} on.` : 'Nothing listed yet.'} All times Central.
+  </p>
+
+  <DayStrip current={date} />
+
+  <div class="show-list" data-show-list>
+    {
+      shows.length > 0 && (
+        <section class="day" data-show-date={date}>
+          {shows.map((show) => <ShowCard show={show} />)}
+        </section>
+      )
+    }
+    <p class="empty" data-empty hidden={shows.length > 0}>
+      Nothing listed for this day yet. Playing or booking a show? Send it to{' '}
+      <a href="mailto:shows@815live.com">shows@815live.com</a>.
+    </p>
+  </div>
+
+  <nav class="pager" aria-label="Other days">
+    {dates.includes(prev) ? <a href={`/date/${prev}`} rel="prev">← {formatShortDay(prev)}</a> : <span />}
+    {dates.includes(next) && <a href={`/date/${next}`} rel="next">{formatShortDay(next)} →</a>}
+  </nav>
+
+  <DateJump value={date} />
+</Base>

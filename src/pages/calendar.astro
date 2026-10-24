@@ -1,0 +1,97 @@
+---
+// Month view: every date page's day with its listing count. Also the no-JS
+// target of the date picker (/calendar?d=YYYY-MM-DD); with JS, that query
+// jumps straight to the date page.
+import Base from '../layouts/Base.astro';
+import DateJump from '../components/DateJump.astro';
+import { datePageDates, NOW, showsByDate } from '../lib/data.ts';
+import { addDays, chicagoDate, weekday } from '../lib/time.ts';
+
+const byDate = await showsByDate();
+const dates = datePageDates();
+const today = chicagoDate(NOW);
+const last = dates.at(-1)!;
+const monthFmt = new Intl.DateTimeFormat('en-US', { timeZone: 'UTC', month: 'long', year: 'numeric' });
+const dayFmt = new Intl.DateTimeFormat('en-US', { timeZone: 'UTC', weekday: 'long', month: 'long', day: 'numeric' });
+
+interface Cell {
+  date: string;
+  count?: number;
+}
+
+// Months from this one through the month of the last date page, as weeks of 7 cells (null = padding).
+const months: { title: string; weeks: (Cell | null)[][] }[] = [];
+for (let first = `${today.slice(0, 7)}-01`; first <= last; first = addDays(first, 32).slice(0, 8) + '01') {
+  const cells: (Cell | null)[] = Array(weekday(first)).fill(null);
+  for (let d = first; d.slice(0, 7) === first.slice(0, 7); d = addDays(d, 1)) {
+    cells.push({ date: d, count: byDate.get(d)?.length });
+  }
+  while (cells.length % 7) cells.push(null);
+  // Weeks that are entirely past (or past the last date page) are dropped.
+  const weeks = Array.from({ length: cells.length / 7 }, (_, i) => cells.slice(i * 7, i * 7 + 7)).filter((w) =>
+    w.some((c) => c?.count !== undefined),
+  );
+  months.push({ title: monthFmt.format(new Date(`${first}T00:00:00Z`)), weeks });
+}
+const total = dates.reduce((n, d) => n + (byDate.get(d)?.length ?? 0), 0);
+---
+
+<Base
+  title="Rockford live music calendar"
+  description="Month-by-month calendar of live music, karaoke and open mics in Rockford, Loves Park and Belvidere for the next 60 days."
+>
+  <script is:inline>
+    // Date picker without JS lands here as ?d=YYYY-MM-DD; with JS, go to that day's page.
+    (() => {
+      const d = new URLSearchParams(location.search).get('d');
+      if (d && /^\d{4}-\d{2}-\d{2}$/.test(d)) location.replace(`/date/${d}`);
+    })();
+  </script>
+  <h1>Calendar</h1>
+  <p class="lede">{total} listings over the next 60 days. Tap a day to see what's on.</p>
+  <DateJump noMonthLink />
+  {
+    months.map((m) => (
+      <section class="month">
+        <h2>{m.title}</h2>
+        <table class="month-grid">
+          <thead>
+            <tr>
+              {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((d) => (
+                <th scope="col" abbr={d}>
+                  {d[0]}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {m.weeks.map((week) => (
+              <tr>
+                {week.map((cell) =>
+                  !cell ? (
+                    <td class="pad" />
+                  ) : cell.count === undefined ? (
+                    <td class="off">
+                      <span class="cal-day">{Number(cell.date.slice(8))}</span>
+                    </td>
+                  ) : (
+                    <td class:list={[cell.date === today && 'is-today', cell.count === 0 && 'is-empty']}>
+                      <a href={`/date/${cell.date}`}>
+                        <span class="cal-day">{Number(cell.date.slice(8))}</span>
+                        <span class="cal-count">{cell.count || ''}</span>
+                        <span class="sr-only">
+                          {dayFmt.format(new Date(`${cell.date}T00:00:00Z`))}:{' '}
+                          {cell.count ? `${cell.count} listed` : 'nothing listed'}
+                        </span>
+                      </a>
+                    </td>
+                  ),
+                )}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </section>
+    ))
+  }
+</Base>
