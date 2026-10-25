@@ -72,3 +72,12 @@ Jan 2, ending in a show on Sat Jan 2, 2027 at Hard Rock Live Rockford, with no
 showtime or ticket price yet. Publish under hard-rock-casino-rockford once a
 time is posted (the Hard Rock adapter may also pick it up from the casino's
 event pages). Student bands, so list it as one show with the group as the act.
+
+## From the Facebook "concert" search (2026-10-25)
+
+- **Benefit for Knott Us Band**, Fri Jan 8, 2027, 6 PM, Lyran Society
+  (Rockford). Knott Us looks like a Chicago youth blues band, and no address
+  for the Lyran Society was found. Needs the hall's address.
+- **A Tribute to Elvis by Logan Ramey**, Sun Nov 8, 3 PM, "575 Beloit Rd":
+  the paste gives no venue name or town, and the address didn't turn up in
+  searches.

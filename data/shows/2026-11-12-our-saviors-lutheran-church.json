@@ -1,0 +1,15 @@
+{
+  "date": "2026-11-12",
+  "startTime": "19:00",
+  "venue": "our-saviors-lutheran-church",
+  "category": "live-music",
+  "title": "Concert fundraiser for Katie's Cup",
+  "artists": [
+    "carrie-newcomer"
+  ],
+  "ticketUrl": "https://www.zeffy.com/en-US/ticketing/an-evening-with-carrie-newcomer-and-pianist-gary-walters",
+  "notes": "With pianist Gary Walters.",
+  "source": {
+    "type": "manual"
+  }
+}
