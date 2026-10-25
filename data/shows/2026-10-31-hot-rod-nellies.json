@@ -1,0 +1,13 @@
+{
+  "date": "2026-10-31",
+  "startTime": "20:00",
+  "venue": "hot-rod-nellies",
+  "category": "live-music",
+  "title": "Halloween Bash",
+  "artists": [
+    "rollin-whiskey"
+  ],
+  "source": {
+    "type": "manual"
+  }
+}
