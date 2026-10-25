@@ -1,0 +1,13 @@
+{
+  "date": "2026-11-07",
+  "startTime": "20:00",
+  "venue": "marys-place",
+  "category": "live-music",
+  "artists": [
+    "too-deep"
+  ],
+  "source": {
+    "type": "manual",
+    "url": "http://marysplacebar.com/calendar/"
+  }
+}
