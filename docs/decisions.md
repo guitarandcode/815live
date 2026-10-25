@@ -167,3 +167,8 @@ Calls made while filling out listings unattended (session of 2026-10-24).
   with them as the act (the rest of the bill isn't given). Left out: costume
   party, pumpkin painting, and Sat Oct 31 "Halloween Wubs and Dubs ft
   Fontaine / Lil Byte" (a DJ/dubstep night; DJ nights aren't listed so far).
+- **Benny's @ Nest (2026-10-25).** From the user's paste of the bar's Facebook
+  events: Rebel Hearts (Sat Jan 9, 2027, 7 PM) and LynSkynyrd (Sat May 15,
+  2027, 7 PM), each posted by the band. The three Oct 31 entries are one night
+  (Sunset Strip's Fangbanger's Ball with the costume contest, 8:30 PM), which
+  was already listed and matches.

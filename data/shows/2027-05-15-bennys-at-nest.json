@@ -1,0 +1,12 @@
+{
+  "date": "2027-05-15",
+  "startTime": "19:00",
+  "venue": "bennys-at-nest",
+  "category": "live-music",
+  "artists": [
+    "lynskynyrd"
+  ],
+  "source": {
+    "type": "manual"
+  }
+}
