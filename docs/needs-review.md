@@ -62,3 +62,13 @@ Roscoe and Broadway Joe's rules carry `"months": [10]` and stop after Oct 31.
 Benny's @ Nest's Thursday is weekly per the bar's own "Every Thursday" flyer.
 Extend or replace the rules when the November schedule is out.
 
+
+## Rock and Roll Institute: winter camp show, Sat Jan 2, 2027
+
+The user pasted the group's July post about its summer show (Sun Jul 26, at
+Hard Rock; $20 at the door, doors 2 PM). That show is past. The group's site
+(rocknrollinstitute.com, robots allows) lists a 2026 Winter Camp, Dec 29 –
+Jan 2, ending in a show on Sat Jan 2, 2027 at Hard Rock Live Rockford, with no
+showtime or ticket price yet. Publish under hard-rock-casino-rockford once a
+time is posted (the Hard Rock adapter may also pick it up from the casino's
+event pages). Student bands, so list it as one show with the group as the act.
