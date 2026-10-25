@@ -232,3 +232,18 @@ The collections are flat on purpose. The table mapping is at the top of
 `src/content.config.ts` (`shows` plus a `show_artists` join table with an
 ordered `position`). Pages read data only through `src/lib/data.ts`, so
 swapping JSON for SQLite/Postgres or a live loader means changing that one module.
+
+## Social images
+
+Rendered from `data/` with satori + resvg (no browser needed). Output goes to
+`social/` (gitignored).
+
+```sh
+npm run social:tonight                      # today's "Tonight in the 815" post + caption
+npm run social:tonight -- --date 2026-10-31 # any date
+npm run social:brand                        # Facebook profile picture, cover, wordmark
+```
+
+Busy nights spill onto extra 1080x1350 images (`-1.png`, `-2.png`); post them
+together as one album. The `.txt` next to them is a ready-to-paste caption,
+plus any artist Facebook pages worth tagging.

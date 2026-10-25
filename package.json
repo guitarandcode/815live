@@ -10,14 +10,20 @@
     "check": "astro check",
     "test": "node --test \"tests/**/*.test.ts\"",
     "test:build": "node --test --test-concurrency=1 tests/build.e2e.ts && npm run build",
-    "ingest": "node scripts/ingest/run.ts"
+    "ingest": "node scripts/ingest/run.ts",
+    "social:tonight": "node scripts/social/tonight.mjs",
+    "social:brand": "node scripts/social/brand-images.mjs"
   },
   "dependencies": {
     "astro": "^7.4.2"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.12",
+    "@fontsource/inter": "^5.3.0",
+    "@fontsource/roboto-condensed": "^5.3.0",
+    "@resvg/resvg-js": "^2.6.2",
     "@types/node": "^24.19.2",
+    "satori": "^0.63.2",
     "typescript": "^6.0.3"
   }
 }
