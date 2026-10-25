@@ -81,11 +81,3 @@ event pages). Student bands, so list it as one show with the group as the act.
 - **A Tribute to Elvis by Logan Ramey**, Sun Nov 8, 3 PM, "575 Beloit Rd":
   the paste gives no venue name or town, and the address didn't turn up in
   searches.
-
-## In the Flesh at Rochaus, West Dundee (Sat Nov 14, 2026)
-
-Inbox flyer: "Stop The Insanity – Veteran's Edition", a charity event with In
-the Flesh (Echoes of Pink Floyd) at Rochaus, 96 W Main St, West Dundee IL,
-21+. No start time, and West Dundee is in Kane County (847), about 50 miles
-from Rockford, outside the site's area. Not published unless the user wants
-out-of-area shows. The flyer stays in the inbox.
