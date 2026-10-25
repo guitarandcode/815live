@@ -29,6 +29,13 @@ in the Rockford area. Needs the venue's location (and a website, if any).
 The flyer is still in the inbox.
 
 
+## Unread AVIF in the inbox (2026-10-25)
+
+`inbox/b5c9b44a-b095-4697-b4c6-813b67f0fba2.avif` couldn't be read: the
+image reader doesn't take AVIF, and converting it (ffmpeg / ImageMagick)
+needed a permission the unattended run doesn't have. Convert it to PNG/JPEG
+(or re-send it in that format) and process it on the next run.
+
 ## Rue Marché: karaoke Thursday–Saturday
 
 The River District's bars & nightlife page (riverdistrict.com/bars-nightlife/)
