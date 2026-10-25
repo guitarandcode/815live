@@ -148,3 +148,11 @@ Calls made while filling out listings unattended (session of 2026-10-24).
   other non-performance events left out; the October comedy night is past.
   Ticket link is the promoter's site from the flyer. Calendar says 6:30 AM–9 PM
   for the event block; the show time (7 PM) is from the text and flyer.
+- **Hot Rod Nellie's, Pecatonica (2026-10-25).** From the user's paste of the
+  bar's Facebook events list (address 122 S Jackson Rd, Census match):
+  Halloween Bash with Rollin' Whiskey (Oct 31, 8 PM), Pablo & the Rhythmix
+  (Nov 7, 8:30 PM), Jupiter Sky (Nov 28, 8 PM). "Rollin' Whiskey" follows the
+  bar's spelling (Shattered's October flyer wrote "Rolling Whiskey"). Left
+  out: 9-ball tournament, Witch's Night Out, pub crawl, line-dance lessons,
+  bingo nights, Thanksgiving dinner. Karaoke after Nov 25's candle bingo has
+  no start time, so it isn't listed.

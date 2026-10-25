@@ -1,0 +1,12 @@
+{
+  "date": "2026-11-28",
+  "startTime": "20:00",
+  "venue": "hot-rod-nellies",
+  "category": "live-music",
+  "artists": [
+    "jupiter-sky"
+  ],
+  "source": {
+    "type": "manual"
+  }
+}

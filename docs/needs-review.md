@@ -98,3 +98,8 @@ Inbox flyer: Fri Oct 30 Last Call 815, Sat Oct 31 Your Mom (Oct 23 and 24
 are past). No start times. Address from one directory listing only: Neighbors
 Bar & Gaming, 7745 Forest Hills Rd, Loves Park. Needs times (and ideally a
 second source for the address). The flyer stays in the inbox.
+
+## Hot Rod Nellie's: "Halloween Pre-Game with Holly", Fri Oct 30, 8:30 PM
+
+From the bar's events list (user paste). It isn't clear whether Holly is a
+musician, a DJ or a bartender. Publish as live music if Holly performs.
