@@ -41,7 +41,7 @@ const days = Array.from({ length: 7 }, (_, i) => {
             <span class="dc-label">{d.label}</span>
             <span class="sr-only">{formatDay(d.date)}</span>
             <span class="dc-day">{d.day}</span>
-            <span class="dc-count">{d.count === 0 ? '–' : `${d.count} on`}</span>
+            <span class="dc-count">{d.count === 0 ? '–' : `${d.count} ${d.count === 1 ? 'event' : 'events'}`}</span>
           </a>
         </li>
       ))

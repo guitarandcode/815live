@@ -29,17 +29,7 @@ const rest = shows.filter((s) => s.date > leadDate);
   <section class="tonight" aria-labelledby="tonight-heading">
     <div class="tonight-head">
       <h1 id="tonight-heading">Tonight in the <span class="accent">815</span></h1>
-      {
-        tonight.length > 0 && (
-          <p class="tonight-count">
-            <span class="num">{tonight.length}</span>
-            <span>
-              {tonight.length === 1 ? 'thing' : 'things'} on tonight
-              <span class="when">{formatDay(today)}</span>
-            </span>
-          </p>
-        )
-      }
+      <p class="tonight-tz">All times Central</p>
     </div>
     <DayStrip />
     {
