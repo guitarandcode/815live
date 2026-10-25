@@ -166,7 +166,8 @@ Calls made while filling out listings unattended (session of 2026-10-24).
   Mulligan's", Fri Oct 30, 6 PM, posted by the band Faith In Vain, so listed
   with them as the act (the rest of the bill isn't given). Left out: costume
   party, pumpkin painting, and Sat Oct 31 "Halloween Wubs and Dubs ft
-  Fontaine / Lil Byte" (a DJ/dubstep night; DJ nights aren't listed so far).
+  Fontaine / Lil Byte" (DJ night; listed later the same day once DJ nights
+  were added).
 - **Benny's @ Nest (2026-10-25).** From the user's paste of the bar's Facebook
   events: Rebel Hearts (Sat Jan 9, 2027, 7 PM) and LynSkynyrd (Sat May 15,
   2027, 7 PM), each posted by the band. The three Oct 31 entries are one night
@@ -177,3 +178,16 @@ Calls made while filling out listings unattended (session of 2026-10-24).
   and files that won't be listed (out of area, or out of scope like touring
   arena concerts) move to `skipped/`. Atmosphere's Winter Carnival tour at
   Hard Rock Live (Feb 6, 2027) was skipped as a touring concert.
+- **DJ nights are listed (user rule, 2026-10-25).** New `dj` category
+  ("DJ", page `/dj`, schema.org `MusicEvent`), placed after live music in the
+  nav and the social graphic. First listing: Mulligan's "Halloween Wubs and
+  Dubs" with Fontaine and Lil Byte, Sat Oct 31, 9 PM. Broadway Joe's Halloween
+  party with DJ Karlo has no start time (needs-review), and neither does
+  District's Wednesday DJ battle.
+- **District Nov 6 (2026-10-25).** "One Night Only", Fri Nov 6, 7 PM, from the
+  user's paste of District's Facebook events: the event is marked as music
+  (🎶) and the venue's site says Fridays are live music, so it's listed as
+  live music under that title. The paste doesn't say whether "One Night Only" is
+  a band name. "Baddies Halloween Bash" (Oct 30, 9 PM) doesn't say what it is,
+  so it went to needs-review. A sweep of all data for DJ acts found none
+  besides Mulligan's.
