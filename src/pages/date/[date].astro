@@ -35,7 +35,7 @@ const description = shows.length
   <p class="eyebrow"><a href="/calendar">Calendar</a>{relative && <span> · {relative}</span>}</p>
   <h1>{day}</h1>
   <p class="lede">
-    {shows.length ? `${shows.length} ${shows.length === 1 ? 'thing' : 'things'} on.` : 'Nothing listed yet.'} All times Central.
+    {!shows.length && 'Nothing listed yet. '}All times Central.
   </p>
 
   <DayStrip current={date} />
