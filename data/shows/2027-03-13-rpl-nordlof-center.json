@@ -1,0 +1,16 @@
+{
+  "date": "2027-03-13",
+  "startTime": "18:00",
+  "venue": "rpl-nordlof-center",
+  "category": "live-music",
+  "title": "Music Off The Rock",
+  "artists": [
+    "andrew-duncanson-and-take-a-ride"
+  ],
+  "cover": null,
+  "notes": "In the J.R. Sullivan Theater. Doors 5 PM. Presented by Crossroads Blues Society.",
+  "source": {
+    "type": "manual",
+    "url": "https://crossroadsbluessociety.com/music-off-the-rock"
+  }
+}
