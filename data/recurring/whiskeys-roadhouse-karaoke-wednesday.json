@@ -4,5 +4,9 @@
   "title": "Karaoke",
   "weekday": "wednesday",
   "startTime": "21:00",
-  "source": { "type": "manual", "url": "http://whiskeysroadhouse.com/" }
+  "endTime": "01:00",
+  "source": {
+    "type": "manual",
+    "url": "http://whiskeysroadhouse.com/"
+  }
 }
