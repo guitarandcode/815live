@@ -1,0 +1,13 @@
+{
+  "date": "2026-10-30",
+  "startTime": "18:00",
+  "venue": "mulligans-pub-and-grill",
+  "category": "live-music",
+  "title": "Helloween at Mulligan's",
+  "artists": [
+    "faith-in-vain"
+  ],
+  "source": {
+    "type": "manual"
+  }
+}

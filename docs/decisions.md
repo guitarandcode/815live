@@ -161,3 +161,9 @@ Calls made while filling out listings unattended (session of 2026-10-24).
   (Nov 14), Pistol Pete (Nov 21), Hogleg with Lonely Teenage (Fri Nov 27),
   Kofi Baker's Psychedelic Trip (Dec 5), all 8 PM. Halloween Hijinks (Oct 30)
   was already listed and matches. No covers in the paste, so left unknown.
+- **Mulligan's Pub & Grill (2026-10-25).** From the user's paste of the bar's
+  Facebook page (address 2212 N Main St, Census match): "Helloween at
+  Mulligan's", Fri Oct 30, 6 PM, posted by the band Faith In Vain, so listed
+  with them as the act (the rest of the bill isn't given). Left out: costume
+  party, pumpkin painting, and Sat Oct 31 "Halloween Wubs and Dubs ft
+  Fontaine / Lil Byte" (a DJ/dubstep night; DJ nights aren't listed so far).
