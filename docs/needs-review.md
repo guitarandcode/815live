@@ -29,12 +29,6 @@ in the Rockford area. Needs the venue's location (and a website, if any).
 The flyer is still in the inbox.
 
 
-## Unread AVIF in the inbox (2026-10-25)
-
-`inbox/b5c9b44a-b095-4697-b4c6-813b67f0fba2.avif` couldn't be read: the
-image reader doesn't take AVIF, and converting it (ffmpeg / ImageMagick)
-needed a permission the unattended run doesn't have. Convert it to PNG/JPEG
-(or re-send it in that format) and process it on the next run.
 
 ## Rue Marché: karaoke Thursday–Saturday
 
@@ -88,3 +82,19 @@ event pages). Student bands, so list it as one show with the group as the act.
 - **A Tribute to Elvis by Logan Ramey**, Sun Nov 8, 3 PM, "575 Beloit Rd":
   the paste gives no venue name or town, and the address didn't turn up in
   searches.
+
+## Splitters Bar & Grill: Oct 30 and Oct 31 (no times)
+
+Inbox flyer (Splitters' "October 2026" live music list). Splitters is the bar
+inside Park Lanes Bowling Center, 5318 N 2nd St, Loves Park (My Rockford
+Guide; Park Lanes' site links it; Census match). Still upcoming: Fri Oct 30
+"Metal Night" and Sat Oct 31 "On The Rocks" (with a Halloween costume
+contest). No start times on the flyer or on parklanesbowl.com, so not
+published. The flyer stays in the inbox.
+
+## Neighbors Bar & Grill: Oct 30 and Oct 31 (no times)
+
+Inbox flyer: Fri Oct 30 Last Call 815, Sat Oct 31 Your Mom (Oct 23 and 24
+are past). No start times. Address from one directory listing only: Neighbors
+Bar & Gaming, 7745 Forest Hills Rd, Loves Park. Needs times (and ideally a
+second source for the address). The flyer stays in the inbox.
