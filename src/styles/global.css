@@ -432,6 +432,9 @@ nav {
 }
 
 .day-chip {
+  /* Anchors the .sr-only date inside the scrolling strip; otherwise it's
+     positioned against the page and widens it at phone width. */
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
