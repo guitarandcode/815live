@@ -156,3 +156,8 @@ Calls made while filling out listings unattended (session of 2026-10-24).
   out: 9-ball tournament, Witch's Night Out, pub crawl, line-dance lessons,
   bingo nights, Thanksgiving dinner. Karaoke after Nov 25's candle bingo has
   no start time, so it isn't listed.
+- **Mary's Place Nov–Dec (2026-10-25).** From the user's paste of the bar's
+  Facebook events list: Too Deep (Nov 7), The Handcuffs with Monkeymind
+  (Nov 14), Pistol Pete (Nov 21), Hogleg with Lonely Teenage (Fri Nov 27),
+  Kofi Baker's Psychedelic Trip (Dec 5), all 8 PM. Halloween Hijinks (Oct 30)
+  was already listed and matches. No covers in the paste, so left unknown.
