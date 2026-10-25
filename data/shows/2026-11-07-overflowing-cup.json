@@ -1,0 +1,13 @@
+{
+  "date": "2026-11-07",
+  "startTime": "19:00",
+  "venue": "overflowing-cup",
+  "category": "live-music",
+  "artists": [
+    "rex-carroll"
+  ],
+  "source": {
+    "type": "manual",
+    "url": "https://www.overflowingcup.org/new-calendar.php"
+  }
+}

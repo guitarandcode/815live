@@ -106,3 +106,23 @@ Calls made while filling out listings unattended (session of 2026-10-24).
     but not the street address, so confirm when possible. Census matched all
     but Murphy's, whose pin is interpolated between Census's 450 and 600
     S Perryville Rd matches.
+- **Facebook "concert" search paste (2026-10-25).** From the user's paste of
+  Facebook event search results, published only local-scale live music:
+  - Overflowing Cup (Josiah's Place), Beloit: Rex Carroll (Nov 7), Gary
+    Gilleran (Nov 28), Ken Verheecke (Dec 5), Rusty Drake (Apr 10, 2027), all
+    7 PM. The venue's own site gives 1175 Madison Rd and says all events start at
+    7 PM there unless noted; its concert calendar page was empty. Genres are the
+    tags in the event titles. (Songkick lists an old 310 State St address; not used.)
+  - Carrie Newcomer, Thu Nov 12, 7 PM, Our Savior's Lutheran Church
+    (3301 Corbridge Ln, from the event's Zeffy ticket page as shown in search
+    results; Census match). Zeffy answers 403, so the page wasn't read; the
+    price ($25 per the search snippet) is left as unknown.
+  - Diamonds with The Nielsen Trust, Thu Dec 17 at Hard Rock Live: a local
+    band, so included despite the "no touring Hard Rock Live concerts" rule.
+    Facts from the casino's own event page (program 7 PM; doors 6, headliner
+    8). The Hard Rock adapter reads only `upcoming-events/` pages, so this
+    manual file won't collide with it.
+  - Left out as out of scope: TobyMac and Derek Hough (touring arena/theatre),
+    Rockford Symphony, Twilight in Concert, Coronado organ tour and Matt
+    Mathews organ concert, Harlem High School's Kaleidoscope concert, a male
+    revue at Rock-A-Bago, and a children's museum opening.

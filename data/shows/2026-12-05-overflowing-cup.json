@@ -1,0 +1,13 @@
+{
+  "date": "2026-12-05",
+  "startTime": "19:00",
+  "venue": "overflowing-cup",
+  "category": "live-music",
+  "artists": [
+    "ken-verheecke"
+  ],
+  "source": {
+    "type": "manual",
+    "url": "https://www.overflowingcup.org/new-calendar.php"
+  }
+}

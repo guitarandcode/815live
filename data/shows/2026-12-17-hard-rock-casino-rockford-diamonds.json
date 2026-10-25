@@ -1,0 +1,16 @@
+{
+  "date": "2026-12-17",
+  "startTime": "19:00",
+  "venue": "hard-rock-casino-rockford",
+  "category": "live-music",
+  "title": "Diamonds: A Charity Concert & Conversation",
+  "artists": [
+    "the-nielsen-trust"
+  ],
+  "ticketUrl": "https://www.ticketmaster.com/event/21006547EFE177BC",
+  "notes": "On the Hard Rock Live stage.",
+  "source": {
+    "type": "venue-site",
+    "url": "https://casino.hardrock.com/rockford/entertainment/hard-rock-live/diamonds-with-the-nielsen-trust"
+  }
+}
