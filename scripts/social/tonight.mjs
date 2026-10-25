@@ -74,6 +74,7 @@ if (!events.length) {
 // ---------- formatting ----------
 const SECTIONS = [
   ['live-music', 'Live music'],
+  ['dj', 'DJ'],
   ['comedy', 'Comedy'],
   ['open-mic', 'Open mic'],
   ['karaoke', 'Karaoke'],

@@ -39,8 +39,8 @@ the weekly karaoke rules need a start time.
 
 ## District: Tuesday jam night
 
-District's own home page lists a Tuesday "District jams night" with no time
-(and a Wednesday DJ battle, not listed: not live music). Thursday karaoke is
+District's own home page lists a Tuesday "District jams night" and a
+Wednesday DJ battle, both with no time. Thursday karaoke is
 published (9 PM, from a District flyer the user sent). The events page and
 its TicketWeb page had no upcoming shows (2026-10-24).
 
@@ -103,3 +103,23 @@ second source for the address). The flyer is in `waiting/`.
 
 From the bar's events list (user paste). It isn't clear whether Holly is a
 musician, a DJ or a bartender. Publish as live music if Holly performs.
+
+## Broadway Joe's: Halloween party with DJ Karlo, Sat Oct 31 (no start time)
+
+From the user's paste of the Facebook event "Nightmare on Broadway": DJ Karlo
+(EJ DJ's), costume contest at 11 PM, 7 hours long. No start time is given, so
+it isn't published. Add as a `dj` show once the start time is known.
+
+## District: "Baddies Halloween Bash", Fri Oct 30, 9 PM
+
+From the user's paste of District's Facebook events. The listing doesn't say
+whether it's a DJ night, a band or a party, so it isn't published. Add it
+(likely as `dj`) once the format is known.
+
+## DJ nights mentioned but not publishable (2026-10-25 sweep)
+
+- **The Office Niteclub** (513 E State St): directory and guide listings
+  mention DJs on Friday and Saturday nights; no times and no venue source.
+- **Sheila's Daiquiri Lounge**: "DJs on the weekends" appears only in a Rock
+  River Current article (blocks Claude).
+

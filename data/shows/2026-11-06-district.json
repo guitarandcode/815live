@@ -1,0 +1,11 @@
+{
+  "date": "2026-11-06",
+  "startTime": "19:00",
+  "venue": "district",
+  "category": "live-music",
+  "title": "One Night Only",
+  "source": {
+    "type": "manual",
+    "url": "https://districtdowntown.com/"
+  }
+}

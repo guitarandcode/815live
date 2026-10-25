@@ -20,7 +20,7 @@ export interface IngestedShow {
   startTime: string;
   endTime?: string;
   venue: string;
-  category: 'live-music' | 'karaoke' | 'open-mic' | 'trivia' | 'comedy';
+  category: 'live-music' | 'dj' | 'karaoke' | 'open-mic' | 'trivia' | 'comedy';
   title?: string;
   artists: { slug: string; name: string }[];
   cover?: number | null;
