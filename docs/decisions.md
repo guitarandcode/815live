@@ -141,3 +141,10 @@ Calls made while filling out listings unattended (session of 2026-10-24).
   sitting in the inbox. The rule and the inbox procedure are in `CLAUDE.md`,
   which the unattended inbox run reads. First use: In the Flesh at Rochaus,
   West Dundee (Nov 14), skipped.
+- **Pig Minds comedy (2026-10-25).** Sat Nov 21, 7 PM stand-up by Next Stop
+  Comedy, from the venue's own events calendar (pasted by the user; the
+  site itself is behind a bot challenge) and the promoter's flyer from the
+  inbox (an AVIF, converted to read it). Bingo, "Paws on the Patio" and
+  other non-performance events left out; the October comedy night is past.
+  Ticket link is the promoter's site from the flyer. Calendar says 6:30 AM–9 PM
+  for the event block; the show time (7 PM) is from the text and flyer.

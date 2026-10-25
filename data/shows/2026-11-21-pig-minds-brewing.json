@@ -1,0 +1,12 @@
+{
+  "date": "2026-11-21",
+  "startTime": "19:00",
+  "venue": "pig-minds-brewing",
+  "category": "comedy",
+  "title": "Stand-Up Comedy: Next Stop Comedy",
+  "ticketUrl": "https://nextstopcomedy.com/",
+  "source": {
+    "type": "manual",
+    "url": "https://www.pigmindsbrewing.com/"
+  }
+}
