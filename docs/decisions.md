@@ -126,3 +126,11 @@ Calls made while filling out listings unattended (session of 2026-10-24).
     Rockford Symphony, Twilight in Concert, Coronado organ tour and Matt
     Mathews organ concert, Harlem High School's Kaleidoscope concert, a male
     revue at Rock-A-Bago, and a children's museum opening.
+- **Inbox run (2026-10-25).** Crossroads Blues Society's "Music Off The Rock
+  2026/2027" flyer: seven free blues shows at the RPL Nordlof Center (118 N
+  Main St, J.R. Sullivan Theater), 6 PM with doors at 5, Oct 28 – Apr 24.
+  Free admission is stated, so `cover: null`. The May show is "TBD" and not
+  listed. Source link is the society's series page (robots allows; content is
+  JS-rendered, so facts are from the flyer). Food-truck and beverage lines
+  left out. A Shattered Saloon October flyer was a re-save of the one already
+  filed; nothing new (Oct 30 and 31 were already listed).
