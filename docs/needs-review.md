@@ -26,7 +26,7 @@ Saturday, October 31, 8 PM to 1 AM, with live music by Sturm & Ricotta (Mark
 Sturm and David Ricotta), and that it's part of a pub crawl. Not published:
 the flyer gives no town or address, and searches found no "Town Hall Lounge"
 in the Rockford area. Needs the venue's location (and a website, if any).
-The flyer is still in the inbox.
+The flyer is in `waiting/`.
 
 
 
@@ -90,14 +90,14 @@ inside Park Lanes Bowling Center, 5318 N 2nd St, Loves Park (My Rockford
 Guide; Park Lanes' site links it; Census match). Still upcoming: Fri Oct 30
 "Metal Night" and Sat Oct 31 "On The Rocks" (with a Halloween costume
 contest). No start times on the flyer or on parklanesbowl.com, so not
-published. The flyer stays in the inbox.
+published. The flyer is in `waiting/`.
 
 ## Neighbors Bar & Grill: Oct 30 and Oct 31 (no times)
 
 Inbox flyer: Fri Oct 30 Last Call 815, Sat Oct 31 Your Mom (Oct 23 and 24
 are past). No start times. Address from one directory listing only: Neighbors
 Bar & Gaming, 7745 Forest Hills Rd, Loves Park. Needs times (and ideally a
-second source for the address). The flyer stays in the inbox.
+second source for the address). The flyer is in `waiting/`.
 
 ## Hot Rod Nellie's: "Halloween Pre-Game with Holly", Fri Oct 30, 8:30 PM
 

@@ -172,3 +172,8 @@ Calls made while filling out listings unattended (session of 2026-10-24).
   2027, 7 PM), each posted by the band. The three Oct 31 entries are one night
   (Sunset Strip's Fangbanger's Ball with the costume contest, 8:30 PM), which
   was already listed and matches.
+- **Sources folders (2026-10-25).** `~/815live-sources/inbox/` now holds only
+  new files. Files with an open needs-review question move to `waiting/`,
+  and files that won't be listed (out of area, or out of scope like touring
+  arena concerts) move to `skipped/`. Atmosphere's Winter Carnival tour at
+  Hard Rock Live (Feb 6, 2027) was skipped as a touring concert.
