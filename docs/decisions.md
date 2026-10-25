@@ -134,3 +134,10 @@ Calls made while filling out listings unattended (session of 2026-10-24).
   JS-rendered, so facts are from the flyer). Food-truck and beverage lines
   left out. A Shattered Saloon October flyer was a re-save of the one already
   filed; nothing new (Oct 30 and 31 were already listed).
+- **815 area only (user rule, 2026-10-25).** List shows only in the 815 area:
+  Rockford, Loves Park, Machesney Park, Belvidere, Roscoe, Rockton, South
+  Beloit, Beloit WI and similar nearby towns. Out-of-area flyers are moved to
+  `~/815live-sources/skipped/` (renamed `YYYY-MM_description.ext`) instead of
+  sitting in the inbox. The rule and the inbox procedure are in `CLAUDE.md`,
+  which the unattended inbox run reads. First use: In the Flesh at Rochaus,
+  West Dundee (Nov 14), skipped.
