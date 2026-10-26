@@ -8,7 +8,7 @@
 // Busy nights spill onto extra images (post them together as one album).
 import { readdirSync, readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { join } from 'node:path';
-import { C, h, render, stripes, wordmark } from './lib.mjs';
+import { C, h, render, wordmark } from './lib.mjs';
 
 const ROOT = join(import.meta.dirname, '../..');
 const OUT = join(ROOT, 'social');
@@ -156,7 +156,7 @@ function rowEl(e) {
 function pageEl(items, i, total) {
   return h(
     'div',
-    { width: W, height: H, background: C.bg, backgroundImage: stripes, flexDirection: 'column', alignItems: 'center', paddingTop: TOP },
+    { width: W, height: H, background: C.bg, flexDirection: 'column', alignItems: 'center', paddingTop: TOP },
     // header
     h(
       'div',
