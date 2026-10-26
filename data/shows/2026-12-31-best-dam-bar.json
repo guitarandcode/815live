@@ -1,0 +1,9 @@
+{
+  "date": "2026-12-31",
+  "startTime": "20:00",
+  "venue": "best-dam-bar",
+  "category": "live-music",
+  "title": "New Year's Eve Party",
+  "artists": ["rollin-whiskey"],
+  "source": { "type": "manual" }
+}

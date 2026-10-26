@@ -1,0 +1,8 @@
+{
+  "date": "2026-11-13",
+  "startTime": "20:00",
+  "venue": "neighbors-bar-and-grill",
+  "category": "live-music",
+  "artists": ["ethan-bell-band"],
+  "source": { "type": "manual" }
+}

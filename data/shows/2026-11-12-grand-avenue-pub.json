@@ -1,0 +1,10 @@
+{
+  "date": "2026-11-12",
+  "startTime": "19:00",
+  "endTime": "21:00",
+  "venue": "grand-avenue-pub",
+  "category": "live-music",
+  "title": "Blues Night",
+  "artists": ["andrew-diehl"],
+  "source": { "type": "manual", "url": "https://www.grandavenuebeloit.com/" }
+}

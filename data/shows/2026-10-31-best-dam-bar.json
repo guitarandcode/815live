@@ -1,0 +1,10 @@
+{
+  "date": "2026-10-31",
+  "startTime": "20:00",
+  "venue": "best-dam-bar",
+  "category": "live-music",
+  "title": "Halloween Night",
+  "artists": ["six-pack"],
+  "notes": "Costume contest.",
+  "source": { "type": "manual" }
+}

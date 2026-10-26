@@ -1,0 +1,8 @@
+{
+  "date": "2026-10-30",
+  "startTime": "20:30",
+  "venue": "best-dam-bar",
+  "category": "live-music",
+  "artists": ["shifty-boys-unplugged"],
+  "source": { "type": "manual" }
+}

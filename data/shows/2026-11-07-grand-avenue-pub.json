@@ -1,0 +1,9 @@
+{
+  "date": "2026-11-07",
+  "startTime": "20:00",
+  "endTime": "00:00",
+  "venue": "grand-avenue-pub",
+  "category": "live-music",
+  "artists": ["shuffle-this"],
+  "source": { "type": "manual", "url": "https://www.grandavenuebeloit.com/" }
+}

@@ -1,0 +1,9 @@
+{
+  "date": "2026-11-25",
+  "startTime": "20:00",
+  "venue": "neighbors-bar-and-grill",
+  "category": "live-music",
+  "title": "Blackout Wednesday",
+  "artists": ["dirt-road-rebelz"],
+  "source": { "type": "manual" }
+}

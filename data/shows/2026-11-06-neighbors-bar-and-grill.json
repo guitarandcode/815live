@@ -1,0 +1,8 @@
+{
+  "date": "2026-11-06",
+  "startTime": "20:00",
+  "venue": "neighbors-bar-and-grill",
+  "category": "live-music",
+  "artists": ["rebel-hearts"],
+  "source": { "type": "manual" }
+}

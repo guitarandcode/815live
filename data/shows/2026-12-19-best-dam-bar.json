@@ -1,0 +1,8 @@
+{
+  "date": "2026-12-19",
+  "startTime": "20:00",
+  "venue": "best-dam-bar",
+  "category": "live-music",
+  "artists": ["hanks-neighbors"],
+  "source": { "type": "manual" }
+}

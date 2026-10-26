@@ -191,3 +191,40 @@ Calls made while filling out listings unattended (session of 2026-10-24).
   a band name. "Baddies Halloween Bash" (Oct 30, 9 PM) doesn't say what it is,
   so it went to needs-review. A sweep of all data for DJ acts found none
   besides Mulligan's.
+- **Inbox run (2026-10-26, unattended).** Fourteen files.
+  - **Best Dam Bar, Davis** (13965 Best Rd, Yelp/directories, Census match):
+    Davis is in Stephenson County next to Durand, 815 area, so it's in. From
+    the bar's Facebook events paste: 12 shows Oct 30 – Dec 31. Oct 30's two
+    entries (band's and bar's) are one show. A Stereotype flyer for Oct 24
+    was already past.
+  - **Neighbors Bar & Grill, Loves Park**: the bar's own events list gives
+    7745 Forest Hills Rd (matching the iExit listing; Census match) and the
+    8 PM times that the waiting flyer lacked, so Oct 30 and Oct 31 are
+    published along with Nov 6, 13 and 25; the needs-review entry is closed
+    (the flyer's move out of `waiting/` is pending, see needs-review). Bingo and paint parties left out.
+  - **Rock-A-Bago**: seven bands Nov 6 – Dec 19 plus a Dec 18 karaoke night
+    (the event is named for the host; no name stored). Fast Lane's event says
+    "Rock-A-Bago Lounge" with no address; read as the same bar. The Nov 19
+    male revue is out of scope. Robert Dean (Oct 24) flyer was past.
+  - **Grand Avenue Pub, Beloit**: the November 2026 calendar image doesn't
+    name the venue, but the first-Sunday 2 PM Jack Farina Big Band slot,
+    Sunday meat raffles and Thursday bingo match Gazette and Beloit Daily
+    News listings for the pub, so it's published (13 shows). Bingo, meat
+    raffles, drink specials left out. The image's right edge is cropped;
+    Saturday names (Shuffle This, Stereo Type, Soul 2 Soul) are read as
+    shown. "Stereo Type" is linked to the existing Stereotype; "Synergy" got
+    its own record rather than being merged with The Synergy Band (R&B, Hard
+    Rock), since nothing says they're the same. DJ Proper (Nov 25) is a `dj`
+    show.
+  - **Cahoots Rockford** (new venue, 314 Prairie St per its flyer and
+    Facebook events; early press gave 505 N Madison for the same building
+    project; Census match on Prairie St): Decades of Rock, Nov 7, one listing
+    with set times (3/6/9 PM); ticket link is only a QR code, not read.
+    Karaoke Nov 14 (free, all ages, per the event) and Dec 11 (cover unknown:
+    the screenshot cuts off before the price line), both 7–10 PM.
+  - **Buster's Bar & Grill, Loves Park** (new venue, 7113 N Alpine Rd from
+    Yelp/My Rockford Guide; Census match): Acoustic Reverie, Nov 7, 7–10 PM.
+    No year on the flyer; the next Nov 7 is 2026. Two copies of the flyer.
+  - **No change**: Hot Rod Nellie's paste (all already listed; Holly still
+    open, file in `waiting/`), Pablo & the Rhythmix flyer (already listed),
+    Benny's @ Nest paste (already listed).

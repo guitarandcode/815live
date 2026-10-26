@@ -1,0 +1,8 @@
+{
+  "date": "2026-11-21",
+  "startTime": "20:00",
+  "venue": "best-dam-bar",
+  "category": "live-music",
+  "artists": ["distilled"],
+  "source": { "type": "manual" }
+}

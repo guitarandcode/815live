@@ -1,0 +1,9 @@
+{
+  "date": "2026-12-11",
+  "startTime": "19:00",
+  "endTime": "22:00",
+  "venue": "cahoots-rockford",
+  "category": "karaoke",
+  "title": "Karaoke",
+  "source": { "type": "manual", "url": "https://cahootsrockford.com/" }
+}
