@@ -184,6 +184,38 @@ nav {
   text-underline-offset: 0.35em;
 }
 
+/* "Submit a show": beside the wordmark on phones, after the nav on wider screens. */
+.site-header nav {
+  order: 3;
+  flex-basis: 100%;
+}
+
+.submit-link {
+  order: 2;
+  margin-left: auto;
+  padding: 0.35rem 0.8rem;
+  border: 1.5px solid var(--accent);
+  border-radius: 999px;
+  color: var(--accent);
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.submit-link:hover,
+.submit-link[aria-current='page'] {
+  background: var(--accent);
+  color: var(--accent-text);
+}
+
+@media (min-width: 40rem) {
+  .site-header nav {
+    order: 1;
+    flex-basis: auto;
+  }
+}
+
 /* Lists */
 .lede {
   color: var(--muted);
@@ -398,6 +430,51 @@ nav {
   border: 1px solid var(--line);
   border-top: 4px solid var(--accent);
   border-radius: var(--radius);
+}
+
+/* Home: today, later this week, coming up. Each later section opens on a
+   heavy rule so the split reads at a glance on a phone. */
+.tonight-list .day {
+  margin: 0;
+}
+
+.tonight-list .day-heading {
+  display: none;
+}
+
+.home-sec {
+  margin-top: 2.5rem;
+  padding-top: 0.75rem;
+  border-top: 3px solid var(--text);
+}
+
+.home-sec .section-heading {
+  margin: 0 0 0.75rem;
+}
+
+.home-sec .sec-range {
+  margin: -0.6rem 0 1rem;
+  color: var(--muted);
+}
+
+.home-later .day-heading {
+  font-size: 1rem;
+  letter-spacing: 0.03em;
+  color: var(--text);
+}
+
+/* Weekly nights are in "Every week"; Coming up is one-offs only. */
+.home-coming .show-card[data-recurring] {
+  display: none;
+}
+
+.more-link {
+  margin: 0;
+  font-weight: 700;
+}
+
+.home-browse {
+  margin-top: 2.5rem;
 }
 
 .section-heading,
@@ -690,7 +767,7 @@ nav {
 
 .button {
   display: inline-block;
-  padding: 0.55rem 1rem;
+  padding: 0.7rem 1.25rem;
   border-radius: var(--radius);
   background: var(--accent);
   color: var(--accent-text);
@@ -733,6 +810,52 @@ section + section {
 
 .site-footer a {
   color: inherit;
+}
+
+/* Icon links: 44px tap targets, text colour, accent on hover. */
+.site-footer .social {
+  display: flex;
+  gap: 0.25rem;
+  margin: 0.4rem 0 0.4rem -0.6rem;
+}
+
+.site-footer .social a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: var(--radius);
+  color: var(--text);
+}
+
+.site-footer .social a:hover,
+.site-footer .social a:focus-visible {
+  color: var(--accent);
+}
+
+.site-footer .social svg {
+  width: 1.4rem;
+  height: 1.4rem;
+  fill: currentColor;
+}
+
+/* Submit page */
+.submit-fields {
+  padding-left: 1.25rem;
+}
+
+.submit-fields li {
+  margin: 0.2rem 0;
+}
+
+.submit-fields .hint,
+.submit-alt {
+  color: var(--muted);
+}
+
+.submit-alt {
+  font-size: 0.95rem;
 }
 
 @media (min-width: 40rem) {

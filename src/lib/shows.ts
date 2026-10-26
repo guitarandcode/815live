@@ -1,5 +1,5 @@
 // Pure show-list logic, kept free of astro:content so it can be unit-tested.
-import { addDays, chicagoDate, weekday, weekendRange } from './time.ts';
+import { addDays, chicagoDate, chicagoHour, weekday, weekendRange } from './time.ts';
 
 interface Dated {
   date: string;
@@ -43,6 +43,43 @@ export const RECURRING_LIST_DAYS = 7;
 export function listing<T extends Dated & { recurring?: string }>(shows: T[], now: Date): T[] {
   const cutoff = addDays(chicagoDate(now), RECURRING_LIST_DAYS);
   return upcoming(shows, now).filter((s) => !s.recurring || s.date < cutoff);
+}
+
+/**
+ * A night out runs until 4 AM: a show starting before then belongs to the
+ * previous date's night. Base.astro's inline script applies the same rule.
+ */
+export const NIGHT_ENDS = '04:00';
+export const nightOf = (s: Dated) => (s.startTime < NIGHT_ENDS ? addDays(s.date, -1) : s.date);
+
+/**
+ * How the build labels its own calendar day. Browsers relabel on load
+ * ('Tonight' from 5 PM until 4 AM); the build keeps to its calendar date
+ * because the daily build runs around 3 AM and is read all day.
+ */
+export const dayPart = (now: Date): 'Today' | 'Tonight' => (chicagoHour(now) >= 17 ? 'Tonight' : 'Today');
+
+/**
+ * The home page's second section after a given night: tomorrow through
+ * Sunday, or the next 7 days on Saturday and Sunday so it never shows a
+ * single day. index.astro's inline script repeats this.
+ */
+export function laterWindow(night: string): { start: string; end: string; label: string } {
+  const wd = weekday(night);
+  const weekend = wd === 0 || wd === 6;
+  return {
+    start: addDays(night, 1),
+    end: addDays(night, weekend ? 7 : 7 - wd),
+    label: weekend ? 'Next 7 days' : 'Later this week',
+  };
+}
+
+export function groupByNight<T extends Dated>(shows: T[]): { date: string; shows: T[] }[] {
+  const nights = new Map<string, T[]>();
+  for (const s of [...shows].sort(byStart)) {
+    nights.set(nightOf(s), [...(nights.get(nightOf(s)) ?? []), s]);
+  }
+  return [...nights].sort(([a], [b]) => a.localeCompare(b)).map(([date, list]) => ({ date, shows: list }));
 }
 
 export function groupByDay<T extends Dated>(shows: T[]): { date: string; shows: T[] }[] {

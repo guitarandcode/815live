@@ -1,0 +1,50 @@
+---
+import Base from '../layouts/Base.astro';
+
+const EMAIL = 'shows@815live.com';
+const fields = [
+  ['Act name', 'band, DJ, comedian or event name'],
+  ['Venue and town', 'e.g. Mary’s Place, Rockford'],
+  ['Date', 'e.g. Saturday, Nov 14'],
+  ['Start time', 'required to be listed'],
+  ['Cover', 'a price, or “free”'],
+  ['Ticket link', 'if there is one'],
+  ['Flyer', 'attach it if you have one'],
+];
+const body = `${fields.map(([name]) => `${name}: `).join('\n')}\n`;
+const mailto = `mailto:${EMAIL}?subject=${encodeURIComponent('Show submission')}&body=${encodeURIComponent(body)}`;
+---
+
+<Base title="Submit a show" description="Playing or booking a show in the Rockford area? Send it to 815live and it gets listed free.">
+  <h1>Submit a show</h1>
+  <p class="lede">
+    For bands, venues, promoters, DJs and comedy hosts. Listings are free. Send us your show and we'll put it on the site.
+  </p>
+
+  <h2>What to send</h2>
+  <ul class="submit-fields">
+    {
+      fields.map(([name, hint]) => (
+        <li>
+          <strong>{name}</strong> <span class="hint">{hint}</span>
+        </li>
+      ))
+    }
+  </ul>
+
+  <p><a class="button" href={mailto}>Email your show</a></p>
+  <p class="submit-alt">
+    The button opens your email app with these fields filled in. You can also write to{' '}
+    <a href={`mailto:${EMAIL}`}>{EMAIL}</a> directly. Several shows in one email is fine.
+  </p>
+
+  <h2>Before you send</h2>
+  <ul>
+    <li>
+      We list shows in the 815 area only: Rockford, Loves Park, Machesney Park, Belvidere, Roscoe, Rockton, South
+      Beloit, Beloit and nearby towns.
+    </li>
+    <li>A show needs a start time to be listed.</li>
+    <li>We list live music, DJ nights, karaoke, open mics, music trivia and comedy.</li>
+  </ul>
+</Base>

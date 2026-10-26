@@ -12,7 +12,7 @@ const { show, showVenue = true } = Astro.props;
 const cover = coverLabel(show.cover);
 ---
 
-<article class="show-card" class:list={[show.status !== 'scheduled' && 'is-off']}>
+<article class="show-card" class:list={[show.status !== 'scheduled' && 'is-off']} data-recurring={show.recurring ? '' : undefined}>
   <time class="show-time" datetime={chicagoIso(show.date, show.startTime)}>{formatTime(show.startTime)}</time>
   <div class="show-body">
     {show.title !== CATEGORY_LABEL[show.category] && <p class="category">{CATEGORY_LABEL[show.category]}</p>}

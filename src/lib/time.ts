@@ -36,6 +36,9 @@ export function chicagoDate(instant: Date = new Date()): string {
   return `${f.y}-${pad(f.m)}-${pad(f.d)}`;
 }
 
+/** Hour of the day (0–23) in Chicago for an instant. */
+export const chicagoHour = (instant: Date) => chicagoFields(instant).h;
+
 /** Minutes east of UTC that Chicago is at this instant (-300 CDT, -360 CST). */
 export function chicagoOffsetMinutes(instant: Date): number {
   const f = chicagoFields(instant);
@@ -92,6 +95,7 @@ export function weekendRange(today: string): { start: string; end: string } {
 // Display formatting. Dates are formatted as UTC midnight so the calendar
 // day never shifts; that is a formatting trick, not a timezone choice.
 const dayFmt = new Intl.DateTimeFormat('en-US', { timeZone: 'UTC', weekday: 'long', month: 'long', day: 'numeric' });
+const mediumDayFmt = new Intl.DateTimeFormat('en-US', { timeZone: 'UTC', weekday: 'long', month: 'short', day: 'numeric' });
 const shortDayFmt = new Intl.DateTimeFormat('en-US', { timeZone: 'UTC', weekday: 'short', month: 'short', day: 'numeric' });
 
 const utcMidnight = (date: string) => {
@@ -100,6 +104,8 @@ const utcMidnight = (date: string) => {
 };
 
 export const formatDay = (date: string) => dayFmt.format(utcMidnight(date));
+/** 'Wednesday, Oct 28' */
+export const formatMediumDay = (date: string) => mediumDayFmt.format(utcMidnight(date));
 export const formatShortDay = (date: string) => shortDayFmt.format(utcMidnight(date));
 
 /** '19:30' -> '7:30 PM', '21:00' -> '9 PM'. */
