@@ -14,7 +14,6 @@ const html = `<!doctype html><meta charset="utf-8"><style>
   body {
     box-sizing: border-box; padding: 84px 96px; display: flex; flex-direction: column; justify-content: space-between;
     background: #12110f; color: #f2eee7; font-family: 'Roboto Condensed', 'Arial Narrow', sans-serif;
-    background-image: repeating-linear-gradient(90deg, transparent 0 46px, rgba(255,255,255,.035) 46px 48px);
   }
   .mark { display: flex; align-items: center; font-weight: 800; font-size: 168px; line-height: 1; letter-spacing: -2px; }
   .num { background: #ff6a4d; color: #12110f; padding: 14px 30px 10px; border-radius: 26px; }

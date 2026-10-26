@@ -58,9 +58,6 @@ export function wordmark(size) {
   );
 }
 
-/** Subtle vertical pinstripes, matching the site's og.png. */
-export const stripes = `repeating-linear-gradient(90deg, rgba(255,255,255,0) 0px, rgba(255,255,255,0) 46px, rgba(255,255,255,0.035) 46px, rgba(255,255,255,0.035) 48px)`;
-
 export async function render(element, width, height, outPath) {
   const svg = await satori(element, { width, height, fonts: FONTS });
   const png = new Resvg(svg, { fitTo: { mode: 'width', value: width } }).render().asPng();

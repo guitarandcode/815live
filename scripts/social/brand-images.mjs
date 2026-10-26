@@ -1,7 +1,7 @@
 // Facebook profile picture and cover photo, in the site's brand.
 // Run: node scripts/social/brand-images.mjs   (writes to social/)
 import { join } from 'node:path';
-import { C, h, render, stripes, wordmark } from './lib.mjs';
+import { C, h, render, wordmark } from './lib.mjs';
 
 const OUT = join(import.meta.dirname, '../../social');
 
@@ -9,7 +9,7 @@ const OUT = join(import.meta.dirname, '../../social');
 const profile = h(
   'div',
   {
-    width: 720, height: 720, background: C.bg, backgroundImage: stripes,
+    width: 720, height: 720, background: C.bg,
     flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
     fontFamily: 'Cond', color: C.ink,
   },
@@ -32,7 +32,7 @@ const profile = h(
 const cover = h(
   'div',
   {
-    width: 1640, height: 624, background: C.bg, backgroundImage: stripes,
+    width: 1640, height: 624, background: C.bg,
     flexDirection: 'column', alignItems: 'center', justifyContent: 'center', color: C.ink,
   },
   h('div', { fontFamily: 'Cond', fontWeight: 800, fontSize: 68, lineHeight: 1.05, textTransform: 'uppercase', letterSpacing: 1 },
