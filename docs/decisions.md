@@ -356,3 +356,9 @@ Calls made while filling out listings unattended (session of 2026-10-24).
   added to `skip`). Source kind `roundup` as the user asked; the post has no
   URL on file, so nothing is linked and the cards fall back to the venue's
   website.
+- **No visible time zone (user, 2026-10-26).** Readers are local, so "All
+  times Central" (home, date, category and this-weekend pages), the "CT" after
+  show-page times and the footer's "Listings updated" stamp, and the RSS item
+  text are gone. Graphics and captions had none. JSON-LD and the .ics feed
+  keep the Chicago offset/TZID so search engines and calendars read times
+  correctly. (Cards already dropped "Checked [date]" earlier the same day.)

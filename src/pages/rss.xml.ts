@@ -10,7 +10,7 @@ export const GET: APIRoute = async ({ site }) => {
     const url = new URL(`/shows/${show.id}`, site).href;
     const cover = coverLabel(show.cover);
     const desc = [
-      `${formatDay(show.date)}, ${formatTime(show.startTime)} CT at ${show.venue.data.name}, ${show.venue.data.city}.`,
+      `${formatDay(show.date)}, ${formatTime(show.startTime)} at ${show.venue.data.name}, ${show.venue.data.city}.`,
       cover && `Cover: ${cover}.`,
       show.notes,
     ]

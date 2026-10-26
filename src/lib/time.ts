@@ -132,5 +132,5 @@ const stampFmt = new Intl.DateTimeFormat('en-US', {
   minute: '2-digit',
 });
 
-/** 'Oct 24, 2026, 3:15 PM CT' */
-export const formatStamp = (instant: Date) => `${stampFmt.format(instant)} CT`;
+/** 'Oct 24, 2026, 3:15 PM' (Chicago time; readers are local, so no zone label) */
+export const formatStamp = (instant: Date) => stampFmt.format(instant);

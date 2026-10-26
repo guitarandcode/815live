@@ -24,7 +24,7 @@ const empty = (await categoryCounts())[category] === 0;
   jsonld={shows.length ? itemList(shows, Astro.site!) : undefined}
 >
   <h1>{page.heading}</h1>
-  <p class="lede">{page.description} All times Central.</p>
+  <p class="lede">{page.description}</p>
   <CategoryNav current={category} />
   <ShowList shows={shows} empty={`No ${page.heading.toLowerCase()} listed right now.`} />
   <WeeklyList rules={weekly} />
