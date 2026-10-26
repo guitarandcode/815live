@@ -1,0 +1,16 @@
+{
+  "date": "2026-10-26",
+  "startTime": "19:00",
+  "venue": "grand-avenue-pub",
+  "category": "live-music",
+  "title": "Monday Night Blues",
+  "artists": [
+    "billy-flynn"
+  ],
+  "notes": "The last Monday blues night; it moves to Thursdays from Oct 29.",
+  "checked": "2026-10-26",
+  "source": {
+    "type": "facebook",
+    "kind": "roundup"
+  }
+}

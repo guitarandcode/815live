@@ -1,0 +1,16 @@
+{
+  "venue": "grand-avenue-pub",
+  "category": "live-music",
+  "title": "Blues Night",
+  "weekday": "thursday",
+  "startTime": "19:00",
+  "notes": "Moved from Mondays (Billy Flynn's Monday Night Blues) in late October 2026.",
+  "skip": [
+    "2026-11-26"
+  ],
+  "checked": "2026-10-26",
+  "source": {
+    "type": "facebook",
+    "kind": "roundup"
+  }
+}

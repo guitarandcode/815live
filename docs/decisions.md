@@ -347,3 +347,12 @@ Calls made while filling out listings unattended (session of 2026-10-24).
   from the bill.
 - **Quiet-night graphic title** now reads "Tonight + Next 7 Days" (user), to
   match its section heading; the caption's first line matches.
+- **Grand Avenue Pub blues night moves to Thursdays (user, from Rockford's
+  Local Music Scene daily post, 2026-10-26).** Tonight's "Last Monday Night
+  Blues with Billy Flynn" (7 PM) is a one-off. The weekly Thursday 7 PM rule
+  starts Oct 29 and is titled "Blues Night", the venue's name on its November
+  calendar, which also names other acts on Nov 5, 12 and 19 (those one-offs
+  take precedence over the rule) and has no Thursday Nov 26 (Thanksgiving,
+  added to `skip`). Source kind `roundup` as the user asked; the post has no
+  URL on file, so nothing is linked and the cards fall back to the venue's
+  website.
