@@ -149,3 +149,14 @@ Saturday column, so these names may be incomplete:
 - **Nov 13 "Synergy"**: given its own artist record, not merged with The
   Synergy Band. Merge if they turn out to be the same act.
 
+## Boxcars Pub & Grub (Clinton, WI): Addison Johnson, Wed Oct 28
+
+A screenshot of a post in the "Support The Live Music Experience in Freeport,
+IL, Rockford, IL and Beyond!" group (2026-10-26 inbox) says Addison Johnson
+plays "The Room" at Boxcars Pub & Grub on Wed Oct 28 at 7:30 PM, with $25
+tickets at the bar, online, or at the door. The weekday matches 2026. Not
+published: Clinton is about 10 miles east of Beloit, so it's probably a bit
+more than 30 minutes from downtown Rockford, a borderline call under the area
+rule. Also, the venue's address and ticket link are unverified. The screenshot
+is in `waiting/`.
+

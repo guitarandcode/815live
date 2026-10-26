@@ -362,3 +362,9 @@ Calls made while filling out listings unattended (session of 2026-10-24).
   text are gone. Graphics and captions had none. JSON-LD and the .ics feed
   keep the Chicago offset/TZID so search engines and calendars read times
   correctly. (Cards already dropped "Checked [date]" earlier the same day.)
+- **Inbox run (scheduled, 2026-10-26 evening).** 6 files, nothing published.
+  Skipped as past: Kurt Karaoke at Rock-A-Bago (Oct 23), Chad Foster at
+  Neighbors (Oct 23), Stereotype at Best Dam Bar (Oct 24), The Tom Mac Group at
+  Inscape (Oct 24). Skipped as out of scope: Mulligan's pumpkin painting (Oct
+  28). Addison Johnson at Boxcars Pub & Grub, Clinton WI (Oct 28) waits on an
+  area call, since Clinton is about 30 minutes or more away (see needs-review).
