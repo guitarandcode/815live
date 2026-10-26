@@ -28,21 +28,34 @@ const profile = h(
   ),
 );
 
-// Cover photo: 1640x624. Phones crop the sides, so the text stays in the middle.
+// Cover photo: 1640x624. Facebook centers the round profile picture over the
+// cover, so the middle stays empty: headline in the left third, tagline and URL
+// in the right third.
+const side = (align, ...kids) =>
+  h('div', { width: 500, flexDirection: 'column', alignItems: align, justifyContent: 'center' }, ...kids);
 const cover = h(
   'div',
-  {
-    width: 1640, height: 624, background: C.bg,
-    flexDirection: 'column', alignItems: 'center', justifyContent: 'center', color: C.ink,
-  },
-  h('div', { fontFamily: 'Cond', fontWeight: 800, fontSize: 68, lineHeight: 1.05, textTransform: 'uppercase', letterSpacing: 1 },
-    'Live music in Rockford ', h('span', { color: C.accent, margin: '0 18px' }, '&'), ' the 815'),
-  h('div', { fontFamily: 'Sans', fontSize: 30, color: C.muted, marginTop: 20 },
-    'Bands, karaoke, open mics and comedy. Tonight and every night.'),
-  h('div', {
-    marginTop: 40, fontFamily: 'Cond', fontWeight: 700, fontSize: 40, color: C.bg, background: C.accent,
-    borderRadius: 999, padding: '10px 34px 8px', letterSpacing: 1,
-  }, '815live.com'),
+  { width: 1640, height: 624, background: C.bg, alignItems: 'center', justifyContent: 'center', color: C.ink },
+  h('div', { width: 1500, justifyContent: 'space-between', alignItems: 'center' },
+    side('flex-start',
+      h('div', { fontFamily: 'Cond', fontWeight: 900, fontSize: 84, lineHeight: 0.95, textTransform: 'uppercase', flexDirection: 'column', whiteSpace: 'nowrap' },
+        h('div', {}, 'Live music'),
+        h('div', {}, 'in Rockford'),
+        h('div', { color: C.accent }, '& the 815'),
+      ),
+    ),
+    side('flex-end',
+      h('div', { fontFamily: 'Sans', fontSize: 32, lineHeight: 1.35, color: C.muted, flexDirection: 'column', alignItems: 'flex-end' },
+        h('div', {}, 'Bands, karaoke, DJ nights,'),
+        h('div', {}, 'open mics and comedy.'),
+        h('div', { color: C.ink, fontWeight: 600 }, 'Tonight and every night.'),
+      ),
+      h('div', {
+        marginTop: 30, fontFamily: 'Cond', fontWeight: 700, fontSize: 42, color: C.bg, background: C.accent,
+        borderRadius: 999, padding: '10px 34px 8px', letterSpacing: 1,
+      }, '815live.com'),
+    ),
+  ),
 );
 
 await render(profile, 720, 720, join(OUT, 'profile.png'));
