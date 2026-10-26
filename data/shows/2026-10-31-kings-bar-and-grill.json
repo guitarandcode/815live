@@ -1,0 +1,16 @@
+{
+  "date": "2026-10-31",
+  "startTime": "20:00",
+  "endTime": "00:00",
+  "venue": "kings-bar-and-grill",
+  "category": "live-music",
+  "title": "Halloween Show",
+  "artists": [
+    "the-real-deal"
+  ],
+  "notes": "Costumes encouraged.",
+  "checked": "2026-10-26",
+  "source": {
+    "type": "facebook"
+  }
+}

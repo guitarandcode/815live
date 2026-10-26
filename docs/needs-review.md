@@ -13,44 +13,11 @@ graphic's highlights) or a booked show. The venue site renders its listings in
 JavaScript and a web search found nothing. If it's weekly, make it a
 recurring rule.
 
-## Oregon and Freeport: in the 815 area?
-
-Both are in the 815 area code but farther out than the towns CLAUDE.md lists
-(Oregon is past Byron; Freeport is past Pecatonica). Not published until you
-decide. Files in `waiting/`:
-- Tipsy Hog, Oregon: Burn N' Bush, Sat Oct 31, 6–9 PM.
-- Chrissy's Corner, Oregon: Sheez-It, Sat Oct 31, 7–10 PM.
-- Kings Bar & Grill, 1805 S West Ave, Freeport: The Real Deal, Sat Oct 31,
-  8 PM–midnight (Facebook event and a group post).
-
-Sterling, Elizabeth (Highway 20 Brewing), Hampshire, Ottawa, Janesville and
-the Chicago-area bars were skipped as out of area.
-
-## Maxine's Social, Beloit: Oct 29–31 (doors only)
-
-Flyer for 863 5th St, Beloit WI: Thu Oct 29 open mic, Fri Oct 30 karaoke, Sat
-Oct 31 End Fight Scene (live band); each says only "doors open at 6 PM". Doors
-isn't a start time, so not published and the venue isn't created yet.
-
-## Tipsy's Tavern: Halloween party, Sat Oct 31
-
-Flyer: Halloween costume party with a DJ, Sat Oct 31. No time and no address
-or town, and there's no known Tipsy's Tavern in the area yet.
-
 ## Best Dam Bar: Halloween Music Bingo, Mon Oct 26
 
 The bar's Facebook post (about 1:27 PM on Oct 26) says "Tonight's Halloween
 Music Bingo". No time, and no regular music bingo night is on file, so it
 isn't listed.
-
-## Mary's Place, Oct 30: is Joie De Vivre still playing?
-
-The listing (from the venue calendar) has The Moment, Joie De Vivre, Warren
-Franklin and Track & Field. A newer flyer for the same night (8 PM, $10, 21+)
-shows three Halloween cover sets: The Hybrid Moments (Misfits), No Warren Iran
-(Against Me!) and Track Sabbath (Black Sabbath), which look like The Moment,
-Warren Franklin and Track & Field. Joie De Vivre isn't on it. Cover and the set
-names were added; the bill was left as is.
 
 ## Screw City Tavern: Acoustic Fridays and Saturday live music
 

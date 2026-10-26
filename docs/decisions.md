@@ -329,3 +329,21 @@ Calls made while filling out listings unattended (session of 2026-10-24).
   Hampshire, Janesville, Chicago area), plain bingo and a joker drawing.
   Highway 20 Brewing turned out to be in Elizabeth (Jo Daviess County), not
   Freeport. Oregon and Freeport shows wait on an area decision.
+- **Area rule: about 30 minutes from downtown Rockford (user, 2026-10-26).**
+  Freeport, Oregon, Belvidere, Davis, Roscoe and Beloit are in; Sterling,
+  Dixon, Ottawa and farther are out. CLAUDE.md and /submit updated. Added the
+  Oregon/Freeport Halloween shows: Burn N' Bush at Tipsy Hog (101 S 3rd St,
+  address from the Oregon Area Chamber directory), Sheez-It at Chrissy's Corner
+  (17 N River Rd, from the city of Oregon's listing; the full band, not the
+  Sheez It Duoz acoustic act), The Real Deal at Kings Bar & Grill, Freeport
+  (linked to the existing The Real Deal record from Best Dam Bar; same name,
+  not otherwise verified). No earlier skipped files were from Freeport or
+  Oregon.
+- **Maxine's Social, Oct 29–31: listed at doors (user, 2026-10-26).** The flyer
+  gives only "doors open at 6 PM", so the three nights are listed at 6 PM with
+  the note "Doors 6 PM; start time not announced." Tipsy's Tavern's Halloween
+  DJ party is skipped until a time and address turn up.
+- **Mary's Place Oct 30: the newer flyer wins (user).** Joie De Vivre dropped
+  from the bill.
+- **Quiet-night graphic title** now reads "Tonight + Next 7 Days" (user), to
+  match its section heading; the caption's first line matches.

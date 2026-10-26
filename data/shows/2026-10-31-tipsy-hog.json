@@ -1,0 +1,15 @@
+{
+  "date": "2026-10-31",
+  "startTime": "18:00",
+  "endTime": "21:00",
+  "venue": "tipsy-hog",
+  "category": "live-music",
+  "title": "Halloween",
+  "artists": [
+    "burn-n-bush"
+  ],
+  "checked": "2026-10-26",
+  "source": {
+    "type": "manual"
+  }
+}
