@@ -4,6 +4,11 @@
   "venue": "best-dam-bar",
   "category": "live-music",
   "title": "New Year's Eve Party",
-  "artists": ["rollin-whiskey"],
-  "source": { "type": "manual" }
+  "artists": [
+    "rollin-whiskey"
+  ],
+  "checked": "2026-10-26",
+  "source": {
+    "type": "manual"
+  }
 }

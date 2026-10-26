@@ -7,9 +7,11 @@
     "silk-and-satin"
   ],
   "notes": "In the Council Oak lounge.",
+  "checked": "2026-10-24",
   "source": {
     "type": "venue-site",
     "url": "https://casino.hardrock.com/rockford/entertainment/upcoming-events/silk-and-satin",
+    "kind": "venue",
     "uid": "hard-rock-rockford:silk-and-satin:2026-10-31T21:00@council-oak"
   }
 }

@@ -4,8 +4,10 @@
   "venue": "district",
   "category": "live-music",
   "title": "One Night Only",
+  "checked": "2026-10-25",
   "source": {
     "type": "manual",
-    "url": "https://districtdowntown.com/"
+    "url": "https://districtdowntown.com/",
+    "kind": "venue"
   }
 }

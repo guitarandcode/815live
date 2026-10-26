@@ -14,6 +14,9 @@ const full = args.includes('--full');
 const only = args.filter((a) => !a.startsWith('--'));
 const today = chicagoDate(new Date());
 let failed = false;
+// Date each adapter last ran clean; the site shows it as its listings' "last checked".
+const checkedPath = join(DATA, 'ingest', 'checked.json');
+const checked = readJson<Record<string, string>>(checkedPath, {});
 
 for (const adapter of ADAPTERS) {
   if (only.length && !only.includes(adapter.id)) continue;
@@ -22,6 +25,7 @@ for (const adapter of ADAPTERS) {
     const result = await adapter.run(readJson<Record<string, string>>(statePath, {}), today, full);
     const changes = reconcile(adapter.id, result.refetched, result.alive, today);
     writeJson(statePath, result.state);
+    if (!result.log.some((l) => l.startsWith('WARN'))) checked[adapter.id] = today;
     console.log(`[${adapter.id}]`);
     for (const line of result.log) console.log(`  ${line}`);
     console.log(
@@ -36,4 +40,5 @@ for (const adapter of ADAPTERS) {
   }
 }
 
+writeJson(checkedPath, checked);
 process.exit(failed ? 1 : 0);

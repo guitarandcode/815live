@@ -8,8 +8,10 @@
     "king-falcon"
   ],
   "cover": 18.85,
+  "checked": "2026-10-24",
   "source": {
     "type": "manual",
-    "url": "https://themusicboxrockford.com/"
+    "url": "https://themusicboxrockford.com/",
+    "kind": "venue"
   }
 }

@@ -4,7 +4,12 @@
   "venue": "best-dam-bar",
   "category": "live-music",
   "title": "Halloween Night",
-  "artists": ["six-pack"],
+  "artists": [
+    "six-pack"
+  ],
   "notes": "Costume contest.",
-  "source": { "type": "manual" }
+  "checked": "2026-10-26",
+  "source": {
+    "type": "manual"
+  }
 }

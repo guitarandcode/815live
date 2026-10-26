@@ -3,6 +3,11 @@
   "startTime": "20:00",
   "venue": "best-dam-bar",
   "category": "live-music",
-  "artists": ["rat-baxter"],
-  "source": { "type": "manual" }
+  "artists": [
+    "rat-baxter"
+  ],
+  "checked": "2026-10-26",
+  "source": {
+    "type": "manual"
+  }
 }

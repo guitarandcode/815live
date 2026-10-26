@@ -3,6 +3,11 @@
   "startTime": "20:00",
   "venue": "best-dam-bar",
   "category": "live-music",
-  "artists": ["bct"],
-  "source": { "type": "manual" }
+  "artists": [
+    "bct"
+  ],
+  "checked": "2026-10-26",
+  "source": {
+    "type": "manual"
+  }
 }

@@ -7,9 +7,11 @@
     "the-synergy-band"
   ],
   "notes": "On the Hard Rock Cafe stage.",
+  "checked": "2026-10-24",
   "source": {
     "type": "venue-site",
     "url": "https://casino.hardrock.com/rockford/entertainment/upcoming-events/the-synergy-band",
+    "kind": "venue",
     "uid": "hard-rock-rockford:the-synergy-band:2026-11-28T21:00@cafe"
   }
 }

@@ -4,6 +4,11 @@
   "venue": "neighbors-bar-and-grill",
   "category": "live-music",
   "title": "Blackout Wednesday",
-  "artists": ["dirt-road-rebelz"],
-  "source": { "type": "manual" }
+  "artists": [
+    "dirt-road-rebelz"
+  ],
+  "checked": "2026-10-26",
+  "source": {
+    "type": "manual"
+  }
 }

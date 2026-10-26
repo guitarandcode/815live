@@ -4,6 +4,11 @@
   "venue": "neighbors-bar-and-grill",
   "category": "live-music",
   "title": "Halloween at Neighbors",
-  "artists": ["your-mom"],
-  "source": { "type": "manual" }
+  "artists": [
+    "your-mom"
+  ],
+  "checked": "2026-10-26",
+  "source": {
+    "type": "manual"
+  }
 }

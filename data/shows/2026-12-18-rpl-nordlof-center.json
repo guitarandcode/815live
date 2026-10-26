@@ -9,8 +9,10 @@
   ],
   "cover": null,
   "notes": "In the J.R. Sullivan Theater. Doors 5 PM. Presented by Crossroads Blues Society.",
+  "checked": "2026-10-25",
   "source": {
     "type": "manual",
-    "url": "https://crossroadsbluessociety.com/music-off-the-rock"
+    "url": "https://crossroadsbluessociety.com/music-off-the-rock",
+    "kind": "presenter"
   }
 }

@@ -6,8 +6,10 @@
   "category": "karaoke",
   "title": "Karaoke",
   "artists": [],
+  "checked": "2026-10-24",
   "source": {
     "type": "manual",
-    "url": "https://screwcitytavern.com/events/"
+    "url": "https://screwcitytavern.com/events/",
+    "kind": "venue"
   }
 }

@@ -4,7 +4,12 @@
   "endTime": "23:30",
   "venue": "grand-avenue-pub",
   "category": "live-music",
-  "artists": ["sunset-strip"],
+  "artists": [
+    "sunset-strip"
+  ],
   "notes": "Pre-Halloween party.",
-  "source": { "type": "manual" }
+  "checked": "2026-10-24",
+  "source": {
+    "type": "manual"
+  }
 }

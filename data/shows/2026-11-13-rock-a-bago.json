@@ -3,6 +3,11 @@
   "startTime": "20:00",
   "venue": "rock-a-bago",
   "category": "live-music",
-  "artists": ["hang-ten"],
-  "source": { "type": "manual" }
+  "artists": [
+    "hang-ten"
+  ],
+  "checked": "2026-10-26",
+  "source": {
+    "type": "manual"
+  }
 }

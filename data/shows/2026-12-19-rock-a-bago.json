@@ -3,6 +3,11 @@
   "startTime": "20:00",
   "venue": "rock-a-bago",
   "category": "live-music",
-  "artists": ["downshift"],
-  "source": { "type": "manual" }
+  "artists": [
+    "downshift"
+  ],
+  "checked": "2026-10-26",
+  "source": {
+    "type": "manual"
+  }
 }

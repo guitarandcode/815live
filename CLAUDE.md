@@ -24,6 +24,14 @@ area. Astro static site; data is one JSON file per record in `data/`
 - **Geocode** venues with the US Census geocoder
   (geocoding.geo.census.gov), not Nominatim.
 - Recurring rules need a start time; with no time, log it in needs-review.
+  A cancelled week goes in the rule's `skip` list, not a new file.
+- **Trust fields** on every show and recurring rule: `checked` (the Chicago
+  date you last compared it with its source; bump it when you re-check) and,
+  when there's a public page, `source.url` with `source.kind` (`venue`,
+  `artist`, `presenter` or `roundup`). Use the closest source as `source.url`:
+  the venue's, act's or presenter's own post over a roundup; list the others
+  in `source.also`. Facebook event links pasted by the user are fine to store
+  (don't fetch them). Set `lineupPartial: true` when more acts are coming.
 - Never run wrangler or touch Cloudflare; deploys happen from pushes to main.
 - Node 24 via fnm: prefix PATH with `~/.local/share/fnm/aliases/default/bin`.
 - Before pushing: `npm test` and `npm run build` must pass. The daily bot
@@ -55,8 +63,9 @@ For each file in `inbox/`:
 2. Out of the 815 area (see above) or out of scope: add nothing, move it to
    `skipped/`, and mention it in the summary.
 3. Otherwise add its upcoming shows to `data/shows` (or `data/recurring` for
-   weekly nights) with `source.type: "manual"` and `source.url` set to the
-   venue's or band's own page if there is one. Skip dates already past.
+   weekly nights) with `source.type: "manual"`, `checked` set to today, and
+   `source.url`/`source.kind` set to the venue's or band's own page if there
+   is one. Skip dates already past.
 4. Create the venue (confirmed address, Census coordinates) or artist if
    missing.
 5. Move the file to `venues/<venue-slug>/` or `bands/<artist-slug>/`.

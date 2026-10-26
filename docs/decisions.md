@@ -268,3 +268,27 @@ Calls made while filling out listings unattended (session of 2026-10-24).
   band, so the listing stands. One unsupported detail removed (Buster's
   "video gaming and a patio"). The cropped Grand Avenue names and the
   Synergy/Stereotype calls moved to needs-review.
+- **Trust fields on listings (user request, 2026-10-26).** Every show and
+  recurring rule now has `checked` (date last compared with its source) and
+  `source.kind` (`venue`, `artist`, `presenter`, `roundup`) when it has a URL,
+  plus optional `source.also` for other postings of the same event. The site
+  links the closest source (anything over a roundup); with no URL it falls
+  back to the venue's website, labelled "Venue: …". Existing files were
+  backfilled with `checked` = the date of their last commit, which is a lower
+  bound (the 2026-10-26 review checked more than it changed). Ingested Hard
+  Rock shows get `checked` when written, and `data/ingest/checked.json` holds
+  each adapter's last clean run so unchanged shows still read as checked that
+  day; the daily bot will commit that file each day. Each card has a small
+  "source · Checked Oct 25 · Report a change" line; the report link is a
+  mailto to shows@815live.com naming the listing. Footer: "Shows change;
+  check with the venue before heading out." `lineupPartial` adds "more TBA"
+  after the line-up.
+- **Shifty Boys Unplugged, Best Dam Bar, Oct 30 (user, 2026-10-26).** End time
+  11:30 PM, "Acoustic set.", source the Facebook event the user gave (not
+  fetched). Kind set to `artist`: Best Dam Bar's list shows two events that
+  night, one by the band and one by the bar, and the ID can't be matched
+  without opening Facebook.
+- **Cahoots Decades of Rock, Nov 7: `lineupPartial` (user, 2026-10-26).** The
+  user says the line-up is incomplete. The flyer on file names three acts
+  (Dirty Fishnet Stockings 3 PM, That 70s Band 6 PM, Sunset Strip 9 PM), and
+  those stay listed.

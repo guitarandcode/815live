@@ -5,6 +5,13 @@
   "venue": "grand-avenue-pub",
   "category": "live-music",
   "title": "Blues Night",
-  "artists": ["stefan-hilleshime"],
-  "source": { "type": "manual", "url": "https://www.grandavenuebeloit.com/" }
+  "artists": [
+    "stefan-hilleshime"
+  ],
+  "checked": "2026-10-26",
+  "source": {
+    "type": "manual",
+    "url": "https://www.grandavenuebeloit.com/",
+    "kind": "venue"
+  }
 }

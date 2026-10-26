@@ -3,6 +3,13 @@
   "startTime": "21:00",
   "venue": "grand-avenue-pub",
   "category": "dj",
-  "artists": ["dj-proper"],
-  "source": { "type": "manual", "url": "https://www.grandavenuebeloit.com/" }
+  "artists": [
+    "dj-proper"
+  ],
+  "checked": "2026-10-26",
+  "source": {
+    "type": "manual",
+    "url": "https://www.grandavenuebeloit.com/",
+    "kind": "venue"
+  }
 }

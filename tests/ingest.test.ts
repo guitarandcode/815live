@@ -98,6 +98,9 @@ test('reconcile: replaces a refetched page, drops removed pages, keeps past and 
   assert.deepEqual(readdirSync(join(dir, 'shows')).sort(), ['2026-11-08-hard-rock-act-a.json', 'kept.json', 'manual.json', 'past.json']);
   assert.deepEqual(changes.artistsCreated, ['act-a']);
   assert.equal(JSON.parse(readFileSync(join(dir, 'artists', 'act-a.json'), 'utf8')).auto, true);
+  const written = JSON.parse(readFileSync(join(dir, 'shows', '2026-11-08-hard-rock-act-a.json'), 'utf8'));
+  assert.equal(written.checked, '2026-10-24');
+  assert.equal(written.source.kind, 'venue');
   // Running again with the same input changes nothing.
   const again = reconcile('hard-rock-rockford', new Map([['act-a', shows]]), new Set(['act-a', 'act-c']), '2026-10-24');
   assert.deepEqual([again.written, again.deleted], [[], []]);

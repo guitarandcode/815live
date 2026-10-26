@@ -1,7 +1,7 @@
 ---
 import { CATEGORY_LABEL } from '../lib/categories.ts';
-import { coverLabel, lineup, showTitle, type Show } from '../lib/data.ts';
-import { chicagoIso, formatTime } from '../lib/time.ts';
+import { bestSource, coverLabel, lineup, reportHref, showTitle, type Show } from '../lib/data.ts';
+import { chicagoIso, formatMonthDay, formatTime } from '../lib/time.ts';
 
 interface Props {
   show: Show;
@@ -10,6 +10,7 @@ interface Props {
 
 const { show, showVenue = true } = Astro.props;
 const cover = coverLabel(show.cover);
+const src = bestSource(show);
 ---
 
 <article class="show-card" class:list={[show.status !== 'scheduled' && 'is-off']} data-recurring={show.recurring ? '' : undefined}>
@@ -17,7 +18,8 @@ const cover = coverLabel(show.cover);
   <div class="show-body">
     {show.title !== CATEGORY_LABEL[show.category] && <p class="category">{CATEGORY_LABEL[show.category]}</p>}
     <h3><a href={`/shows/${show.id}`}>{showTitle(show)}</a></h3>
-    {show.title && show.artists.length > 0 && <p class="bill-line">{lineup(show)}</p>}
+    {show.title && show.artists.length > 0 && <p class="bill-line">{lineup(show)}{show.lineupPartial && ', more TBA'}</p>}
+    {!show.title && show.lineupPartial && <p class="bill-line">More acts TBA</p>}
     <p class="meta">
       {showVenue && <a href={`/venues/${show.venue.id}`}>{show.venue.data.name}</a>}
       {showVenue && <span class="sep"> · </span>}
@@ -26,6 +28,13 @@ const cover = coverLabel(show.cover);
       {cover && <span class:list={['cover', cover === 'Free' && 'free']}>{cover}</span>}
     </p>
     {show.status !== 'scheduled' && <p class="status">{show.status === 'cancelled' ? 'Cancelled' : 'Postponed'}</p>}
+    <p class="trust">
+      {src && <a class="src" href={src.url} rel="noopener">{src.fallback ? `Venue: ${src.label}` : src.label}</a>}
+      {src && <span class="sep"> · </span>}
+      <span class="nowrap">Checked {formatMonthDay(show.checked)}</span>
+      <span class="sep"> · </span>
+      <a class="nowrap" href={reportHref(show, Astro.site!)}>Report a change</a>
+    </p>
     {show.placeholder && <span class="badge">Sample listing</span>}
   </div>
 </article>

@@ -5,5 +5,10 @@
   "weekday": "monday",
   "startTime": "19:00",
   "endTime": "21:00",
-  "source": { "type": "manual", "url": "https://screwcitytavern.com/events/" }
+  "checked": "2026-10-24",
+  "source": {
+    "type": "manual",
+    "url": "https://screwcitytavern.com/events/",
+    "kind": "venue"
+  }
 }

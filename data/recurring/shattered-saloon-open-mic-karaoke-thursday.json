@@ -4,5 +4,8 @@
   "title": "Open Mic & Karaoke Night",
   "weekday": "thursday",
   "startTime": "20:00",
-  "source": { "type": "manual" }
+  "checked": "2026-10-24",
+  "source": {
+    "type": "manual"
+  }
 }

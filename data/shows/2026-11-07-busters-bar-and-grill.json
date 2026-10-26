@@ -4,6 +4,11 @@
   "endTime": "22:00",
   "venue": "busters-bar-and-grill",
   "category": "live-music",
-  "artists": ["acoustic-reverie"],
-  "source": { "type": "manual" }
+  "artists": [
+    "acoustic-reverie"
+  ],
+  "checked": "2026-10-26",
+  "source": {
+    "type": "manual"
+  }
 }

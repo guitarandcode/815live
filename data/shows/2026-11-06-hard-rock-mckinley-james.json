@@ -7,9 +7,11 @@
     "mckinley-james"
   ],
   "notes": "On the Hard Rock Cafe stage.",
+  "checked": "2026-10-24",
   "source": {
     "type": "venue-site",
     "url": "https://casino.hardrock.com/rockford/entertainment/upcoming-events/mckinley-james",
+    "kind": "venue",
     "uid": "hard-rock-rockford:mckinley-james:2026-11-06T21:00@cafe"
   }
 }

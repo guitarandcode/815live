@@ -5,6 +5,13 @@
   "venue": "grand-avenue-pub",
   "category": "live-music",
   "title": "Blues Night",
-  "artists": ["andrew-diehl"],
-  "source": { "type": "manual", "url": "https://www.grandavenuebeloit.com/" }
+  "artists": [
+    "andrew-diehl"
+  ],
+  "checked": "2026-10-26",
+  "source": {
+    "type": "manual",
+    "url": "https://www.grandavenuebeloit.com/",
+    "kind": "venue"
+  }
 }

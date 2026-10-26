@@ -4,6 +4,13 @@
   "endTime": "17:00",
   "venue": "grand-avenue-pub",
   "category": "live-music",
-  "artists": ["jack-farina-big-band"],
-  "source": { "type": "manual", "url": "https://www.grandavenuebeloit.com/" }
+  "artists": [
+    "jack-farina-big-band"
+  ],
+  "checked": "2026-10-26",
+  "source": {
+    "type": "manual",
+    "url": "https://www.grandavenuebeloit.com/",
+    "kind": "venue"
+  }
 }

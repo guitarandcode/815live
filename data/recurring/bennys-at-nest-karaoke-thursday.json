@@ -5,5 +5,8 @@
   "weekday": "thursday",
   "startTime": "20:00",
   "endTime": "00:00",
-  "source": { "type": "manual" }
+  "checked": "2026-10-24",
+  "source": {
+    "type": "manual"
+  }
 }

@@ -5,6 +5,11 @@
   "weekday": "tuesday",
   "startTime": "20:00",
   "endTime": "00:00",
-  "months": [10],
-  "source": { "type": "manual" }
+  "months": [
+    10
+  ],
+  "checked": "2026-10-24",
+  "source": {
+    "type": "manual"
+  }
 }
