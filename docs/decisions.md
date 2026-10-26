@@ -279,7 +279,8 @@ Calls made while filling out listings unattended (session of 2026-10-24).
   Rock shows get `checked` when written, and `data/ingest/checked.json` holds
   each adapter's last clean run so unchanged shows still read as checked that
   day; the daily bot will commit that file each day. Each card has a small
-  "source · Checked Oct 25 · Report a change" line; the report link is a
+  "source · Report a change" line (the checked date is on show pages only;
+  the user dropped it from cards the same day); the report link is a
   mailto to shows@815live.com naming the listing. Footer: "Shows change;
   check with the venue before heading out." `lineupPartial` adds "more TBA"
   after the line-up.

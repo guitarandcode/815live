@@ -96,7 +96,6 @@ export function weekendRange(today: string): { start: string; end: string } {
 // day never shifts; that is a formatting trick, not a timezone choice.
 const dayFmt = new Intl.DateTimeFormat('en-US', { timeZone: 'UTC', weekday: 'long', month: 'long', day: 'numeric' });
 const mediumDayFmt = new Intl.DateTimeFormat('en-US', { timeZone: 'UTC', weekday: 'long', month: 'short', day: 'numeric' });
-const monthDayFmt = new Intl.DateTimeFormat('en-US', { timeZone: 'UTC', month: 'short', day: 'numeric' });
 const shortDayFmt = new Intl.DateTimeFormat('en-US', { timeZone: 'UTC', weekday: 'short', month: 'short', day: 'numeric' });
 
 const utcMidnight = (date: string) => {
@@ -108,8 +107,6 @@ export const formatDay = (date: string) => dayFmt.format(utcMidnight(date));
 /** 'Wednesday, Oct 28' */
 export const formatMediumDay = (date: string) => mediumDayFmt.format(utcMidnight(date));
 export const formatShortDay = (date: string) => shortDayFmt.format(utcMidnight(date));
-/** 'Oct 28' */
-export const formatMonthDay = (date: string) => monthDayFmt.format(utcMidnight(date));
 
 /** '19:30' -> '7:30 PM', '21:00' -> '9 PM'. */
 export function formatTime(time: string): string {

@@ -160,6 +160,7 @@ test('listings show their source, last-checked date and a report link', () => {
   const cards = home.match(/class="show-card/g)!.length;
   assert.equal(home.match(/class="trust"/g)?.length, cards);
   assert.equal(home.match(/>Report a change</g)?.length, cards);
+  assert.doesNotMatch(home, /Checked [A-Z][a-z]{2} \d/); // the checked date is on show pages only
   // Partial line-ups say more acts are coming.
   assert.match(readFileSync('dist/shows/2026-11-07-cahoots-rockford.html', 'utf8'), /Sunset Strip, more TBA/);
 });

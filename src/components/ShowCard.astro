@@ -1,7 +1,7 @@
 ---
 import { CATEGORY_LABEL } from '../lib/categories.ts';
 import { bestSource, coverLabel, lineup, reportHref, showTitle, type Show } from '../lib/data.ts';
-import { chicagoIso, formatMonthDay, formatTime } from '../lib/time.ts';
+import { chicagoIso, formatTime } from '../lib/time.ts';
 
 interface Props {
   show: Show;
@@ -31,8 +31,6 @@ const src = bestSource(show);
     <p class="trust">
       {src && <a class="src" href={src.url} rel="noopener">{src.fallback ? `Venue: ${src.label}` : src.label}</a>}
       {src && <span class="sep"> · </span>}
-      <span class="nowrap">Checked {formatMonthDay(show.checked)}</span>
-      <span class="sep"> · </span>
       <a class="nowrap" href={reportHref(show, Astro.site!)}>Report a change</a>
     </p>
     {show.placeholder && <span class="badge">Sample listing</span>}
