@@ -119,3 +119,16 @@ whether it's a DJ night, a band or a party, so it isn't published. Add it
 - **Sheila's Daiquiri Lounge**: "DJs on the weekends" appears only in a Rock
   River Current article (blocks Claude).
 
+## Grand Avenue Pub, November: names read from a cropped calendar
+
+Published as read; confirm when there's a second source (the pub's site or
+the bands' pages). The calendar image's right edge is cut off through the
+Saturday column, so these names may be incomplete:
+- **Nov 7 "Shuffle This"**, **Nov 21 "Soul 2 Soul"**: published under those
+  names.
+- **Nov 14 "Stereo Type"**: linked to the existing Stereotype (the band that
+  plays Shattered Saloon and Best Dam Bar). Unconfirmed that it's the same
+  band.
+- **Nov 13 "Synergy"**: given its own artist record, not merged with The
+  Synergy Band. Merge if they turn out to be the same act.
+
