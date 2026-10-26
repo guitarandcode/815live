@@ -4,6 +4,15 @@ Listings and facts that were found but not published because something is
 uncertain. Each entry says what was found, where, and what's unclear.
 Publish by adding the JSON under `data/` once resolved.
 
+## Music Box: "Tuesday Night Music Club" (Oct 27)
+
+Listed as live music from the venue listing the user pasted ("Hosted by Mossy
+Vaughn", free). Unclear whether it's a weekly night, and whether it's a jam or
+open session (which would make it `open-mic` and keep it out of the quiet-night
+graphic's highlights) or a booked show. The venue site renders its listings in
+JavaScript and a web search found nothing. If it's weekly, make it a
+recurring rule.
+
 ## Screw City Tavern: Acoustic Fridays and Saturday live music
 
 The venue's events page says acoustic performers play Fridays (October–May)

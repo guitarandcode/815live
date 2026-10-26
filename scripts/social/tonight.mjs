@@ -8,7 +8,8 @@
 // Busy nights spill onto extra images (post them together as one album).
 // Quiet nights (fewer than QUIET listings) get one "Tonight + this week"
 // image instead: tonight on top, then up to WEEK_MAX one-off shows from the
-// next 7 days, soonest first. Weekly nights aren't highlights.
+// next 7 days, soonest first. Highlights are one-off live shows (bands,
+// comedy): no weekly nights, and no karaoke, open mics, jams, trivia or DJs.
 import { readdirSync, readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { C, h, render, wordmark } from './lib.mjs';
@@ -53,6 +54,9 @@ const artists = load('artists');
 const allShows = Object.values(load('shows')).filter((s) => !s.placeholder && (s.status ?? 'scheduled') !== 'cancelled');
 
 const oneOffs = allShows.filter((s) => s.date === date);
+const HIGHLIGHT_CATEGORIES = ['live-music', 'comedy'];
+const isHighlight = (s) =>
+  HIGHLIGHT_CATEGORIES.includes(s.category ?? 'live-music') && !/\bjam\b/i.test(s.title ?? '');
 // Recurring nights, minus any that a one-off at the same venue replaces (same rule as the site).
 const recurring = Object.values(load('recurring'))
   .filter((r) => r.weekday === weekday && !r.placeholder)
@@ -82,7 +86,7 @@ const events = [...oneOffs, ...recurring].map(toEvent).sort(byStart);
 const quiet = events.length < QUIET;
 const weekEnd = addDays(date, WEEK_DAYS);
 const week = quiet
-  ? allShows.filter((s) => s.date > date && s.date <= weekEnd).map(toEvent).sort(byStart).slice(0, WEEK_MAX)
+  ? allShows.filter((s) => s.date > date && s.date <= weekEnd && isHighlight(s)).map(toEvent).sort(byStart).slice(0, WEEK_MAX)
   : [];
 
 if (!events.length && !week.length) {
