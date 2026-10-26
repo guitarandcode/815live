@@ -92,29 +92,6 @@ Guide; Park Lanes' site links it; Census match). Still upcoming: Fri Oct 30
 contest). No start times on the flyer or on parklanesbowl.com, so not
 published. The flyer is in `waiting/`.
 
-## Source files not yet filed (inbox run 2026-10-26)
-
-The unattended run couldn't move files outside the repo (permission
-prompt), so these are still in `~/815live-sources/inbox/` (or `waiting/`).
-Listings are published; only the filing is pending. Destinations, relative
-to `~/815live-sources/`:
-
-- `inbox/Benny's at Nest.txt` → `venues/bennys-at-nest/2026-10_facebook-events.txt`
-- `inbox/hot rod nellies.txt` → `waiting/2026-10_hot-rod-nellies-events.txt`
-- `inbox/864594244_…_n.jpeg` → `venues/hot-rod-nellies/2026-11_pablo-and-the-rhythmix.jpeg`
-- `inbox/Neighbors.txt` → `venues/neighbors-bar-and-grill/2026-10_facebook-events.txt`
-- `waiting/2026-10_neighbors-october-bands.jpeg` → `venues/neighbors-bar-and-grill/2026-10_october-bands.jpeg`
-- `inbox/Rock-A-Bago Hall.txt` → `venues/rock-a-bago/2026-11_facebook-events.txt`
-- `inbox/855232972_…_n.jpg` → `venues/rock-a-bago/2026-10_robert-dean.jpg` (past show)
-- `inbox/Best Dam Bar.txt` → `venues/best-dam-bar/2026-10_facebook-events.txt`
-- `inbox/857233000_…_n.jpg` → `venues/best-dam-bar/2026-10_stereotype.jpg` (past show)
-- `inbox/Grand Avenue Pub.jpg` → `venues/grand-avenue-pub/2026-11_november-calendar.jpg`
-- `inbox/795485492_…_n.jpg` → `venues/cahoots-rockford/2026-11_decades-of-rock.jpg`
-- `inbox/Screenshot from 2026-10-26 07-03-32.png` → `venues/cahoots-rockford/2026-11_karaoke-nov-14.png`
-- `inbox/Screenshot from 2026-10-26 07-04-27.png` → `venues/cahoots-rockford/2026-12_karaoke-dec-11.png`
-- `inbox/837091835_…_n.jpg` → `venues/busters-bar-and-grill/2026-11_acoustic-reverie.jpg`
-- `inbox/837091835_…_n (1).jpg` (identical copy) → `venues/busters-bar-and-grill/2026-11_acoustic-reverie-copy.jpg`
-
 ## Hot Rod Nellie's: "Halloween Pre-Game with Holly", Fri Oct 30, 8:30 PM
 
 From the bar's events list (user paste; pasted again 2026-10-26, now in
