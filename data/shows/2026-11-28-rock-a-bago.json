@@ -1,0 +1,8 @@
+{
+  "date": "2026-11-28",
+  "startTime": "20:00",
+  "venue": "rock-a-bago",
+  "category": "live-music",
+  "artists": ["fast-lane"],
+  "source": { "type": "manual" }
+}

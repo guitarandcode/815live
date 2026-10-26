@@ -1,0 +1,8 @@
+{
+  "date": "2026-12-12",
+  "startTime": "20:00",
+  "venue": "best-dam-bar",
+  "category": "live-music",
+  "artists": ["rat-baxter"],
+  "source": { "type": "manual" }
+}

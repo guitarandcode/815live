@@ -1,0 +1,10 @@
+{
+  "date": "2026-11-07",
+  "startTime": "15:00",
+  "venue": "cahoots-rockford",
+  "category": "live-music",
+  "title": "Decades of Rock",
+  "artists": ["dirty-fishnet-stockings", "that-70s-band", "sunset-strip"],
+  "notes": "Dirty Fishnet Stockings at 3 PM, That 70s Band at 6 PM, Sunset Strip at 9 PM. Ticketed.",
+  "source": { "type": "manual", "url": "https://cahootsrockford.com/" }
+}

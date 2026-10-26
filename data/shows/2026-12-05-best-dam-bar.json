@@ -1,0 +1,8 @@
+{
+  "date": "2026-12-05",
+  "startTime": "20:00",
+  "venue": "best-dam-bar",
+  "category": "live-music",
+  "artists": ["bct"],
+  "source": { "type": "manual" }
+}

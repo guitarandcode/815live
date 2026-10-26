@@ -1,0 +1,8 @@
+{
+  "date": "2026-11-25",
+  "startTime": "21:00",
+  "venue": "grand-avenue-pub",
+  "category": "dj",
+  "artists": ["dj-proper"],
+  "source": { "type": "manual", "url": "https://www.grandavenuebeloit.com/" }
+}

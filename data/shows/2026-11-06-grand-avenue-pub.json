@@ -1,0 +1,9 @@
+{
+  "date": "2026-11-06",
+  "startTime": "20:00",
+  "endTime": "23:00",
+  "venue": "grand-avenue-pub",
+  "category": "live-music",
+  "artists": ["mckenna-faith-winters"],
+  "source": { "type": "manual", "url": "https://www.grandavenuebeloit.com/" }
+}

@@ -92,17 +92,36 @@ Guide; Park Lanes' site links it; Census match). Still upcoming: Fri Oct 30
 contest). No start times on the flyer or on parklanesbowl.com, so not
 published. The flyer is in `waiting/`.
 
-## Neighbors Bar & Grill: Oct 30 and Oct 31 (no times)
+## Source files not yet filed (inbox run 2026-10-26)
 
-Inbox flyer: Fri Oct 30 Last Call 815, Sat Oct 31 Your Mom (Oct 23 and 24
-are past). No start times. Address from one directory listing only: Neighbors
-Bar & Gaming, 7745 Forest Hills Rd, Loves Park. Needs times (and ideally a
-second source for the address). The flyer is in `waiting/`.
+The unattended run couldn't move files outside the repo (permission
+prompt), so these are still in `~/815live-sources/inbox/` (or `waiting/`).
+Listings are published; only the filing is pending. Destinations, relative
+to `~/815live-sources/`:
+
+- `inbox/Benny's at Nest.txt` → `venues/bennys-at-nest/2026-10_facebook-events.txt`
+- `inbox/hot rod nellies.txt` → `waiting/2026-10_hot-rod-nellies-events.txt`
+- `inbox/864594244_…_n.jpeg` → `venues/hot-rod-nellies/2026-11_pablo-and-the-rhythmix.jpeg`
+- `inbox/Neighbors.txt` → `venues/neighbors-bar-and-grill/2026-10_facebook-events.txt`
+- `waiting/2026-10_neighbors-october-bands.jpeg` → `venues/neighbors-bar-and-grill/2026-10_october-bands.jpeg`
+- `inbox/Rock-A-Bago Hall.txt` → `venues/rock-a-bago/2026-11_facebook-events.txt`
+- `inbox/855232972_…_n.jpg` → `venues/rock-a-bago/2026-10_robert-dean.jpg` (past show)
+- `inbox/Best Dam Bar.txt` → `venues/best-dam-bar/2026-10_facebook-events.txt`
+- `inbox/857233000_…_n.jpg` → `venues/best-dam-bar/2026-10_stereotype.jpg` (past show)
+- `inbox/Grand Avenue Pub.jpg` → `venues/grand-avenue-pub/2026-11_november-calendar.jpg`
+- `inbox/795485492_…_n.jpg` → `venues/cahoots-rockford/2026-11_decades-of-rock.jpg`
+- `inbox/Screenshot from 2026-10-26 07-03-32.png` → `venues/cahoots-rockford/2026-11_karaoke-nov-14.png`
+- `inbox/Screenshot from 2026-10-26 07-04-27.png` → `venues/cahoots-rockford/2026-12_karaoke-dec-11.png`
+- `inbox/837091835_…_n.jpg` → `venues/busters-bar-and-grill/2026-11_acoustic-reverie.jpg`
+- `inbox/837091835_…_n (1).jpg` (identical copy) → `venues/busters-bar-and-grill/2026-11_acoustic-reverie-copy.jpg`
 
 ## Hot Rod Nellie's: "Halloween Pre-Game with Holly", Fri Oct 30, 8:30 PM
 
-From the bar's events list (user paste). It isn't clear whether Holly is a
-musician, a DJ or a bartender. Publish as live music if Holly performs.
+From the bar's events list (user paste; pasted again 2026-10-26, now in
+`waiting/2026-10_hot-rod-nellies-events.txt`). It isn't clear whether Holly
+is a musician, a DJ or a bartender. Publish as live music if Holly performs.
+The same list's Nov 25 "candle bingo & karaoke following" still has no
+karaoke start time.
 
 ## Broadway Joe's: Halloween party with DJ Karlo, Sat Oct 31 (no start time)
 

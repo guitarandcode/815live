@@ -1,0 +1,8 @@
+{
+  "date": "2026-11-21",
+  "startTime": "20:00",
+  "venue": "rock-a-bago",
+  "category": "live-music",
+  "artists": ["vintage-vinyl"],
+  "source": { "type": "manual" }
+}

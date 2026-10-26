@@ -1,0 +1,9 @@
+{
+  "date": "2026-12-12",
+  "startTime": "20:00",
+  "venue": "rock-a-bago",
+  "category": "live-music",
+  "artists": ["wait-what"],
+  "notes": "Solo set.",
+  "source": { "type": "manual" }
+}

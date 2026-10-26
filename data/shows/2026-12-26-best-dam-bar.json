@@ -1,0 +1,8 @@
+{
+  "date": "2026-12-26",
+  "startTime": "19:30",
+  "venue": "best-dam-bar",
+  "category": "live-music",
+  "artists": ["decades"],
+  "source": { "type": "manual" }
+}
