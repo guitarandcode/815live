@@ -1,0 +1,15 @@
+{
+  "date": "2026-10-31",
+  "startTime": "19:00",
+  "endTime": "22:00",
+  "venue": "chrissys-corner",
+  "category": "live-music",
+  "title": "Halloween Party",
+  "artists": [
+    "sheez-it"
+  ],
+  "checked": "2026-10-26",
+  "source": {
+    "type": "manual"
+  }
+}

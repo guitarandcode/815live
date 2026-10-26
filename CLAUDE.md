@@ -7,10 +7,12 @@ area. Astro static site; data is one JSON file per record in `data/`
 
 ## Ground rules
 
-- **815 area only.** List shows in Rockford, Loves Park, Machesney Park,
-  Belvidere, Roscoe, Rockton, South Beloit, Beloit WI and similar nearby towns
-  (Cherry Valley, Winnebago, Pecatonica, Durand, Poplar Grove, Byron and so on).
-  Chicago suburbs, the 847/630/312 areas, Madison and the like are out.
+- **815 area only:** shows within about 30 minutes' drive of downtown
+  Rockford. In: Rockford, Loves Park, Machesney Park, Belvidere, Roscoe,
+  Rockton, South Beloit, Beloit WI, Freeport, Oregon, Davis and similar
+  nearby towns (Cherry Valley, Winnebago, Pecatonica, Durand, Poplar Grove,
+  Byron and so on). Out: Sterling, Dixon, Ottawa and farther; Chicago suburbs,
+  the 847/630/312 areas, Madison and the like.
 - **What's listed:** live music, DJ nights, karaoke, open mics, music trivia
   and comedy. Touring arena-scale concerts are out.
 - **Facts only:** who, where, when, cover, ticket link. Never copy
