@@ -1,0 +1,18 @@
+{
+  "date": "2026-10-30",
+  "startTime": "20:00",
+  "endTime": "00:00",
+  "venue": "whiskeys-roadhouse",
+  "category": "live-music",
+  "title": "Spooktacular Boo Bash",
+  "artists": [
+    "acoustic-millennium-band",
+    "savage-gentlemen",
+    "the-ol-crowz-band"
+  ],
+  "notes": "Halloween costume party. The Ol' Crowz Band opens, Savage Gentlemen around 9:15 PM, Acoustic Millennium Band closes.",
+  "checked": "2026-10-26",
+  "source": {
+    "type": "facebook"
+  }
+}

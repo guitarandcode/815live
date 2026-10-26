@@ -1,0 +1,16 @@
+{
+  "date": "2026-11-06",
+  "startTime": "20:00",
+  "endTime": "23:00",
+  "venue": "sheilas-daiquiri-lounge",
+  "category": "live-music",
+  "artists": [
+    "ashton-creek-band"
+  ],
+  "cover": null,
+  "notes": "60s, 70s and 80s classic rock.",
+  "checked": "2026-10-26",
+  "source": {
+    "type": "manual"
+  }
+}

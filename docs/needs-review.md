@@ -13,6 +13,45 @@ graphic's highlights) or a booked show. The venue site renders its listings in
 JavaScript and a web search found nothing. If it's weekly, make it a
 recurring rule.
 
+## Oregon and Freeport: in the 815 area?
+
+Both are in the 815 area code but farther out than the towns CLAUDE.md lists
+(Oregon is past Byron; Freeport is past Pecatonica). Not published until you
+decide. Files in `waiting/`:
+- Tipsy Hog, Oregon: Burn N' Bush, Sat Oct 31, 6–9 PM.
+- Chrissy's Corner, Oregon: Sheez-It, Sat Oct 31, 7–10 PM.
+- Kings Bar & Grill, 1805 S West Ave, Freeport: The Real Deal, Sat Oct 31,
+  8 PM–midnight (Facebook event and a group post).
+
+Sterling, Elizabeth (Highway 20 Brewing), Hampshire, Ottawa, Janesville and
+the Chicago-area bars were skipped as out of area.
+
+## Maxine's Social, Beloit: Oct 29–31 (doors only)
+
+Flyer for 863 5th St, Beloit WI: Thu Oct 29 open mic, Fri Oct 30 karaoke, Sat
+Oct 31 End Fight Scene (live band); each says only "doors open at 6 PM". Doors
+isn't a start time, so not published and the venue isn't created yet.
+
+## Tipsy's Tavern: Halloween party, Sat Oct 31
+
+Flyer: Halloween costume party with a DJ, Sat Oct 31. No time and no address
+or town, and there's no known Tipsy's Tavern in the area yet.
+
+## Best Dam Bar: Halloween Music Bingo, Mon Oct 26
+
+The bar's Facebook post (about 1:27 PM on Oct 26) says "Tonight's Halloween
+Music Bingo". No time, and no regular music bingo night is on file, so it
+isn't listed.
+
+## Mary's Place, Oct 30: is Joie De Vivre still playing?
+
+The listing (from the venue calendar) has The Moment, Joie De Vivre, Warren
+Franklin and Track & Field. A newer flyer for the same night (8 PM, $10, 21+)
+shows three Halloween cover sets: The Hybrid Moments (Misfits), No Warren Iran
+(Against Me!) and Track Sabbath (Black Sabbath), which look like The Moment,
+Warren Franklin and Track & Field. Joie De Vivre isn't on it. Cover and the set
+names were added; the bill was left as is.
+
 ## Screw City Tavern: Acoustic Fridays and Saturday live music
 
 The venue's events page says acoustic performers play Fridays (October–May)
@@ -42,9 +81,11 @@ The flyer is in `waiting/`.
 ## Rue Marché: karaoke Thursday–Saturday
 
 The River District's bars & nightlife page (riverdistrict.com/bars-nightlife/)
-says Rue Marché "dominates karaoke on Thursdays, Fridays, and Saturdays". No
-start time, and the bar has no website of its own. The venue is published;
-the weekly karaoke rules need a start time.
+says Rue Marché "dominates karaoke on Thursdays, Fridays, and Saturdays". The
+bar has no website of its own. Its "Rue-Loween" flyer (2026-10-26 inbox) gives
+karaoke Fri Oct 30 and Sat Oct 31, 9 PM–2 AM; those two nights are published as
+one-off shows. Whether 9 PM holds every week (and for Thursdays) is unconfirmed,
+so the weekly rules still wait for a regular start time.
 
 ## District: Tuesday jam night
 
@@ -92,14 +133,14 @@ event pages). Student bands, so list it as one show with the group as the act.
   the paste gives no venue name or town, and the address didn't turn up in
   searches.
 
-## Splitters Bar & Grill: Oct 30 and Oct 31 (no times)
+## Splitter's Bar & Grill: Oct 31 (no time); Oct 30 fourth band
 
-Inbox flyer (Splitters' "October 2026" live music list). Splitters is the bar
-inside Park Lanes Bowling Center, 5318 N 2nd St, Loves Park (My Rockford
-Guide; Park Lanes' site links it; Census match). Still upcoming: Fri Oct 30
-"Metal Night" and Sat Oct 31 "On The Rocks" (with a Halloween costume
-contest). No start times on the flyer or on parklanesbowl.com, so not
-published. The flyer is in `waiting/`.
+Splitter's is the bar inside Park Lanes, 5318 N 2nd St, Loves Park (venue now
+published). Fri Oct 30 "Metal Night" is published from C&L Sound's flyer
+(2026-10-26 inbox: music 8 PM, free, 21+): Our Dying Whisper, Sworn to None,
+Thorgrim, plus a fourth band whose logo is unreadable (looks like "Ixdaunh"),
+so it's marked `lineupPartial`. Sat Oct 31 "On The Rocks" (costume contest)
+still has no start time. The October flyer stays in `waiting/`.
 
 ## Hot Rod Nellie's: "Halloween Pre-Game with Holly", Fri Oct 30, 8:30 PM
 

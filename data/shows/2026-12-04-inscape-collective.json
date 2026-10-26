@@ -1,0 +1,16 @@
+{
+  "date": "2026-12-04",
+  "startTime": "17:00",
+  "venue": "inscape-collective",
+  "category": "live-music",
+  "title": "Inscape Holiday Boutique",
+  "artists": [
+    "magtones"
+  ],
+  "cover": null,
+  "notes": "During the collective's holiday art sale (4–7 PM).",
+  "checked": "2026-10-26",
+  "source": {
+    "type": "manual"
+  }
+}
