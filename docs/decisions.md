@@ -292,3 +292,11 @@ Calls made while filling out listings unattended (session of 2026-10-24).
   user says the line-up is incomplete. The flyer on file names three acts
   (Dirty Fishnet Stockings 3 PM, That 70s Band 6 PM, Sunset Strip 9 PM), and
   those stay listed.
+- **Quiet-night graphic (user request, 2026-10-26).** When tonight has fewer
+  than 3 listings, `npm run social:tonight` makes one "Tonight + this week"
+  image: tonight on top (or "Nothing listed tonight."), then up to 6 one-off
+  shows from the next 7 days, soonest first. It's a rolling window rather
+  than "through Saturday", so Saturdays need no special case. Weekly nights
+  aren't highlights. Busy nights keep the tonight-only image(s). The caption
+  gets a matching "NEXT 7 DAYS" list. With nothing tonight and nothing in the
+  week, no image is made.
