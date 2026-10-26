@@ -55,7 +55,7 @@ const hasLater = inSection('later').length > 0;
   <section class="tonight" aria-labelledby="tonight-heading" data-home="today">
     <div class="tonight-head">
       <h1 id="tonight-heading"><span data-home-part>{dayPart(NOW)}</span> in the <span class="accent">815</span></h1>
-      <p class="tonight-tz"><span data-home-date>{formatMediumDay(today)}</span> · All times Central</p>
+      <p class="tonight-tz"><span data-home-date>{formatMediumDay(today)}</span></p>
     </div>
     <DayStrip />
     <p class="tonight-empty" data-home-empty hidden={hasTonight}>

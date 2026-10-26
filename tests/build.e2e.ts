@@ -24,7 +24,8 @@ test('23:00 UTC build (6pm Chicago) still lists tonight', () => {
   assert.equal(home[0], '2026-10-24');
   assert.deepEqual(weekend.filter((d) => d < '2026-10-26'), weekend); // only Sat/Sun of this weekend
   assert.ok(weekend.includes('2026-10-24'));
-  assert.match(footer, /Listings updated <time[^>]*>Oct 24, 2026, 6:00 PM CT<\/time>/);
+  assert.match(footer, /Listings updated <time[^>]*>Oct 24, 2026, 6:00 PM<\/time>/);
+  assert.doesNotMatch(footer, /All times Central|\d PM CT\b/); // readers are local; zone stays in JSON-LD
 });
 
 test('04:30 UTC build (11:30pm Chicago, already "tomorrow" in UTC) still lists tonight', () => {
