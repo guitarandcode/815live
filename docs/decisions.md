@@ -228,3 +228,31 @@ Calls made while filling out listings unattended (session of 2026-10-24).
   - **No change**: Hot Rod Nellie's paste (all already listed; Holly still
     open, file in `waiting/`), Pablo & the Rhythmix flyer (already listed),
     Benny's @ Nest paste (already listed).
+- **Home page split into Today / Later this week / Coming up (user request,
+  2026-10-26).** Top section is "Today" before 5 PM and "Tonight" from 5 PM,
+  with the date, and lists only that night. A night runs until 4 AM: shows
+  starting before 4 AM count as the previous night, and a visitor at 1 AM
+  still sees last night. Nothing listed → says so and links the next night
+  that has events. Second section is tomorrow through Sunday ("Later this
+  week"), or the next 7 days on Saturday and Sunday so it's never a single
+  day. Third is "Coming up": the next ~8 one-off shows (whole days; weekly
+  nights are left to "Every week"), then a calendar link. The daily build
+  runs about 3 AM and is read all day, so the build sorts by its own
+  calendar date and an inline script re-sorts by the visitor's Chicago night
+  on load (rules shared in `src/lib/shows.ts`: `nightOf`, `laterWindow`,
+  `dayPart`). The page carries the previous night and spare days, hidden, for
+  that. The day strip's first chip follows the same Today/Tonight label.
+  Date picker and type filters moved below Coming up so Today and Later sit
+  together.
+- **Footer social icons (user request, 2026-10-26).** "Follow us" text
+  replaced by Facebook "f" and Instagram glyphs as inline SVG (Font Awesome
+  Free brand icons, CC BY 4.0, credited in `Base.astro`), text colour with
+  accent on hover, 44px tap targets, `aria-label`s and `rel="me"`. Not added
+  to the header: at 360px the wordmark row already holds "Submit a show", and
+  two more 44px targets would crowd it.
+- **/submit page (user request, 2026-10-26).** Who it's for, what to send,
+  a mailto button (subject "Show submission", body template with the
+  fields), the 815-area-only and start-time-required rules. "Submit a show"
+  is a pill in the header on every page (beside the wordmark on phones, after
+  the nav on wide screens). Footer and About links point to /submit; it's in
+  the sitemap. No form backend.

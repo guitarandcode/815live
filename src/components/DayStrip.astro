@@ -1,9 +1,10 @@
 ---
-// Seven days, each linking to its date page: Tonight, Tomorrow, then weekday
+// Seven days, each linking to its date page: Today/Tonight, Tomorrow, then weekday
 // names. On a date page the strip is centred on that day where it can be.
 // Labels are relative to the build date; Base's inline script relabels them
 // if the page is viewed on a later day.
 import { datePageDates, NOW, showsByDate } from '../lib/data.ts';
+import { dayPart } from '../lib/shows.ts';
 import { addDays, chicagoDate, formatDay } from '../lib/time.ts';
 
 interface Props {
@@ -23,7 +24,7 @@ const days = Array.from({ length: 7 }, (_, i) => {
   const date = addDays(start, i);
   const count = byDate.get(date)?.length ?? 0;
   const label =
-    date === today ? 'Tonight' : date === addDays(today, 1) ? 'Tomorrow' : weekdayFmt.format(new Date(`${date}T00:00:00Z`));
+    date === today ? dayPart(NOW) : date === addDays(today, 1) ? 'Tomorrow' : weekdayFmt.format(new Date(`${date}T00:00:00Z`));
   return { date, count, label, day: Number(date.slice(8)) };
 });
 ---

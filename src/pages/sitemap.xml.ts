@@ -14,6 +14,7 @@ export const GET: APIRoute = async ({ site }) => {
     '/venues',
     '/artists',
     '/about',
+    '/submit',
     ...[...byDate].filter(([, list]) => list.length > 0).map(([date]) => `/date/${date}`),
     ...CATEGORIES.filter((c) => counts[c] > 0).map((c) => `/${c}`),
     ...venues.filter((v) => !v.data.placeholder).map((v) => `/venues/${v.id}`),

@@ -3,22 +3,48 @@ import Base from '../layouts/Base.astro';
 import CategoryNav from '../components/CategoryNav.astro';
 import DateJump from '../components/DateJump.astro';
 import DayStrip from '../components/DayStrip.astro';
-import ShowCard from '../components/ShowCard.astro';
-import ShowList from '../components/ShowList.astro';
+import HomeNight from '../components/HomeNight.astro';
 import WeeklyList from '../components/WeeklyList.astro';
-import { NOW, pageListing, showsByDate } from '../lib/data.ts';
+import { loadAll, NOW, pageListing } from '../lib/data.ts';
 import { website } from '../lib/jsonld.ts';
-import { addDays, chicagoDate, formatDay } from '../lib/time.ts';
+import { dayPart, groupByNight, laterWindow, nightOf, RECURRING_LIST_DAYS } from '../lib/shows.ts';
+import { addDays, chicagoDate, formatMediumDay, formatShortDay } from '../lib/time.ts';
 
-const { shows, weekly } = await pageListing();
-const byDate = await showsByDate();
+// Three sections: today, the rest of this week, and a short "coming up".
+// The build sorts nights into them for its own date; the inline script below
+// re-sorts on load for the visitor's night, so the page stays right all day
+// and the day after. That's why the page carries the previous night and a
+// few spare days beyond what the build itself shows.
+const COMING_UP_SHOWS = 8;
+const { shows } = await loadAll();
+const { weekly } = await pageListing();
 const today = chicagoDate(NOW);
-const tomorrow = addDays(today, 1);
-const tonight = byDate.get(today)!;
-// Nothing tonight: lead with tomorrow instead.
-const lead = tonight.length ? tonight : byDate.get(tomorrow)!;
-const leadDate = tonight.length ? today : tomorrow;
-const rest = shows.filter((s) => s.date > leadDate);
+const later = laterWindow(today);
+const first = addDays(today, -1);
+const last = addDays(today, 21);
+const recurringLast = addDays(today, RECURRING_LIST_DAYS + 1);
+const nights = groupByNight(
+  shows.filter((s) => {
+    const n = nightOf(s);
+    return n >= first && n <= (s.recurring ? recurringLast : last);
+  }),
+);
+
+const oneOffs = (n: (typeof nights)[number]) => n.shows.filter((s) => !s.recurring).length;
+let comingCount = 0;
+const placed = nights.map((n) => {
+  let where: 'today' | 'later' | 'coming' | undefined =
+    n.date < today ? undefined : n.date === today ? 'today' : n.date <= later.end ? 'later' : 'coming';
+  if (where === 'coming') {
+    if (!oneOffs(n) || comingCount >= COMING_UP_SHOWS) where = undefined;
+    else comingCount += oneOffs(n);
+  }
+  return { ...n, where };
+});
+const inSection = (where: string) => placed.filter((n) => n.where === where);
+const nextNight = placed.find((n) => n.date > today);
+const hasTonight = inSection('today').length > 0;
+const hasLater = inSection('later').length > 0;
 ---
 
 <Base
@@ -26,33 +52,106 @@ const rest = shows.filter((s) => s.date > leadDate);
   description="Upcoming live music in Rockford, Loves Park, Belvidere and the 815: local bands at bars, breweries and small venues, all in one place."
   jsonld={website(Astro.site!)}
 >
-  <section class="tonight" aria-labelledby="tonight-heading">
+  <section class="tonight" aria-labelledby="tonight-heading" data-home="today">
     <div class="tonight-head">
-      <h1 id="tonight-heading">Tonight in the <span class="accent">815</span></h1>
-      <p class="tonight-tz">All times Central</p>
+      <h1 id="tonight-heading"><span data-home-part>{dayPart(NOW)}</span> in the <span class="accent">815</span></h1>
+      <p class="tonight-tz"><span data-home-date>{formatMediumDay(today)}</span> · All times Central</p>
     </div>
     <DayStrip />
-    {
-      tonight.length === 0 && (
-        <p class="tonight-empty" data-tonight-empty>
-          Nothing's listed for tonight.{' '}
-          {lead.length ? <>Here's tomorrow, {formatDay(tomorrow)}:</> : 'Nothing tomorrow yet either; see what’s coming up below.'}
-        </p>
-      )
-    }
-    {
-      lead.length > 0 && (
-        <div class="tonight-list" data-show-date={leadDate}>
-          {lead.map((show) => <ShowCard show={show} />)}
-        </div>
-      )
-    }
+    <p class="tonight-empty" data-home-empty hidden={hasTonight}>
+      Nothing's listed for <span data-home-part-lower>{dayPart(NOW).toLowerCase()}</span>.{' '}
+      <span data-next>
+        {
+          nextNight ? (
+            <>
+              Next up: <a href={`/date/${nextNight.date}`}>{formatMediumDay(nextNight.date)}</a>.
+            </>
+          ) : (
+            <>
+              Nothing else is listed yet; see the <a href="/calendar">calendar</a>.
+            </>
+          )
+        }
+      </span>
+    </p>
+    <div class="tonight-list" data-home-list hidden={!hasTonight}>
+      {placed.filter((n) => !n.where || n.where === 'today').map((n) => <HomeNight {...n} />)}
+    </div>
   </section>
 
-  <DateJump />
-  <CategoryNav />
+  <section class="home-sec home-later" aria-labelledby="later-heading" data-home="later">
+    <h2 id="later-heading" class="section-heading">
+      <span data-later-label>{later.label}</span>
+    </h2>
+    <p class="sec-range" data-later-range>{formatShortDay(later.start)} – {formatShortDay(later.end)}</p>
+    <p class="empty" data-home-empty hidden={hasLater}>Nothing else is listed for these days yet.</p>
+    <div data-home-list>{inSection('later').map((n) => <HomeNight {...n} />)}</div>
+  </section>
 
-  <h2 class="section-heading">Coming up</h2>
-  <ShowList shows={rest} />
+  <section class="home-sec home-coming" aria-labelledby="coming-heading" data-home="coming">
+    <h2 id="coming-heading" class="section-heading">Coming up</h2>
+    <div data-home-list>{inSection('coming').map((n) => <HomeNight {...n} />)}</div>
+    <p class="more-link"><a href="/calendar">See everything on the calendar →</a></p>
+  </section>
+
+  <div class="home-browse">
+    <DateJump />
+    <CategoryNav />
+  </div>
   <WeeklyList rules={weekly} />
+
+  <script is:inline define:vars={{ comingUpShows: COMING_UP_SHOWS }}>
+    // Re-sort the nights for the visitor's own night (set in Base's <head>).
+    // The rules match laterWindow() and nightOf() in src/lib/shows.ts.
+    (() => {
+      const { nowNight: night, nowPart: daypart } = document.documentElement.dataset;
+      const add = (d, n) => {
+        const t = new Date(`${d}T12:00:00Z`);
+        t.setUTCDate(t.getUTCDate() + n);
+        return t.toISOString().slice(0, 10);
+      };
+      const fmt = (d, opts) => new Date(`${d}T12:00:00Z`).toLocaleDateString('en-US', { timeZone: 'UTC', ...opts });
+      const medium = (d) => fmt(d, { weekday: 'long', month: 'short', day: 'numeric' });
+      const short = (d) => fmt(d, { weekday: 'short', month: 'short', day: 'numeric' });
+      const wd = new Date(`${night}T12:00:00Z`).getUTCDay();
+      const weekend = wd === 0 || wd === 6;
+      const end = add(night, weekend ? 7 : 7 - wd);
+
+      const box = {};
+      document.querySelectorAll('[data-home]').forEach((el) => {
+        box[el.dataset.home] = { list: el.querySelector('[data-home-list]'), empty: el.querySelector('[data-home-empty]') };
+      });
+      document.querySelector('[data-home-part]').textContent = daypart;
+      document.querySelector('[data-home-part-lower]').textContent = daypart.toLowerCase();
+      document.querySelector('[data-home-date]').textContent = medium(night);
+      document.querySelector('[data-later-label]').textContent = weekend ? 'Next 7 days' : 'Later this week';
+      document.querySelector('[data-later-range]').textContent = `${short(add(night, 1))} – ${short(end)}`;
+
+      let coming = 0;
+      let next;
+      // Date order, not page order: the build parks nights it doesn't show in the first list.
+      const nights = [...document.querySelectorAll('[data-night]')];
+      nights.sort((a, b) => a.dataset.night.localeCompare(b.dataset.night));
+      nights.forEach((g) => {
+        const d = g.dataset.night;
+        const oneOffs = g.querySelectorAll('.show-card:not([data-recurring])').length;
+        let where = d < night ? null : d === night ? 'today' : d <= end ? 'later' : 'coming';
+        if (d > night && !next) next = d;
+        if (where === 'coming') {
+          if (!oneOffs || coming >= comingUpShows) where = null;
+          else coming += oneOffs;
+        }
+        g.hidden = !where;
+        (where ? box[where] : box.today).list.append(g);
+      });
+      for (const [name, b] of Object.entries(box)) {
+        const any = !!b.list.querySelector('[data-night]:not([hidden])');
+        if (name === 'today') b.list.hidden = !any;
+        if (b.empty) b.empty.hidden = any;
+      }
+      document.querySelector('[data-next]').innerHTML = next
+        ? `Next up: <a href="/date/${next}">${medium(next)}</a>.`
+        : 'Nothing else is listed yet; see the <a href="/calendar">calendar</a>.';
+    })();
+  </script>
 </Base>

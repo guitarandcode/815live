@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { chicagoDate, chicagoIso, chicagoInstant, weekendRange, formatTime, formatTimeRange } from '../src/lib/time.ts';
-import { upcoming, thisWeekend, groupByDay, recurringDates, dedupeRecurring, listing } from '../src/lib/shows.ts';
+import { upcoming, thisWeekend, groupByDay, recurringDates, dedupeRecurring, listing, nightOf, groupByNight, laterWindow, dayPart } from '../src/lib/shows.ts';
 
 const shows = [
   { id: 'fri-early', date: '2026-10-23', startTime: '20:00' },
@@ -97,4 +97,27 @@ test('listing: recurring instances only within 7 days, one-offs any time', () =>
   assert.deepEqual(ids(listing(list, now)), ['rec-sun', 'rec-fri', 'one-off-far']);
   assert.equal(formatTimeRange('19:00', '23:00'), '7–11 PM');
   assert.equal(formatTimeRange('11:00', '14:00'), '11 AM–2 PM');
+});
+
+test('a show before 4 AM belongs to the previous night', () => {
+  assert.equal(nightOf({ date: '2026-10-31', startTime: '01:30' }), '2026-10-30');
+  assert.equal(nightOf({ date: '2026-10-31', startTime: '04:00' }), '2026-10-31');
+  const nights = groupByNight([
+    { id: 'late', date: '2026-10-31', startTime: '00:30' },
+    { id: 'fri', date: '2026-10-30', startTime: '21:00' },
+  ]);
+  assert.deepEqual(nights.map((n) => [n.date, ids(n.shows)]), [['2026-10-30', ['fri', 'late']]]);
+});
+
+test('later window: through Sunday on weekdays, next 7 days on weekends', () => {
+  assert.deepEqual(laterWindow('2026-10-26'), { start: '2026-10-27', end: '2026-11-01', label: 'Later this week' }); // Mon
+  assert.deepEqual(laterWindow('2026-10-30'), { start: '2026-10-31', end: '2026-11-01', label: 'Later this week' }); // Fri
+  assert.deepEqual(laterWindow('2026-10-31'), { start: '2026-11-01', end: '2026-11-07', label: 'Next 7 days' }); // Sat
+  assert.deepEqual(laterWindow('2026-11-01'), { start: '2026-11-02', end: '2026-11-08', label: 'Next 7 days' }); // Sun
+});
+
+test('build day part: Today before 5 PM Chicago, Tonight after', () => {
+  assert.equal(dayPart(new Date('2026-10-26T21:59:00Z')), 'Today'); // 4:59 PM CDT
+  assert.equal(dayPart(new Date('2026-10-26T22:00:00Z')), 'Tonight');
+  assert.equal(dayPart(new Date('2026-10-26T08:17:00Z')), 'Today'); // 3:17 AM daily build
 });

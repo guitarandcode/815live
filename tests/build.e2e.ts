@@ -14,7 +14,9 @@ function buildAt(instant: string) {
   const days = (file: string) =>
     [...readFileSync(`dist/${file}`, 'utf8').matchAll(/data-show-date="([\d-]+)"/g)].map((m) => m[1]);
   const homeHtml = readFileSync('dist/index.html', 'utf8');
-  return { home: days('index.html'), weekend: days('this-weekend.html'), footer: homeHtml, homeHtml };
+  // Home nights the build shows (it also carries hidden ones for the browser to re-sort).
+  const home = [...homeHtml.matchAll(/data-night="([\d-]+)"( hidden)?>/g)].filter((m) => !m[2]).map((m) => m[1]);
+  return { home, weekend: days('this-weekend.html'), footer: homeHtml, homeHtml };
 }
 
 test('23:00 UTC build (6pm Chicago) still lists tonight', () => {
@@ -33,7 +35,8 @@ test('home lists recurring events only for 7 days but still builds 9 weeks of pa
   const { homeHtml } = buildAt('2026-10-24T23:00:00Z');
   assert.match(homeHtml, /href="\/shows\/2026-10-25-marys-place-open-stage"/); // day 2: listed
   assert.match(homeHtml, /href="\/shows\/2026-10-26-screw-city-tavern-name-that-tune"/); // day 3: listed
-  assert.doesNotMatch(homeHtml, /href="\/shows\/2026-11-01-marys-place-open-stage"/); // day 9: not listed
+  // Day 9 is carried hidden for the browser to re-sort a day-old build; day 16 isn't on the page.
+  assert.doesNotMatch(homeHtml, /href="\/shows\/2026-11-08-marys-place-open-stage"/);
   assert.ok(existsSync('dist/shows/2026-12-13-marys-place-open-stage.html')); // week 8 page exists
   assert.ok(existsSync('dist/shows/2026-12-14-screw-city-tavern-name-that-tune.html'));
   assert.match(homeHtml, /<h2>Every week<\/h2>/);
@@ -42,11 +45,11 @@ test('home lists recurring events only for 7 days but still builds 9 weeks of pa
 });
 
 test('category pages: hidden filter links for empty categories, empty pages noindexed', () => {
-  buildAt('2026-10-24T23:00:00Z');
+  // Far enough out that only weekly nights exist, so comedy is empty.
+  buildAt('2027-06-04T18:00:00Z');
   const home = readFileSync('dist/index.html', 'utf8');
   assert.match(home, /href="\/karaoke"/);
   assert.match(home, /href="\/open-mic"/);
-  assert.match(home, /href="\/live-music"/);
   assert.doesNotMatch(home, /href="\/comedy"/);
   assert.match(readFileSync('dist/comedy.html', 'utf8'), /<meta name="robots" content="noindex">/);
   assert.doesNotMatch(readFileSync('dist/sitemap.xml', 'utf8'), /\/comedy</);
@@ -64,7 +67,7 @@ test('Monday build: this weekend means the coming Fri–Sun', () => {
 
 test('home leads with tonight, a 7-day strip and a date picker', () => {
   const { homeHtml } = buildAt('2026-10-24T23:00:00Z');
-  assert.match(homeHtml, /<h1 id="tonight-heading">Tonight in the/);
+  assert.match(homeHtml, /<h1 id="tonight-heading"><span data-home-part>Tonight<\/span> in the/);
   const strip = [...homeHtml.matchAll(/data-strip-date="([\d-]+)"/g)].map((m) => m[1]);
   assert.deepEqual(strip, ['24', '25', '26', '27', '28', '29', '30'].map((d) => `2026-10-${d}`));
   assert.match(homeHtml, /<span class="dc-label">Tonight<\/span>/);
@@ -75,12 +78,43 @@ test('home leads with tonight, a 7-day strip and a date picker', () => {
   assert.ok(existsSync('dist/og.png'));
 });
 
-test('nothing tonight: the home page says so and shows tomorrow', () => {
+test('nothing tonight: the home page says so and points to the next night with events', () => {
   // A Friday far enough out that no one-off shows exist; Saturday karaoke is weekly.
   const { homeHtml } = buildAt('2027-06-04T18:00:00Z');
-  assert.match(homeHtml, /data-tonight-empty/);
-  assert.match(homeHtml, /Here's tomorrow, Saturday, June 5/);
-  assert.match(homeHtml, /class="tonight-list" data-show-date="2027-06-05"/);
+  assert.match(homeHtml, /<p class="tonight-empty" data-home-empty>/);
+  assert.match(homeHtml, /Next up: <a href="\/date\/2027-06-05">Saturday, Jun 5<\/a>/);
+  assert.match(homeHtml, /class="tonight-list" data-home-list hidden/);
+});
+
+test('home sections: today, later this week through Sunday, then coming up', () => {
+  const { homeHtml } = buildAt('2026-10-26T15:00:00Z'); // Monday 10 AM
+  assert.match(homeHtml, /<span data-home-part>Today<\/span>/);
+  assert.match(homeHtml, /<span data-later-label>Later this week<\/span>/);
+  assert.match(homeHtml, /Tue, Oct 27 – Sun, Nov 1/);
+  const section = (name: string) => {
+    const start = homeHtml.indexOf(`data-home="${name}"`);
+    const end = homeHtml.indexOf('data-home="', start + 1);
+    return homeHtml.slice(start, end < 0 ? undefined : end);
+  };
+  const nights = (html: string) => [...html.matchAll(/data-night="([\d-]+)">/g)].map((m) => m[1]);
+  assert.deepEqual(nights(section('later')), ['27', '28', '29', '30', '31'].map((d) => `2026-10-${d}`).concat('2026-11-01'));
+  assert.ok(nights(section('coming')).every((d) => d > '2026-11-01'));
+  assert.match(homeHtml, /href="\/calendar">See everything on the calendar/);
+});
+
+test('on a Saturday the second section is the next 7 days', () => {
+  const { homeHtml } = buildAt('2026-10-31T17:00:00Z');
+  assert.match(homeHtml, /<span data-later-label>Next 7 days<\/span>/);
+  assert.match(homeHtml, /Sun, Nov 1 – Sat, Nov 7/);
+});
+
+test('submit page: mailto with a template, in the nav and the sitemap', () => {
+  buildAt('2026-10-26T15:00:00Z');
+  const submit = readFileSync('dist/submit.html', 'utf8');
+  assert.match(submit, /href="mailto:shows@815live.com\?subject=Show%20submission&amp;body=Act%20name%3A%20/);
+  assert.match(readFileSync('dist/index.html', 'utf8'), /<a class="submit-link" href="\/submit"/);
+  assert.match(readFileSync('dist/about.html', 'utf8'), /href="\/submit"/);
+  assert.match(readFileSync('dist/sitemap.xml', 'utf8'), /<loc>https:\/\/815live.com\/submit<\/loc>/);
 });
 
 test('date pages: 60 days, own titles, empty ones noindexed and out of the sitemap', () => {
