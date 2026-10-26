@@ -7,8 +7,10 @@
   "artists": [],
   "cover": null,
   "notes": "Hosted by Mossy Vaughn.",
+  "checked": "2026-10-24",
   "source": {
     "type": "manual",
-    "url": "https://themusicboxrockford.com/"
+    "url": "https://themusicboxrockford.com/",
+    "kind": "venue"
   }
 }

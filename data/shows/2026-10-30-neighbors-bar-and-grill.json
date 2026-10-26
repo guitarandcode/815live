@@ -3,6 +3,11 @@
   "startTime": "20:00",
   "venue": "neighbors-bar-and-grill",
   "category": "live-music",
-  "artists": ["last-call-815"],
-  "source": { "type": "manual" }
+  "artists": [
+    "last-call-815"
+  ],
+  "checked": "2026-10-26",
+  "source": {
+    "type": "manual"
+  }
 }

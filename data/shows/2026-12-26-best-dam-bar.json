@@ -3,6 +3,11 @@
   "startTime": "19:30",
   "venue": "best-dam-bar",
   "category": "live-music",
-  "artists": ["decades"],
-  "source": { "type": "manual" }
+  "artists": [
+    "decades"
+  ],
+  "checked": "2026-10-26",
+  "source": {
+    "type": "manual"
+  }
 }

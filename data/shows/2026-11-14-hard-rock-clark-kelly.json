@@ -7,9 +7,11 @@
     "clark-kelly"
   ],
   "notes": "On the Hard Rock Cafe stage.",
+  "checked": "2026-10-24",
   "source": {
     "type": "venue-site",
     "url": "https://casino.hardrock.com/rockford/entertainment/upcoming-events/clark-kelly",
+    "kind": "venue",
     "uid": "hard-rock-rockford:clark-kelly:2026-11-14T18:00@cafe"
   }
 }

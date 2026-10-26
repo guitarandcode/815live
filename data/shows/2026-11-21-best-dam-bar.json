@@ -3,6 +3,11 @@
   "startTime": "20:00",
   "venue": "best-dam-bar",
   "category": "live-music",
-  "artists": ["distilled"],
-  "source": { "type": "manual" }
+  "artists": [
+    "distilled"
+  ],
+  "checked": "2026-10-26",
+  "source": {
+    "type": "manual"
+  }
 }

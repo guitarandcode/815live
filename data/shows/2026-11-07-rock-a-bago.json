@@ -3,6 +3,11 @@
   "startTime": "20:00",
   "venue": "rock-a-bago",
   "category": "live-music",
-  "artists": ["pistol-pete"],
-  "source": { "type": "manual" }
+  "artists": [
+    "pistol-pete"
+  ],
+  "checked": "2026-10-26",
+  "source": {
+    "type": "manual"
+  }
 }

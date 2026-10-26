@@ -7,9 +7,11 @@
     "the-boom-boom-room"
   ],
   "notes": "On the Hard Rock Cafe stage.",
+  "checked": "2026-10-24",
   "source": {
     "type": "venue-site",
     "url": "https://casino.hardrock.com/rockford/entertainment/upcoming-events/the-boom-boom-room",
+    "kind": "venue",
     "uid": "hard-rock-rockford:the-boom-boom-room:2026-11-20T21:00@cafe"
   }
 }

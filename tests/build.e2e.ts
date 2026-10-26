@@ -147,3 +147,19 @@ test('date pages: 60 days, own titles, empty ones noindexed and out of the sitem
   assert.doesNotMatch(cal, /href="\/date\/2026-12-23"/);
 });
 
+
+test('listings show their source, last-checked date and a report link', () => {
+  buildAt('2026-10-26T18:00:00Z');
+  const page = readFileSync('dist/shows/2026-10-30-best-dam-bar.html', 'utf8');
+  assert.match(page, /href="https:\/\/www.facebook.com\/events\/2117510702175424"[^>]*>Facebook event</);
+  assert.match(page, /Last checked<\/dt>\s*<dd><time datetime="2026-10-26">/);
+  assert.match(page, /href="mailto:shows@815live.com\?subject=Change%3A%20The%20Shifty%20Boys%20Unplugged%20at%20Best%20Dam%20Bar/);
+  assert.match(page, /<footer[\s\S]*Shows change; check with the venue before heading out\./);
+  // Every card on the home page carries the trust line.
+  const home = readFileSync('dist/index.html', 'utf8');
+  const cards = home.match(/class="show-card/g)!.length;
+  assert.equal(home.match(/class="trust"/g)?.length, cards);
+  assert.equal(home.match(/>Report a change</g)?.length, cards);
+  // Partial line-ups say more acts are coming.
+  assert.match(readFileSync('dist/shows/2026-11-07-cahoots-rockford.html', 'utf8'), /Sunset Strip, more TBA/);
+});

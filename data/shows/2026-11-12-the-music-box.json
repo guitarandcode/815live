@@ -7,8 +7,10 @@
     "erik-koskinen"
   ],
   "cover": 20.11,
+  "checked": "2026-10-24",
   "source": {
     "type": "manual",
-    "url": "https://themusicboxrockford.com/"
+    "url": "https://themusicboxrockford.com/",
+    "kind": "venue"
   }
 }

@@ -4,5 +4,10 @@
   "title": "Karaoke",
   "weekday": "sunday",
   "startTime": "21:00",
-  "source": { "type": "manual", "url": "http://whiskeysroadhouse.com/" }
+  "checked": "2026-10-24",
+  "source": {
+    "type": "manual",
+    "url": "http://whiskeysroadhouse.com/",
+    "kind": "venue"
+  }
 }

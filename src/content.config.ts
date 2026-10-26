@@ -5,15 +5,19 @@
 //     + artist_genres(artist_slug, genre) + artist_links(artist_slug, platform, url)
 //   shows(id PK, date, start_time, end_time, venue_slug FK, category, title NULL,
 //         cover_cents NULL, cover_known BOOL, ticket_url, notes, status,
-//         source_type, source_url, source_uid UNIQUE NULL)
+//         lineup_partial BOOL, checked DATE,
+//         source_type, source_url, source_kind, source_uid UNIQUE NULL)
 //     + show_artists(show_id, artist_slug, position)  -- position = array order
+//     + show_sources(show_id, url, kind)              -- source.also
 //   recurring(slug PK, venue_slug FK, category, title, weekday, start_time,
-//             end_time, months, host, cover_cents NULL, cover_known BOOL, notes)
+//             end_time, months, host, cover_cents NULL, cover_known BOOL, notes,
+//             checked DATE, source_type, source_url, source_kind)
 //     + recurring_skips(recurring_slug, date)
 import { defineCollection, reference } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 import { CATEGORIES } from './lib/categories.ts';
+import { SOURCE_KINDS } from './lib/sources.ts';
 
 const placeholder = z.boolean().default(false).describe('Sample data: rendered with a badge and noindex');
 
@@ -64,11 +68,20 @@ const category = z.enum(CATEGORIES).default('live-music');
 // null = free; omitted = unknown. Dollars here, cents in SQL later.
 const cover = z.number().nonnegative().nullable().optional();
 
+const sourceKind = z.enum(SOURCE_KINDS);
+
 const source = z.object({
-  type: z.enum(['facebook', 'venue-site', 'submission', 'manual']),
-  url: z.url().optional(),
+  type: z.enum(['facebook', 'venue-site', 'submission', 'manual']).describe('How the listing got here'),
+  url: z.url().optional().describe('Omitted for flyers and emails with no public page'),
+  kind: sourceKind.optional().describe('Required with url'),
+  also: z
+    .array(z.object({ url: z.url(), kind: sourceKind }))
+    .default([])
+    .describe('Other places the same event is posted'),
   uid: z.string().optional().describe('Set by ingestion: "<adapter>:<page>:<detail>"; marks the file as adapter-owned'),
-});
+}).refine((s) => !s.url || s.kind, { message: 'source.kind is required when source.url is set', path: ['kind'] });
+
+const checked = z.iso.date().describe('Chicago date the listing was last checked against its source');
 
 const shows = defineCollection({
   loader: glob({ pattern: '*.json', base: './data/shows' }),
@@ -85,6 +98,8 @@ const shows = defineCollection({
       ticketUrl: z.url().optional(),
       notes: z.string().optional(),
       status: z.enum(['scheduled', 'cancelled', 'postponed']).default('scheduled'),
+      lineupPartial: z.boolean().default(false).describe('More acts to be announced'),
+      checked,
       source,
       placeholder,
     })
@@ -109,6 +124,7 @@ const recurring = defineCollection({
     cover,
     notes: z.string().optional(),
     skip: z.array(z.iso.date()).default([]).describe('Dates with no event, e.g. holidays'),
+    checked,
     source,
   }),
 });

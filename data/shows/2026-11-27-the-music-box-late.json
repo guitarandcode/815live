@@ -8,8 +8,10 @@
   ],
   "cover": 18.85,
   "notes": "Late show.",
+  "checked": "2026-10-24",
   "source": {
     "type": "manual",
-    "url": "https://themusicboxrockford.com/"
+    "url": "https://themusicboxrockford.com/",
+    "kind": "venue"
   }
 }

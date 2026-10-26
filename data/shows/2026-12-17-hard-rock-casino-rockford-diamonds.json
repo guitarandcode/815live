@@ -9,8 +9,10 @@
   ],
   "ticketUrl": "https://www.ticketmaster.com/event/21006547EFE177BC",
   "notes": "On the Hard Rock Live stage.",
+  "checked": "2026-10-25",
   "source": {
     "type": "venue-site",
-    "url": "https://casino.hardrock.com/rockford/entertainment/hard-rock-live/diamonds-with-the-nielsen-trust"
+    "url": "https://casino.hardrock.com/rockford/entertainment/hard-rock-live/diamonds-with-the-nielsen-trust",
+    "kind": "venue"
   }
 }

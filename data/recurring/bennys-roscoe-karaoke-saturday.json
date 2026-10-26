@@ -5,7 +5,12 @@
   "weekday": "saturday",
   "startTime": "20:00",
   "endTime": "00:00",
-  "months": [10],
+  "months": [
+    10
+  ],
   "notes": "Contest qualifying night",
-  "source": { "type": "manual" }
+  "checked": "2026-10-24",
+  "source": {
+    "type": "manual"
+  }
 }

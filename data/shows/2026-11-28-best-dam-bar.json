@@ -3,6 +3,11 @@
   "startTime": "20:00",
   "venue": "best-dam-bar",
   "category": "live-music",
-  "artists": ["the-mystery-dates"],
-  "source": { "type": "manual" }
+  "artists": [
+    "the-mystery-dates"
+  ],
+  "checked": "2026-10-26",
+  "source": {
+    "type": "manual"
+  }
 }

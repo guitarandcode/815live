@@ -6,8 +6,10 @@
   "startTime": "19:00",
   "endTime": "23:00",
   "cover": null,
+  "checked": "2026-10-24",
   "source": {
     "type": "manual",
-    "url": "http://marysplacebar.com/calendar/"
+    "url": "http://marysplacebar.com/calendar/",
+    "kind": "venue"
   }
 }

@@ -6,8 +6,10 @@
   "artists": [
     "gary-gilleran"
   ],
+  "checked": "2026-10-25",
   "source": {
     "type": "manual",
-    "url": "https://www.overflowingcup.org/new-calendar.php"
+    "url": "https://www.overflowingcup.org/new-calendar.php",
+    "kind": "venue"
   }
 }

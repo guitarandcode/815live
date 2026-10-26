@@ -5,7 +5,12 @@
   "venue": "bennys-at-nest",
   "category": "live-music",
   "title": "Fangbanger's Ball",
-  "artists": ["sunset-strip"],
+  "artists": [
+    "sunset-strip"
+  ],
   "notes": "12th annual Halloween party with costume contests.",
-  "source": { "type": "manual" }
+  "checked": "2026-10-24",
+  "source": {
+    "type": "manual"
+  }
 }

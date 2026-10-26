@@ -69,7 +69,7 @@ function ownedShows(adapter: string): { id: string; data: ShowFile }[] {
 
 const groupOf = (uid: string) => uid.split(':')[1];
 
-function toFile(s: IngestedShow) {
+function toFile(s: IngestedShow, checked: string) {
   return {
     date: s.date,
     startTime: s.startTime,
@@ -81,7 +81,8 @@ function toFile(s: IngestedShow) {
     ...(s.cover !== undefined && { cover: s.cover }),
     ...(s.ticketUrl && { ticketUrl: s.ticketUrl }),
     ...(s.notes && { notes: s.notes }),
-    source: { type: 'venue-site', url: s.sourceUrl, uid: s.uid },
+    checked,
+    source: { type: 'venue-site', url: s.sourceUrl, kind: 'venue', uid: s.uid },
   };
 }
 
@@ -115,7 +116,7 @@ export function reconcile(
         changes.artistsCreated.push(a.slug);
       }
     }
-    if (writeIfChanged(join(DATA, 'shows', `${show.id}.json`), toFile(show))) changes.written.push(show.id);
+    if (writeIfChanged(join(DATA, 'shows', `${show.id}.json`), toFile(show, today))) changes.written.push(show.id);
   }
   return changes;
 }

@@ -304,6 +304,34 @@ nav {
   font-size: 0.95rem;
 }
 
+/* Source, last checked, report a change: quiet, under the facts. */
+.trust {
+  margin: 0.2rem 0 0;
+  color: var(--muted);
+  font-size: 0.8rem;
+  line-height: 1.8;
+}
+
+.trust a {
+  color: inherit;
+}
+
+.trust .nowrap {
+  white-space: nowrap;
+}
+
+.trust .src {
+  overflow-wrap: anywhere;
+}
+
+.listing-trust {
+  margin-top: 1.5rem;
+}
+
+.nowrap {
+  white-space: nowrap;
+}
+
 .free {
   color: var(--free);
   font-weight: 600;

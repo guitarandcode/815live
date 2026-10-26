@@ -3,6 +3,14 @@
   "startTime": "19:30",
   "venue": "marys-place",
   "category": "live-music",
-  "artists": ["born-in-86", "jon-bon-stamos"],
-  "source": { "type": "manual", "url": "http://marysplacebar.com/calendar/" }
+  "artists": [
+    "born-in-86",
+    "jon-bon-stamos"
+  ],
+  "checked": "2026-10-24",
+  "source": {
+    "type": "manual",
+    "url": "http://marysplacebar.com/calendar/",
+    "kind": "venue"
+  }
 }

@@ -7,8 +7,10 @@
     "pat-mccurdy"
   ],
   "cover": 12.57,
+  "checked": "2026-10-24",
   "source": {
     "type": "manual",
-    "url": "https://themusicboxrockford.com/"
+    "url": "https://themusicboxrockford.com/",
+    "kind": "venue"
   }
 }

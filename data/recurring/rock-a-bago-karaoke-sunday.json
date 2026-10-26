@@ -5,7 +5,12 @@
   "weekday": "sunday",
   "startTime": "19:00",
   "endTime": "23:00",
-  "months": [10],
+  "months": [
+    10
+  ],
   "notes": "All ages",
-  "source": { "type": "manual" }
+  "checked": "2026-10-24",
+  "source": {
+    "type": "manual"
+  }
 }

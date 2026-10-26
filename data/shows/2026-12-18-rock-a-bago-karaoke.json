@@ -4,5 +4,8 @@
   "venue": "rock-a-bago",
   "category": "karaoke",
   "title": "Karaoke",
-  "source": { "type": "manual" }
+  "checked": "2026-10-26",
+  "source": {
+    "type": "manual"
+  }
 }

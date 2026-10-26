@@ -7,9 +7,11 @@
     "feestet"
   ],
   "notes": "In the Council Oak lounge.",
+  "checked": "2026-10-24",
   "source": {
     "type": "venue-site",
     "url": "https://casino.hardrock.com/rockford/entertainment/upcoming-events/feestet",
+    "kind": "venue",
     "uid": "hard-rock-rockford:feestet:2026-11-14T18:00@council-oak"
   }
 }

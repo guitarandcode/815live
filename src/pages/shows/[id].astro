@@ -2,9 +2,9 @@
 import type { GetStaticPaths } from 'astro';
 import Base from '../../layouts/Base.astro';
 import { CATEGORY_LABEL } from '../../lib/categories.ts';
-import { coverLabel, lineup, loadAll, showTitle, type Show } from '../../lib/data.ts';
+import { bestSource, coverLabel, lineup, loadAll, REPORT_EMAIL, reportHref, showTitle, type Show } from '../../lib/data.ts';
 import { showEvent } from '../../lib/jsonld.ts';
-import { chicagoIso, formatDay, formatTime } from '../../lib/time.ts';
+import { chicagoIso, formatDay, formatMediumDay, formatTime } from '../../lib/time.ts';
 
 export const getStaticPaths = (async () => {
   const { shows } = await loadAll();
@@ -17,6 +17,7 @@ const name = showTitle(show);
 const title = `${name} at ${v.data.name}`;
 const when = `${formatDay(show.date)} at ${formatTime(show.startTime)}`;
 const cover = coverLabel(show.cover);
+const src = bestSource(show);
 const mapUrl = `https://www.openstreetmap.org/?mlat=${v.data.lat}&mlon=${v.data.lng}#map=17/${v.data.lat}/${v.data.lng}`;
 ---
 
@@ -31,7 +32,7 @@ const mapUrl = `https://www.openstreetmap.org/?mlat=${v.data.lat}&mlon=${v.data.
     {show.placeholder && <span class="badge">Sample listing</span>}
     <p class="category">{CATEGORY_LABEL[show.category]}{show.recurring && ' · Weekly'}</p>
     <h1>{name}</h1>
-    {show.title && show.artists.length > 0 && <p class="lede">{lineup(show)}</p>}
+    {show.title && show.artists.length > 0 && <p class="lede">{lineup(show)}{show.lineupPartial && ', more TBA'}</p>}
     {show.status !== 'scheduled' && <p class="status">{show.status === 'cancelled' ? 'Cancelled' : 'Postponed'}</p>}
     <dl class="facts">
       <dt>When</dt>
@@ -60,8 +61,22 @@ const mapUrl = `https://www.openstreetmap.org/?mlat=${v.data.lat}&mlon=${v.data.
           </li>
         ))}
       </ol>
+      {show.lineupPartial && <p class="meta">More acts to be announced.</p>}
     </section>}
     {show.notes && <section><h2>Notes</h2><p>{show.notes}</p></section>}
-    {show.source.url && <p class="meta">Source: <a href={show.source.url} rel="noopener">{show.source.type === 'manual' ? `${v.data.name} calendar` : show.source.type}</a></p>}
+    <section class="listing-trust">
+      <dl class="facts">
+        <dt>Source</dt>
+        <dd>
+          {src ? <a href={src.url} rel="noopener">{src.label}</a> : 'Sent to 815live'}
+          {src?.fallback && <> (venue website; the listing came from a flyer or post)</>}
+        </dd>
+        <dt>Last checked</dt>
+        <dd><time datetime={show.checked}>{formatMediumDay(show.checked)}</time></dd>
+      </dl>
+      <p>
+        <a href={reportHref(show, Astro.site!)}>Report a change</a> to <span class="nowrap">{REPORT_EMAIL}</span>
+      </p>
+    </section>
   </article>
 </Base>

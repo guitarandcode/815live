@@ -1,8 +1,10 @@
 // Loads the collections once per build and resolves show references.
+import { readFileSync } from 'node:fs';
 import { getCollection, type CollectionEntry } from 'astro:content';
 import { CATEGORIES, type Category } from './categories.ts';
+import type { SOURCE_KINDS } from './sources.ts';
 import { buildNow, byStart, dedupeRecurring, listing, recurringDates, upcoming, WEEKDAYS } from './shows.ts';
-import { addDays, chicagoDate } from './time.ts';
+import { addDays, chicagoDate, formatShortDay } from './time.ts';
 
 export type Venue = CollectionEntry<'venues'>;
 export type Artist = CollectionEntry<'artists'>;
@@ -44,10 +46,12 @@ export function loadAll() {
     ]);
     const venueById = new Map(venues.map((v) => [v.id, v]));
     const artistById = new Map(artists.map((a) => [a.id, a]));
+    const adapterChecked = readAdapterChecked();
     const oneOffs = rawShows.map(
       ({ id, data }): Show => ({
         ...data,
         id,
+        checked: laterDate(data.checked, adapterChecked[data.source.uid?.split(':')[0] ?? '']),
         // reference() already validated these ids at load time.
         venue: venueById.get(data.venue.id)!,
         artists: data.artists.map((a) => artistById.get(a.id)!),
@@ -68,6 +72,8 @@ export function loadAll() {
           cover: r.cover,
           notes: r.notes,
           status: 'scheduled',
+          lineupPartial: false,
+          checked: r.checked,
           source: r.source,
           placeholder: false,
           recurring: id,
@@ -129,6 +135,53 @@ export const showTitle = (show: Show) => show.title ?? billTitle(show);
 /** Calendar date the show ends on; an end time before the start means after midnight. */
 export function endDate(show: Show): string {
   return show.endTime && show.endTime < show.startTime ? addDays(show.date, 1) : show.date;
+}
+
+/**
+ * Dates each ingest adapter last ran clean (data/ingest/checked.json). Its
+ * shows were checked that day even if their files didn't change.
+ */
+function readAdapterChecked(): Record<string, string> {
+  try {
+    return JSON.parse(readFileSync('data/ingest/checked.json', 'utf8'));
+  } catch {
+    return {};
+  }
+}
+
+const laterDate = (a: string, b?: string) => (b && b > a ? b : a);
+
+type SourceLink = { url: string; kind: (typeof SOURCE_KINDS)[number] };
+
+/**
+ * The source to link: the closest of source and source.also (venue, act or
+ * presenter before a roundup), else the venue's own site as a fallback.
+ */
+export function bestSource(show: Show): (SourceLink & { label: string; fallback: boolean }) | undefined {
+  const { url, kind, also } = show.source;
+  const all = [...(url && kind ? [{ url, kind }] : []), ...also];
+  const best = all.find((s) => s.kind !== 'roundup') ?? all[0];
+  if (best) return { ...best, label: sourceLabel(best.url), fallback: false };
+  const site = show.venue.data.website;
+  return site ? { url: site, kind: 'venue', label: sourceLabel(site), fallback: true } : undefined;
+}
+
+/** "Facebook event", "cahootsrockford.com" */
+function sourceLabel(url: string): string {
+  const u = new URL(url);
+  const host = u.host.replace(/^(www|m)\./, '');
+  if (host === 'facebook.com' || host === 'fb.me') return u.pathname.startsWith('/events/') ? 'Facebook event' : 'Facebook post';
+  if (host === 'instagram.com') return 'Instagram post';
+  return host;
+}
+
+export const REPORT_EMAIL = 'shows@815live.com';
+
+/** mailto for "Report a change", with the listing named and linked. */
+export function reportHref(show: Show, site: URL): string {
+  const what = `${showTitle(show)} at ${show.venue.data.name}, ${formatShortDay(show.date)}`;
+  const body = `Listing: ${new URL(`/shows/${show.id}`, site)}\n\nWhat changed:\n`;
+  return `mailto:${REPORT_EMAIL}?subject=${encodeURIComponent(`Change: ${what}`)}&body=${encodeURIComponent(body)}`;
 }
 
 /** null = free, undefined = unknown. */

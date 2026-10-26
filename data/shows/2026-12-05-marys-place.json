@@ -6,8 +6,10 @@
   "artists": [
     "kofi-bakers-psychedelic-trip"
   ],
+  "checked": "2026-10-25",
   "source": {
     "type": "manual",
-    "url": "http://marysplacebar.com/calendar/"
+    "url": "http://marysplacebar.com/calendar/",
+    "kind": "venue"
   }
 }

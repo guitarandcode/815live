@@ -5,5 +5,10 @@
   "venue": "cahoots-rockford",
   "category": "karaoke",
   "title": "Karaoke",
-  "source": { "type": "manual", "url": "https://cahootsrockford.com/" }
+  "checked": "2026-10-26",
+  "source": {
+    "type": "manual",
+    "url": "https://cahootsrockford.com/",
+    "kind": "venue"
+  }
 }

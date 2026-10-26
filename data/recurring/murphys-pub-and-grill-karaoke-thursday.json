@@ -4,5 +4,8 @@
   "title": "Karaoke",
   "weekday": "thursday",
   "startTime": "21:00",
-  "source": { "type": "manual" }
+  "checked": "2026-10-24",
+  "source": {
+    "type": "manual"
+  }
 }
