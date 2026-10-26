@@ -307,3 +307,25 @@ Calls made while filling out listings unattended (session of 2026-10-24).
   there, even as one-off dates. Screw City's karaoke stays as dated shows, not
   a weekly rule: the flyer says every other Thursday and its dates aren't
   evenly spaced (11/12 is followed by 12/10).
+- **Manual refresh (user request, 2026-10-26 afternoon).** 51 inbox files.
+  Published: Whiskey's Roadhouse "Spooktacular Boo Bash" (Oct 30; flyer plus
+  the Savage Gentlemen event for times and set order); Splitter's "Metal Night
+  8" (Oct 30, fourth band unreadable, `lineupPartial`); Ashton Creek Band at
+  Sheila's Daiquiri Lounge (Nov 6); Fozzy's 80's Hair Bands Music Bingo (Oct
+  28, filed as `trivia`, since music bingo is a music game like Name That
+  Tune) and Halloween DJ party (Oct 31); Rue Marché "Rue-Loween" karaoke (Oct
+  30 and 31, 9 PM–2 AM, one-offs); Inscape Midtown Collective holiday boutique
+  sets (Magtones Dec 4, Jeff Layng Dec 5); Hotel Goodwin rooftop Halloween
+  Zombie Prom DJ night (Oct 31; the screenshot's "Saturday" was taken Mon Oct
+  26, so Oct 31); Murphy's weekly Wednesday open mic, 7 PM (featured
+  performers are first names only, left out). New venues: Fozzy's Bar & Grill
+  (6246 E Riverside Blvd, Loves Park, the 2019 location per Northwest
+  Quarterly), Sheila's, Splitter's, Inscape, Hotel Goodwin rooftop; all Census
+  geocoded. Mary's Place Oct 30 gained the $10 cover and the cover-set names.
+  Re-confirmed and `checked` bumped: Reverend Raven, Mike Owens at Tad's,
+  Rollin' Whiskey at Hot Rod Nellie's, Harpo's Revue and Shifty Boys at Best
+  Dam Bar, Cahoots Decades of Rock, Broadway Joe's Friday karaoke (9 PM).
+  Skipped: past dates (14), out of area (Sterling, Elizabeth, Ottawa,
+  Hampshire, Janesville, Chicago area), plain bingo and a joker drawing.
+  Highway 20 Brewing turned out to be in Elizabeth (Jo Daviess County), not
+  Freeport. Oregon and Freeport shows wait on an area decision.

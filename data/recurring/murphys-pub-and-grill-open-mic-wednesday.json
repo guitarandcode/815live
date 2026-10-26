@@ -1,0 +1,11 @@
+{
+  "venue": "murphys-pub-and-grill",
+  "category": "open-mic",
+  "title": "Open Mic Night",
+  "weekday": "wednesday",
+  "startTime": "19:00",
+  "checked": "2026-10-26",
+  "source": {
+    "type": "manual"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "date": "2026-10-30",
+  "startTime": "21:00",
+  "endTime": "02:00",
+  "venue": "rue-marche",
+  "category": "karaoke",
+  "title": "Rue-Loween Karaoke",
+  "artists": [],
+  "notes": "Halloween costume contest.",
+  "checked": "2026-10-26",
+  "source": {
+    "type": "manual"
+  }
+}

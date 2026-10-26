@@ -1,0 +1,17 @@
+{
+  "date": "2026-12-05",
+  "startTime": "14:00",
+  "endTime": "15:30",
+  "venue": "inscape-collective",
+  "category": "live-music",
+  "title": "Inscape Holiday Boutique",
+  "artists": [
+    "jeff-layng"
+  ],
+  "cover": null,
+  "notes": "During the collective's holiday art sale (11 AM–4 PM).",
+  "checked": "2026-10-26",
+  "source": {
+    "type": "manual"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "date": "2026-10-30",
+  "startTime": "20:00",
+  "venue": "splitters",
+  "category": "live-music",
+  "title": "Metal Night 8: Heavy Halloween",
+  "artists": [
+    "our-dying-whisper",
+    "sworn-to-none",
+    "thorgrim"
+  ],
+  "cover": null,
+  "notes": "Presented by C&L Sound. Doors 7 PM. 21+. One more band on the bill.",
+  "lineupPartial": true,
+  "checked": "2026-10-26",
+  "source": {
+    "type": "manual"
+  }
+}
