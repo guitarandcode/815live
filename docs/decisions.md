@@ -256,3 +256,15 @@ Calls made while filling out listings unattended (session of 2026-10-24).
   is a pill in the header on every page (beside the wordmark on phones, after
   the nav on wide screens). Footer and About links point to /submit; it's in
   the sitemap. No form backend.
+- **Review of the 2026-10-26 unattended run (0687c84).** Checked all 42 show
+  files against their sources (Best Dam Bar, Rock-A-Bago and Neighbors
+  event lists; Grand Avenue November calendar; Cahoots flyer and two event
+  screenshots; Buster's flyer). Every date, start/end time, venue and act
+  matches, weekdays agree with the year, and there are no duplicates of
+  existing listings (same venue and date, or same act and date). The four new
+  venues re-geocode to the same Census coordinates. Jack Farina Big Band's
+  Beloit hometown is supported by the Beloit Daily News; Farina himself died
+  in Feb 2024 per the same paper, but the pub's 2026 calendar still lists the
+  band, so the listing stands. One unsupported detail removed (Buster's
+  "video gaming and a patio"). The cropped Grand Avenue names and the
+  Synergy/Stereotype calls moved to needs-review.
