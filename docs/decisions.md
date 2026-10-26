@@ -300,3 +300,9 @@ Calls made while filling out listings unattended (session of 2026-10-24).
   aren't highlights. Busy nights keep the tonight-only image(s). The caption
   gets a matching "NEXT 7 DAYS" list. With nothing tonight and nothing in the
   week, no image is made.
+- **Quiet-night highlights are live shows only (user, 2026-10-26).** The week
+  list takes one-off `live-music` and `comedy` shows, and drops anything
+  titled as a jam. Karaoke, open mics, trivia and DJ nights never appear
+  there, even as one-off dates. Screw City's karaoke stays as dated shows, not
+  a weekly rule: the flyer says every other Thursday and its dates aren't
+  evenly spaced (11/12 is followed by 12/10).
