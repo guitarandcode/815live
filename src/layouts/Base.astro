@@ -1,7 +1,7 @@
 ---
 import '../styles/global.css';
 import { NOW } from '../lib/data.ts';
-import { SITE_NAME } from '../lib/jsonld.ts';
+import { OG_IMAGE, SITE_NAME } from '../lib/jsonld.ts';
 import { chicagoDate, formatStamp, TZ } from '../lib/time.ts';
 
 interface Props {
@@ -18,7 +18,7 @@ const site = Astro.site!;
 const path = Astro.url.pathname.replace(/(\/index)?\.html$/, '') || '/';
 const canonical = new URL(path, site).href;
 const fullTitle = path === '/' ? title : `${title} | ${SITE_NAME}`;
-const ogImage = new URL('/og.png', site).href;
+const ogImage = new URL(OG_IMAGE, site).href;
 const ld = jsonld ? (Array.isArray(jsonld) ? jsonld : [jsonld]) : [];
 const nav = [
   ['/', 'Tonight'],
