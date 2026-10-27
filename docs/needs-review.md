@@ -160,3 +160,37 @@ more than 30 minutes from downtown Rockford, a borderline call under the area
 rule. Also, the venue's address and ticket link are unverified. The screenshot
 is in `waiting/`.
 
+## Grand Avenue Pub: Mr. Pink, Fri Oct 30, 8 PM–midnight
+
+A Halloween party flyer (2026-10-27 inbox) gives "Friday night costume contest:
+Mr. Pink, 8:00 PM – Midnight" and "Saturday night: DJ Audiboi, 9 PM – 1 AM".
+The flyer has no dates, but the pub's own "Spooky Bash" flyer puts DJ Audiboi
+on Oct 31, 2026, so Friday is Oct 30. Saturday is published. Friday isn't,
+because it's unclear whether Mr. Pink is a DJ or a band (`dj` vs
+`live-music`), and a search found nothing. The flyer is in `waiting/`.
+
+## Mort's Pub: The Regal Beagle, Sat Oct 31, 8–11 PM
+
+A Halloween flyer (2026-10-27 inbox) says "Regal Beagle" plays "Morts Pub" on
+Saturday, October 31 (weekday matches 2026), 8–11 PM. The flyer gives no town.
+The only nearby match found is Mort's Bar & Grill, 114 S Chicago Ave, Freeport
+(Enjoy Illinois listing), a different name. Confirm it's the same place (and
+that the band is local) before publishing. The flyer is in `waiting/`.
+
+## Rascals Bar and Grill: Halloween party with "The Wolfman", Sat Oct 31, 8 PM–midnight
+
+A screenshot of the bar's Facebook post (2026-10-26 inbox) says live
+entertainment by "the one and only Wolfman", 8–12 PM, on Halloween night. The
+graphic shows DJ decks, so it's unclear whether Wolfman is a DJ or a
+performer. The post gives no town; directories (Superpages, Sirved, BringFido)
+list Rascals Bar & Grill at 5223 Torque Rd, Loves Park 61111, but the bar has
+no website to confirm it's the same Rascals. No venue record yet. The
+screenshot is in `waiting/`.
+
+## Shattered Saloon: "Mothman" or "Mothmen"?
+
+The October flyer (2026-10-24) named the Oct 30 band "Mothman"; the bar's
+"Events This Week" graphic (2026-10-27 inbox) says "Mothmen Band". The listing
+stays under the existing `mothman` record (date and time match). Rename the
+artist if the band's own page uses "Mothmen".
+
