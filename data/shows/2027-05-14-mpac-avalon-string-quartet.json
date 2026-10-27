@@ -1,0 +1,16 @@
+{
+  "date": "2027-05-14",
+  "startTime": "19:30",
+  "venue": "mendelssohn-performing-arts-center",
+  "category": "live-music",
+  "artists": [
+    "avalon-string-quartet"
+  ],
+  "checked": "2026-10-27",
+  "source": {
+    "type": "venue-site",
+    "url": "https://www.mendelssohnpac.org/events/event/avalon-string-quartet-5-14-2027/",
+    "kind": "venue",
+    "uid": "mendelssohn-pac:avalon-string-quartet-5-14-2027:2027-05-14T19:30"
+  }
+}

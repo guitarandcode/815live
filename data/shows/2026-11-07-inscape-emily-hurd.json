@@ -1,0 +1,17 @@
+{
+  "date": "2026-11-07",
+  "startTime": "14:00",
+  "endTime": "15:30",
+  "venue": "inscape-collective",
+  "category": "live-music",
+  "artists": [
+    "emily-hurd"
+  ],
+  "checked": "2026-10-27",
+  "source": {
+    "type": "venue-site",
+    "url": "https://www.inscapecollective.org/event-details/emily-hurd-in-concert",
+    "kind": "venue",
+    "uid": "inscape-collective:emily-hurd-in-concert:2026-11-07T14:00"
+  }
+}
