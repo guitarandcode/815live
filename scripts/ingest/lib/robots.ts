@@ -7,6 +7,7 @@ export const BOT_TOKEN = '815livebot';
 interface Group {
   agents: string[];
   rules: [kind: 'allow' | 'disallow', path: string][];
+  crawlDelay?: number;
 }
 
 export function parseRobots(text: string): Group[] {
@@ -28,6 +29,7 @@ export function parseRobots(text: string): Group[] {
       lastWasAgent = true;
     } else {
       if ((key === 'allow' || key === 'disallow') && cur) cur.rules.push([key, value]);
+      if (key === 'crawl-delay' && cur && Number(value) > 0) cur.crawlDelay = Number(value);
       lastWasAgent = false;
     }
   }
@@ -44,10 +46,19 @@ function ruleMatches(rule: string, path: string): boolean {
   return new RegExp(`^${rx}${anchored ? '$' : ''}`).test(path);
 }
 
-export function isAllowed(robotsText: string, url: string, token = BOT_TOKEN): { allowed: boolean; rule: string } {
+function groupsFor(robotsText: string, token: string): Group[] {
   const groups = parseRobots(robotsText);
-  let mine = groups.filter((g) => g.agents.some((a) => a !== '*' && token.includes(a)));
-  if (mine.length === 0) mine = groups.filter((g) => g.agents.includes('*'));
+  const mine = groups.filter((g) => g.agents.some((a) => a !== '*' && token.includes(a)));
+  return mine.length ? mine : groups.filter((g) => g.agents.includes('*'));
+}
+
+/** Seconds to wait between requests (the largest Crawl-delay in our groups), or 0. */
+export function crawlDelay(robotsText: string, token = BOT_TOKEN): number {
+  return Math.max(0, ...groupsFor(robotsText, token).map((g) => g.crawlDelay ?? 0));
+}
+
+export function isAllowed(robotsText: string, url: string, token = BOT_TOKEN): { allowed: boolean; rule: string } {
+  const mine = groupsFor(robotsText, token);
   const u = new URL(url);
   const path = (u.pathname || '/') + u.search;
   let best: { len: number; allow: boolean; rule: string } | undefined;
