@@ -81,7 +81,7 @@ test('home leads with tonight, a 7-day strip and a date picker', () => {
   assert.deepEqual(strip, ['24', '25', '26', '27', '28', '29', '30'].map((d) => `2026-10-${d}`));
   assert.match(homeHtml, /<span class="dc-label">Tonight<\/span>/);
   assert.match(homeHtml, /href="\/date\/2026-10-25"[\s\S]*?Tomorrow/);
-  assert.match(homeHtml, /<input[^>]*type="date"[^>]*min="2026-10-24"[^>]*max="2026-12-22"/);
+  assert.match(homeHtml, /<input[^>]*type="date"[^>]*min="2026-10-24"[^>]*max="2026-12-18"/);
   assert.match(homeHtml, /<form class="date-jump" action="\/calendar"/); // no-JS fallback
   assert.match(homeHtml, /<meta property="og:image" content="https:\/\/815live.com\/og.png">/);
   assert.ok(existsSync('dist/og.png'));
@@ -126,12 +126,12 @@ test('submit page: mailto with a template, in the nav and the sitemap', () => {
   assert.match(readFileSync('dist/sitemap.xml', 'utf8'), /<loc>https:\/\/815live.com\/submit<\/loc>/);
 });
 
-test('date pages: 60 days, own titles, empty ones noindexed and out of the sitemap', () => {
+test('date pages: 56 days (the recurring horizon), own titles, empty ones noindexed and out of the sitemap', () => {
   buildAt('2026-10-24T23:00:00Z');
   const files = readdirSync('dist/date').sort();
-  assert.equal(files.length, 60);
+  assert.equal(files.length, 56);
   assert.equal(files[0], '2026-10-24.html');
-  assert.equal(files.at(-1), '2026-12-22.html');
+  assert.equal(files.at(-1), '2026-12-18.html');
   const sitemap = readFileSync('dist/sitemap.xml', 'utf8');
   assert.match(sitemap, /<loc>https:\/\/815live.com\/calendar<\/loc>/);
   let full = 0;
@@ -152,8 +152,13 @@ test('date pages: 60 days, own titles, empty ones noindexed and out of the sitem
   );
   const cal = readFileSync('dist/calendar.html', 'utf8');
   assert.match(cal, /href="\/date\/2026-10-24"/);
-  assert.match(cal, /href="\/date\/2026-12-22"/);
-  assert.doesNotMatch(cal, /href="\/date\/2026-12-23"/);
+  assert.match(cal, /href="\/date\/2026-12-18"/);
+  assert.doesNotMatch(cal, /href="\/date\/2026-12-19"/);
+  assert.doesNotMatch(sitemap, /\/date\/2026-12-19</);
+  // The pager stops at the last date page; the one before it still links forward.
+  assert.doesNotMatch(readFileSync('dist/date/2026-12-18.html', 'utf8'), /rel="next"/);
+  assert.match(readFileSync('dist/date/2026-12-17.html', 'utf8'), /href="\/date\/2026-12-18" rel="next"/);
+  assert.match(readFileSync('dist/date/2026-12-18.html', 'utf8'), /<input[^>]*max="2026-12-18"/);
 });
 
 
