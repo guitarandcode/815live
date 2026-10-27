@@ -194,3 +194,22 @@ The October flyer (2026-10-24) named the Oct 30 band "Mothman"; the bar's
 stays under the existing `mothman` record (date and time match). Rename the
 artist if the band's own page uses "Mothmen".
 
+
+## RPL Nordlof Center: library times vs. Crossroads times
+
+The library calendar lists every Music Off the Rock show at 5 PM (Oct 28 at
+5:30 PM), while our entries, from Crossroads Blues Society, say 6 PM with
+doors at 5. The `rpl-nordlof` adapter keeps the hand-entered shows and logs
+the mismatch each run. Oct 28 (5:30 vs 6:00) is the only one that isn't
+simply the door time.
+
+## Mendelssohn PAC: "Christmas with the Abram Collier Nonet" (Dec 4)
+
+The `mendelssohn-pac` adapter would create a new artist, Abram Collier Nonet.
+Abram Collier Quintet already exists (same leader). Confirm they're separate
+acts before the adapter's first real run, or map the Nonet to the Quintet.
+
+## Inscape Collective: Trinadora Halloween Party (Sat Oct 31, 2–4 PM)
+
+The event page says "Music, dancing, …" but doesn't say whether Trinadora is a
+performer. Not listed.
