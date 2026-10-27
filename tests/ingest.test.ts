@@ -6,6 +6,7 @@ import { join } from 'node:path';
 import { crawlDelay, isAllowed } from '../scripts/ingest/lib/robots.ts';
 import { parseIcs } from '../scripts/ingest/lib/ics.ts';
 import { matchArtist } from '../scripts/ingest/lib/artists.ts';
+import * as mpac from '../scripts/ingest/adapters/mendelssohn-pac.ts';
 import { inferDate, parseEventPage, parseSitemap, toShows } from '../scripts/ingest/adapters/hard-rock-rockford.ts';
 
 test('robots: wildcard and longest-match rules', () => {
@@ -152,6 +153,24 @@ test('artists: exact matches reuse the slug; near names are flagged', () => {
   const nonet = matchArtist('Abram Collier Nonet');
   assert.equal(nonet.existing, false);
   assert.deepEqual(nonet.near, ['abram-collier-quintet']);
+});
+
+test('mendelssohn: bills, event page date, price line and tickets', () => {
+  assert.deepEqual(mpac.parseBill('Christmas with the Abram Collier Nonet'), { title: 'Christmas with the Abram Collier Nonet', acts: ['Abram Collier Nonet'] });
+  assert.deepEqual(mpac.parseBill('Berimbau Sextet with Krissy Bergmark'), { acts: ['Berimbau Sextet', 'Krissy Bergmark'] });
+  assert.deepEqual(mpac.parseBill('Nicole Lee'), { acts: ['Nicole Lee'] });
+  const html = `<h1>X</h1><p>Event Details</p><p>Date:</p><p>December 4, 2026 7:00 pm</p><p>Venue:</p><p>MPAC Auditorium</p>
+    <p>A long description that mentions $5 parking but is far too long to be a price line, so it must not be read as one, no matter what.</p>
+    <p>$20 In Advance / $25 At the Door / $6 Student</p>
+    <a class="et_pb_button" href="https://app.arts-people.com/index.php?show=337756" target="_blank">PURCHASE TICKETS</a>`;
+  assert.deepEqual(mpac.parseEventPage(html), {
+    date: '2026-12-04',
+    time: '19:00',
+    cover: 20,
+    notes: 'Tickets: $20 In Advance / $25 At the Door / $6 Student.',
+    ticketUrl: 'https://app.arts-people.com/index.php?show=337756',
+  });
+  assert.equal(mpac.parseEventPage('<p>Date:</p><p>May 1, 2027 2:30 pm</p><p>Free admission</p>').cover, null);
 });
 
 test('dry run and hand-entered shows: nothing written; a person\'s entry wins', async () => {

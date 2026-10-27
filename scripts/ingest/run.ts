@@ -5,10 +5,11 @@
 // One failing adapter doesn't stop the others; the exit code is 1 if any failed.
 import { join } from 'node:path';
 import * as hardRock from './adapters/hard-rock-rockford.ts';
+import * as mendelssohn from './adapters/mendelssohn-pac.ts';
 import { DATA, readJson, reconcile, writeJson } from './lib/store.ts';
 import { chicagoDate } from '../../src/lib/time.ts';
 
-const ADAPTERS = [hardRock];
+const ADAPTERS = [hardRock, mendelssohn];
 
 const args = process.argv.slice(2);
 const full = args.includes('--full');
