@@ -28,6 +28,10 @@ function checkEvent(ev, where) {
   need(isoWithOffset.test(ev.startDate ?? ''), `startDate must be ISO 8601 with offset, got ${ev.startDate}`);
   need(/-0[56]:00$/.test(ev.startDate ?? ''), `startDate offset should be Chicago (-05:00/-06:00), got ${ev.startDate}`);
   if (ev.endDate) need(isoWithOffset.test(ev.endDate) && new Date(ev.endDate) > new Date(ev.startDate), 'endDate must be after startDate');
+  need(
+    Array.isArray(ev.image) && ev.image.length > 0 && ev.image.every((u) => /^https?:\/\//.test(u)),
+    'image must be a non-empty array of absolute URLs',
+  );
   need(ev.eventStatus?.startsWith('https://schema.org/Event'), 'eventStatus should be a schema.org URL');
   const loc = ev.location ?? {};
   need(loc['@type'] === 'Place' && loc.name, 'location must be a named Place');
