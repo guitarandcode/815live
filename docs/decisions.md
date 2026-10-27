@@ -424,3 +424,23 @@ Calls made while filling out listings unattended (session of 2026-10-24).
   Details and fallbacks are in each adapter's header and in venue-sources.md.
   The daily workflow's timeout went from 15 to 25 minutes because the
   Mendelssohn crawl delay makes its first run about 7 minutes.
+- **Palace Wine Bar (user, 2026-10-27).** Venue added (202 N Main St, from the
+  bar's site; Census coordinates). Every item came from the bar's own
+  calendar page (palacewinebar.com/calendar): weekly "Downtown After Dark"
+  (Fri 8:30–10:30 PM, jazz) and "Local Sounds" (Sat 7–9 PM), each held every
+  week from late July through Oct 24, are recurring rules; Halloween Eve with
+  The Vintage Beau (Fri Oct 30, 8:30–10:30) and Halloween Night with DJ Rated
+  AG (Sat Oct 31, 8–11, `dj`, DJ as the billed act) are one-offs and replace
+  that week's series nights through the usual 2-hour dedupe. No cover stated.
+  Comedy and poetry nights there aren't regular enough to add. Abreo stays
+  out until there's a flyer or post for "Dive Bar Live" (its site 403s).
+- **Mary's Market Roscoe (user, 2026-10-27).** Venue added (4866 Bluestem Rd,
+  Census). Weekly Thursday "Live Music at Mary's", 5:30–7:30 PM, skipping
+  Nov 26 (closed) and Dec 24/31 ("Holiday Hours", see needs-review). Named
+  performers through Dec 17 are one-offs; Clark Kelly and Emilio Salinas
+  reuse existing artists. Dec 10 is titled "Christmas Jazz".
+- **Trinadora and the Abram Collier Nonet (user, 2026-10-27).** Trinadora
+  (also billed "Trinadora Rocks") is a performer: artist added and the
+  Inscape Halloween Party (Sat Oct 31, 2–4 PM) hand-entered with them, so the
+  adapter leaves it alone. The Abram Collier Nonet is a separate act from the
+  Quintet; the adapter created it and it was filled in (jazz, Chicago).
