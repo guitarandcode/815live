@@ -9,7 +9,10 @@ export const GET: APIRoute = async ({ site }) => {
   const byDate = await showsByDate();
   const paths = [
     '/',
+    '/tonight',
+    '/tomorrow',
     '/this-weekend',
+    '/free',
     '/calendar',
     '/venues',
     '/artists',

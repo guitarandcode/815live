@@ -5,6 +5,9 @@ import { chicagoIso } from './time.ts';
 
 export const SITE_NAME = '815live';
 
+/** The site-wide social card (scripts/og-image.mjs); Base.astro uses it for og:image. */
+export const OG_IMAGE = '/og.png';
+
 const abs = (path: string, site: URL) => new URL(path, site).href;
 
 function postalAddress(v: Venue) {
@@ -42,6 +45,8 @@ export function showEvent(show: Show, site: URL) {
     '@type': CATEGORY_SCHEMA[show.category],
     name: `${showTitle(show)} at ${v.data.name}`,
     url,
+    // Venues carry no images (we never copy them), so every event uses the site card.
+    image: [abs(OG_IMAGE, site)],
     startDate: chicagoIso(show.date, show.startTime),
     ...(show.endTime && { endDate: chicagoIso(endDate(show), show.endTime) }),
     eventStatus: STATUS[show.status],

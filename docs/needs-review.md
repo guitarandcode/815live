@@ -194,3 +194,26 @@ The October flyer (2026-10-24) named the Oct 30 band "Mothman"; the bar's
 stays under the existing `mothman` record (date and time match). Rename the
 artist if the band's own page uses "Mothmen".
 
+
+## RPL Nordlof Center: library times vs. Crossroads times
+
+The library calendar lists every Music Off the Rock show at 5 PM (Oct 28 at
+5:30 PM), while our entries, from Crossroads Blues Society, say 6 PM with
+doors at 5. The `rpl-nordlof` adapter keeps the hand-entered shows and logs
+the mismatch each run. Oct 28 (5:30 vs 6:00) is the only one that isn't
+simply the door time.
+
+## Mary's Market Roscoe: Dec 24 and Dec 31
+
+The venue's list says "Christmas Eve — Holiday Hours" and "New Year's Eve —
+Holiday Hours" for those Thursdays, with no performer. Both are in the weekly
+rule's `skip` list until the venue says there's music. (Its Dec 5 "Fireside
+Jazz Lunch" is at the Rockford cafe, 2636 McFarland Rd, a venue we don't have.)
+
+## Outreach: The Music Box (DICE)
+
+The Music Box's listings come only from its DICE event widget (promoter "Music
+Box of Rockford LLC"). Automating them needs the venue's (or DICE's)
+permission to use the DICE partner feed with the venue's widget key; DICE's
+sites block Anthropic agents, so we don't fetch them. Until then, Music Box
+shows are entered by hand from pastes. Ask the venue; see venue-sources.md.

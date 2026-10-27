@@ -385,3 +385,96 @@ Calls made while filling out listings unattended (session of 2026-10-24).
   the caption's first line and its list heading ("COMING UP") match. The
   window is still the next 7 days and the cap still 6 shows. The home page's
   weekend "Next 7 days" section label is a different feature and is unchanged.
+- **Event image in JSON-LD is the site card (2026-10-27).** Google recommends
+  `image` for Event rich results. Venues have no image field and we never copy
+  venue images, so every event uses `/og.png`. `check-jsonld.mjs` now requires
+  an absolute `image` on every event.
+- **/tonight, /tomorrow and /free (2026-10-27).** "Tonight" and "tomorrow" use
+  the build's Chicago date and the 4 AM night rule (a 1 AM set is part of the
+  night before), like the home page. The daily workflow already rebuilds every
+  day at 08:17 UTC (deploy hook when data is unchanged), so no new cron is
+  needed; a hidden note links to the right /date page if a build is missed.
+  "Free" means `cover` null or 0; an omitted (unknown) cover isn't claimed as
+  free. Weekly nights appear only for the next 7 days, as on the home page.
+- **robots.txt blocks AI training crawlers only (user, 2026-10-27).** GPTBot,
+  CCBot, Google-Extended, ClaudeBot, Bytespider, Meta-ExternalAgent are
+  disallowed; search and user-initiated agents stay allowed.
+- **Ingest: Crawl-delay honored, dry run, hand-entered shows win (2026-10-27).**
+  `http.ts` waits the site's Crawl-delay between requests (Mendelssohn sets
+  60 s). `run.ts --dry-run` prints each show it would add, change or delete
+  and writes nothing. When a hand-entered show exists at the same venue on the
+  same date, an adapter leaves it alone and logs any time mismatch, rather
+  than adopting it as the Hard Rock adapter does by id. Adapters match
+  performer names against data/artists (ignoring case, punctuation and a
+  leading "The") and log `ASK` when a new name shares its first two words
+  with an existing act.
+- **Tiered prices (2026-10-27).** Where a venue lists advance, door and
+  student prices, `cover` is the advance (lowest general) price and the full
+  line goes in notes ("Tickets: $20 In Advance / $25 At the Door / $6
+  Student.").
+- **Music Box stays manual (2026-10-27).** Re-checked: the venue's own API
+  (api.themusicboxrockford.com) has no events endpoint; listings come only
+  from the DICE widget. DICE's partner API has no robots.txt but needs the
+  widget's partner key, which was issued to the venue for its site, and every
+  other DICE host disallows ClaudeBot/anthropic-ai with `ai-train=no`. Not
+  automated without permission from the venue or DICE.
+- **New adapters (2026-10-27).** `mendelssohn-pac` (Event Organiser iCal +
+  event pages), `rpl-nordlof` (Communico iCal, Nordlof Center only, keyword
+  music filter), `inscape-collective` (Wix event sitemap + Event JSON-LD).
+  Details and fallbacks are in each adapter's header and in venue-sources.md.
+  The daily workflow's timeout went from 15 to 25 minutes because the
+  Mendelssohn crawl delay makes its first run about 7 minutes.
+- **Palace Wine Bar (user, 2026-10-27).** Venue added (202 N Main St, from the
+  bar's site; Census coordinates). Every item came from the bar's own
+  calendar page (palacewinebar.com/calendar): weekly "Downtown After Dark"
+  (Fri 8:30–10:30 PM, jazz) and "Local Sounds" (Sat 7–9 PM), each held every
+  week from late July through Oct 24, are recurring rules; Halloween Eve with
+  The Vintage Beau (Fri Oct 30, 8:30–10:30) and Halloween Night with DJ Rated
+  AG (Sat Oct 31, 8–11, `dj`, DJ as the billed act) are one-offs and replace
+  that week's series nights through the usual 2-hour dedupe. No cover stated.
+  Comedy and poetry nights there aren't regular enough to add. Abreo stays
+  out until there's a flyer or post for "Dive Bar Live" (its site 403s).
+- **Mary's Market Roscoe (user, 2026-10-27).** Venue added (4866 Bluestem Rd,
+  Census). Weekly Thursday "Live Music at Mary's", 5:30–7:30 PM, skipping
+  Nov 26 (closed) and Dec 24/31 ("Holiday Hours", see needs-review). Named
+  performers through Dec 17 are one-offs; Clark Kelly and Emilio Salinas
+  reuse existing artists. Dec 10 is titled "Christmas Jazz".
+- **Trinadora and the Abram Collier Nonet (user, 2026-10-27).** Trinadora
+  (also billed "Trinadora Rocks") is a performer: artist added and the
+  Inscape Halloween Party (Sat Oct 31, 2–4 PM) hand-entered with them, so the
+  adapter leaves it alone. The Abram Collier Nonet is a separate act from the
+  Quintet; the adapter created it and it was filled in (jazz, Chicago).
+- **Recurring horizon: 8 weeks (user, 2026-10-27).** Weekly rules are
+  expanded only 8 weeks out from the build's Chicago date
+  (`RECURRING_HORIZON_WEEKS` in src/lib/data.ts, the one place to change it):
+  at most 8 dated listings per rule, all within the next 56 days, in pages,
+  the sitemap, iCal and RSS. Before this it was 9 weeks (to cover all 60 date
+  pages). The daily build moves the window forward. Dated one-offs (adapters
+  and hand-entered shows) are not limited, so date pages 57–60 list one-offs
+  only. No show files had to go: everything dated past the horizon is a
+  one-off with a named act. Build tests that rely on weekly rules now build
+  against tests/fixtures/data (`SITE_DATA`) instead of real listings.
+- **Every "today" is America/Chicago (user, 2026-10-27).** Cloudflare and
+  GitHub Actions build in UTC, so no page uses the host clock's date. "Today"
+  is always `chicagoDate(NOW)` (src/lib/time.ts) at build time, and
+  `nowNight` (Chicago, 4 AM rule) in the browser. That covers /tonight,
+  /tomorrow, /this-weekend, the home page, the calendar, date pages and the
+  sitemap's /date/ URLs (both from `datePageDates()`), iCal and RSS, and
+  ingest's `today`. Calendar arithmetic on dates stays timezone-free (UTC
+  noon/midnight on date strings). A build test pins 02:00 UTC (9 PM the
+  previous day in Chicago) and checks every one of these uses the Chicago
+  date.
+- **Date pages end at the recurring horizon (user, 2026-10-27).**
+  `DATE_PAGE_DAYS` is now `RECURRING_HORIZON_WEEKS * 7` (56, was 60), so no
+  date page is missing its weekly nights. The sitemap, calendar, date picker,
+  day strip, prev/next links and day-heading links all come from the same
+  window and stop there. Shows beyond it keep their own show pages.
+- **4 AM Chicago rebuild Worker (user, 2026-10-27).** GitHub's scheduled
+  ingest has been starting 5–7 hours late (8–10 AM Chicago), and a failed
+  test or build skips the rebuild. `workers/daily-rebuild/` is a cron-only
+  Cloudflare Worker (crons 09:05 and 10:05 UTC; it posts only on the one that
+  is 4 AM in Chicago, so CDT uses 09:05 and CST 10:05) that POSTs the Pages
+  production deploy hook, rebuilding main as it is. The hook URL is the
+  Worker secret `DEPLOY_HOOK_URL`, never in the repo; no fetch handler and
+  `workers_dev = false`, so it has no public URL. The user deploys it by hand
+  (commands in its README); the GitHub workflow is unchanged.

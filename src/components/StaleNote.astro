@@ -1,0 +1,27 @@
+---
+// For pages built around "today" (/tonight, /tomorrow). The daily build keeps
+// them current; if a build is missed, this points visitors to the right day.
+import { chicagoDate } from '../lib/time.ts';
+import { NOW } from '../lib/data.ts';
+
+interface Props {
+  /** Days after the visitor's night that the page is about: 0 tonight, 1 tomorrow. */
+  offset: number;
+}
+
+const { offset } = Astro.props;
+---
+
+<p class="lede" data-stale-note data-built-for={chicagoDate(NOW)} data-offset={offset} hidden>
+  This page hasn't been updated yet today. <a href="/calendar">See the right day on the calendar</a>.
+</p>
+<script is:inline>
+  document.querySelectorAll('[data-stale-note]').forEach((note) => {
+    const night = document.documentElement.dataset.nowNight;
+    if (!night || night <= note.dataset.builtFor) return;
+    const d = new Date(`${night}T12:00:00Z`);
+    d.setUTCDate(d.getUTCDate() + Number(note.dataset.offset));
+    note.querySelector('a').href = `/date/${d.toISOString().slice(0, 10)}`;
+    note.hidden = false;
+  });
+</script>

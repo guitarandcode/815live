@@ -74,6 +74,20 @@ export function laterWindow(night: string): { start: string; end: string; label:
   };
 }
 
+/**
+ * One night's shows (the 4 AM rule applies, so a 1 AM set counts as the
+ * night before). The /tonight and /tomorrow pages use the build's date, so
+ * they rely on the daily rebuild.
+ */
+export function onNight<T extends Dated>(shows: T[], night: string): T[] {
+  return shows.filter((s) => nightOf(s) === night).sort(byStart);
+}
+
+/** Listed shows known to be free: cover null or 0 (an omitted cover is unknown, not free). */
+export function freeShows<T extends Dated & { recurring?: string; cover?: number | null }>(shows: T[], now: Date): T[] {
+  return listing(shows, now).filter((s) => s.cover === null || s.cover === 0);
+}
+
 export function groupByNight<T extends Dated>(shows: T[]): { date: string; shows: T[] }[] {
   const nights = new Map<string, T[]>();
   for (const s of [...shows].sort(byStart)) {

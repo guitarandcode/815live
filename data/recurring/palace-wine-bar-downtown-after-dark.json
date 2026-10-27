@@ -1,0 +1,15 @@
+{
+  "venue": "palace-wine-bar",
+  "category": "live-music",
+  "title": "Downtown After Dark",
+  "weekday": "friday",
+  "startTime": "20:30",
+  "endTime": "22:30",
+  "notes": "Jazz.",
+  "checked": "2026-10-27",
+  "source": {
+    "type": "manual",
+    "url": "https://www.palacewinebar.com/calendar",
+    "kind": "venue"
+  }
+}
