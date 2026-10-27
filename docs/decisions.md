@@ -385,3 +385,42 @@ Calls made while filling out listings unattended (session of 2026-10-24).
   the caption's first line and its list heading ("COMING UP") match. The
   window is still the next 7 days and the cap still 6 shows. The home page's
   weekend "Next 7 days" section label is a different feature and is unchanged.
+- **Event image in JSON-LD is the site card (2026-10-27).** Google recommends
+  `image` for Event rich results. Venues have no image field and we never copy
+  venue images, so every event uses `/og.png`. `check-jsonld.mjs` now requires
+  an absolute `image` on every event.
+- **/tonight, /tomorrow and /free (2026-10-27).** "Tonight" and "tomorrow" use
+  the build's Chicago date and the 4 AM night rule (a 1 AM set is part of the
+  night before), like the home page. The daily workflow already rebuilds every
+  day at 08:17 UTC (deploy hook when data is unchanged), so no new cron is
+  needed; a hidden note links to the right /date page if a build is missed.
+  "Free" means `cover` null or 0; an omitted (unknown) cover isn't claimed as
+  free. Weekly nights appear only for the next 7 days, as on the home page.
+- **robots.txt blocks AI training crawlers only (user, 2026-10-27).** GPTBot,
+  CCBot, Google-Extended, ClaudeBot, Bytespider, Meta-ExternalAgent are
+  disallowed; search and user-initiated agents stay allowed.
+- **Ingest: Crawl-delay honored, dry run, hand-entered shows win (2026-10-27).**
+  `http.ts` waits the site's Crawl-delay between requests (Mendelssohn sets
+  60 s). `run.ts --dry-run` prints each show it would add, change or delete
+  and writes nothing. When a hand-entered show exists at the same venue on the
+  same date, an adapter leaves it alone and logs any time mismatch, rather
+  than adopting it as the Hard Rock adapter does by id. Adapters match
+  performer names against data/artists (ignoring case, punctuation and a
+  leading "The") and log `ASK` when a new name shares its first two words
+  with an existing act.
+- **Tiered prices (2026-10-27).** Where a venue lists advance, door and
+  student prices, `cover` is the advance (lowest general) price and the full
+  line goes in notes ("Tickets: $20 In Advance / $25 At the Door / $6
+  Student.").
+- **Music Box stays manual (2026-10-27).** Re-checked: the venue's own API
+  (api.themusicboxrockford.com) has no events endpoint; listings come only
+  from the DICE widget. DICE's partner API has no robots.txt but needs the
+  widget's partner key, which was issued to the venue for its site, and every
+  other DICE host disallows ClaudeBot/anthropic-ai with `ai-train=no`. Not
+  automated without permission from the venue or DICE.
+- **New adapters (2026-10-27).** `mendelssohn-pac` (Event Organiser iCal +
+  event pages), `rpl-nordlof` (Communico iCal, Nordlof Center only, keyword
+  music filter), `inscape-collective` (Wix event sitemap + Event JSON-LD).
+  Details and fallbacks are in each adapter's header and in venue-sources.md.
+  The daily workflow's timeout went from 15 to 25 minutes because the
+  Mendelssohn crawl delay makes its first run about 7 minutes.
