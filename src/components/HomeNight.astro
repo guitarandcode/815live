@@ -1,7 +1,7 @@
 ---
 // One night on the home page. index.astro's inline script moves these
 // between sections by their data-night date.
-import { hasDatePage, type Show } from '../lib/data.ts';
+import { dayHref, hasDatePage, type Show } from '../lib/data.ts';
 import { formatMediumDay } from '../lib/time.ts';
 import ShowCard from './ShowCard.astro';
 
@@ -16,7 +16,7 @@ const { date, shows, where } = Astro.props;
 
 <section class="day" data-night={date} hidden={!where}>
   <h3 class="day-heading">
-    {hasDatePage(date) ? <a href={`/date/${date}`}>{formatMediumDay(date)}</a> : formatMediumDay(date)}
+    {hasDatePage(date) ? <a href={dayHref(date)} data-day-link={date}>{formatMediumDay(date)}</a> : formatMediumDay(date)}
   </h3>
   {shows.map((show) => <ShowCard show={show} />)}
 </section>

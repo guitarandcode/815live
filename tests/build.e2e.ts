@@ -5,6 +5,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { execFileSync } from 'node:child_process';
 import { existsSync, readdirSync, readFileSync } from 'node:fs';
+import { join, relative } from 'node:path';
 
 /** Fixed records for cases that must not depend on real listings (see its README). */
 const FIXTURES = 'tests/fixtures/data';
@@ -20,6 +21,28 @@ function buildAt(instant: string, opts: { data?: string; env?: Record<string, st
   // Home nights the build shows (it also carries hidden ones for the browser to re-sort).
   const home = [...homeHtml.matchAll(/data-night="([\d-]+)"( hidden)?>/g)].filter((m) => !m[2]).map((m) => m[1]);
   return { home, weekend: days('this-weekend.html'), footer: homeHtml, homeHtml };
+}
+
+/** Site path of each built page -> the internal paths its plain hrefs link to (not links scripts add later). */
+function linkGraph(): Map<string, Set<string>> {
+  const graph = new Map<string, Set<string>>();
+  const walk = (dir: string) => {
+    for (const e of readdirSync(dir, { withFileTypes: true })) {
+      const file = join(dir, e.name);
+      if (e.isDirectory()) walk(file);
+      else if (e.name.endsWith('.html')) {
+        const page = '/' + relative('dist', file).replace(/(^|\/)index\.html$/, '').replace(/\.html$/, '');
+        const links = new Set<string>();
+        for (const [, href] of readFileSync(file, 'utf8').matchAll(/<a\b[^>]*\bhref="([^"]+)"/g)) {
+          const url = new URL(href.replaceAll('&amp;', '&'), `https://815live.com${page}`);
+          if (url.origin === 'https://815live.com') links.add(url.pathname.replace(/\.html$/, '').replace(/(.)\/$/, '$1'));
+        }
+        graph.set(page, links);
+      }
+    }
+  };
+  walk('dist');
+  return graph;
 }
 
 test('23:00 UTC build (6pm Chicago) still lists tonight', () => {
@@ -80,7 +103,7 @@ test('home leads with tonight, a 7-day strip and a date picker', () => {
   const strip = [...homeHtml.matchAll(/data-strip-date="([\d-]+)"/g)].map((m) => m[1]);
   assert.deepEqual(strip, ['24', '25', '26', '27', '28', '29', '30'].map((d) => `2026-10-${d}`));
   assert.match(homeHtml, /<span class="dc-label">Tonight<\/span>/);
-  assert.match(homeHtml, /href="\/date\/2026-10-25"[\s\S]*?Tomorrow/);
+  assert.match(homeHtml, /href="\/tomorrow" data-day-link="2026-10-25"[\s\S]*?Tomorrow/);
   assert.match(homeHtml, /<input[^>]*type="date"[^>]*min="2026-10-24"[^>]*max="2026-12-18"/);
   assert.match(homeHtml, /<form class="date-jump" action="\/calendar"/); // no-JS fallback
   assert.match(homeHtml, /<meta property="og:image" content="https:\/\/815live.com\/og.png">/);
@@ -91,7 +114,7 @@ test('nothing tonight: the home page says so and points to the next night with e
   // A Tuesday; the fixtures' only weekly nights are Wednesday and Saturday.
   const { homeHtml } = buildAt('2027-06-01T18:00:00Z', { data: FIXTURES });
   assert.match(homeHtml, /<p class="tonight-empty" data-home-empty>/);
-  assert.match(homeHtml, /Next up: <a href="\/date\/2027-06-02">Wednesday, Jun 2<\/a>/);
+  assert.match(homeHtml, /Next up: <a href="\/tomorrow" data-day-link="2027-06-02">Wednesday, Jun 2<\/a>/);
   assert.match(homeHtml, /class="tonight-list" data-home-list hidden/);
 });
 
@@ -231,3 +254,42 @@ test('preview builds keep production canonicals and sitemap URLs', () => {
   assert.doesNotMatch(readFileSync('dist/index.html', 'utf8'), /pages\.dev/);
 });
 
+
+test('internal links: home, header, day strip and filters reach /tonight, /tomorrow and /free', () => {
+  buildAt('2026-10-27T23:00:00Z'); // Tuesday 6 PM
+  const read = (f: string) => readFileSync(`dist/${f}`, 'utf8');
+  const home = read('index.html');
+  assert.match(home, /<nav aria-label="Main">\s*<a href="\/tonight">Tonight<\/a>/);
+  assert.match(home, /href="\/tonight" data-day-link="2026-10-27" class="day-chip/);
+  assert.match(home, /href="\/tomorrow" data-day-link="2026-10-28" class="day-chip/);
+  assert.match(home, /href="\/date\/2026-10-29" data-day-link="2026-10-29" class="day-chip/);
+  assert.doesNotMatch(home, /href="\/date\/2026-10-2[78]"/);
+  assert.match(home, /<nav class="home-quick"[\s\S]*href="\/tomorrow"[\s\S]*href="\/free"/);
+  assert.match(home, /<nav class="filters"[\s\S]*?<a href="\/free">Free<\/a>/);
+  assert.match(read('karaoke.html'), /<nav class="filters"[\s\S]*?<a href="\/free">Free<\/a>/);
+  assert.match(read('free.html'), /<a href="\/free" aria-current="page">Free<\/a>/);
+  // Home and /tonight, and the date pages and the landing pages, don't share a title or h1.
+  const head = (f: string) => [read(f).match(/<title>([^<]*)/)![1], read(f).match(/<h1[^>]*>([\s\S]*?)<\/h1>/)![1]];
+  const pages = ['index.html', 'tonight.html', 'date/2026-10-27.html', 'tomorrow.html', 'date/2026-10-28.html'];
+  for (const part of [0, 1]) assert.equal(new Set(pages.map((f) => head(f)[part])).size, pages.length);
+  assert.match(read('date/2026-10-27.html'), /<link rel="canonical" href="https:\/\/815live.com\/date\/2026-10-27">/);
+  assert.match(read('date/2026-10-27.html'), /<a href="\/tonight">Tonight<\/a>/);
+  assert.match(read('date/2026-10-28.html'), /<a href="\/tomorrow">Tomorrow<\/a>/);
+});
+
+test('no orphans: every page in the sitemap is linked from some other page', () => {
+  buildAt(new Date().toISOString()); // today's real listings, as the daily build sees them
+  const graph = linkGraph();
+  const inbound = new Map<string, number>();
+  for (const [page, links] of graph) for (const to of links) if (to !== page) inbound.set(to, (inbound.get(to) ?? 0) + 1);
+  const locs = [...readFileSync('dist/sitemap.xml', 'utf8').matchAll(/<loc>https:\/\/815live\.com([^<]*)<\/loc>/g)].map((m) => m[1] || '/');
+  assert.ok(locs.length > 100);
+  const orphans = locs.filter((p) => !inbound.get(p));
+  assert.deepEqual(orphans, [], `sitemap pages nothing links to: ${orphans.join(', ')}`);
+});
+
+test('past shows keep their pages but leave the sitemap', () => {
+  buildAt('2026-10-29T18:00:00Z', { data: FIXTURES }); // the fixture shows are Oct 27 and 28
+  assert.ok(existsSync('dist/shows/2026-10-27-fixture-hall.html'));
+  assert.doesNotMatch(readFileSync('dist/sitemap.xml', 'utf8'), /\/shows\/2026-10-2[78]-fixture-(hall|bar)</);
+});

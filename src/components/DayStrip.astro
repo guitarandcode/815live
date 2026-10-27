@@ -1,9 +1,9 @@
 ---
-// Seven days, each linking to its date page: Today/Tonight, Tomorrow, then weekday
-// names. On a date page the strip is centred on that day where it can be.
+// Seven days: Today/Tonight and Tomorrow link to /tonight and /tomorrow, the
+// rest (weekday names) to their date pages. On a date page the strip is centred on that day where it can be.
 // Labels are relative to the build date; Base's inline script relabels them
 // if the page is viewed on a later day.
-import { datePageDates, NOW, showsByDate } from '../lib/data.ts';
+import { datePageDates, dayHref, NOW, showsByDate } from '../lib/data.ts';
 import { dayPart } from '../lib/shows.ts';
 import { addDays, chicagoDate, formatDay } from '../lib/time.ts';
 
@@ -35,7 +35,8 @@ const days = Array.from({ length: 7 }, (_, i) => {
       days.map((d) => (
         <li data-strip-date={d.date}>
           <a
-            href={`/date/${d.date}`}
+            href={dayHref(d.date)}
+            data-day-link={d.date}
             class:list={['day-chip', d.date === today && 'is-today', d.count === 0 && 'is-empty']}
             aria-current={d.date === current ? 'page' : undefined}
           >

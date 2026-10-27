@@ -1,10 +1,12 @@
 import type { APIRoute } from 'astro';
 import { CATEGORIES } from '../lib/categories.ts';
-import { categoryCounts, loadAll, showsByDate } from '../lib/data.ts';
+import { categoryCounts, loadAll, showsByDate, upcomingShows } from '../lib/data.ts';
 
 // Placeholder records, empty category pages and empty date pages (all noindex) are left out; a noindex URL in a sitemap is a mixed signal.
+// Past shows keep their pages (links to them still work) but no listing links them any more, so they're left out too.
 export const GET: APIRoute = async ({ site }) => {
-  const { venues, artists, shows } = await loadAll();
+  const { venues, artists } = await loadAll();
+  const shows = await upcomingShows();
   const counts = await categoryCounts();
   const byDate = await showsByDate();
   const paths = [

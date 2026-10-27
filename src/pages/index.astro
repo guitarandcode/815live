@@ -5,7 +5,7 @@ import DateJump from '../components/DateJump.astro';
 import DayStrip from '../components/DayStrip.astro';
 import HomeNight from '../components/HomeNight.astro';
 import WeeklyList from '../components/WeeklyList.astro';
-import { loadAll, NOW, pageListing } from '../lib/data.ts';
+import { dayHref, loadAll, NOW, pageListing } from '../lib/data.ts';
 import { website } from '../lib/jsonld.ts';
 import { dayPart, groupByNight, laterWindow, nightOf, RECURRING_LIST_DAYS } from '../lib/shows.ts';
 import { addDays, chicagoDate, formatMediumDay, formatShortDay } from '../lib/time.ts';
@@ -58,13 +58,19 @@ const hasLater = inSection('later').length > 0;
       <p class="tonight-tz"><span data-home-date>{formatMediumDay(today)}</span></p>
     </div>
     <DayStrip />
+    <nav class="home-quick" aria-label="Quick links">
+      <a href="/tonight">Tonight's full list</a>
+      <a href="/tomorrow">Tomorrow</a>
+      <a href="/this-weekend">This weekend</a>
+      <a href="/free">Free shows</a>
+    </nav>
     <p class="tonight-empty" data-home-empty hidden={hasTonight}>
       Nothing's listed for <span data-home-part-lower>{dayPart(NOW).toLowerCase()}</span>.{' '}
       <span data-next>
         {
           nextNight ? (
             <>
-              Next up: <a href={`/date/${nextNight.date}`}>{formatMediumDay(nextNight.date)}</a>.
+              Next up: <a href={dayHref(nextNight.date)} data-day-link={nextNight.date}>{formatMediumDay(nextNight.date)}</a>.
             </>
           ) : (
             <>
@@ -150,7 +156,7 @@ const hasLater = inSection('later').length > 0;
         if (b.empty) b.empty.hidden = any;
       }
       document.querySelector('[data-next]').innerHTML = next
-        ? `Next up: <a href="/date/${next}">${medium(next)}</a>.`
+        ? `Next up: <a href="/date/${next}" data-day-link="${next}">${medium(next)}</a>.`
         : 'Nothing else is listed yet; see the <a href="/calendar">calendar</a>.';
     })();
   </script>

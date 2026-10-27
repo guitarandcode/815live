@@ -3,13 +3,15 @@ import { CATEGORIES, CATEGORY_LABEL, type Category } from '../lib/categories.ts'
 import { categoryCounts } from '../lib/data.ts';
 
 interface Props {
-  current?: Category;
+  /** A category, or 'free' on /free (not a category: it cuts across them). */
+  current?: Category | 'free';
 }
 
 const { current } = Astro.props;
 const counts = await categoryCounts();
 // A category's link is hidden while it has no listings (unless you're on its page).
 const shown = CATEGORIES.filter((c) => counts[c] > 0 || c === current);
+// /free always exists (it says so when nothing is free), so its link always shows.
 ---
 
 {
@@ -19,6 +21,7 @@ const shown = CATEGORIES.filter((c) => counts[c] > 0 || c === current);
       {shown.map((c) => (
         <a href={`/${c}`} aria-current={c === current ? 'page' : undefined}>{CATEGORY_LABEL[c]}</a>
       ))}
+      <a href="/free" aria-current={current === 'free' ? 'page' : undefined}>Free</a>
     </nav>
   )
 }

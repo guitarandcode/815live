@@ -20,7 +20,7 @@ const description = shows.length
 ---
 
 <Base title="Live Music in Rockford Tonight" description={description} jsonld={shows.length ? itemList(shows, Astro.site!) : undefined}>
-  <h1>Live music tonight</h1>
+  <h1>Live music in Rockford tonight</h1>
   <p class="lede">{day} in Rockford, Loves Park, Belvidere and the 815.</p>
   <StaleNote offset={0} />
   <ShowList shows={shows} empty="Nothing listed for tonight. Try tomorrow or this weekend." />

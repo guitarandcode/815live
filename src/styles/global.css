@@ -447,6 +447,12 @@ nav {
   line-height: 1.25;
 }
 
+.home-quick {
+  margin: -0.25rem 0 1.25rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
 .tonight-empty {
   margin: 0 0 0.75rem;
   font-size: 1.05rem;

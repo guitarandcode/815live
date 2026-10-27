@@ -207,6 +207,17 @@ export function datePageDates(): string[] {
   return Array.from({ length: DATE_PAGE_DAYS }, (_, i) => addDays(today, i));
 }
 
+/**
+ * Where a link to a day goes: /tonight and /tomorrow for the build's first
+ * two days (so those pages, not the date pages, collect the links), its date
+ * page otherwise. Links carry data-day-link; Base's inline script repeats this
+ * for the visitor's own night.
+ */
+export function dayHref(date: string): string {
+  const today = chicagoDate(NOW);
+  return date === today ? '/tonight' : date === addDays(today, 1) ? '/tomorrow' : `/date/${date}`;
+}
+
 export function hasDatePage(date: string): boolean {
   const today = chicagoDate(NOW);
   return date >= today && date < addDays(today, DATE_PAGE_DAYS);

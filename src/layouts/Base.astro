@@ -20,8 +20,9 @@ const canonical = new URL(path, site).href;
 const fullTitle = path === '/' ? title : `${title} | ${SITE_NAME}`;
 const ogImage = new URL(OG_IMAGE, site).href;
 const ld = jsonld ? (Array.isArray(jsonld) ? jsonld : [jsonld]) : [];
+// Phones scroll this row sideways already; Tomorrow is linked from the home page instead.
 const nav = [
-  ['/', 'Tonight'],
+  ['/tonight', 'Tonight'],
   ['/this-weekend', 'Weekend'],
   ['/calendar', 'Calendar'],
   ['/venues', 'Venues'],
@@ -128,12 +129,19 @@ const social = [
         const empty = list.querySelector('[data-empty]');
         if (empty && !list.querySelector('[data-show-date]:not([hidden])')) empty.hidden = false;
       });
+      const next = new Date(`${today}T12:00:00Z`);
+      next.setUTCDate(next.getUTCDate() + 1);
+      const tomorrow = next.toISOString().slice(0, 10);
+      // Day links (dayHref in src/lib/data.ts): /tonight and /tomorrow are built for the
+      // build's date, so on a page from an earlier day every day uses its date page.
+      const fresh = today === document.documentElement.dataset.built;
+      document.querySelectorAll('[data-day-link]').forEach((a) => {
+        const d = a.getAttribute('data-day-link');
+        a.href = fresh && d === today ? '/tonight' : fresh && d === tomorrow ? '/tomorrow' : `/date/${d}`;
+      });
       // Day strip labels were written for the build's date and hour; fix them for now.
       const strip = [...document.querySelectorAll('[data-strip-date]')];
       if (strip.length) {
-        const next = new Date(`${today}T12:00:00Z`);
-        next.setUTCDate(next.getUTCDate() + 1);
-        const tomorrow = next.toISOString().slice(0, 10);
         strip.forEach((li) => {
           const d = li.getAttribute('data-strip-date');
           const label = li.querySelector('.dc-label');
