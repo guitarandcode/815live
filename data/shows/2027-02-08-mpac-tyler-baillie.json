@@ -1,0 +1,19 @@
+{
+  "date": "2027-02-08",
+  "startTime": "17:30",
+  "venue": "mendelssohn-performing-arts-center",
+  "category": "live-music",
+  "artists": [
+    "tyler-baillie"
+  ],
+  "cover": 20,
+  "ticketUrl": "https://app.arts-people.com/index.php?show=337759",
+  "notes": "Tickets: $20 In Advance / $25 At the Door / $6 Student.",
+  "checked": "2026-10-27",
+  "source": {
+    "type": "venue-site",
+    "url": "https://www.mendelssohnpac.org/events/event/tyler-baillie/",
+    "kind": "venue",
+    "uid": "mendelssohn-pac:tyler-baillie:2027-02-08T17:30"
+  }
+}

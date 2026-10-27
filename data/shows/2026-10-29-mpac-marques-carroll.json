@@ -1,0 +1,19 @@
+{
+  "date": "2026-10-29",
+  "startTime": "19:00",
+  "venue": "mendelssohn-performing-arts-center",
+  "category": "live-music",
+  "artists": [
+    "marques-carroll"
+  ],
+  "cover": 20,
+  "ticketUrl": "https://app.arts-people.com/index.php?show=337755",
+  "notes": "Tickets: $20 In Advance / $25 At the Door / $6 Student.",
+  "checked": "2026-10-27",
+  "source": {
+    "type": "venue-site",
+    "url": "https://www.mendelssohnpac.org/events/event/marques-carroll/",
+    "kind": "venue",
+    "uid": "mendelssohn-pac:marques-carroll:2026-10-29T19:00"
+  }
+}
