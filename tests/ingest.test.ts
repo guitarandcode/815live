@@ -8,6 +8,7 @@ import { parseIcs } from '../scripts/ingest/lib/ics.ts';
 import { matchArtist } from '../scripts/ingest/lib/artists.ts';
 import * as mpac from '../scripts/ingest/adapters/mendelssohn-pac.ts';
 import * as rpl from '../scripts/ingest/adapters/rpl-nordlof.ts';
+import * as inscape from '../scripts/ingest/adapters/inscape-collective.ts';
 import { inferDate, parseEventPage, parseSitemap, toShows } from '../scripts/ingest/adapters/hard-rock-rockford.ts';
 
 test('robots: wildcard and longest-match rules', () => {
@@ -188,6 +189,17 @@ test('rpl: music picked by keywords, acts from the title', () => {
   assert.equal(show.cover, null);
   assert.equal(show.notes, 'In the J.R. Sullivan Theater.');
   assert.equal(show.sourceUrl, 'https://services.rockfordpubliclibrary.org/event/1');
+});
+
+test('inscape: concerts and open mics listed, other music mentions flagged', () => {
+  const at = (name: string, description = '') => ({ name, description, startDate: '2026-11-07T14:00:00-06:00', endDate: '2026-11-07T15:30:00-06:00' });
+  assert.deepEqual(inscape.classify(at('Emily Hurd in Concert!')), { kind: 'concert', act: 'Emily Hurd' });
+  assert.deepEqual(inscape.classify(at('Open Mic Night')), { kind: 'open-mic' });
+  assert.deepEqual(inscape.classify(at('Trinadora Halloween Party', 'Music, dancing')), { kind: 'skip', ask: true });
+  assert.deepEqual(inscape.classify(at('Shamanic Sound Bath', 'music')), { kind: 'skip', ask: false });
+  const show = inscape.toShow('emily-hurd-in-concert', at('Emily Hurd in Concert!'), { kind: 'concert', act: 'Emily Hurd' });
+  assert.deepEqual([show.id, show.date, show.startTime, show.endTime], ['2026-11-07-inscape-emily-hurd', '2026-11-07', '14:00', '15:30']);
+  assert.equal(inscape.eventJsonLd('<script type="application/ld+json">{"@type":"Event","name":"A","startDate":"x"}</script>').name, 'A');
 });
 
 test('dry run and hand-entered shows: nothing written; a person\'s entry wins', async () => {
