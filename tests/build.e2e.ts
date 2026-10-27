@@ -165,3 +165,23 @@ test('listings show their source, last-checked date and a report link', () => {
   // Partial line-ups say more acts are coming.
   assert.match(readFileSync('dist/shows/2026-11-07-cahoots-rockford.html', 'utf8'), /Sunset Strip, more TBA/);
 });
+
+test('tonight, tomorrow and free landing pages', () => {
+  buildAt('2026-10-27T23:00:00Z'); // Tuesday 6 PM Chicago
+  const days = (file: string) => [...readFileSync(`dist/${file}`, 'utf8').matchAll(/data-show-date="([\d-]+)"/g)].map((m) => m[1]);
+  assert.ok(days('tonight.html').every((d) => d === '2026-10-27' || d === '2026-10-28'));
+  assert.ok(days('tonight.html').includes('2026-10-27'));
+  assert.ok(days('tomorrow.html').every((d) => d === '2026-10-28' || d === '2026-10-29'));
+  assert.match(readFileSync('dist/tonight.html', 'utf8'), /<title>Live Music in Rockford Tonight \| 815live<\/title>/);
+  const free = readFileSync('dist/free.html', 'utf8');
+  assert.match(free, /<title>Free Live Music in Rockford \| 815live<\/title>/);
+  for (const [, id] of free.matchAll(/href="\/shows\/([^"]+)"/g)) {
+    const file = `data/shows/${id}.json`;
+    if (existsSync(file)) {
+      const cover = JSON.parse(readFileSync(file, 'utf8')).cover;
+      assert.ok(cover === null || cover === 0, `${id} is on /free with cover ${cover}`);
+    }
+  }
+  const sitemap = readFileSync('dist/sitemap.xml', 'utf8');
+  for (const p of ['tonight', 'tomorrow', 'free']) assert.match(sitemap, new RegExp(`<loc>https://815live.com/${p}</loc>`));
+});

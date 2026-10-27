@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { chicagoDate, chicagoIso, chicagoInstant, weekendRange, formatTime, formatTimeRange } from '../src/lib/time.ts';
-import { upcoming, thisWeekend, groupByDay, recurringDates, dedupeRecurring, listing, nightOf, groupByNight, laterWindow, dayPart } from '../src/lib/shows.ts';
+import { upcoming, thisWeekend, groupByDay, recurringDates, dedupeRecurring, listing, nightOf, groupByNight, laterWindow, dayPart, onNight, freeShows } from '../src/lib/shows.ts';
 
 const shows = [
   { id: 'fri-early', date: '2026-10-23', startTime: '20:00' },
@@ -120,4 +120,28 @@ test('build day part: Today before 5 PM Chicago, Tonight after', () => {
   assert.equal(dayPart(new Date('2026-10-26T21:59:00Z')), 'Today'); // 4:59 PM CDT
   assert.equal(dayPart(new Date('2026-10-26T22:00:00Z')), 'Tonight');
   assert.equal(dayPart(new Date('2026-10-26T08:17:00Z')), 'Today'); // 3:17 AM daily build
+});
+
+test('one night: shows that night, including sets before 4 AM the next day', () => {
+  const shows = [
+    { id: 'early', date: '2026-10-30', startTime: '19:00' },
+    { id: 'late', date: '2026-10-31', startTime: '01:00' },
+    { id: 'next', date: '2026-10-31', startTime: '20:00' },
+    { id: 'prev-late', date: '2026-10-30', startTime: '02:00' },
+  ];
+  assert.deepEqual(onNight(shows, '2026-10-30').map((s) => s.id), ['early', 'late']);
+});
+
+test('free shows: cover null or 0 only, recurring only within 7 days', () => {
+  const now = new Date('2026-10-27T18:00:00Z');
+  const shows = [
+    { id: 'null', date: '2026-10-28', startTime: '20:00', cover: null },
+    { id: 'zero', date: '2026-11-20', startTime: '20:00', cover: 0 },
+    { id: 'paid', date: '2026-10-28', startTime: '20:00', cover: 10 },
+    { id: 'unknown', date: '2026-10-28', startTime: '20:00' },
+    { id: 'past', date: '2026-10-26', startTime: '20:00', cover: null },
+    { id: 'weekly-soon', date: '2026-10-29', startTime: '21:00', cover: null, recurring: 'x' },
+    { id: 'weekly-later', date: '2026-11-19', startTime: '21:00', cover: null, recurring: 'x' },
+  ];
+  assert.deepEqual(freeShows(shows, now).map((s) => s.id), ['null', 'weekly-soon', 'zero']);
 });

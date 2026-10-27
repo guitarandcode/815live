@@ -1,0 +1,21 @@
+---
+import Base from '../layouts/Base.astro';
+import ShowList from '../components/ShowList.astro';
+import { loadAll, NOW } from '../lib/data.ts';
+import { itemList } from '../lib/jsonld.ts';
+import { freeShows } from '../lib/shows.ts';
+
+// Cover null or 0 only; shows with an unknown cover aren't claimed as free.
+const { shows: all } = await loadAll();
+const shows = freeShows(all, NOW);
+---
+
+<Base
+  title="Free Live Music in Rockford"
+  description="Free live music in Rockford, Loves Park, Belvidere and the 815: no-cover shows, open mics, karaoke and DJ nights, updated daily."
+  jsonld={shows.length ? itemList(shows, Astro.site!) : undefined}
+>
+  <h1>Free shows</h1>
+  <p class="lede">No cover. Shows whose cover we don't know aren't listed here, so check the full calendar too.</p>
+  <ShowList shows={shows} empty="No free shows listed right now." />
+</Base>
