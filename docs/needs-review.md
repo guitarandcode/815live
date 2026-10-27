@@ -65,8 +65,6 @@ its TicketWeb page had no upcoming shows (2026-10-24).
 
 A "What's Happening in Rockford IL?" group thread the user pasted named these.
 None could be confirmed from a source we're allowed to use, so nothing is published:
-- **Sheila's Daiquiri Lounge** (308 W State St): Thursday karaoke appears only
-  in a Rock River Current article (blocks Claude). Venue site lists hours, no events.
 - **The Filling Station** (New Milford): Fri/Sat 9–2 per commenters; no venue site found.
 - **Windsor Pizza Parlor**, **Attitudes Bar & Grill** (Machesney Park),
   **The Office Niteclub** (513 E State St, Sundays), **Rockton Inn**
@@ -143,9 +141,6 @@ the bands' pages). The calendar image's right edge is cut off through the
 Saturday column, so these names may be incomplete:
 - **Nov 7 "Shuffle This"**, **Nov 21 "Soul 2 Soul"**: published under those
   names.
-- **Nov 14 "Stereo Type"**: linked to the existing Stereotype (the band that
-  plays Shattered Saloon and Best Dam Bar). Unconfirmed that it's the same
-  band.
 - **Nov 13 "Synergy"**: given its own artist record, not merged with The
   Synergy Band. Merge if they turn out to be the same act.
 
@@ -201,7 +196,8 @@ The library calendar lists every Music Off the Rock show at 5 PM (Oct 28 at
 5:30 PM), while our entries, from Crossroads Blues Society, say 6 PM with
 doors at 5. The `rpl-nordlof` adapter keeps the hand-entered shows and logs
 the mismatch each run. Oct 28 (5:30 vs 6:00) is the only one that isn't
-simply the door time.
+simply the door time. The band's own Facebook event (2026-10-27 inbox) says
+"Doors at 5pm, Show at 6pm", matching our entry.
 
 ## Mary's Market Roscoe: Dec 24 and Dec 31
 
@@ -209,6 +205,48 @@ The venue's list says "Christmas Eve — Holiday Hours" and "New Year's Eve —
 Holiday Hours" for those Thursdays, with no performer. Both are in the weekly
 rule's `skip` list until the venue says there's music. (Its Dec 5 "Fireside
 Jazz Lunch" is at the Rockford cafe, 2636 McFarland Rd, a venue we don't have.)
+
+## Stereotype: Nov 7 HydeOut Bar, Dec 12 Whiskey's, Dec 31 Shattered
+
+The band's Facebook post (2026-10-27 inbox, now in `waiting/`) lists its
+dates through New Year's Eve; Oct 31, Nov 14, Nov 21 and Nov 25 are published.
+Not published:
+- **Sat Nov 7, HydeOut Bar, 8 PM**: no town or address given, and a search
+  found no HydeOut Bar in the Rockford area.
+- **Sat Dec 12, Whiskey's Roadhouse "Toys for Tots" show**: Stereotype opens
+  ("early for us"), so other acts follow; no start time given.
+- **Thu Dec 31, Shattered Saloon, NYE masquerade party**: no start time given.
+
+## Grand Avenue Pub: Sensations, Tue Oct 27 (no time)
+
+A screenshot of a "Stuff to do in Rockford, IL" group share (2026-10-27
+inbox) shows a Facebook event "Sensations at Grand Avenue Pub", Beloit, Tue
+Oct 27, with no time. A Tuesday is unusual for the pub, and the event page
+wasn't opened. Not published; past once today is over. In `waiting/`.
+
+## Rockton Inn: "Hard Dance Halloween 1.0", "This Saturday", 9 PM–1 AM
+
+The bar's flyer (2026-10-27 inbox) gives 102 E Main St, Rockton; hardstyle,
+techno and EDM DJ night; 9 PM–1 AM; no cover. It says "This Saturday" with no
+date and the file has no post date, so it could be Oct 31 or the Saturday
+before (Oct 24, past). The DJ isn't named. Publish as a `dj` show on Oct 31
+(and create the venue, Census geocoded) if the date is confirmed. In
+`waiting/`.
+
+## Buchanan St Pub (Belvidere): Halloween Party, Sat Oct 31, 8:30 PM
+
+The pub's flyer (2026-10-27 inbox) gives 111 Buchanan St, Belvidere,
+10-31-2026, 8:30 PM, "Halloween Party", and nothing about music, a DJ or
+karaoke. Publish if there's entertainment we list (and create the venue). In
+`waiting/`.
+
+## Genoa Veterans Home: Polly Says, Sat Oct 31, 7:30–10:30 PM (area call)
+
+A Facebook event screenshot (2026-10-27 inbox): Halloween costume party with
+live music by Polly Says - A 90s Experience (event also by Tim Logsdon), at
+Genoa Veterans Home, 311 S Washington St, Genoa IL. Genoa is past Belvidere
+in DeKalb County, roughly 35–40 minutes from downtown Rockford: borderline
+under the 30-minute rule, like Clinton WI above. In `waiting/`.
 
 ## Outreach: The Music Box (DICE)
 

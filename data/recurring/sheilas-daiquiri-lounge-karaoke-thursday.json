@@ -1,0 +1,12 @@
+{
+  "venue": "sheilas-daiquiri-lounge",
+  "category": "karaoke",
+  "title": "Thirsty Thursday Karaoke",
+  "weekday": "thursday",
+  "startTime": "19:00",
+  "endTime": "23:00",
+  "checked": "2026-10-27",
+  "source": {
+    "type": "manual"
+  }
+}

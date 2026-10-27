@@ -478,3 +478,23 @@ Calls made while filling out listings unattended (session of 2026-10-24).
   Worker secret `DEPLOY_HOOK_URL`, never in the repo; no fetch handler and
   `workers_dev = false`, so it has no public URL. The user deploys it by hand
   (commands in its README); the GitHub workflow is unchanged.
+- **Inbox run (scheduled, 2026-10-27 afternoon).** 11 files. Published:
+  Sheila's Daiquiri Lounge "Thirsty Thursday Karaoke", a weekly rule (Thu
+  7–11 PM, from the bar's own "Every Thursday" flyer; host names and phone
+  numbers left out), which closes the Sheila's karaoke tip in needs-review;
+  Sheila's Halloween Costume Party with DJ Solow Dolo (Sat Oct 31, 8 PM–midnight,
+  `dj`, new artist). From Stereotype's own dates post (weekdays all match
+  2026): Benny's @ Nest (Sat Nov 21, 7 PM, stuffed animal drive) and
+  "Blackout Wednesday" at Splitter's inside Park Lanes (Nov 25, 8 PM). The
+  post's "Shattered Bar Loves Park" is read as Shattered Saloon. It also
+  confirms the band behind Grand Avenue's cropped Nov 14 "Stereo Type" (it
+  calls the night Emo Night, now the title), so that needs-review item is
+  closed. Re-confirmed and `checked` bumped: Stereotype at Shattered Oct 31,
+  Reverend Raven at the Nordlof Oct 28 (band's event: 6 PM, doors 5), Rue
+  Marché karaoke Oct 30–31. Skipped (out of area): open jam at Red's on 7th,
+  Delavan WI; El Lobo Acoustic Experience at Studio Winery, Lake Geneva WI.
+  Waiting: Stereotype's HydeOut Bar (no location), Whiskey's Dec 12 and
+  Shattered Dec 31 dates (no times); Sensations at Grand Avenue Tue Oct 27
+  (no time); Rockton Inn "Hard Dance Halloween" ("This Saturday", undated);
+  Buchanan St Pub Halloween party (no entertainment named); Polly Says at
+  Genoa Veterans Home (Genoa is borderline on distance).

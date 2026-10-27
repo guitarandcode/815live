@@ -1,0 +1,14 @@
+{
+  "date": "2026-11-21",
+  "startTime": "19:00",
+  "venue": "bennys-at-nest",
+  "category": "live-music",
+  "artists": [
+    "stereotype"
+  ],
+  "notes": "Stuffed animal drive for hospitalized kids.",
+  "checked": "2026-10-27",
+  "source": {
+    "type": "manual"
+  }
+}
