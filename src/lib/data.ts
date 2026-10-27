@@ -26,17 +26,20 @@ export interface Recurring extends Omit<CollectionEntry<'recurring'>['data'], 'v
   next?: Show;
 }
 
-/** Days ahead (from today, inclusive) that get a /date/YYYY-MM-DD page. */
-export const DATE_PAGE_DAYS = 60;
-
 /**
  * How far ahead weekly rules are expanded, in weeks from the build's Chicago
  * date: each rule yields at most this many dated listings, all within the
  * next 7 x RECURRING_HORIZON_WEEKS days. The daily build moves the window
- * forward. One-off shows are not limited. Date pages past the horizon list
- * one-offs only.
+ * forward. One-off shows are not limited (they keep their show pages).
  */
 export const RECURRING_HORIZON_WEEKS = 8;
+
+/**
+ * Days ahead (from today, inclusive) that get a /date/YYYY-MM-DD page: the
+ * recurring horizon, so no date page is missing its weekly nights. The
+ * sitemap, calendar, date picker, day strip and prev/next links all stop here.
+ */
+export const DATE_PAGE_DAYS = RECURRING_HORIZON_WEEKS * 7;
 
 /** Fixed for the whole build so every page agrees on "today". */
 export const NOW = buildNow();
