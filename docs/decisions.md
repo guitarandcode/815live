@@ -464,3 +464,17 @@ Calls made while filling out listings unattended (session of 2026-10-24).
   noon/midnight on date strings). A build test pins 02:00 UTC (9 PM the
   previous day in Chicago) and checks every one of these uses the Chicago
   date.
+- **Date pages end at the recurring horizon (user, 2026-10-27).**
+  `DATE_PAGE_DAYS` is now `RECURRING_HORIZON_WEEKS * 7` (56, was 60), so no
+  date page is missing its weekly nights. The sitemap, calendar, date picker,
+  day strip, prev/next links and day-heading links all come from the same
+  window and stop there. Shows beyond it keep their own show pages.
+- **4 AM Chicago rebuild Worker (user, 2026-10-27).** GitHub's scheduled
+  ingest has been starting 5–7 hours late (8–10 AM Chicago), and a failed
+  test or build skips the rebuild. `workers/daily-rebuild/` is a cron-only
+  Cloudflare Worker (crons 09:05 and 10:05 UTC; it posts only on the one that
+  is 4 AM in Chicago, so CDT uses 09:05 and CST 10:05) that POSTs the Pages
+  production deploy hook, rebuilding main as it is. The hook URL is the
+  Worker secret `DEPLOY_HOOK_URL`, never in the repo; no fetch handler and
+  `workers_dev = false`, so it has no public URL. The user deploys it by hand
+  (commands in its README); the GitHub workflow is unchanged.
