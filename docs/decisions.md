@@ -368,3 +368,15 @@ Calls made while filling out listings unattended (session of 2026-10-24).
   Inscape (Oct 24). Skipped as out of scope: Mulligan's pumpkin painting (Oct
   28). Addison Johnson at Boxcars Pub & Grub, Clinton WI (Oct 28) waits on an
   area call, since Clinton is about 30 minutes or more away (see needs-review).
+- **Inbox run (scheduled, 2026-10-27).** 8 files. Published: Grand Avenue Pub
+  "Spooky Bash" with DJ Audiboi (Sat Oct 31, 9 PM–1 AM, `dj`, new artist);
+  Shattered Saloon "Zombie Prom Karaoke" (Thu Oct 29, 8 PM), filed as a one-off
+  `karaoke` show that takes precedence over the Thursday open mic & karaoke
+  rule that night. Shattered's Oct 30 (Mothman) and Oct 31 (Stereotype) re-confirmed,
+  `checked` bumped; its Wed Oct 28 Halloween bingo left out (plain bingo).
+  Skipped: Alex Wilson Band at the Uptowner, Milwaukee (out of area); Rusty
+  Fox open mic, Sterling (out of area); Stereotype at Best Dam Bar Oct 24
+  (past, a second copy). Waiting: Grand Avenue Pub's Fri Oct 30 Mr. Pink (DJ or
+  band?), Regal Beagle at "Morts Pub" (no town; maybe Mort's Bar & Grill,
+  Freeport), Rascals' Halloween party with The Wolfman (DJ or performer; Loves
+  Park address from directories only).
