@@ -4,6 +4,7 @@ dist/
 .wrangler/
 .env
 .env.*
+.dev.vars
 .DS_Store
 
 # Generated social images (npm run social:*)

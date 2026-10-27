@@ -1,0 +1,15 @@
+{
+  "venue": "palace-wine-bar",
+  "category": "live-music",
+  "title": "Local Sounds",
+  "weekday": "saturday",
+  "startTime": "19:00",
+  "endTime": "21:00",
+  "notes": "Local singers and songwriters.",
+  "checked": "2026-10-27",
+  "source": {
+    "type": "manual",
+    "url": "https://www.palacewinebar.com/calendar",
+    "kind": "venue"
+  }
+}

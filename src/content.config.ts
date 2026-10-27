@@ -17,12 +17,13 @@ import { defineCollection, reference } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 import { CATEGORIES } from './lib/categories.ts';
+import { DATA_DIR } from './lib/paths.ts';
 import { SOURCE_KINDS } from './lib/sources.ts';
 
 const placeholder = z.boolean().default(false).describe('Sample data: rendered with a badge and noindex');
 
 const venues = defineCollection({
-  loader: glob({ pattern: '*.json', base: './data/venues' }),
+  loader: glob({ pattern: '*.json', base: `${DATA_DIR}/venues` }),
   schema: z.object({
     name: z.string(),
     address: z.string(),
@@ -38,7 +39,7 @@ const venues = defineCollection({
 });
 
 const artists = defineCollection({
-  loader: glob({ pattern: '*.json', base: './data/artists' }),
+  loader: glob({ pattern: '*.json', base: `${DATA_DIR}/artists` }),
   schema: z.object({
     name: z.string(),
     genres: z.array(z.string()).default([]),
@@ -84,7 +85,7 @@ const source = z.object({
 const checked = z.iso.date().describe('Chicago date the listing was last checked against its source');
 
 const shows = defineCollection({
-  loader: glob({ pattern: '*.json', base: './data/shows' }),
+  loader: glob({ pattern: '*.json', base: `${DATA_DIR}/shows` }),
   schema: z
     .object({
       date: z.iso.date().describe('Chicago calendar date, YYYY-MM-DD'),
@@ -111,7 +112,7 @@ const shows = defineCollection({
 
 // Weekly events, expanded at build time into dated listings (src/lib/shows.ts).
 const recurring = defineCollection({
-  loader: glob({ pattern: '*.json', base: './data/recurring' }),
+  loader: glob({ pattern: '*.json', base: `${DATA_DIR}/recurring` }),
   schema: z.object({
     venue: reference('venues'),
     category,

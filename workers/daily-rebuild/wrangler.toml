@@ -1,0 +1,16 @@
+# Cron-only Worker: POSTs the Cloudflare Pages production deploy hook so the
+# site rebuilds around 4:05 AM Chicago even when GitHub's scheduled ingest
+# runs late or fails. Deployed by hand (see README.md); CI never runs wrangler.
+name = "815live-daily-rebuild"
+main = "src/index.js"
+compatibility_date = "2026-10-01"
+
+# No fetch handler and no public URL: the Worker only runs on its schedule.
+workers_dev = false
+
+[triggers]
+# 09:05 UTC = 4:05 AM CDT, 10:05 UTC = 4:05 AM CST. The Worker skips the
+# run that isn't 4 AM in Chicago, so there's one rebuild a day.
+crons = ["5 9 * * *", "5 10 * * *"]
+
+# Secret (never in the repo): DEPLOY_HOOK_URL, set with `wrangler secret put`.

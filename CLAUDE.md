@@ -35,6 +35,8 @@ area. Astro static site; data is one JSON file per record in `data/`
   in `source.also`. Facebook event links pasted by the user are fine to store
   (don't fetch them). Set `lineupPartial: true` when more acts are coming.
 - Never run wrangler or touch Cloudflare; deploys happen from pushes to main.
+  The 4 AM rebuild Worker (`workers/daily-rebuild/`) is deployed by the user
+  by hand; its deploy hook URL is a Worker secret, never in the repo.
 - Node 24 via fnm: prefix PATH with `~/.local/share/fnm/aliases/default/bin`.
 - Before pushing: `npm test` and `npm run build` must pass. The daily bot
   also pushes, so `git pull --rebase` if a push is rejected.
