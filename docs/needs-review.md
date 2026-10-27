@@ -203,13 +203,17 @@ doors at 5. The `rpl-nordlof` adapter keeps the hand-entered shows and logs
 the mismatch each run. Oct 28 (5:30 vs 6:00) is the only one that isn't
 simply the door time.
 
-## Mendelssohn PAC: "Christmas with the Abram Collier Nonet" (Dec 4)
+## Mary's Market Roscoe: Dec 24 and Dec 31
 
-The `mendelssohn-pac` adapter would create a new artist, Abram Collier Nonet.
-Abram Collier Quintet already exists (same leader). Confirm they're separate
-acts before the adapter's first real run, or map the Nonet to the Quintet.
+The venue's list says "Christmas Eve — Holiday Hours" and "New Year's Eve —
+Holiday Hours" for those Thursdays, with no performer. Both are in the weekly
+rule's `skip` list until the venue says there's music. (Its Dec 5 "Fireside
+Jazz Lunch" is at the Rockford cafe, 2636 McFarland Rd, a venue we don't have.)
 
-## Inscape Collective: Trinadora Halloween Party (Sat Oct 31, 2–4 PM)
+## Outreach: The Music Box (DICE)
 
-The event page says "Music, dancing, …" but doesn't say whether Trinadora is a
-performer. Not listed.
+The Music Box's listings come only from its DICE event widget (promoter "Music
+Box of Rockford LLC"). Automating them needs the venue's (or DICE's)
+permission to use the DICE partner feed with the venue's widget key; DICE's
+sites block Anthropic agents, so we don't fetch them. Until then, Music Box
+shows are entered by hand from pastes. Ask the venue; see venue-sources.md.
