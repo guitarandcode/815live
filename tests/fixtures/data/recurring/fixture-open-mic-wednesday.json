@@ -1,0 +1,12 @@
+{
+  "venue": "fixture-bar",
+  "category": "open-mic",
+  "title": "Fixture Open Mic",
+  "weekday": "wednesday",
+  "startTime": "19:00",
+  "cover": null,
+  "checked": "2026-10-27",
+  "source": {
+    "type": "manual"
+  }
+}

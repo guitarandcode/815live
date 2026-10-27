@@ -6,9 +6,12 @@ import assert from 'node:assert/strict';
 import { execFileSync } from 'node:child_process';
 import { existsSync, readdirSync, readFileSync } from 'node:fs';
 
-function buildAt(instant: string) {
+/** Fixed records for cases that must not depend on real listings (see its README). */
+const FIXTURES = 'tests/fixtures/data';
+
+function buildAt(instant: string, opts: { data?: string; env?: Record<string, string> } = {}) {
   execFileSync('npx', ['astro', 'build'], {
-    env: { ...process.env, TZ: 'UTC', BUILD_NOW: instant },
+    env: { ...process.env, TZ: 'UTC', BUILD_NOW: instant, ...(opts.data && { SITE_DATA: opts.data }), ...opts.env },
     stdio: 'ignore',
   });
   const days = (file: string) =>
@@ -32,22 +35,27 @@ test('04:30 UTC build (11:30pm Chicago, already "tomorrow" in UTC) still lists t
   assert.equal(buildAt('2026-10-25T04:30:00Z').home[0], '2026-10-24');
 });
 
-test('home lists recurring events only for 7 days but still builds 9 weeks of pages', () => {
-  const { homeHtml } = buildAt('2026-10-24T23:00:00Z');
-  assert.match(homeHtml, /href="\/shows\/2026-10-25-marys-place-open-stage"/); // day 2: listed
-  assert.match(homeHtml, /href="\/shows\/2026-10-26-screw-city-tavern-name-that-tune"/); // day 3: listed
-  // Day 9 is carried hidden for the browser to re-sort a day-old build; day 16 isn't on the page.
-  assert.doesNotMatch(homeHtml, /href="\/shows\/2026-11-08-marys-place-open-stage"/);
-  assert.ok(existsSync('dist/shows/2026-12-13-marys-place-open-stage.html')); // week 8 page exists
-  assert.ok(existsSync('dist/shows/2026-12-14-screw-city-tavern-name-that-tune.html'));
+test('weekly rules: listed for 7 days on the home page, expanded 8 weeks out, never further', () => {
+  // Friday Jun 4, 2027 (1 PM Chicago). Horizon: 8 weeks = through Thu Jul 29.
+  const { homeHtml } = buildAt('2027-06-04T18:00:00Z', { data: FIXTURES });
+  assert.match(homeHtml, /href="\/shows\/2027-06-05-fixture-karaoke-saturday"/); // day 2: listed
+  assert.match(homeHtml, /href="\/shows\/2027-06-09-fixture-open-mic-wednesday"/); // day 6: listed
+  assert.doesNotMatch(homeHtml, /href="\/shows\/2027-06-19-fixture-karaoke-saturday"/); // day 16: not on the page
   assert.match(homeHtml, /<h2>Every week<\/h2>/);
+  const pages = readdirSync('dist/shows').filter((f) => f.includes('fixture-karaoke-saturday')).sort();
+  assert.equal(pages.length, 8);
+  assert.equal(pages[0], '2027-06-05-fixture-karaoke-saturday.html');
+  assert.equal(pages.at(-1), '2027-07-24-fixture-karaoke-saturday.html'); // 8th Saturday
+  assert.ok(!existsSync('dist/shows/2027-07-31-fixture-karaoke-saturday.html')); // 9th: past the horizon
+  assert.ok(existsSync('dist/shows/2027-07-28-fixture-open-mic-wednesday.html')); // 8th Wednesday
+  assert.ok(!existsSync('dist/shows/2027-08-04-fixture-open-mic-wednesday.html'));
   const ics = readFileSync('dist/calendar.ics', 'utf8');
-  assert.equal(ics.match(/UID:[^\r]*open-stage@/g)?.length, 9);
+  assert.equal(ics.match(/UID:[^\r]*fixture-karaoke-saturday@/g)?.length, 8);
+  assert.doesNotMatch(readFileSync('dist/sitemap.xml', 'utf8'), /2027-07-31-fixture-karaoke/);
 });
 
 test('category pages: hidden filter links for empty categories, empty pages noindexed', () => {
-  // Far enough out that only weekly nights exist, so comedy is empty.
-  buildAt('2027-06-04T18:00:00Z');
+  buildAt('2027-06-04T18:00:00Z', { data: FIXTURES }); // the fixtures have no comedy
   const home = readFileSync('dist/index.html', 'utf8');
   assert.match(home, /href="\/karaoke"/);
   assert.match(home, /href="\/open-mic"/);
@@ -55,8 +63,8 @@ test('category pages: hidden filter links for empty categories, empty pages noin
   assert.match(readFileSync('dist/comedy.html', 'utf8'), /<meta name="robots" content="noindex">/);
   assert.doesNotMatch(readFileSync('dist/sitemap.xml', 'utf8'), /\/comedy</);
   const karaoke = readFileSync('dist/karaoke.html', 'utf8');
-  assert.doesNotMatch(karaoke, /Open Stage/);
-  assert.match(karaoke, /Every week<\/h2>[\s\S]*(Sun|Mon|Tues|Wednes|Thurs|Fri|Satur)days, \d/); // weekly rules listed once
+  assert.doesNotMatch(karaoke, /Fixture Open Mic/);
+  assert.match(karaoke, /Every week<\/h2>[\s\S]*Saturdays, \d/); // weekly rules listed once
 });
 
 test('Monday build: this weekend means the coming Fri–Sun', () => {
@@ -80,9 +88,8 @@ test('home leads with tonight, a 7-day strip and a date picker', () => {
 });
 
 test('nothing tonight: the home page says so and points to the next night with events', () => {
-  // A Tuesday far enough out that no one-off shows exist (Tuesday has no year-round
-  // weekly night); Wednesday's open mic and karaoke are weekly.
-  const { homeHtml } = buildAt('2027-06-01T18:00:00Z');
+  // A Tuesday; the fixtures' only weekly nights are Wednesday and Saturday.
+  const { homeHtml } = buildAt('2027-06-01T18:00:00Z', { data: FIXTURES });
   assert.match(homeHtml, /<p class="tonight-empty" data-home-empty>/);
   assert.match(homeHtml, /Next up: <a href="\/date\/2027-06-02">Wednesday, Jun 2<\/a>/);
   assert.match(homeHtml, /class="tonight-list" data-home-list hidden/);

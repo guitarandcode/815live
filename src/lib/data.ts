@@ -2,6 +2,7 @@
 import { readFileSync } from 'node:fs';
 import { getCollection, type CollectionEntry } from 'astro:content';
 import { CATEGORIES, type Category } from './categories.ts';
+import { DATA_DIR } from './paths.ts';
 import type { SOURCE_KINDS } from './sources.ts';
 import { buildNow, byStart, dedupeRecurring, listing, recurringDates, upcoming, WEEKDAYS } from './shows.ts';
 import { addDays, chicagoDate, formatShortDay } from './time.ts';
@@ -28,8 +29,14 @@ export interface Recurring extends Omit<CollectionEntry<'recurring'>['data'], 'v
 /** Days ahead (from today, inclusive) that get a /date/YYYY-MM-DD page. */
 export const DATE_PAGE_DAYS = 60;
 
-/** How far ahead recurring rules are expanded: far enough to fill every date page. */
-export const RECURRING_WEEKS = Math.ceil(DATE_PAGE_DAYS / 7);
+/**
+ * How far ahead weekly rules are expanded, in weeks from the build's Chicago
+ * date: each rule yields at most this many dated listings, all within the
+ * next 7 x RECURRING_HORIZON_WEEKS days. The daily build moves the window
+ * forward. One-off shows are not limited. Date pages past the horizon list
+ * one-offs only.
+ */
+export const RECURRING_HORIZON_WEEKS = 8;
 
 /** Fixed for the whole build so every page agrees on "today". */
 export const NOW = buildNow();
@@ -59,7 +66,7 @@ export function loadAll() {
     );
     const today = chicagoDate(NOW);
     const expanded = rules.flatMap(({ id, data: r }) =>
-      recurringDates(r, today, RECURRING_WEEKS).map(
+      recurringDates(r, today, RECURRING_HORIZON_WEEKS).map(
         (date): Show => ({
           id: `${date}-${id}`,
           date,
@@ -138,12 +145,12 @@ export function endDate(show: Show): string {
 }
 
 /**
- * Dates each ingest adapter last ran clean (data/ingest/checked.json). Its
+ * Dates each ingest adapter last ran clean (<data>/ingest/checked.json). Its
  * shows were checked that day even if their files didn't change.
  */
 function readAdapterChecked(): Record<string, string> {
   try {
-    return JSON.parse(readFileSync('data/ingest/checked.json', 'utf8'));
+    return JSON.parse(readFileSync(`${DATA_DIR}/ingest/checked.json`, 'utf8'));
   } catch {
     return {};
   }
