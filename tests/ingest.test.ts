@@ -3,7 +3,9 @@ import assert from 'node:assert/strict';
 import { mkdtempSync, readdirSync, readFileSync, mkdirSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { isAllowed } from '../scripts/ingest/lib/robots.ts';
+import { crawlDelay, isAllowed } from '../scripts/ingest/lib/robots.ts';
+import { parseIcs } from '../scripts/ingest/lib/ics.ts';
+import { matchArtist } from '../scripts/ingest/lib/artists.ts';
 import { inferDate, parseEventPage, parseSitemap, toShows } from '../scripts/ingest/adapters/hard-rock-rockford.ts';
 
 test('robots: wildcard and longest-match rules', () => {
@@ -104,5 +106,70 @@ test('reconcile: replaces a refetched page, drops removed pages, keeps past and 
   // Running again with the same input changes nothing.
   const again = reconcile('hard-rock-rockford', new Map([['act-a', shows]]), new Set(['act-a', 'act-c']), '2026-10-24');
   assert.deepEqual([again.written, again.deleted], [[], []]);
+  delete process.env.INGEST_DATA;
+});
+
+test('robots: crawl-delay from our group, else *', () => {
+  assert.equal(crawlDelay('user-agent: * \ndisallow: \ncrawl-delay: 60\n'), 60);
+  assert.equal(crawlDelay('User-agent: *\nCrawl-delay: 60\n\nUser-agent: 815liveBot\nAllow: /\n'), 0);
+  assert.equal(crawlDelay(''), 0);
+});
+
+test('ics: folded lines, escapes, Chicago TZID and UTC times', () => {
+  const ics = [
+    'BEGIN:VCALENDAR',
+    'BEGIN:VEVENT',
+    'UID:1',
+    'DTSTART;TZID=America/Chicago:20261204T190000',
+    'SUMMARY: Christmas with the Abram',
+    '  Collier Nonet',
+    'URL:https://x/events/event/thursday-jazz-120326/',
+    'END:VEVENT',
+    'BEGIN:VEVENT',
+    'UID:2',
+    'DTSTART:20261028T223000Z',
+    'DTEND:20261029T010000Z',
+    'SUMMARY:Rev\\, Raven',
+    'END:VEVENT',
+    'BEGIN:VEVENT',
+    'UID:3',
+    'DTSTART:20261121T000000Z', // 6 PM CST the day before in UTC terms
+    'SUMMARY:After DST',
+    'END:VEVENT',
+    'END:VCALENDAR',
+  ].join('\r\n');
+  const [a, b, c] = parseIcs(ics);
+  assert.equal(a.summary, 'Christmas with the Abram Collier Nonet');
+  assert.deepEqual(a.start, { date: '2026-12-04', time: '19:00' });
+  assert.equal(b.summary, 'Rev, Raven');
+  assert.deepEqual([b.start, b.end], [{ date: '2026-10-28', time: '17:30' }, { date: '2026-10-28', time: '20:00' }]);
+  assert.deepEqual(c.start, { date: '2026-11-20', time: '18:00' });
+  assert.throws(() => parseIcs('BEGIN:VEVENT\nDTSTART;TZID=America/New_York:20261204T190000\nEND:VEVENT'), /unsupported TZID/);
+});
+
+test('artists: exact matches reuse the slug; near names are flagged', () => {
+  assert.deepEqual(matchArtist('Emily Hurd'), { slug: 'emily-hurd', name: 'Emily Hurd', existing: true, near: [] });
+  const nonet = matchArtist('Abram Collier Nonet');
+  assert.equal(nonet.existing, false);
+  assert.deepEqual(nonet.near, ['abram-collier-quintet']);
+});
+
+test('dry run and hand-entered shows: nothing written; a person\'s entry wins', async () => {
+  const dir = mkdtempSync(join(tmpdir(), 'ingest-'));
+  mkdirSync(join(dir, 'shows'));
+  mkdirSync(join(dir, 'artists'));
+  writeFileSync(join(dir, 'shows', 'hand.json'), JSON.stringify({ date: '2026-11-20', startTime: '18:00', venue: 'v', source: { type: 'manual' } }));
+  process.env.INGEST_DATA = dir;
+  const store = await import(`../scripts/ingest/lib/store.ts?t=${Date.now()}`);
+  const show = (date: string) => ({ id: `${date}-x`, uid: `a:g:${date}`, date, startTime: '17:00', venue: 'v', category: 'live-music', artists: [{ slug: 'x', name: 'X' }], sourceUrl: 'https://x' });
+  const log: string[] = [];
+  const kept = store.deferToHandEntered([show('2026-11-20'), show('2026-11-21')], log);
+  assert.deepEqual(kept.map((s: { date: string }) => s.date), ['2026-11-21']);
+  assert.match(log[0], /kept hand-entered hand over 2026-11-20-x \(NOTE: source says 17:00, file says 18:00\)/);
+  const changes = store.reconcile('a', new Map([['g', kept]]), new Set(['g']), '2026-10-27', true);
+  assert.deepEqual([changes.written, changes.artistsCreated], [['2026-11-21-x'], ['x']]);
+  assert.match(changes.details[0], /^\+ 2026-11-21-x: 2026-11-21 17:00 \[x\]/);
+  assert.deepEqual(readdirSync(join(dir, 'shows')), ['hand.json']);
+  assert.deepEqual(readdirSync(join(dir, 'artists')), []);
   delete process.env.INGEST_DATA;
 });

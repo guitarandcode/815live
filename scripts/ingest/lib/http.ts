@@ -1,6 +1,7 @@
 // Polite fetching: honest User-Agent, robots.txt checked before every request
-// and every redirect hop, one request per host at a time with a pause between.
-import { isAllowed } from './robots.ts';
+// and every redirect hop, one request per host at a time with a pause between
+// (the site's Crawl-delay when it sets one).
+import { crawlDelay, isAllowed } from './robots.ts';
 
 export const USER_AGENT = '815liveBot/1.0 (+https://815live.com/about)';
 const PAUSE_MS = 1000;
@@ -8,11 +9,12 @@ const MAX_REDIRECTS = 5;
 
 const robotsCache = new Map<string, Promise<string | null>>();
 const lastHit = new Map<string, number>();
+const hostDelay = new Map<string, number>();
 
 export class RobotsBlocked extends Error {}
 
 async function pause(host: string) {
-  const wait = (lastHit.get(host) ?? 0) + PAUSE_MS - Date.now();
+  const wait = (lastHit.get(host) ?? 0) + (hostDelay.get(host) ?? PAUSE_MS) - Date.now();
   if (wait > 0) await new Promise((r) => setTimeout(r, wait));
   lastHit.set(host, Date.now());
 }
@@ -26,7 +28,10 @@ function robotsFor(origin: string): Promise<string | null> {
         await pause(new URL(origin).host);
         const res = await fetch(`${origin}/robots.txt`, { headers: { 'User-Agent': USER_AGENT } });
         if (res.status >= 500) return null;
-        return res.ok ? await res.text() : '';
+        const text = res.ok ? await res.text() : '';
+        const delay = crawlDelay(text) * 1000;
+        if (delay > PAUSE_MS) hostDelay.set(new URL(origin).host, delay);
+        return text;
       } catch {
         return null;
       }
