@@ -151,8 +151,12 @@ test('ics: folded lines, escapes, Chicago TZID and UTC times', () => {
 });
 
 test('artists: exact matches reuse the slug; near names are flagged', () => {
-  assert.deepEqual(matchArtist('Emily Hurd'), { slug: 'emily-hurd', name: 'Emily Hurd', existing: true, near: [] });
-  const nonet = matchArtist('Abram Collier Nonet');
+  const dir = mkdtempSync(join(tmpdir(), 'artists-'));
+  writeFileSync(join(dir, 'emily-hurd.json'), JSON.stringify({ name: 'Emily Hurd' }));
+  writeFileSync(join(dir, 'abram-collier-quintet.json'), JSON.stringify({ name: 'Abram Collier Quintet' }));
+  assert.deepEqual(matchArtist('Emily Hurd', dir), { slug: 'emily-hurd', name: 'Emily Hurd', existing: true, near: [] });
+  assert.equal(matchArtist('The Emily Hurd', dir).slug, 'emily-hurd');
+  const nonet = matchArtist('Abram Collier Nonet', dir);
   assert.equal(nonet.existing, false);
   assert.deepEqual(nonet.near, ['abram-collier-quintet']);
 });
