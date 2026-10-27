@@ -138,7 +138,7 @@ export async function run(state: Record<string, Detail>, today: string, full = f
       }
     }
     if (detail) next[slug] = detail;
-    for (const a of parseBill(ev.summary).acts.map(matchArtist))
+    for (const a of parseBill(ev.summary).acts.map((a) => matchArtist(a)))
       if (!a.existing && a.near.length) log.push(`ASK ${slug}: "${a.name}" is new; same as ${a.near.join(', ')}?`);
     refetched.set(slug, deferToHandEntered([toShow(ev, slug, detail)], log));
   }

@@ -27,12 +27,13 @@ export const slugify = (name: string) =>
 /** Comparison key: slug without a leading "the". */
 const key = (name: string) => slugify(name).replace(/^the-/, '');
 
-let index: Map<string, { slug: string; name: string }> | undefined;
+const indexes = new Map<string, Map<string, { slug: string; name: string }>>();
 
-function artists() {
+function artists(dir: string) {
+  let index = indexes.get(dir);
   if (!index) {
     index = new Map();
-    const dir = join(DATA, 'artists');
+    indexes.set(dir, index);
     for (const f of existsSync(dir) ? readdirSync(dir) : []) {
       if (!f.endsWith('.json')) continue;
       const slug = f.slice(0, -5);
@@ -44,12 +45,12 @@ function artists() {
   return index;
 }
 
-export function matchArtist(name: string): ArtistMatch {
-  const found = artists().get(key(name));
+export function matchArtist(name: string, dir = join(DATA, 'artists')): ArtistMatch {
+  const found = artists(dir).get(key(name));
   if (found) return { ...found, existing: true, near: [] };
   const prefix = key(name).split('-').slice(0, 2).join('-');
   const near = prefix.includes('-')
-    ? [...new Set([...artists().values()].filter((a) => key(a.name).startsWith(`${prefix}-`) || key(a.name) === prefix).map((a) => a.slug))]
+    ? [...new Set([...artists(dir).values()].filter((a) => key(a.name).startsWith(`${prefix}-`) || key(a.name) === prefix).map((a) => a.slug))]
     : [];
   return { slug: slugify(name), name, existing: false, near };
 }

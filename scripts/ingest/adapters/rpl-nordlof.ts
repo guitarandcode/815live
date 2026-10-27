@@ -36,7 +36,7 @@ export const actsOf = (summary: string) =>
     .filter(Boolean);
 
 export function toShow(ev: IcsEvent): IngestedShow {
-  const artists = actsOf(ev.summary).map(matchArtist);
+  const artists = actsOf(ev.summary).map((a) => matchArtist(a));
   const text = `${ev.summary}\n${ev.description ?? ''}`;
   const room = ev.location?.match(/^Nordlof Center - (.+)$/)?.[1];
   return {
@@ -76,7 +76,7 @@ export async function run(_state: Record<string, string>, today: string): Promis
       refetched.set(ev.uid, []);
       continue;
     }
-    for (const a of actsOf(ev.summary).map(matchArtist))
+    for (const a of actsOf(ev.summary).map((a) => matchArtist(a)))
       if (!a.existing && a.near.length) log.push(`ASK ${ev.uid}: "${a.name}" is new; same as ${a.near.join(', ')}?`);
     refetched.set(ev.uid, deferToHandEntered([toShow(ev)], log));
   }
