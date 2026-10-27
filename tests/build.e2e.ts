@@ -193,3 +193,36 @@ test('tonight, tomorrow and free landing pages', () => {
   const sitemap = readFileSync('dist/sitemap.xml', 'utf8');
   for (const p of ['tonight', 'tomorrow', 'free']) assert.match(sitemap, new RegExp(`<loc>https://815live.com/${p}</loc>`));
 });
+
+test('Chicago dates on a UTC build: 02:00 UTC is still the previous evening', () => {
+  // Wed Oct 28, 02:00 UTC = Tue Oct 27, 9 PM in Chicago (CDT).
+  buildAt('2026-10-28T02:00:00Z', { data: FIXTURES });
+  const read = (f: string) => readFileSync(`dist/${f}`, 'utf8');
+  const days = (f: string) => [...read(f).matchAll(/data-show-date="([\d-]+)"/g)].map((m) => m[1]);
+  assert.deepEqual(days('tonight.html'), ['2026-10-27']);
+  assert.match(read('tonight.html'), /Tuesday, October 27 in Rockford/);
+  assert.match(read('tonight.html'), /href="\/shows\/2026-10-27-fixture-hall"/);
+  assert.deepEqual([...new Set(days('tomorrow.html'))], ['2026-10-28']);
+  assert.match(read('tomorrow.html'), /Wednesday, October 28 in Rockford/);
+  assert.match(read('index.html'), /data-built="2026-10-27"/);
+  const dates = readdirSync('dist/date').sort();
+  assert.equal(dates[0], '2026-10-27.html');
+  const sitemapDates = [...read('sitemap.xml').matchAll(/\/date\/([\d-]+)</g)].map((m) => m[1]);
+  assert.equal(sitemapDates[0], '2026-10-27');
+  assert.ok(!sitemapDates.includes('2026-10-26'));
+  assert.match(read('this-weekend.html'), /Fri, Oct 30 – Sun, Nov 1/);
+});
+
+test('preview builds keep production canonicals and sitemap URLs', () => {
+  buildAt('2026-10-28T02:00:00Z', {
+    data: FIXTURES,
+    env: { CF_PAGES: '1', CF_PAGES_BRANCH: 'seo-and-sources', CF_PAGES_URL: 'https://abc123.815live.pages.dev' },
+  });
+  const tonight = readFileSync('dist/tonight.html', 'utf8');
+  assert.match(tonight, /<link rel="canonical" href="https:\/\/815live.com\/tonight">/);
+  assert.match(tonight, /<meta property="og:url" content="https:\/\/815live.com\/tonight">/);
+  const locs = [...readFileSync('dist/sitemap.xml', 'utf8').matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
+  assert.ok(locs.length > 0 && locs.every((u) => u.startsWith('https://815live.com/')));
+  assert.doesNotMatch(readFileSync('dist/index.html', 'utf8'), /pages\.dev/);
+});
+
