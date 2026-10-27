@@ -1,0 +1,11 @@
+{
+  "name": "Palace Wine Bar",
+  "address": "202 N Main St",
+  "city": "Rockford",
+  "state": "IL",
+  "zip": "61101",
+  "lat": 42.2723,
+  "lng": -89.09381,
+  "website": "https://www.palacewinebar.com/",
+  "description": "Wine bar on North Main Street in downtown Rockford with weekly jazz and singer-songwriter nights."
+}
