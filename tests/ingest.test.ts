@@ -7,6 +7,7 @@ import { crawlDelay, isAllowed } from '../scripts/ingest/lib/robots.ts';
 import { parseIcs } from '../scripts/ingest/lib/ics.ts';
 import { matchArtist } from '../scripts/ingest/lib/artists.ts';
 import * as mpac from '../scripts/ingest/adapters/mendelssohn-pac.ts';
+import * as rpl from '../scripts/ingest/adapters/rpl-nordlof.ts';
 import { inferDate, parseEventPage, parseSitemap, toShows } from '../scripts/ingest/adapters/hard-rock-rockford.ts';
 
 test('robots: wildcard and longest-match rules', () => {
@@ -171,6 +172,22 @@ test('mendelssohn: bills, event page date, price line and tickets', () => {
     ticketUrl: 'https://app.arts-people.com/index.php?show=337756',
   });
   assert.equal(mpac.parseEventPage('<p>Date:</p><p>May 1, 2027 2:30 pm</p><p>Free admission</p>').cover, null);
+});
+
+test('rpl: music picked by keywords, acts from the title', () => {
+  const ev = (summary: string, description = '') => ({ uid: '1', summary, description, start: { date: '2026-11-20', time: '17:00' } });
+  assert.equal(rpl.isMusic(ev('The Nick Moss Trio', 'Music Off the Rock')), true);
+  assert.equal(rpl.isMusic(ev("Reverend Raven and the Chain Smokin' Altar Boys", 'Great blues music, free admission.')), true);
+  assert.equal(rpl.isMusic(ev('250th Anniversary Film Series - American Movies', 'Music on screen')), false);
+  assert.equal(rpl.isMusic(ev('Open Mic and Poetry Slam', 'concert of words')), false);
+  assert.equal(rpl.isMusic(ev("A Songwriter's Workshop")), false);
+  assert.deepEqual(rpl.actsOf('Anthony Geraci: Where Were You'), ['Anthony Geraci']);
+  assert.deepEqual(rpl.actsOf('Dave Specter with Brother John Kattke'), ['Dave Specter', 'Brother John Kattke']);
+  const show = rpl.toShow({ ...ev('The Nick Moss Trio', 'Crossroads Blues Society: free'), location: 'Nordlof Center - J.R. Sullivan Theater' });
+  assert.equal(show.title, 'Music Off The Rock');
+  assert.equal(show.cover, null);
+  assert.equal(show.notes, 'In the J.R. Sullivan Theater.');
+  assert.equal(show.sourceUrl, 'https://services.rockfordpubliclibrary.org/event/1');
 });
 
 test('dry run and hand-entered shows: nothing written; a person\'s entry wins', async () => {

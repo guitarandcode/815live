@@ -6,10 +6,11 @@
 import { join } from 'node:path';
 import * as hardRock from './adapters/hard-rock-rockford.ts';
 import * as mendelssohn from './adapters/mendelssohn-pac.ts';
+import * as rplNordlof from './adapters/rpl-nordlof.ts';
 import { DATA, readJson, reconcile, writeJson } from './lib/store.ts';
 import { chicagoDate } from '../../src/lib/time.ts';
 
-const ADAPTERS = [hardRock, mendelssohn];
+const ADAPTERS = [hardRock, mendelssohn, rplNordlof];
 
 const args = process.argv.slice(2);
 const full = args.includes('--full');
