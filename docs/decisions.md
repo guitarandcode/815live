@@ -380,3 +380,8 @@ Calls made while filling out listings unattended (session of 2026-10-24).
   band?), Regal Beagle at "Morts Pub" (no town; maybe Mort's Bar & Grill,
   Freeport), Rascals' Halloween party with The Wolfman (DJ or performer; Loves
   Park address from directories only).
+- **Quiet-night graphic heading is now "Coming Up" (user, 2026-10-27).** The
+  title reads "Tonight + Coming Up" and the week's section label "Coming up";
+  the caption's first line and its list heading ("COMING UP") match. The
+  window is still the next 7 days and the cap still 6 shows. The home page's
+  weekend "Next 7 days" section label is a different feature and is unchanged.
