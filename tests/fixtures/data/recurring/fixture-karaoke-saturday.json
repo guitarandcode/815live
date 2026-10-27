@@ -1,0 +1,11 @@
+{
+  "venue": "fixture-bar",
+  "category": "karaoke",
+  "title": "Fixture Karaoke",
+  "weekday": "saturday",
+  "startTime": "21:00",
+  "checked": "2026-10-27",
+  "source": {
+    "type": "manual"
+  }
+}

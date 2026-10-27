@@ -1,0 +1,14 @@
+{
+  "date": "2026-10-28",
+  "startTime": "20:00",
+  "venue": "fixture-hall",
+  "category": "live-music",
+  "title": "Wednesday Fixture Show",
+  "artists": [
+    "fixture-band"
+  ],
+  "checked": "2026-10-27",
+  "source": {
+    "type": "manual"
+  }
+}

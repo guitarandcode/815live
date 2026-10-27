@@ -1,0 +1,10 @@
+{
+  "name": "Fixture Hall",
+  "address": "1 Test St",
+  "city": "Rockford",
+  "state": "IL",
+  "zip": "61101",
+  "lat": 42.27,
+  "lng": -89.09,
+  "description": "Test venue."
+}
