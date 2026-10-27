@@ -6,7 +6,7 @@
 //
 // Writes social/tonight-YYYY-MM-DD[-2].png and social/tonight-YYYY-MM-DD.txt.
 // Busy nights spill onto extra images (post them together as one album).
-// Quiet nights (fewer than QUIET listings) get one "Tonight + Next 7 Days"
+// Quiet nights (fewer than QUIET listings) get one "Tonight + Coming Up"
 // image instead: tonight on top, then up to WEEK_MAX one-off shows from the
 // next 7 days, soonest first. Highlights are one-off live shows (bands,
 // comedy): no weekly nights, and no karaoke, open mics, jams, trivia or DJs.
@@ -249,7 +249,7 @@ function quietEl() {
       wordmark(46),
       h('div', { flexDirection: 'column', fontFamily: 'Cond', fontWeight: 900, fontSize: 92, lineHeight: 0.92, textTransform: 'uppercase', letterSpacing: -1, marginTop: 24 },
         h('div', { color: C.ink }, `${heading} +`),
-        h('div', { color: C.accent }, 'Next 7 days'),
+        h('div', { color: C.accent }, 'Coming up'),
       ),
       h('div', { fontFamily: 'Sans', fontWeight: 600, fontSize: 30, color: C.muted, marginTop: 16 }, `${longDate} · in the 815`),
       h('div', { height: 4, background: C.accent, width: 120, marginTop: 20 }),
@@ -261,7 +261,7 @@ function quietEl() {
       events.length
         ? events.map((e) => rowEl(e, { rowH: Q_ROW }))
         : h('div', { height: Q_ROW, flexShrink: 0, alignItems: 'center', fontFamily: 'Sans', fontSize: 30, color: C.muted, borderBottom: `2px solid ${C.line}` }, isToday ? 'Nothing listed tonight.' : 'Nothing listed.'),
-      week.length ? sectionLabel('Next 7 days') : null,
+      week.length ? sectionLabel('Coming up') : null,
       week.map((e) => rowEl(e, { withDay: true, rowH: Q_ROW })),
     ),
     footerEl(),
@@ -276,7 +276,7 @@ else for (const [i, items] of pages.entries()) {
 }
 
 // ---------- caption ----------
-const lines = [`${isToday ? 'Tonight' : longDate}${quiet ? ' + Next 7 Days' : ''} in the 815 🎶`, ''];
+const lines = [`${isToday ? 'Tonight' : longDate}${quiet ? ' + Coming Up' : ''} in the 815 🎶`, ''];
 if (!events.length) lines.push(isToday ? 'Nothing listed tonight.' : 'Nothing listed.', '');
 for (const [cat, label] of SECTIONS) {
   const rows = events.filter((e) => e.category === cat);
@@ -286,7 +286,7 @@ for (const [cat, label] of SECTIONS) {
   lines.push('');
 }
 if (week.length) {
-  lines.push('NEXT 7 DAYS');
+  lines.push('COMING UP');
   for (const e of week) lines.push(`• ${shortDay(e.date)}: ${e.act} @ ${e.venueName}${e.city !== 'Rockford' ? ` (${e.city})` : ''}, ${clock(e.startTime)}`);
   lines.push('');
 }
