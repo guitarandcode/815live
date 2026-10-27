@@ -444,3 +444,23 @@ Calls made while filling out listings unattended (session of 2026-10-24).
   Inscape Halloween Party (Sat Oct 31, 2–4 PM) hand-entered with them, so the
   adapter leaves it alone. The Abram Collier Nonet is a separate act from the
   Quintet; the adapter created it and it was filled in (jazz, Chicago).
+- **Recurring horizon: 8 weeks (user, 2026-10-27).** Weekly rules are
+  expanded only 8 weeks out from the build's Chicago date
+  (`RECURRING_HORIZON_WEEKS` in src/lib/data.ts, the one place to change it):
+  at most 8 dated listings per rule, all within the next 56 days, in pages,
+  the sitemap, iCal and RSS. Before this it was 9 weeks (to cover all 60 date
+  pages). The daily build moves the window forward. Dated one-offs (adapters
+  and hand-entered shows) are not limited, so date pages 57–60 list one-offs
+  only. No show files had to go: everything dated past the horizon is a
+  one-off with a named act. Build tests that rely on weekly rules now build
+  against tests/fixtures/data (`SITE_DATA`) instead of real listings.
+- **Every "today" is America/Chicago (user, 2026-10-27).** Cloudflare and
+  GitHub Actions build in UTC, so no page uses the host clock's date. "Today"
+  is always `chicagoDate(NOW)` (src/lib/time.ts) at build time, and
+  `nowNight` (Chicago, 4 AM rule) in the browser. That covers /tonight,
+  /tomorrow, /this-weekend, the home page, the calendar, date pages and the
+  sitemap's /date/ URLs (both from `datePageDates()`), iCal and RSS, and
+  ingest's `today`. Calendar arithmetic on dates stays timezone-free (UTC
+  noon/midnight on date strings). A build test pins 02:00 UTC (9 PM the
+  previous day in Chicago) and checks every one of these uses the Chicago
+  date.
