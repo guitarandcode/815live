@@ -80,10 +80,11 @@ test('home leads with tonight, a 7-day strip and a date picker', () => {
 });
 
 test('nothing tonight: the home page says so and points to the next night with events', () => {
-  // A Friday far enough out that no one-off shows exist; Saturday karaoke is weekly.
-  const { homeHtml } = buildAt('2027-06-04T18:00:00Z');
+  // A Tuesday far enough out that no one-off shows exist (Tuesday has no year-round
+  // weekly night); Wednesday's open mic and karaoke are weekly.
+  const { homeHtml } = buildAt('2027-06-01T18:00:00Z');
   assert.match(homeHtml, /<p class="tonight-empty" data-home-empty>/);
-  assert.match(homeHtml, /Next up: <a href="\/date\/2027-06-05">Saturday, Jun 5<\/a>/);
+  assert.match(homeHtml, /Next up: <a href="\/date\/2027-06-02">Wednesday, Jun 2<\/a>/);
   assert.match(homeHtml, /class="tonight-list" data-home-list hidden/);
 });
 

@@ -1,0 +1,17 @@
+{
+  "date": "2026-10-31",
+  "startTime": "14:00",
+  "endTime": "16:00",
+  "venue": "inscape-collective",
+  "category": "live-music",
+  "title": "Trinadora Halloween Party",
+  "artists": [
+    "trinadora"
+  ],
+  "checked": "2026-10-27",
+  "source": {
+    "type": "manual",
+    "url": "https://www.inscapecollective.org/event-details/trinadora-halloween-party",
+    "kind": "venue"
+  }
+}
