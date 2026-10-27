@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import CategoryNav from '../components/CategoryNav.astro';
 import ShowList from '../components/ShowList.astro';
 import { loadAll, NOW } from '../lib/data.ts';
 import { itemList } from '../lib/jsonld.ts';
@@ -15,7 +16,8 @@ const shows = freeShows(all, NOW);
   description="Free live music in Rockford, Loves Park, Belvidere and the 815: no-cover shows, open mics, karaoke and DJ nights, updated daily."
   jsonld={shows.length ? itemList(shows, Astro.site!) : undefined}
 >
-  <h1>Free shows</h1>
+  <h1>Free live music in Rockford</h1>
   <p class="lede">No cover. Shows whose cover we don't know aren't listed here, so check the full calendar too.</p>
+  <CategoryNav current="free" />
   <ShowList shows={shows} empty="No free shows listed right now." />
 </Base>

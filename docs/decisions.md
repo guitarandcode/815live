@@ -498,3 +498,31 @@ Calls made while filling out listings unattended (session of 2026-10-24).
   (no time); Rockton Inn "Hard Dance Halloween" ("This Saturday", undated);
   Buchanan St Pub Halloween party (no entertainment named); Polly Says at
   Genoa Veterans Home (Genoa is borderline on distance).
+- **Internal links to /tonight, /tomorrow and /free (2026-10-27).** The
+  header's "Tonight" now goes to /tonight; the home link is the wordmark.
+  "Tomorrow" didn't fit the header: on phones the nav already needed 339px
+  of a 313–328px row (360–375px screens), and Tomorrow made it 427px, pushing
+  Venues and Artists off-screen. It goes on the home page instead: a link row
+  under the day strip (Tonight's full list, Tomorrow, This weekend, Free
+  shows), and the strip's own Tomorrow chip. One rule (`dayHref` in
+  src/lib/data.ts) sends links to the build's today and tomorrow to /tonight
+  and /tomorrow and every other day to its date page. It applies to the day
+  strip, the home page's night headings and "Next up". Base's inline script
+  repeats it with `data-day-link`: on a page older than the visitor's night,
+  /tonight would be stale too, so every day link falls back to its date page.
+  "Free" is the last chip in the category filter row (always shown, since
+  /free always exists), and /free shows the row with Free selected. The
+  pages aren't near-duplicates. The home page is "815live: Live music in
+  Rockford, IL" with h1 "Tonight in the 815" and covers the week, coming up
+  and weekly nights. /tonight is "Live Music in Rockford Tonight" with h1
+  "Live music in Rockford tonight" and covers only tonight. Date pages keep
+  "Live music in Rockford on <day>" and the date as h1. So no canonical
+  changes. /date/<today> keeps a self-canonical instead of pointing to
+  /tonight, because that canonical would flip every day on a static page
+  (Google tends to ignore unstable canonicals). It would also hide the date
+  page on the one day "Rockford music October 31" searches matter most.
+  Today's and tomorrow's date pages link to /tonight and /tomorrow instead,
+  so internal links favor the landing pages. Past shows are dropped from the
+  sitemap: their pages stay up for old links, but no listing links to them.
+  `tests/build.e2e.ts` fails if any sitemap URL has no plain `<a href>` from
+  another page; it found exactly those past shows.

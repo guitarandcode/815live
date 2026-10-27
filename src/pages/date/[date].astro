@@ -17,6 +17,8 @@ const today = chicagoDate(NOW);
 const day = formatDay(date);
 const prev = addDays(date, -1);
 const next = addDays(date, 1);
+// Today's and tomorrow's date pages point to /tonight and /tomorrow, which target
+// those searches; the date pages keep their own canonical and dated title.
 const relative = date === today ? 'Tonight' : date === addDays(today, 1) ? 'Tomorrow' : undefined;
 
 const named = shows.slice(0, 3).map((s) => `${showTitle(s)} at ${s.venue.data.name}`);
@@ -32,7 +34,7 @@ const description = shows.length
   noindex={shows.length === 0}
   jsonld={shows.length ? itemList(shows, Astro.site!) : undefined}
 >
-  <p class="eyebrow"><a href="/calendar">Calendar</a>{relative && <span> · {relative}</span>}</p>
+  <p class="eyebrow"><a href="/calendar">Calendar</a>{relative && <> · <a href={`/${relative.toLowerCase()}`}>{relative}</a></>}</p>
   <h1>{day}</h1>
   {!shows.length && <p class="lede">Nothing listed yet.</p>}
 
