@@ -1,0 +1,16 @@
+{
+  "date": "2026-10-31",
+  "startTime": "20:00",
+  "endTime": "00:00",
+  "venue": "sheilas-daiquiri-lounge",
+  "category": "dj",
+  "title": "Halloween Costume Party",
+  "artists": [
+    "dj-solow-dolo"
+  ],
+  "notes": "Costumes suggested, not required.",
+  "checked": "2026-10-27",
+  "source": {
+    "type": "manual"
+  }
+}

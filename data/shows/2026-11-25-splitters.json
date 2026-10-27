@@ -1,0 +1,14 @@
+{
+  "date": "2026-11-25",
+  "startTime": "20:00",
+  "venue": "splitters",
+  "category": "live-music",
+  "title": "Blackout Wednesday",
+  "artists": [
+    "stereotype"
+  ],
+  "checked": "2026-10-27",
+  "source": {
+    "type": "manual"
+  }
+}
