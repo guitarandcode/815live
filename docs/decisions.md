@@ -597,3 +597,14 @@ Calls made while filling out listings unattended (session of 2026-10-24).
   - Ingestion: `scripts/ingest/lib/classify.ts` returns a category or a
     question. Inscape and Hard Rock use it, and CLAUDE.md carries the same
     rules for inbox runs, where a question goes to needs-review.
+- **Show page titles: time, then stage, only on collisions (user, 2026-10-27).**
+  Same act, venue and day happens with two sets (Music Box early and late) and
+  with Hard Rock's two stages, and those pages shared a `<title>`. Colliding
+  indexable pages now add their Chicago start time ("…, Friday, November 27,
+  9 PM"), and their stage too if the times also match ("…, 8 PM, Main stage",
+  from the "On the X stage." note; the description names the stage as well).
+  `og:title` uses the same string. All other titles are byte-for-byte
+  unchanged; URLs, canonicals, the sitemap and robots.txt didn't change. In a
+  pinned before/after build, 8 titles changed (4 pairs), all resolved by time.
+  `showPageTitles()` in src/lib/data.ts. A build test fails if two indexable
+  pages share a title or meta description, on real and fixture data.

@@ -2,7 +2,7 @@
 import type { GetStaticPaths } from 'astro';
 import Base from '../../layouts/Base.astro';
 import { CATEGORY_LABEL } from '../../lib/categories.ts';
-import { bestSource, coverLabel, lineup, loadAll, REPORT_EMAIL, reportHref, showTitle, type Show } from '../../lib/data.ts';
+import { bestSource, coverLabel, lineup, loadAll, REPORT_EMAIL, reportHref, showPageTitles, showTitle, type Show } from '../../lib/data.ts';
 import { showEvent } from '../../lib/jsonld.ts';
 import { chicagoIso, formatDay, formatMediumDay, formatTime } from '../../lib/time.ts';
 
@@ -15,6 +15,7 @@ const { show } = Astro.props as { show: Show };
 const v = show.venue;
 const name = showTitle(show);
 const title = `${name} at ${v.data.name}`;
+const page = (await showPageTitles()).get(show.id)!;
 const when = `${formatDay(show.date)} at ${formatTime(show.startTime)}`;
 const cover = coverLabel(show.cover);
 const src = bestSource(show);
@@ -22,8 +23,8 @@ const mapUrl = `https://www.openstreetmap.org/?mlat=${v.data.lat}&mlon=${v.data.
 ---
 
 <Base
-  title={`${title}, ${formatDay(show.date)}`}
-  description={`${title} in ${v.data.city}, ${v.data.state} on ${when}.${cover ? ` Cover: ${cover}.` : ''}`}
+  title={page.title}
+  description={`${title} in ${v.data.city}, ${v.data.state} on ${when}${page.stage ? `, ${page.stage} stage` : ''}.${cover ? ` Cover: ${cover}.` : ''}`}
   noindex={show.placeholder}
   ogType="article"
   jsonld={showEvent(show, Astro.site!)}

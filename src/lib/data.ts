@@ -5,7 +5,7 @@ import { CATEGORIES, isMusic, type Category } from './categories.ts';
 import { DATA_DIR } from './paths.ts';
 import type { SOURCE_KINDS } from './sources.ts';
 import { buildNow, byStart, dedupeRecurring, listing, recurringDates, upcoming, WEEKDAYS } from './shows.ts';
-import { addDays, chicagoDate, formatShortDay } from './time.ts';
+import { addDays, chicagoDate, formatDay, formatShortDay, formatTime } from './time.ts';
 
 export type Venue = CollectionEntry<'venues'>;
 export type Artist = CollectionEntry<'artists'>;
@@ -121,6 +121,39 @@ export async function pageListing(category?: Category) {
     shows: listing(shows.filter(inCat), NOW),
     weekly: recurring.filter(inCat),
   };
+}
+
+/** "Council Oak" from a note like "On the Council Oak stage." (how a venue's rooms are noted). */
+export const stageOf = (show: Show) => show.notes?.match(/^On the (.+?) stage\.?$/i)?.[1];
+
+let pageTitles: Promise<Map<string, { title: string; stage?: string }>> | undefined;
+
+/**
+ * Each show page's title (before Base adds " | 815live"; og:title uses it as
+ * is): "Act at Venue, Saturday, October 31". When indexable pages would share
+ * one (two sets, or two stages the same day), each colliding page adds its
+ * start time, and its stage if the times match too (returned as `stage`, so
+ * the page's description can name it as well). Others never change.
+ * tests/build.e2e.ts fails if any two indexable pages still share a title.
+ */
+export function showPageTitles(): Promise<Map<string, { title: string; stage?: string }>> {
+  pageTitles ??= (async () => {
+    const { shows } = await loadAll();
+    const base = (s: Show) => `${showTitle(s)} at ${s.venue.data.name}, ${formatDay(s.date)}`;
+    const out = new Map(shows.map((s): [string, { title: string; stage?: string }] => [s.id, { title: base(s) }]));
+    const groups = new Map<string, Show[]>();
+    for (const s of shows.filter((s) => !s.placeholder)) groups.set(base(s), [...(groups.get(base(s)) ?? []), s]);
+    for (const group of groups.values()) {
+      if (group.length < 2) continue;
+      for (const s of group) {
+        const sameTime = group.filter((o) => o.startTime === s.startTime).length > 1;
+        const stage = (sameTime && stageOf(s)) || undefined;
+        out.set(s.id, { title: `${base(s)}, ${formatTime(s.startTime)}${stage ? `, ${stage} stage` : ''}`, stage });
+      }
+    }
+    return out;
+  })();
+  return pageTitles;
 }
 
 /** Music first; the rest goes under "Also happening". Order within each is kept. */
