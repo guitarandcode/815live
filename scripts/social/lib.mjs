@@ -58,6 +58,12 @@ export function wordmark(size) {
   );
 }
 
+/** Laid-out height of `element` at `width`, from satori itself (so wrapping matches the render). */
+export async function measure(element, width) {
+  const svg = await satori(element, { width, fonts: FONTS });
+  return Number(svg.match(/height="([\d.]+)"/)[1]);
+}
+
 export async function render(element, width, height, outPath) {
   const svg = await satori(element, { width, height, fonts: FONTS });
   const png = new Resvg(svg, { fitTo: { mode: 'width', value: width } }).render().asPng();

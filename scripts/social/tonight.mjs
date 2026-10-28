@@ -7,18 +7,22 @@
 // Writes social/tonight-YYYY-MM-DD[-2].png and social/tonight-YYYY-MM-DD.txt.
 // Busy nights spill onto extra images (post them together as one album).
 // Quiet nights (fewer than QUIET music listings) get one "Tonight + Coming Up"
-// image instead: tonight's music on top, then up to WEEK_MAX one-off shows
-// from the next 7 days, soonest first. Highlights are one-off live music:
-// no weekly nights, and no open mics, jams or DJs.
+// image instead: tonight's listings on top, then up to WEEK_MAX one-off shows
+// from the next 7 days in the room left, soonest first. Coming-up highlights
+// are one-off live music: no weekly nights, and no open mics, jams or DJs.
 //
-// Music leads. Other events (trivia, bingo, karaoke, comedy; see
-// src/lib/categories.ts) never appear on busy nights; on quiet nights they
-// fill whatever room is left at the bottom, in smaller muted rows under
-// "Also tonight", and the caption lists them last.
+// Tonight is everything on the site's /tonight (same 4 AM rule), grouped by
+// category in CATEGORIES order, so music leads and other events (trivia,
+// bingo, karaoke, comedy; see src/lib/categories.ts) follow. Music always
+// fits (busy nights spill onto more images); other events take the room
+// left on the last image, and when they don't fit, rows are dropped in
+// DROP_FIRST order and a "+ N more at 815live.com" line is added. Text never
+// shrinks. Titles wrap to two lines instead of being cut off.
 import { readdirSync, readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { join } from 'node:path';
-import { CATEGORY_LABEL, isMusic } from '../../src/lib/categories.ts';
-import { C, h, render, wordmark } from './lib.mjs';
+import { CATEGORIES, CATEGORY_LABEL, isMusic } from '../../src/lib/categories.ts';
+import { nightOf } from '../../src/lib/shows.ts';
+import { C, h, measure, render, wordmark } from './lib.mjs';
 
 const ROOT = join(import.meta.dirname, '../..');
 const OUT = join(ROOT, 'social');
@@ -42,8 +46,6 @@ if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) throw new Error(`Bad --date: ${date}`);
 
 const WEEKDAYS = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
 const noon = new Date(`${date}T12:00:00Z`);
-const weekday = WEEKDAYS[noon.getUTCDay()];
-const month = Number(date.slice(5, 7));
 const mins = (t) => Number(t.slice(0, 2)) * 60 + Number(t.slice(3, 5));
 
 const QUIET = 3;
@@ -59,16 +61,22 @@ const venues = load('venues');
 const artists = load('artists');
 const allShows = Object.values(load('shows')).filter((s) => !s.placeholder && (s.status ?? 'scheduled') !== 'cancelled');
 
-const oneOffs = allShows.filter((s) => s.date === date);
+// Tonight runs until 4 AM, so the next date's early-morning shows count too.
+const nextDate = addDays(date, 1);
+const oneOffs = allShows.filter((s) => s.date === date || s.date === nextDate);
 const HIGHLIGHT_CATEGORIES = ['live-music'];
 const isHighlight = (s) =>
   HIGHLIGHT_CATEGORIES.includes(s.category ?? 'live-music') && !/\bjam\b/i.test(s.title ?? '');
 // Recurring nights, minus any that a one-off at the same venue replaces (same rule as the site).
-const recurring = Object.values(load('recurring'))
-  .filter((r) => r.weekday === weekday && !r.placeholder)
-  .filter((r) => !r.months || r.months.includes(month))
-  .filter((r) => !(r.skip ?? []).includes(date))
-  .filter((r) => !oneOffs.some((s) => s.venue === r.venue && Math.abs(mins(s.startTime) - mins(r.startTime)) < 120));
+const rules = Object.values(load('recurring')).filter((r) => !r.placeholder);
+const rulesOn = (d) =>
+  rules
+    .filter((r) => r.weekday === WEEKDAYS[new Date(`${d}T12:00:00Z`).getUTCDay()])
+    .filter((r) => !r.months || r.months.includes(Number(d.slice(5, 7))))
+    .filter((r) => !(r.skip ?? []).includes(d))
+    .filter((r) => !oneOffs.some((s) => s.date === d && s.venue === r.venue && Math.abs(mins(s.startTime) - mins(r.startTime)) < 120))
+    .map((r) => ({ ...r, date: d }));
+const recurring = [date, nextDate].flatMap(rulesOn);
 
 const toEvent = (e) => {
   const v = venues[e.venue];
@@ -76,7 +84,6 @@ const toEvent = (e) => {
   const names = (e.artists ?? []).map((a) => artists[a]?.name ?? a);
   return {
     ...e,
-    date: e.date ?? date, // recurring rules have no date of their own
     category: e.category ?? 'live-music',
     act: names.length ? names.join(' + ') : e.title,
     eventTitle: names.length ? e.title : undefined,
@@ -90,13 +97,13 @@ const toEvent = (e) => {
 const byStart = (a, b) =>
   a.date.localeCompare(b.date) || a.startTime.localeCompare(b.startTime) || a.venueName.localeCompare(b.venueName);
 
-const all = [...oneOffs, ...recurring].map(toEvent).sort(byStart);
+const all = [...oneOffs, ...recurring].filter((s) => nightOf(s) === date).map(toEvent).sort(byStart);
 const events = all.filter((e) => isMusic(e.category));
 const others = all.filter((e) => !isMusic(e.category));
 const quiet = events.length < QUIET;
 const weekEnd = addDays(date, WEEK_DAYS);
 const week = quiet
-  ? allShows.filter((s) => s.date > date && s.date <= weekEnd && isHighlight(s)).map(toEvent).sort(byStart).slice(0, WEEK_MAX)
+  ? allShows.filter((s) => nightOf(s) > date && nightOf(s) <= weekEnd && isHighlight(s)).map(toEvent).sort(byStart).slice(0, WEEK_MAX)
   : [];
 
 if (!events.length && !week.length && !others.length) {
@@ -105,14 +112,10 @@ if (!events.length && !week.length && !others.length) {
 }
 
 // ---------- formatting ----------
-// Music only; other events go in "Also tonight" on quiet nights.
-const SECTIONS = [
-  ['live-music', 'Live music'],
-  ['dj', 'DJ'],
-  ['open-mic', 'Open mic'],
-];
-// "Karaoke" stays "Karaoke"; "Name That Tune" becomes "Trivia: Name That Tune".
-const otherAct = (e) => (e.act === CATEGORY_LABEL[e.category] ? e.act : `${CATEGORY_LABEL[e.category]}: ${e.act}`);
+// Music first (live music leads), then the other events.
+const SECTIONS = CATEGORIES.map((c) => [c, c === 'other' ? 'Other events' : CATEGORY_LABEL[c]]);
+// When other events don't fit, rows go in this order (the latest first within each).
+const DROP_FIRST = ['karaoke', 'trivia', 'bingo', 'other', 'comedy'];
 
 function clock(t) {
   let hr = Number(t.slice(0, 2));
@@ -136,20 +139,58 @@ const HEADER = 372; // wordmark + two-line heading + date + rule
 const FOOTER = 120;
 const SECTION_H = 58;
 const ROW_H = 88;
+const MORE_H = 58;
+const WRAP_H = 48; // a title's second line (42 px type at 1.1, rounded up)
 const BODY = H - TOP - BOTTOM - HEADER - FOOTER - 24;
 const INNER = W - PAD * 2;
+const TIME_W = 170;
+const DAY_TIME_W = 230; // the week list: weekday and date over the time
+const TITLE = { fontFamily: 'Cond', fontWeight: 800, fontSize: 42, lineHeight: 1.1 };
 
-// Pack sections and rows into pages by height.
+// Titles wrap to at most two lines; satori measures them so rows can be sized.
+const titleLines = async (text, width) =>
+  Math.min(2, Math.max(1, Math.round((await measure(h('div', { width, ...TITLE }, text), width)) / 46)));
+for (const e of all) e.lines = await titleLines(e.act, INNER - TIME_W);
+for (const e of week) e.lines = await titleLines(e.act, INNER - DAY_TIME_W);
+const rowH = (e, base) => base + (e.lines - 1) * WRAP_H;
+
+// Other events in the room left: drop rows (DROP_FIRST) until they and the
+// "+ N more" line fit. Returns page items, grouped by category.
+function fitOthers(room, base) {
+  const kept = [...others];
+  const height = () =>
+    new Set(kept.map((e) => e.category)).size * SECTION_H +
+    kept.reduce((n, e) => n + rowH(e, base), 0) +
+    (kept.length < others.length ? MORE_H : 0);
+  while (kept.length && height() > room) {
+    const cat = DROP_FIRST.find((c) => kept.some((e) => e.category === c));
+    kept.splice(kept.findLastIndex((e) => e.category === cat), 1);
+  }
+  const items = [];
+  for (const [cat, label] of SECTIONS) {
+    const rows = kept.filter((e) => e.category === cat);
+    if (rows.length) items.push({ label }, ...rows.map((row) => ({ row })));
+  }
+  const more = others.length - kept.length;
+  if (more && MORE_H <= room) items.push({ more });
+  else if (more) console.warn(`no room for the "+ ${more} more" line`);
+  return { items, height: kept.length || (more && MORE_H <= room) ? height() : 0 };
+}
+
+// Pack music sections and rows into pages by height; other events go on the last.
 const pages = [];
 let page = [];
 let used = 0;
-for (const [cat, label] of SECTIONS) {
+const musicSections = SECTIONS.filter(([c]) => isMusic(c));
+// The last music row also leaves room under it for a "+ N more" line.
+const lastMusic = musicSections.flatMap(([c]) => events.filter((e) => e.category === c)).at(-1);
+for (const [cat, label] of musicSections) {
   const rows = events.filter((e) => e.category === cat);
   if (!rows.length) continue;
   let first = true;
   let continued = false;
   for (const row of rows) {
-    const need = ROW_H + (first ? SECTION_H : 0);
+    const need = rowH(row, ROW_H) + (first ? SECTION_H : 0) + (row === lastMusic && others.length ? MORE_H : 0);
     // Start a new page rather than overflow (and never strand a label at the bottom).
     if (used + need > BODY && page.length) {
       pages.push(page);
@@ -164,34 +205,26 @@ for (const [cat, label] of SECTIONS) {
       first = false;
     }
     page.push({ row });
-    used += ROW_H;
+    used += rowH(row, ROW_H);
   }
 }
-if (page.length) pages.push(page);
+if (!quiet) {
+  page.push(...fitOthers(BODY - used, ROW_H).items);
+  pages.push(page);
+}
 
 const ellipsis = { whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' };
 
 // withDay: the week list, with weekday and date over the time.
-// secondary: an "Also tonight" row, smaller and muted.
-function rowEl(e, { withDay = false, rowH = ROW_H, secondary = false } = {}) {
-  const timeW = withDay ? 230 : 170;
-  if (secondary) {
-    const sub = [e.venueName, e.town].filter(Boolean).join(' · ');
-    return h(
-      'div',
-      { width: INNER, height: rowH, flexShrink: 0, alignItems: 'center', borderBottom: `1px solid ${C.line}` },
-      h('div', { width: timeW, flexShrink: 0, fontFamily: 'Cond', fontWeight: 700, fontSize: 28, color: C.muted }, clock(e.startTime)),
-      h('div', { width: INNER - timeW, fontFamily: 'Sans', fontSize: 26, color: C.muted, ...ellipsis },
-        h('span', { fontWeight: 600, color: C.ink, marginRight: 10 }, otherAct(e)),
-        sub),
-    );
-  }
+// base: the row's height with a one-line title.
+function rowEl(e, { withDay = false, base = ROW_H } = {}) {
+  const timeW = withDay ? DAY_TIME_W : TIME_W;
   // Venues with more than one room note it like "On the Council Oak stage."
   const stage = e.notes?.match(/^On the (.+?) stage\.?$/i)?.[1];
   const sub = [e.eventTitle, e.venueName, stage, e.town].filter(Boolean).join(' · ');
   return h(
     'div',
-    { width: INNER, height: rowH, flexShrink: 0, alignItems: 'center', borderBottom: `2px solid ${C.line}` },
+    { width: INNER, height: rowH(e, base), flexShrink: 0, alignItems: 'center', borderBottom: `2px solid ${C.line}` },
     withDay
       ? h('div', { width: timeW, flexShrink: 0, flexDirection: 'column', fontFamily: 'Cond', fontWeight: 700 },
           h('div', { fontSize: 26, color: C.ink, textTransform: 'uppercase' }, shortDay(e.date).split(',')[0]),
@@ -200,11 +233,17 @@ function rowEl(e, { withDay = false, rowH = ROW_H, secondary = false } = {}) {
     h(
       'div',
       { flexDirection: 'column', width: INNER - timeW },
-      h('div', { fontFamily: 'Cond', fontWeight: 800, fontSize: 42, lineHeight: 1.1, color: C.ink, ...ellipsis }, e.act),
+      h('div', { ...TITLE, color: C.ink, display: 'block', lineClamp: 2 }, e.act),
       h('div', { fontFamily: 'Sans', fontSize: 25, lineHeight: 1.3, color: C.muted, marginTop: 2, ...ellipsis }, sub),
     ),
   );
 }
+
+const sectionLabel = (text) =>
+  h('div', { height: SECTION_H, flexShrink: 0, alignItems: 'flex-end', paddingBottom: 6, fontFamily: 'Cond', fontWeight: 800, fontSize: 28, letterSpacing: 3, color: C.accent, textTransform: 'uppercase' }, text);
+const moreEl = (n) =>
+  h('div', { height: MORE_H, flexShrink: 0, alignItems: 'center', fontFamily: 'Sans', fontWeight: 600, fontSize: 26, color: C.muted }, `+ ${n} more at 815live.com`);
+const itemEl = (it, base = ROW_H) => (it.label ? sectionLabel(it.label) : it.more ? moreEl(it.more) : rowEl(it.row, { base }));
 
 function pageEl(items, i, total) {
   return h(
@@ -229,11 +268,7 @@ function pageEl(items, i, total) {
     h(
       'div',
       { width: INNER, height: BODY, marginTop: 12, marginBottom: 12, flexDirection: 'column', justifyContent: 'center' },
-      items.map((it) =>
-        it.label
-          ? h('div', { height: SECTION_H, flexShrink: 0, alignItems: 'flex-end', paddingBottom: 6, fontFamily: 'Cond', fontWeight: 800, fontSize: 28, letterSpacing: 3, color: C.accent, textTransform: 'uppercase' }, it.label)
-          : rowEl(it.row),
-      ),
+      items.map((it) => itemEl(it)),
     ),
     footerEl(),
   );
@@ -254,21 +289,28 @@ function footerEl() {
   );
 }
 
-// Quiet nights: one page with tonight (or "nothing listed"), then the week.
+// Quiet nights: one page with tonight (all of it, or "nothing listed" for
+// music), then as much of the week as fits.
 const Q_HEADER = 300;
 const Q_ROW = 80;
 const Q_BODY = H - TOP - BOTTOM - Q_HEADER - FOOTER - 24;
-const ALSO_ROW = 58;
-// Other events only get the room music leaves: tonight's rows, then the week.
-const musicH = SECTION_H + Math.max(events.length, 1) * Q_ROW + (week.length ? SECTION_H + week.length * Q_ROW : 0);
-const alsoFit = Math.max(0, Math.floor((Q_BODY - musicH - SECTION_H) / ALSO_ROW));
-// When they don't all fit, the last row says how many more are on the site.
-const alsoShown = others.length <= alsoFit ? others : others.slice(0, Math.max(0, alsoFit - 1));
-const alsoMore = others.length - alsoShown.length;
-const mutedLabel = (text) =>
-  h('div', { height: SECTION_H, flexShrink: 0, alignItems: 'flex-end', paddingBottom: 6, fontFamily: 'Cond', fontWeight: 700, fontSize: 24, letterSpacing: 3, color: C.muted, textTransform: 'uppercase' }, text);
-const sectionLabel = (text) =>
-  h('div', { height: SECTION_H, flexShrink: 0, alignItems: 'flex-end', paddingBottom: 6, fontFamily: 'Cond', fontWeight: 800, fontSize: 28, letterSpacing: 3, color: C.accent, textTransform: 'uppercase' }, text);
+const qMusic = [];
+for (const [cat, label] of SECTIONS.filter(([c]) => isMusic(c))) {
+  const rows = events.filter((e) => e.category === cat);
+  if (rows.length) qMusic.push({ label }, ...rows.map((row) => ({ row })));
+}
+const qMusicH = events.length
+  ? qMusic.reduce((n, it) => n + (it.label ? SECTION_H : rowH(it.row, Q_ROW)), 0)
+  : Q_ROW;
+const qOthers = quiet ? fitOthers(Q_BODY - qMusicH, Q_ROW) : { items: [], height: 0 };
+// The week gets what tonight leaves.
+const weekShown = [];
+let weekRoom = Q_BODY - qMusicH - qOthers.height - SECTION_H;
+for (const e of week) {
+  if (rowH(e, Q_ROW) > weekRoom) break;
+  weekShown.push(e);
+  weekRoom -= rowH(e, Q_ROW);
+}
 
 function quietEl() {
   return h(
@@ -279,26 +321,21 @@ function quietEl() {
       { width: INNER, height: Q_HEADER, flexDirection: 'column' },
       wordmark(46),
       h('div', { flexDirection: 'column', fontFamily: 'Cond', fontWeight: 900, fontSize: 92, lineHeight: 0.92, textTransform: 'uppercase', letterSpacing: -1, marginTop: 24 },
-        h('div', { color: C.ink }, `${heading} +`),
-        h('div', { color: C.accent }, 'Coming up'),
+        h('div', { color: C.ink }, weekShown.length ? `${heading} +` : heading),
+        h('div', { color: C.accent }, weekShown.length ? 'Coming up' : 'in the 815'),
       ),
-      h('div', { fontFamily: 'Sans', fontWeight: 600, fontSize: 30, color: C.muted, marginTop: 16 }, `${longDate} · in the 815`),
+      h('div', { fontFamily: 'Sans', fontWeight: 600, fontSize: 30, color: C.muted, marginTop: 16 }, weekShown.length ? `${longDate} · in the 815` : longDate),
       h('div', { height: 4, background: C.accent, width: 120, marginTop: 20 }),
     ),
     h(
       'div',
       { width: INNER, height: Q_BODY, marginTop: 12, marginBottom: 12, flexDirection: 'column', justifyContent: 'center' },
-      sectionLabel(heading),
       events.length
-        ? events.map((e) => rowEl(e, { rowH: Q_ROW }))
+        ? qMusic.map((it) => itemEl(it, Q_ROW))
         : h('div', { height: Q_ROW, flexShrink: 0, alignItems: 'center', fontFamily: 'Sans', fontSize: 30, color: C.muted, borderBottom: `2px solid ${C.line}` }, isToday ? 'No live music listed tonight.' : 'No live music listed.'),
-      week.length ? sectionLabel('Coming up') : null,
-      week.map((e) => rowEl(e, { withDay: true, rowH: Q_ROW })),
-      others.length && alsoFit ? mutedLabel(isToday ? 'Also tonight' : 'Also that night') : null,
-      alsoFit ? alsoShown.map((e) => rowEl(e, { rowH: ALSO_ROW, secondary: true })) : null,
-      alsoFit && alsoMore
-        ? h('div', { height: ALSO_ROW, flexShrink: 0, alignItems: 'center', fontFamily: 'Sans', fontSize: 24, color: C.muted }, `+ ${alsoMore} more on 815live.com`)
-        : null,
+      qOthers.items.map((it) => itemEl(it, Q_ROW)),
+      weekShown.length ? sectionLabel('Coming up') : null,
+      weekShown.map((e) => rowEl(e, { withDay: true, base: Q_ROW })),
     ),
     footerEl(),
   );
@@ -312,28 +349,22 @@ else for (const [i, items] of pages.entries()) {
 }
 
 // ---------- caption ----------
-const lines = [`${isToday ? 'Tonight' : longDate}${quiet ? ' + Coming Up' : ''} in the 815 🎶`, ''];
+const lines = [`${isToday ? 'Tonight' : longDate}${weekShown.length ? ' + Coming Up' : ''} in the 815 🎶`, ''];
 if (!events.length) lines.push(isToday ? 'No live music listed tonight.' : 'No live music listed.', '');
 for (const [cat, label] of SECTIONS) {
-  const rows = events.filter((e) => e.category === cat);
+  const rows = all.filter((e) => e.category === cat);
   if (!rows.length) continue;
   lines.push(`${label.toUpperCase()}`);
   for (const e of rows) lines.push(`• ${e.act} @ ${e.venueName}${e.town ? ` (${e.town})` : ''}, ${clock(e.startTime)}`);
   lines.push('');
 }
-if (week.length) {
+if (weekShown.length) {
   lines.push('COMING UP');
-  for (const e of week) lines.push(`• ${shortDay(e.date)}: ${e.act} @ ${e.venueName}${e.town ? ` (${e.town})` : ''}, ${clock(e.startTime)}`);
-  lines.push('');
-}
-// Other events: quiet nights only, after the music.
-if (quiet && others.length) {
-  lines.push(isToday ? 'ALSO TONIGHT' : 'ALSO THAT NIGHT');
-  for (const e of others) lines.push(`• ${otherAct(e)} @ ${e.venueName}${e.town ? ` (${e.town})` : ''}, ${clock(e.startTime)}`);
+  for (const e of weekShown) lines.push(`• ${shortDay(e.date)}: ${e.act} @ ${e.venueName}${e.town ? ` (${e.town})` : ''}, ${clock(e.startTime)}`);
   lines.push('');
 }
 lines.push('Full calendar: https://815live.com', 'Got a show? shows@815live.com', '', '#Rockford #RockfordIL #LiveMusic #815');
-const pagesToTag = [...new Set([...events, ...week].flatMap((e) => e.artistPages))];
+const pagesToTag = [...new Set([...events, ...weekShown].flatMap((e) => e.artistPages))];
 if (pagesToTag.length) lines.push('', '(Tag these pages when you post:)', ...pagesToTag);
 
 const captionPath = join(OUT, `tonight-${date}.txt`);
