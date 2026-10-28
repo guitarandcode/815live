@@ -705,3 +705,24 @@ Calls made while filling out listings unattended (session of 2026-10-24).
   - Tonight graphic labels: joining artist names with "+" ("The Forty Twos +
     King Falcon") is intentional, even where the site shows an event title
     ("The Forty Twos with King Falcon"). Not a mismatch to fix.
+- **Inbox run (scheduled, 2026-10-28 evening).** 16 files (one an exact
+  duplicate of another, filed next to it in the Maxine's folder). Published: Mustang's Bar & Grill, South
+  Beloit (new venue, 482 Gardner St, from local event listings that agree;
+  Census geocoded), "Spooky Movies Trivia" Wed Oct 28, 6:30 PM, a one-off
+  `trivia` show. The flyer says "the game always starts at 6:30", but not that
+  it's weekly, so no rule; the host company is left out. Mulligan's
+  "Helloween" Fri Oct 30 updated from the full flyer: music 7 PM (was 6, the
+  door time, now in notes), with Reckless Redemption (new artist), Faith In
+  Vain and Lights Out Alaska; Blood & Bone Burlesque named in notes, not as a
+  music act; "bring a non-perishable item" left out (no cover stated).
+  Re-confirmed, `checked` bumped: Sheez-It at Chrissy's Corner (Oct 31),
+  End Fight Scene at Maxine's (Oct 31; still no start time), Murphy's
+  Wednesday open mic, Whiskey's Wednesday karaoke. Skipped: Wisconsin Comedy
+  Takeover at the Rusty Fox, Sterling, and HitWave 80's at Sundance Saloon,
+  Mundelein (out of area); Durand's Halloween on the Square (kids' parade and
+  trunk-or-treat); Hot Rod Nellie's Witch's Night Out (costume contest, left
+  out on 10-25 too) and blind-draw darts tournament (like the 9-ball
+  tournament); the Thanksgiving Eve bar crawl (a bus between bars, no
+  entertainment). Waiting: Regal Beagle at "Morts Pub" (second copy, still no
+  town) and Rascal's "Bingo for a Cause" Nov 19 (venue unconfirmed, as for
+  its Halloween party).
