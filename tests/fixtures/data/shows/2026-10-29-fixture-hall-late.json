@@ -1,0 +1,13 @@
+{
+  "date": "2026-10-29",
+  "startTime": "21:30",
+  "venue": "fixture-hall",
+  "category": "live-music",
+  "artists": [
+    "fixture-band"
+  ],
+  "checked": "2026-10-27",
+  "source": {
+    "type": "manual"
+  }
+}

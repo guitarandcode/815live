@@ -283,6 +283,26 @@ test('internal links: home, header, day strip and filters reach /tonight, /tomor
 /** A page's <main>, so names in its <head> (title, description) don't count. */
 const main = (html: string) => html.slice(html.indexOf('<main'));
 
+/** Titles and meta descriptions that two or more indexable (not noindex) built pages share. */
+function duplicateHeads(): string[] {
+  const seen = new Map<string, string[]>();
+  const walk = (dir: string) => {
+    for (const e of readdirSync(dir, { withFileTypes: true })) {
+      const file = join(dir, e.name);
+      if (e.isDirectory()) walk(file);
+      else if (e.name.endsWith('.html')) {
+        const html = readFileSync(file, 'utf8');
+        if (html.includes('<meta name="robots" content="noindex">')) continue;
+        const title = html.match(/<title>([^<]*)<\/title>/)?.[1];
+        const description = html.match(/<meta name="description" content="([^"]*)"/)?.[1];
+        for (const key of [`title: ${title}`, `description: ${description}`]) seen.set(key, [...(seen.get(key) ?? []), file]);
+      }
+    }
+  };
+  walk('dist');
+  return [...seen].filter(([, files]) => files.length > 1).map(([key, files]) => `${key} (${files.join(', ')})`);
+}
+
 /** Sitemap URLs that no other built page links to. */
 function orphans(): string[] {
   const graph = linkGraph();
@@ -293,11 +313,13 @@ function orphans(): string[] {
   return locs.filter((p) => !inbound.get(p));
 }
 
-test('no orphans: every page in the sitemap is linked from some other page', () => {
+test('real data: no orphans, and no two indexable pages share a title or description', () => {
   buildAt(new Date().toISOString()); // today's real listings, as the daily build sees them
   assert.ok(readFileSync('dist/sitemap.xml', 'utf8').split('<loc>').length > 100);
   const found = orphans();
   assert.deepEqual(found, [], `sitemap pages nothing links to: ${found.join(', ')}`);
+  const dupes = duplicateHeads();
+  assert.deepEqual(dupes, [], `shared by more than one indexable page:\n${dupes.join('\n')}`);
 });
 
 test('past shows keep their pages but leave the sitemap', () => {
@@ -340,6 +362,31 @@ test('other events: music first, then "Also happening", on home, /tonight and da
   for (const p of ['other-events', 'trivia', 'bingo', 'karaoke', 'open-mic']) assert.match(sitemap, new RegExp(`<loc>https://815live.com/${p}</loc>`));
   assert.doesNotMatch(sitemap, /\/(comedy|other)</);
   assert.deepEqual(orphans(), []);
+  assert.deepEqual(duplicateHeads(), []);
+});
+
+test('show titles: only pages that would collide add the time, then the stage', () => {
+  buildAt('2026-10-28T17:00:00Z', { data: FIXTURES });
+  const head = (id: string) => {
+    const html = readFileSync(`dist/shows/${id}.html`, 'utf8');
+    const get = (re: RegExp) => html.match(re)![1].replaceAll('&#39;', "'");
+    return { title: get(/<title>([^<]*)/), og: get(/<meta property="og:title" content="([^"]*)"/), description: get(/<meta name="description" content="([^"]*)"/) };
+  };
+  // Two sets, same act, venue and day: each adds its start time.
+  assert.equal(head('2026-10-29-fixture-hall-early').title, 'Fixture Band at Fixture Hall, Thursday, October 29, 7 PM | 815live');
+  assert.equal(head('2026-10-29-fixture-hall-late').title, 'Fixture Band at Fixture Hall, Thursday, October 29, 9:30 PM | 815live');
+  assert.equal(head('2026-10-29-fixture-hall-late').og, 'Fixture Band at Fixture Hall, Thursday, October 29, 9:30 PM');
+  // Two stages at the same time: the time isn't enough, so each adds its stage, in the description too.
+  const main = head('2026-10-30-fixture-hall-main');
+  const side = head('2026-10-30-fixture-hall-side');
+  assert.equal(main.title, 'Fixture Band at Fixture Hall, Friday, October 30, 8 PM, Main stage | 815live');
+  assert.equal(side.og, 'Fixture Band at Fixture Hall, Friday, October 30, 8 PM, Side stage');
+  assert.match(side.description, /on Friday, October 30 at 8 PM, Side stage\./);
+  assert.notEqual(main.description, side.description);
+  // Everything else keeps its title exactly.
+  assert.equal(head('2026-10-28-fixture-hall').title, 'Wednesday Fixture Show at Fixture Hall, Wednesday, October 28 | 815live');
+  assert.equal(head('2026-10-28-fixture-hall').description, 'Wednesday Fixture Show at Fixture Hall in Rockford, IL on Wednesday, October 28 at 8 PM.');
+  assert.deepEqual(duplicateHeads(), []);
 });
 
 test('JSON-LD: MusicEvent for music, SocialEvent for games and karaoke, no bands on non-music', () => {

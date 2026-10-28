@@ -267,6 +267,7 @@ category to `karaoke`; if both really run, consider two rules.
 ## Music or other? Maxine's Social "Open Mic Night with Ian", Thu Oct 29
 
 The flyer doesn't say whether it's a music open mic. It stays a music
-`open-mic` (as before). Confirm it's for musicians, or change it to `comedy`
+`open-mic` (as before); the user is confirming with the venue (2026-10-27).
+Confirm it's for musicians, or change it to `comedy`
 or `other`. (Murphy's Wednesday open mic is music per its flyer: "Play just 3
 songs"; Mary's Place's Sunday open stage is at a music bar.)
