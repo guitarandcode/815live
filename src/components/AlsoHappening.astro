@@ -1,0 +1,36 @@
+---
+// Non-music listings, after the music: a side door, never the lead. Links to
+// the other-event pages that have listings.
+import { CATEGORY_LABEL, OTHER_CATEGORIES } from '../lib/categories.ts';
+import { categoryCounts, type Show } from '../lib/data.ts';
+import ShowList from './ShowList.astro';
+
+interface Props {
+  shows: Show[];
+  heading?: string;
+  /** One night's events (/tonight, /tomorrow, a date page): no day headings. */
+  oneNight?: boolean;
+}
+
+const { shows, heading = 'Also happening', oneNight = false } = Astro.props;
+const counts = await categoryCounts();
+const pages = OTHER_CATEGORIES.filter((c) => c !== 'other' && counts[c] > 0);
+---
+
+{
+  shows.length > 0 && (
+    <section class="also" aria-label={heading}>
+      <h2 class="also-heading">{heading}</h2>
+      <ShowList shows={shows} dayHeadings={!oneNight} />
+      <p class="also-links">
+        {pages.map((c) => (
+          <>
+            <a href={`/${c}`}>{CATEGORY_LABEL[c]}</a>
+            {' · '}
+          </>
+        ))}
+        <a href="/other-events">All other events</a>
+      </p>
+    </section>
+  )
+}

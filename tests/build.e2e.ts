@@ -80,9 +80,12 @@ test('weekly rules: listed for 7 days on the home page, expanded 8 weeks out, ne
 test('category pages: hidden filter links for empty categories, empty pages noindexed', () => {
   buildAt('2027-06-04T18:00:00Z', { data: FIXTURES }); // the fixtures have no comedy
   const home = readFileSync('dist/index.html', 'utf8');
-  assert.match(home, /href="\/karaoke"/);
   assert.match(home, /href="\/open-mic"/);
   assert.doesNotMatch(home, /href="\/comedy"/);
+  // Other categories hang off /other-events, not the main row.
+  const other = readFileSync('dist/other-events.html', 'utf8');
+  assert.match(other, /<nav class="filters sub"[^>]*>[\s\S]*href="\/bingo"[\s\S]*href="\/karaoke"/);
+  assert.doesNotMatch(other, /href="\/comedy"/);
   assert.match(readFileSync('dist/comedy.html', 'utf8'), /<meta name="robots" content="noindex">/);
   assert.doesNotMatch(readFileSync('dist/sitemap.xml', 'utf8'), /\/comedy</);
   const karaoke = readFileSync('dist/karaoke.html', 'utf8');
@@ -277,19 +280,94 @@ test('internal links: home, header, day strip and filters reach /tonight, /tomor
   assert.match(read('date/2026-10-28.html'), /<a href="\/tomorrow">Tomorrow<\/a>/);
 });
 
-test('no orphans: every page in the sitemap is linked from some other page', () => {
-  buildAt(new Date().toISOString()); // today's real listings, as the daily build sees them
+/** A page's <main>, so names in its <head> (title, description) don't count. */
+const main = (html: string) => html.slice(html.indexOf('<main'));
+
+/** Sitemap URLs that no other built page links to. */
+function orphans(): string[] {
   const graph = linkGraph();
   const inbound = new Map<string, number>();
   for (const [page, links] of graph) for (const to of links) if (to !== page) inbound.set(to, (inbound.get(to) ?? 0) + 1);
   const locs = [...readFileSync('dist/sitemap.xml', 'utf8').matchAll(/<loc>https:\/\/815live\.com([^<]*)<\/loc>/g)].map((m) => m[1] || '/');
-  assert.ok(locs.length > 100);
-  const orphans = locs.filter((p) => !inbound.get(p));
-  assert.deepEqual(orphans, [], `sitemap pages nothing links to: ${orphans.join(', ')}`);
+  assert.ok(locs.length > 0);
+  return locs.filter((p) => !inbound.get(p));
+}
+
+test('no orphans: every page in the sitemap is linked from some other page', () => {
+  buildAt(new Date().toISOString()); // today's real listings, as the daily build sees them
+  assert.ok(readFileSync('dist/sitemap.xml', 'utf8').split('<loc>').length > 100);
+  const found = orphans();
+  assert.deepEqual(found, [], `sitemap pages nothing links to: ${found.join(', ')}`);
 });
 
 test('past shows keep their pages but leave the sitemap', () => {
   buildAt('2026-10-29T18:00:00Z', { data: FIXTURES }); // the fixture shows are Oct 27 and 28
   assert.ok(existsSync('dist/shows/2026-10-27-fixture-hall.html'));
   assert.doesNotMatch(readFileSync('dist/sitemap.xml', 'utf8'), /\/shows\/2026-10-2[78]-fixture-(hall|bar)</);
+});
+
+test('other events: music first, then "Also happening", on home, /tonight and date pages', () => {
+  buildAt('2026-10-28T17:00:00Z', { data: FIXTURES }); // Wed noon: open mic, a band, then trivia
+  const read = (f: string) => readFileSync(`dist/${f}`, 'utf8');
+  const home = read('index.html');
+  const night = home.slice(home.indexOf('data-night="2026-10-28"'));
+  assert.ok(night.indexOf('Wednesday Fixture Show') < night.indexOf('data-also'));
+  assert.ok(night.indexOf('data-also') < night.indexOf('Fixture Trivia'));
+  for (const f of ['tonight.html', 'date/2026-10-28.html']) {
+    const html = main(read(f));
+    const also = html.indexOf('<section class="also"');
+    assert.ok(also > 0, `${f} has an Also happening section`);
+    assert.ok(html.indexOf('Fixture Open Mic') < also && html.indexOf('Wednesday Fixture Show') < also);
+    assert.ok(html.indexOf('Fixture Trivia') > also);
+    assert.match(html.slice(also), /<a href="\/trivia">Trivia<\/a>[\s\S]*<a href="\/other-events">All other events<\/a>/);
+  }
+  // The filter row: music, Free, then Other events, off by default.
+  const filters = home.match(/<nav class="filters"[^>]*>([\s\S]*?)<\/nav>/)![1];
+  assert.deepEqual([...filters.matchAll(/href="([^"]+)"/g)].map((m) => m[1]), ['/', '/live-music', '/open-mic', '/free', '/other-events']);
+  assert.match(filters, /href="\/free"[^>]*>Free<\/a>\s*<a href="\/other-events" class="side"\s*>/);
+  assert.doesNotMatch(filters, /href="\/(karaoke|trivia|bingo)"/);
+  // Category pages: their own titles; 'other' has no page; empty ones stay noindexed and out of the sitemap.
+  assert.match(read('trivia.html'), /<title>Trivia nights in Rockford, IL \| 815live<\/title>/);
+  assert.match(read('trivia.html'), /<h1>Trivia nights<\/h1>/);
+  assert.match(read('bingo.html'), /<title>Bingo in Rockford, IL: tonight and this week \| 815live<\/title>/);
+  assert.match(read('bingo.html'), /<meta name="description" content="Where to play bingo in Rockford/);
+  assert.match(read('karaoke.html'), /<title>Karaoke nights in Rockford, IL \| 815live<\/title>/); // unchanged
+  assert.match(read('comedy.html'), /<title>Comedy shows in Rockford, IL \| 815live<\/title>/); // unchanged
+  assert.match(read('comedy.html'), /<meta name="robots" content="noindex">/);
+  assert.match(read('other-events.html'), /<title>Trivia, Bingo, Karaoke and Comedy in Rockford \| 815live<\/title>/);
+  assert.ok(!existsSync('dist/other.html'));
+  const sitemap = read('sitemap.xml');
+  for (const p of ['other-events', 'trivia', 'bingo', 'karaoke', 'open-mic']) assert.match(sitemap, new RegExp(`<loc>https://815live.com/${p}</loc>`));
+  assert.doesNotMatch(sitemap, /\/(comedy|other)</);
+  assert.deepEqual(orphans(), []);
+});
+
+test('JSON-LD: MusicEvent for music, SocialEvent for games and karaoke, no bands on non-music', () => {
+  buildAt('2026-10-28T17:00:00Z', { data: FIXTURES });
+  const ld = (id: string) => {
+    const html = readFileSync(`dist/shows/${id}.html`, 'utf8');
+    return [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map((m) => JSON.parse(m[1])).find((o) => o.startDate);
+  };
+  assert.equal(ld('2026-10-28-fixture-hall')['@type'], 'MusicEvent');
+  assert.equal(ld('2026-10-28-fixture-hall').performer[0]['@type'], 'MusicGroup');
+  assert.equal(ld('2026-10-28-fixture-open-mic-wednesday')['@type'], 'MusicEvent');
+  assert.equal(ld('2026-10-28-fixture-bar')['@type'], 'SocialEvent');
+  assert.equal(ld('2026-10-28-fixture-bar').performer, undefined);
+  assert.equal(ld('2026-10-31-fixture-karaoke-saturday')['@type'], 'SocialEvent');
+});
+
+test('no music tonight: the empty note, then Also happening, and Next up skips non-music nights', () => {
+  buildAt('2027-06-04T18:00:00Z', { data: FIXTURES }); // Fri: bingo only; Sat: karaoke only; Wed: open mic
+  const read = (f: string) => readFileSync(`dist/${f}`, 'utf8');
+  const home = read('index.html');
+  assert.match(home, /<p class="tonight-empty" data-home-empty>\s*No live music listed for/);
+  assert.match(home, /class="tonight-list" data-home-list>/); // shown, for the bingo
+  assert.match(home, /data-night="2027-06-04">[\s\S]*?data-also[\s\S]*?Fixture Bingo/);
+  assert.match(home, /Next up: <a href="\/date\/2027-06-09" data-day-link="2027-06-09">/);
+  assert.match(home, /<h2>Every week<\/h2>[\s\S]*Fixture Open Mic[\s\S]*<h2>Also every week<\/h2>[\s\S]*Fixture Karaoke/);
+  const tonight = main(read('tonight.html'));
+  assert.match(tonight, /No live music listed for tonight/);
+  assert.ok(tonight.indexOf('Fixture Bingo') > tonight.indexOf('<section class="also"'));
+  const free = main(read('free.html'));
+  assert.ok(free.indexOf('Fixture Bingo') > free.indexOf('Also free') && free.indexOf('Fixture Open Mic') < free.indexOf('Also free'));
 });

@@ -4,14 +4,14 @@ import Base from '../layouts/Base.astro';
 import CategoryNav from '../components/CategoryNav.astro';
 import ShowList from '../components/ShowList.astro';
 import WeeklyList from '../components/WeeklyList.astro';
-import { CATEGORIES, CATEGORY_PAGE, type Category } from '../lib/categories.ts';
+import { CATEGORY_PAGE, PAGE_CATEGORIES } from '../lib/categories.ts';
 import { categoryCounts, pageListing } from '../lib/data.ts';
 import { itemList } from '../lib/jsonld.ts';
 
-// Every category gets a page, even when empty, so its URL never 404s.
-export const getStaticPaths = (() => CATEGORIES.map((category) => ({ params: { category } }))) satisfies GetStaticPaths;
+// Every category but 'other' gets a page, even when empty, so its URL never 404s.
+export const getStaticPaths = (() => PAGE_CATEGORIES.map((category) => ({ params: { category } }))) satisfies GetStaticPaths;
 
-const category = Astro.params.category as Category;
+const category = Astro.params.category as (typeof PAGE_CATEGORIES)[number];
 const page = CATEGORY_PAGE[category];
 const { shows, weekly } = await pageListing(category);
 const empty = (await categoryCounts())[category] === 0;
