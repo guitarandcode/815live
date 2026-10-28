@@ -608,3 +608,17 @@ Calls made while filling out listings unattended (session of 2026-10-24).
   pinned before/after build, 8 titles changed (4 pairs), all resolved by time.
   `showPageTitles()` in src/lib/data.ts. A build test fails if two indexable
   pages share a title or meta description, on real and fixture data.
+- **Inbox run (scheduled, 2026-10-28 morning).** 5 Facebook screenshots, no
+  new listings. Re-confirmed: Cahoots "Decades of Rock" Sat Nov 7 (same flyer,
+  reposted by Rockford's Local Music Scene; `checked` bumped) and The Stevee
+  Nix at Hard Rock Sat Nov 7, 9 PM (a RAWLE share calling it "Farewell show 1
+  of 2"; the record is the Hard Rock adapter's, so it's left to the bot).
+  Skipped: The Spins at Danny's on Douglas, Elgin (out of area); Highway 20
+  Brewing's open mic and Cowboy Neil posts (Elizabeth, out of area, as on
+  10-26); Crazy Times Pub & Grub's weekly specials board (its only listable
+  item, Tue 10/27 bingo at 6:30, is past; the rest is food, a meat raffle, a
+  joker drawing and a pub crawl). The board doesn't say the bingo is weekly;
+  if it is, it could become a `bingo` rule. Waiting: a cropped Crossroads
+  Blues Society post for Fri Oct 30 (see needs-review). This run couldn't
+  switch to `main` (switching branches needs approval), so it was committed
+  on `other-events` and not pushed.

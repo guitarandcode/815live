@@ -271,3 +271,12 @@ The flyer doesn't say whether it's a music open mic. It stays a music
 Confirm it's for musicians, or change it to `comedy`
 or `other`. (Murphy's Wednesday open mic is music per its flyer: "Play just 3
 songs"; Mary's Place's Sunday open stage is at a music bar.)
+
+## Crossroads Blues Society: Friday evening, Oct 30 (cropped)
+
+A screenshot (2026-10-28 inbox) cuts off a Crossroads Blues Society post
+(by Peter Chase) at its top: "Friday evening 10/30/26", hosts Paul Prue and
+Peter Chase, special guests Parker Wheeler and Ken Brierley. The venue, time
+and cover are cut off, and it isn't one of the Music Off the Rock dates.
+Publish if the full post turns up. In `waiting/` (the same screenshot also
+re-confirmed Cahoots' Decades of Rock).
