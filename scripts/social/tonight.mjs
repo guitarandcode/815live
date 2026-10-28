@@ -76,6 +76,8 @@ const toEvent = (e) => {
     eventTitle: names.length ? e.title : undefined,
     venueName: v.name,
     city: v.city,
+    // Town shown after the venue: none for Rockford or when the name already says it.
+    town: v.city === 'Rockford' || v.name.toLowerCase().includes(v.city.toLowerCase()) ? null : v.city,
     artistPages: (e.artists ?? []).map((a) => artists[a]?.socials?.facebook).filter(Boolean),
   };
 };
@@ -166,7 +168,7 @@ function rowEl(e, { withDay = false, rowH = ROW_H } = {}) {
   const timeW = withDay ? 230 : 170;
   // Venues with more than one room note it like "On the Council Oak stage."
   const stage = e.notes?.match(/^On the (.+?) stage\.?$/i)?.[1];
-  const sub = [e.eventTitle, e.venueName, stage, e.city !== 'Rockford' ? e.city : null].filter(Boolean).join(' · ');
+  const sub = [e.eventTitle, e.venueName, stage, e.town].filter(Boolean).join(' · ');
   return h(
     'div',
     { width: INNER, height: rowH, flexShrink: 0, alignItems: 'center', borderBottom: `2px solid ${C.line}` },
@@ -282,12 +284,12 @@ for (const [cat, label] of SECTIONS) {
   const rows = events.filter((e) => e.category === cat);
   if (!rows.length) continue;
   lines.push(`${label.toUpperCase()}`);
-  for (const e of rows) lines.push(`• ${e.act} @ ${e.venueName}${e.city !== 'Rockford' ? ` (${e.city})` : ''}, ${clock(e.startTime)}`);
+  for (const e of rows) lines.push(`• ${e.act} @ ${e.venueName}${e.town ? ` (${e.town})` : ''}, ${clock(e.startTime)}`);
   lines.push('');
 }
 if (week.length) {
   lines.push('COMING UP');
-  for (const e of week) lines.push(`• ${shortDay(e.date)}: ${e.act} @ ${e.venueName}${e.city !== 'Rockford' ? ` (${e.city})` : ''}, ${clock(e.startTime)}`);
+  for (const e of week) lines.push(`• ${shortDay(e.date)}: ${e.act} @ ${e.venueName}${e.town ? ` (${e.town})` : ''}, ${clock(e.startTime)}`);
   lines.push('');
 }
 lines.push('Full calendar: https://815live.com', 'Got a show? shows@815live.com', '', '#Rockford #RockfordIL #LiveMusic #815');

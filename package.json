@@ -12,6 +12,7 @@
     "test:build": "node --test --test-concurrency=1 tests/build.e2e.ts && npm run build",
     "ingest": "node scripts/ingest/run.ts",
     "social:tonight": "node scripts/social/tonight.mjs",
+    "social:reel": "node scripts/social/reel.mjs",
     "social:brand": "node scripts/social/brand-images.mjs"
   },
   "dependencies": {

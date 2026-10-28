@@ -385,6 +385,38 @@ Calls made while filling out listings unattended (session of 2026-10-24).
   the caption's first line and its list heading ("COMING UP") match. The
   window is still the next 7 days and the cap still 6 shows. The home page's
   weekend "Next 7 days" section label is a different feature and is unchanged.
+- **Social captions: no repeated town (user, 2026-10-27).** The town in
+  parentheses after a venue (and after the "·" on the image) is left out when
+  the venue's name already contains it, so "Benny's Roscoe", not "Benny's
+  Roscoe (Roscoe)". Rockford is still never shown. Of the current venues only
+  Benny's Roscoe was affected (Cahoots Rockford and Hard Rock Casino Rockford
+  are in Rockford). The user also asked for one display name per venue in the
+  caption; it already uses each venue's `name` from `data/venues` in both
+  sections, and "The Music Box of Rockford" appears nowhere in the data (only
+  as DICE's promoter name in docs/venue-sources.md), so nothing changed there.
+- **Daily Reel (user, 2026-10-27).** `npm run social:reel` turns the day's
+  graphic (page 1 on busy nights; no graphic means no reel) into
+  `social/tonight-YYYY-MM-DD.mp4` (1080x1920, H.264 High, yuv420p, 30 fps,
+  15 s, `-preset veryfast`, CRF 18) and a short `-reel.txt` caption (the
+  post's title line, the site and email, the hashtags). The graphic sits at
+  84% on the brand background (#12110f, no bars), centered at (470, 900)
+  rather than mid-frame, so at full zoom its content spans x 45–895 and
+  y 346–1454: clear of the Reels UI in the right 15% (x > 918) and bottom 20%
+  (y > 1536). Zoom is linear 100→108% over all 450 frames, with 0.6 s fades in
+  and out to the background color. Frames are drawn by resvg with a
+  fractional transform and piped to ffmpeg: zoompan, even on a 4x canvas,
+  jittered by up to 1.5 px between frames; the resvg version measured smooth
+  (under 0.1 px off the curve, lossless). Audio is
+  `~/815live-sources/audio/reel.m4a`, outside the repo because it's the user's
+  own recording and the repo is public; missing means a silent video. That
+  file is 1:12–1:27 of the user's track "Chirp", with a 0.3 s fade in (no
+  click at the cut) and a 1.5 s fade out, two-pass loudnorm to -14 LUFS
+  (linear gain, so the fades keep their shape), AAC 192k; the generator
+  copies it in as-is. Music is never
+  downloaded. The 9 AM / 5 PM timer script (`~/.local/bin/815live-inbox.sh`)
+  runs it right after the graphic; a reel failure is noted in the
+  notification but doesn't fail the run. `/social/` was already gitignored,
+  so videos are never committed.
 - **Event image in JSON-LD is the site card (2026-10-27).** Google recommends
   `image` for Event rich results. Venues have no image field and we never copy
   venue images, so every event uses `/og.png`. `check-jsonld.mjs` now requires
