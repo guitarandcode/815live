@@ -34,5 +34,29 @@
     "cover": 30,
     "notes": "Tickets: $30 In Advance / $35 At the Door / $6 Student.",
     "ticketUrl": "https://app.arts-people.com/index.php?show=337752"
+  },
+  "jordan-knapick": {
+    "lastmod": "20260724T181245Z",
+    "cover": 30,
+    "notes": "Tickets: $30 In Advance / $35 At the Door / $6 Student.",
+    "ticketUrl": "https://app.arts-people.com/index.php?show=337753"
+  },
+  "emma-lundquist": {
+    "lastmod": "20260724T181342Z",
+    "cover": 20,
+    "notes": "Tickets: $20 In Advance / $25 At the Door / $6 Student.",
+    "ticketUrl": "https://app.arts-people.com/index.php?show=337760"
+  },
+  "alyssa-allgood": {
+    "lastmod": "20260724T181448Z",
+    "cover": 20,
+    "notes": "Tickets: $20 In Advance / $25 At the Door / $6 Student.",
+    "ticketUrl": "https://app.arts-people.com/index.php?show=337757"
+  },
+  "avalon-string-quartet-5-14-2027": {
+    "lastmod": "20260724T181503Z",
+    "cover": 30,
+    "notes": "Tickets: $30 In Advance / $35 At the Door / $6 Student.",
+    "ticketUrl": "https://app.arts-people.com/index.php?show=337754"
   }
 }
