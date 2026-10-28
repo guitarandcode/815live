@@ -256,27 +256,15 @@ permission to use the DICE partner feed with the venue's widget key; DICE's
 sites block Anthropic agents, so we don't fetch them. Until then, Music Box
 shows are entered by hand from pastes. Ask the venue; see venue-sources.md.
 
-## Music or other? Shattered Saloon "Open Mic & Karaoke Night" (Thursdays)
-
-Since other events (karaoke, trivia, bingo, comedy) are listed apart from
-music (2026-10-27), each listing is music or other. This weekly rule is both
-an open mic and karaoke, so it's still filed as a music `open-mic` (as
-before) until we know which it mostly is. If it's mostly karaoke, change its
-category to `karaoke`; if both really run, consider two rules.
-
-## Music or other? Maxine's Social "Open Mic Night with Ian", Thu Oct 29
-
-The flyer doesn't say whether it's a music open mic. It stays a music
-`open-mic` (as before); the user is confirming with the venue (2026-10-27).
-Confirm it's for musicians, or change it to `comedy`
-or `other`. (Murphy's Wednesday open mic is music per its flyer: "Play just 3
-songs"; Mary's Place's Sunday open stage is at a music bar.)
-
 ## Crossroads Blues Society: Friday evening, Oct 30 (cropped)
 
 A screenshot (2026-10-28 inbox) cuts off a Crossroads Blues Society post
 (by Peter Chase) at its top: "Friday evening 10/30/26", hosts Paul Prue and
 Peter Chase, special guests Parker Wheeler and Ken Brierley. The venue, time
 and cover are cut off, and it isn't one of the Music Off the Rock dates.
-Publish if the full post turns up. In `waiting/` (the same screenshot also
+Per the user (2026-10-28), Crossroads events are listed only when they're
+in the 815 area. The venue is what decides it, and it's cut off. Crossroads'
+own site loads its events with JavaScript (nothing readable without a
+browser), and a web search found nothing. Publish if the full post shows a
+local venue; skip it if not. In `waiting/` (the same screenshot also
 re-confirmed Cahoots' Decades of Rock).
