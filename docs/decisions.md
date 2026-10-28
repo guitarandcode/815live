@@ -622,3 +622,21 @@ Calls made while filling out listings unattended (session of 2026-10-24).
   Blues Society post for Fri Oct 30 (see needs-review). This run couldn't
   switch to `main` (switching branches needs approval), so it was committed
   on `other-events` and not pushed.
+- **Daily job order (user, 2026-10-28).** `~/.local/bin/815live-inbox.sh`
+  (timer `815live-inbox.timer`, 9 AM and 5 PM) runs in this fixed order:
+  1. Inbox: `claude -p "process the inbox"` (skipped when the inbox is
+     empty), retried on a non-zero exit. The run commits its own changes.
+  2. Gate: `npm run social:tonight` runs only if step 1 finished (claude
+     exited 0, or there was nothing to do) and its work is committed
+     (`git status --porcelain -- data docs` is empty). Otherwise the graphic
+     and reel are skipped, today's existing files are left alone, and a
+     critical notification says why. A file left in the inbox after a
+     successful, committed run is still reported but doesn't block it.
+  3. `git pull --rebase` (best effort, for the ingest bot's commits), then
+     `npm run social:tonight`, regenerated from scratch (today's PNGs and
+     caption are deleted first). This is the last step that reads listing
+     data, so nothing that changes listings runs after it.
+  4. `npm run social:reel`, which only reads the graphic and caption from
+     step 3 (it has to come after it), then the notification.
+  The gate applies to the 5 PM run too. Keep this order if the script changes;
+  an uncommitted edit in `data/` or `docs/` now blocks the day's graphic.
