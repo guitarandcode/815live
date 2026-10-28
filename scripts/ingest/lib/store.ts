@@ -9,6 +9,7 @@
 // and thereby adopted.
 import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
+import type { Category } from '../../../src/lib/categories.ts';
 
 /** The repo's /data, or INGEST_DATA (tests point this at a temp copy). */
 export const DATA = process.env.INGEST_DATA ?? join(import.meta.dirname, '../../../data');
@@ -20,7 +21,7 @@ export interface IngestedShow {
   startTime: string;
   endTime?: string;
   venue: string;
-  category: 'live-music' | 'dj' | 'karaoke' | 'open-mic' | 'trivia' | 'comedy';
+  category: Category;
   title?: string;
   artists: { slug: string; name: string }[];
   cover?: number | null;

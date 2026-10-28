@@ -8,9 +8,11 @@ interface Props {
   shows: Show[];
   showVenue?: boolean;
   empty?: string;
+  /** Off for one night's list under a page that already names the day. */
+  dayHeadings?: boolean;
 }
 
-const { shows, showVenue = true, empty = 'No upcoming shows listed yet.' } = Astro.props;
+const { shows, showVenue = true, empty = 'No upcoming shows listed yet.', dayHeadings = true } = Astro.props;
 const days = groupByDay(shows);
 ---
 
@@ -18,9 +20,11 @@ const days = groupByDay(shows);
   {
     days.map((day) => (
       <section class="day" data-show-date={day.date}>
-        <h2 class="day-heading">
-          {hasDatePage(day.date) ? <a href={`/date/${day.date}`}>{formatDay(day.date)}</a> : formatDay(day.date)}
-        </h2>
+        {dayHeadings && (
+          <h2 class="day-heading">
+            {hasDatePage(day.date) ? <a href={`/date/${day.date}`}>{formatDay(day.date)}</a> : formatDay(day.date)}
+          </h2>
+        )}
         {day.shows.map((show) => <ShowCard show={show} showVenue={showVenue} />)}
       </section>
     ))

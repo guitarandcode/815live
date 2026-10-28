@@ -13,8 +13,18 @@ area. Astro static site; data is one JSON file per record in `data/`
   nearby towns (Cherry Valley, Winnebago, Pecatonica, Durand, Poplar Grove,
   Byron and so on). Out: Sterling, Dixon, Ottawa and farther; Chicago suburbs,
   the 847/630/312 areas, Madison and the like.
-- **What's listed:** live music, DJ nights, karaoke, open mics, music trivia
-  and comedy. Touring arena-scale concerts are out.
+- **What's listed:** music first (live music, DJ nights, music open mics),
+  and as a side door, other nights out: trivia, bingo, karaoke, comedy and
+  the odd other event (e.g. a poetry open mic). Touring arena-scale concerts
+  are out.
+- **Music or other:** the `category` decides it (`src/lib/categories.ts`).
+  Music: `live-music`, `dj`, `open-mic`. Other: `trivia`, `bingo`, `karaoke`,
+  `comedy`, `other`. Games are other even when musical ("Music Bingo" is
+  `bingo`, "Name That Tune" is `trivia`). An open mic is `open-mic` only when
+  the source says it's for musicians; poetry is `other`, a comedy open mic is
+  `comedy`. `scripts/ingest/lib/classify.ts` encodes these rules. Never guess:
+  a mixed night ("Open Mic & Karaoke"), an open mic that doesn't say what
+  kind, or anything else unclear goes in needs-review.
 - **Facts only:** who, where, when, cover, ticket link. Never copy
   descriptions, bios or images. Leave out host/DJ/bartender names, drink
   specials and giveaways. Cover unknown means omit `cover`; `null` means free.
@@ -66,15 +76,16 @@ For each file in `inbox/`:
 1. Read it and identify the venue or band.
 2. Out of the 815 area (see above) or out of scope: add nothing, move it to
    `skipped/`, and mention it in the summary.
-3. Otherwise add its upcoming shows to `data/shows` (or `data/recurring` for
-   weekly nights) with `source.type: "manual"`, `checked` set to today, and
+3. Otherwise classify each event (music or other, see above) and add its
+   upcoming shows to `data/shows` (or `data/recurring` for weekly nights;
+   most trivia, bingo and karaoke nights are weekly) with `source.type: "manual"`, `checked` set to today, and
    `source.url`/`source.kind` set to the venue's or band's own page if there
    is one. Skip dates already past.
 4. Create the venue (confirmed address, Census coordinates) or artist if
    missing.
 5. Move the file to `venues/<venue-slug>/` or `bands/<artist-slug>/`.
 6. Anything ambiguous (unclear year or time, unverified venue, conflicting
-   details, unreadable file): publish what's certain, log the rest in
+   details, music-or-other unclear, unreadable file): publish what's certain, log the rest in
    `docs/needs-review.md`, and move the file to `waiting/`.
 7. Log notable calls in `docs/decisions.md`, then test, build, commit, push,
    and summarize what was added, skipped and moved to waiting.

@@ -1,27 +1,40 @@
 ---
-import { CATEGORIES, CATEGORY_LABEL, type Category } from '../lib/categories.ts';
+import { CATEGORY_LABEL, MUSIC_CATEGORIES, OTHER_CATEGORIES, type Category } from '../lib/categories.ts';
 import { categoryCounts } from '../lib/data.ts';
 
 interface Props {
-  /** A category, or 'free' on /free (not a category: it cuts across them). */
-  current?: Category | 'free';
+  /** A category, 'free' on /free or 'other-events' on /other-events (neither is a category). */
+  current?: Category | 'free' | 'other-events';
 }
 
 const { current } = Astro.props;
 const counts = await categoryCounts();
 // A category's link is hidden while it has no listings (unless you're on its page).
-const shown = CATEGORIES.filter((c) => counts[c] > 0 || c === current);
-// /free always exists (it says so when nothing is free), so its link always shows.
+const listed = (c: Category) => counts[c] > 0 || c === current;
+const music = MUSIC_CATEGORIES.filter(listed);
+// The main row is music plus two side doors: Free, then Other events (off unless you're on it).
+// The other categories get their own row only on /other-events and their own pages.
+const anyOther = OTHER_CATEGORIES.some(listed) || current === 'other-events';
+const others = OTHER_CATEGORIES.filter((c) => c !== 'other' && listed(c));
+const inOther = current === 'other-events' || (OTHER_CATEGORIES as readonly string[]).includes(current ?? '');
 ---
 
+<nav class="filters" aria-label="Filter by type">
+  <a href="/" aria-current={current ? undefined : 'page'}>All</a>
+  {music.map((c) => <a href={`/${c}`} aria-current={c === current ? 'page' : undefined}>{CATEGORY_LABEL[c]}</a>)}
+  <a href="/free" aria-current={current === 'free' ? 'page' : undefined}>Free</a>
+  {
+    anyOther && (
+      <a href="/other-events" class:list={['side', inOther && 'is-parent']} aria-current={current === 'other-events' ? 'page' : undefined}>
+        Other events
+      </a>
+    )
+  }
+</nav>
 {
-  shown.length > 0 && (
-    <nav class="filters" aria-label="Filter by type">
-      <a href="/" aria-current={current ? undefined : 'page'}>All</a>
-      {shown.map((c) => (
-        <a href={`/${c}`} aria-current={c === current ? 'page' : undefined}>{CATEGORY_LABEL[c]}</a>
-      ))}
-      <a href="/free" aria-current={current === 'free' ? 'page' : undefined}>Free</a>
+  inOther && others.length > 0 && (
+    <nav class="filters sub" aria-label="Other events by type">
+      {others.map((c) => <a href={`/${c}`} aria-current={c === current ? 'page' : undefined}>{CATEGORY_LABEL[c]}</a>)}
     </nav>
   )
 }

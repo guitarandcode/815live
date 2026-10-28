@@ -4,6 +4,7 @@
 // "Saturday, November 21 | 6PM" followed by the stage name, with no year.
 import { textLines, titleOf } from '../lib/html.ts';
 import { fetchText } from '../lib/http.ts';
+import { classifyEvent } from '../lib/classify.ts';
 import type { IngestedShow } from '../lib/store.ts';
 import { addDays, weekday } from '../../../src/lib/time.ts';
 
@@ -87,6 +88,11 @@ export function parseEventPage(html: string, today: string): { name: string; slo
 
 export const artistSlug = (eventSlug: string) => eventSlug.replace(/-\d+$/, '');
 
+function comedyOrMusic(name: string): 'comedy' | 'live-music' {
+  const c = classifyEvent(name);
+  return c && 'category' in c && c.category === 'comedy' ? 'comedy' : 'live-music';
+}
+
 export function toShows(eventSlug: string, name: string, slots: Slot[]): IngestedShow[] {
   const artist = artistSlug(eventSlug);
   return slots.map((s) => {
@@ -97,7 +103,8 @@ export function toShows(eventSlug: string, name: string, slots: Slot[]): Ingeste
       date: s.date,
       startTime: s.startTime,
       venue: VENUE,
-      category: /\bcomed(y|ian)\b/i.test(name) ? 'comedy' : 'live-music',
+      // A Hard Rock listing is a concert unless its title says comedy (see classify.ts).
+      category: comedyOrMusic(name),
       artists: [{ slug: artist, name }],
       notes: stage.note,
       sourceUrl: `https://casino.hardrock.com${EVENT_PATH}${eventSlug}`,

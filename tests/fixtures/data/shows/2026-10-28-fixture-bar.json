@@ -1,0 +1,12 @@
+{
+  "date": "2026-10-28",
+  "startTime": "21:00",
+  "venue": "fixture-bar",
+  "category": "trivia",
+  "title": "Fixture Trivia",
+  "artists": [],
+  "checked": "2026-10-27",
+  "source": {
+    "type": "manual"
+  }
+}

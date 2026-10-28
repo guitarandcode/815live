@@ -255,3 +255,18 @@ Box of Rockford LLC"). Automating them needs the venue's (or DICE's)
 permission to use the DICE partner feed with the venue's widget key; DICE's
 sites block Anthropic agents, so we don't fetch them. Until then, Music Box
 shows are entered by hand from pastes. Ask the venue; see venue-sources.md.
+
+## Music or other? Shattered Saloon "Open Mic & Karaoke Night" (Thursdays)
+
+Since other events (karaoke, trivia, bingo, comedy) are listed apart from
+music (2026-10-27), each listing is music or other. This weekly rule is both
+an open mic and karaoke, so it's still filed as a music `open-mic` (as
+before) until we know which it mostly is. If it's mostly karaoke, change its
+category to `karaoke`; if both really run, consider two rules.
+
+## Music or other? Maxine's Social "Open Mic Night with Ian", Thu Oct 29
+
+The flyer doesn't say whether it's a music open mic. It stays a music
+`open-mic` (as before). Confirm it's for musicians, or change it to `comedy`
+or `other`. (Murphy's Wednesday open mic is music per its flyer: "Play just 3
+songs"; Mary's Place's Sunday open stage is at a music bar.)

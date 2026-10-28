@@ -17,7 +17,7 @@ async function* htmlFiles(dir) {
   }
 }
 
-const EVENT_TYPES = ['MusicEvent', 'ComedyEvent', 'Event'];
+const EVENT_TYPES = ['MusicEvent', 'ComedyEvent', 'SocialEvent', 'Event'];
 const isoWithOffset = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}(:\d{2})?(Z|[+-]\d{2}:\d{2})$/;
 
 function checkEvent(ev, where) {
@@ -41,6 +41,8 @@ function checkEvent(ev, where) {
   if (ev.performer !== undefined) {
     need(Array.isArray(ev.performer) && ev.performer.length > 0, 'performer must be a non-empty array');
     for (const p of ev.performer ?? []) need(['MusicGroup', 'Person'].includes(p['@type']) && p.name, 'performers must be named MusicGroup/Person');
+    for (const p of ev.performer ?? [])
+      need(ev['@type'] === 'MusicEvent' || p['@type'] !== 'MusicGroup', `a ${ev['@type']} can't have a MusicGroup performer`);
   }
   if (ev.offers) {
     need(ev.offers['@type'] === 'Offer', 'offers must be an Offer');

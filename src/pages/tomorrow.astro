@@ -1,8 +1,9 @@
 ---
 import Base from '../layouts/Base.astro';
+import AlsoHappening from '../components/AlsoHappening.astro';
 import ShowList from '../components/ShowList.astro';
 import StaleNote from '../components/StaleNote.astro';
-import { loadAll, NOW, showTitle } from '../lib/data.ts';
+import { loadAll, NOW, showTitle, splitMusic } from '../lib/data.ts';
 import { itemList } from '../lib/jsonld.ts';
 import { onNight } from '../lib/shows.ts';
 import { addDays, chicagoDate, formatDay } from '../lib/time.ts';
@@ -12,17 +13,20 @@ const { shows: all } = await loadAll();
 const tomorrow = addDays(chicagoDate(NOW), 1);
 const shows = onNight(all, tomorrow);
 const day = formatDay(tomorrow);
-const named = shows.slice(0, 3).map((s) => `${showTitle(s)} at ${s.venue.data.name}`);
+// Music leads, in the description too; other events follow.
+const { music, other } = splitMusic(shows);
+const named = [...music, ...other].slice(0, 3).map((s) => `${showTitle(s)} at ${s.venue.data.name}`);
 const more = shows.length - named.length;
 const description = shows.length
   ? `Live music in Rockford tomorrow, ${day}: ${named.join('; ')}${more ? `, and ${more} more` : ''}. Every show in Rockford, Loves Park, Belvidere and the 815.`
   : `Live music in Rockford tomorrow, ${day}: bands, DJs, karaoke, open mics and comedy in Rockford, Loves Park, Belvidere and the 815.`;
 ---
 
-<Base title="Live Music in Rockford Tomorrow" description={description} jsonld={shows.length ? itemList(shows, Astro.site!) : undefined}>
+<Base title="Live Music in Rockford Tomorrow" description={description} jsonld={shows.length ? itemList([...music, ...other], Astro.site!) : undefined}>
   <h1>Live music in Rockford tomorrow</h1>
   <p class="lede">{day} in Rockford, Loves Park, Belvidere and the 815.</p>
   <StaleNote offset={1} />
-  <ShowList shows={shows} empty="Nothing listed for tomorrow yet. Try this weekend or the calendar." />
+  <ShowList shows={music} empty="No live music listed for tomorrow yet. Try this weekend or the calendar." />
+  <AlsoHappening shows={other} oneNight />
   <p><a href="/tonight">← Tonight</a> · <a href="/this-weekend">This weekend</a> · <a href="/free">Free shows</a></p>
 </Base>

@@ -1,0 +1,29 @@
+---
+import Base from '../layouts/Base.astro';
+import CategoryNav from '../components/CategoryNav.astro';
+import ShowList from '../components/ShowList.astro';
+import WeeklyList from '../components/WeeklyList.astro';
+import { isMusic } from '../lib/categories.ts';
+import { pageListing } from '../lib/data.ts';
+import { itemList } from '../lib/jsonld.ts';
+
+// The side door: everything that isn't music (trivia, bingo, karaoke, comedy
+// and the rest). Linked from the filter row's "Other events" chip and from
+// every "Also happening" block; it links on to each category's own page.
+const listed = await pageListing();
+const shows = listed.shows.filter((s) => !isMusic(s.category));
+const weekly = listed.weekly.filter((r) => !isMusic(r.category));
+---
+
+<Base
+  title="Trivia, Bingo, Karaoke and Comedy in Rockford"
+  description="Trivia nights, bingo, karaoke and comedy in Rockford, Loves Park, Belvidere and the 815, tonight and this week. Live music is on the main 815live calendar."
+  noindex={shows.length === 0}
+  jsonld={shows.length ? itemList(shows, Astro.site!) : undefined}
+>
+  <h1>Trivia, bingo, karaoke and comedy</h1>
+  <p class="lede">815live is the Rockford live music guide; these are the other nights out we know about. For bands, DJs and open stages, see <a href="/">tonight</a> or the <a href="/calendar">calendar</a>.</p>
+  <CategoryNav current="other-events" />
+  <ShowList shows={shows} empty="No other events listed right now." />
+  <WeeklyList rules={weekly} />
+</Base>

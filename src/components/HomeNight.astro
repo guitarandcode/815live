@@ -1,7 +1,8 @@
 ---
 // One night on the home page. index.astro's inline script moves these
-// between sections by their data-night date.
-import { dayHref, hasDatePage, type Show } from '../lib/data.ts';
+// between sections by their data-night date. Music comes first; other events
+// sit in [data-also], which only the Tonight section shows (global.css).
+import { dayHref, hasDatePage, splitMusic, type Show } from '../lib/data.ts';
 import { formatMediumDay } from '../lib/time.ts';
 import ShowCard from './ShowCard.astro';
 
@@ -12,11 +13,20 @@ interface Props {
 }
 
 const { date, shows, where } = Astro.props;
+const { music, other } = splitMusic(shows);
 ---
 
 <section class="day" data-night={date} hidden={!where}>
   <h3 class="day-heading">
     {hasDatePage(date) ? <a href={dayHref(date)} data-day-link={date}>{formatMediumDay(date)}</a> : formatMediumDay(date)}
   </h3>
-  {shows.map((show) => <ShowCard show={show} />)}
+  {music.map((show) => <ShowCard show={show} />)}
+  {
+    other.length > 0 && (
+      <div class="also-night" data-also>
+        <h4 class="also-heading">Also happening</h4>
+        {other.map((show) => <ShowCard show={show} />)}
+      </div>
+    )
+  }
 </section>

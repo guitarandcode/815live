@@ -6,6 +6,7 @@ import { join } from 'node:path';
 import { crawlDelay, isAllowed } from '../scripts/ingest/lib/robots.ts';
 import { parseIcs } from '../scripts/ingest/lib/ics.ts';
 import { matchArtist } from '../scripts/ingest/lib/artists.ts';
+import { classifyEvent } from '../scripts/ingest/lib/classify.ts';
 import * as mpac from '../scripts/ingest/adapters/mendelssohn-pac.ts';
 import * as rpl from '../scripts/ingest/adapters/rpl-nordlof.ts';
 import * as inscape from '../scripts/ingest/adapters/inscape-collective.ts';
@@ -198,7 +199,9 @@ test('rpl: music picked by keywords, acts from the title', () => {
 test('inscape: concerts and open mics listed, other music mentions flagged', () => {
   const at = (name: string, description = '') => ({ name, description, startDate: '2026-11-07T14:00:00-06:00', endDate: '2026-11-07T15:30:00-06:00' });
   assert.deepEqual(inscape.classify(at('Emily Hurd in Concert!')), { kind: 'concert', act: 'Emily Hurd' });
-  assert.deepEqual(inscape.classify(at('Open Mic Night')), { kind: 'open-mic' });
+  assert.deepEqual(inscape.classify(at('Open Mic Night', 'Bring your guitar and play a few songs')), { kind: 'open-mic', category: 'open-mic' });
+  assert.deepEqual(inscape.classify(at('Poetry Open Mic')), { kind: 'open-mic', category: 'other' });
+  assert.deepEqual(inscape.classify(at('Open Mic Night')), { kind: 'skip', ask: 'open mic: music, comedy or spoken word?' });
   assert.deepEqual(inscape.classify(at('Trinadora Halloween Party', 'Music, dancing')), { kind: 'skip', ask: true });
   assert.deepEqual(inscape.classify(at('Shamanic Sound Bath', 'music')), { kind: 'skip', ask: false });
   const show = inscape.toShow('emily-hurd-in-concert', at('Emily Hurd in Concert!'), { kind: 'concert', act: 'Emily Hurd' });
@@ -224,4 +227,23 @@ test('dry run and hand-entered shows: nothing written; a person\'s entry wins', 
   assert.deepEqual(readdirSync(join(dir, 'shows')), ['hand.json']);
   assert.deepEqual(readdirSync(join(dir, 'artists')), []);
   delete process.env.INGEST_DATA;
+});
+
+test('classify: games, karaoke and comedy are other events; mixed and unclear nights are questions', () => {
+  const cat = (title: string, text = '') => classifyEvent(title, text);
+  assert.deepEqual(cat('80\'s Hair Bands Music Bingo'), { category: 'bingo' });
+  assert.deepEqual(cat('Name That Tune'), { category: 'trivia' });
+  assert.deepEqual(cat('Tuesday Trivia Night'), { category: 'trivia' });
+  assert.deepEqual(cat('Thirsty Thursday Karaoke'), { category: 'karaoke' });
+  assert.deepEqual(cat('Stand-Up Comedy: Next Stop Comedy'), { category: 'comedy' });
+  assert.deepEqual(cat('Comedy Open Mic'), { category: 'comedy' });
+  assert.deepEqual(cat('Open Mic Night', 'Play just 3 songs'), { category: 'open-mic' });
+  assert.deepEqual(cat('Open Stage', 'acoustic'), { category: 'open-mic' });
+  assert.deepEqual(cat('Poetry Slam Open Mic'), { category: 'other' });
+  assert.deepEqual(cat('DJ Solow Dolo Halloween Party'), { category: 'dj' });
+  assert.ok('ask' in cat('Open Mic & Karaoke Night')!);
+  assert.ok('ask' in cat('Open Mic Night')!);
+  assert.ok('ask' in cat('Open Mic and Poetry Slam', 'songwriters welcome')!);
+  assert.ok('ask' in cat('Karaoke & Trivia')!);
+  assert.equal(cat('Emily Hurd in Concert'), undefined); // the caller's default: live music
 });
