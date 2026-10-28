@@ -241,9 +241,17 @@ Rendered from `data/` with satori + resvg (no browser needed). Output goes to
 ```sh
 npm run social:tonight                      # today's "Tonight in the 815" post + caption
 npm run social:tonight -- --date 2026-10-31 # any date
+npm run social:reel                         # today's graphic as a 15 s 9:16 Reel + short caption (needs ffmpeg)
 npm run social:brand                        # Facebook profile picture, cover, wordmark
 ```
 
 Busy nights spill onto extra 1080x1350 images (`-1.png`, `-2.png`); post them
 together as one album. The `.txt` next to them is a ready-to-paste caption,
 plus any artist Facebook pages worth tagging.
+
+`social:reel` turns that graphic (page 1 on busy nights) into
+`tonight-YYYY-MM-DD.mp4`: 1080x1920, H.264, 30 fps, 15 s, a slow 100→108% zoom,
+with the content kept out of the Reels UI (bottom 20%, right 15%). Its audio is
+`~/815live-sources/audio/reel.m4a` when that file exists (kept outside this
+public repo); otherwise the video is silent. `tonight-YYYY-MM-DD-reel.txt` is
+its short caption. The 9 AM / 5 PM timer runs it after the graphic.
