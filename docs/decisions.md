@@ -558,3 +558,42 @@ Calls made while filling out listings unattended (session of 2026-10-24).
   sitemap: their pages stay up for old links, but no listing links to them.
   `tests/build.e2e.ts` fails if any sitemap URL has no plain `<a href>` from
   another page; it found exactly those past shows.
+- **Other events are a side door; music stays the core (user, 2026-10-27).**
+  No new field: the `category` decides music vs. other (`src/lib/categories.ts`),
+  so the two can't disagree. Music is `live-music`, `dj` and `open-mic` (music
+  open stages); other is `trivia`, `bingo` (new), `karaoke`, `comedy` and
+  `other` (new catch-all, e.g. a poetry open mic). Weekly rules already handle
+  repeating nights. Per the user, games are other even when musical: Fozzy's
+  "Music Bingo" moved from `trivia` to `bingo`, and Name That Tune stays `trivia`.
+  Shattered's "Open Mic & Karaoke" and Maxine's unspecified open mic stay music
+  `open-mic` as before and are flagged in needs-review instead of re-filed by guess.
+  - Pages. The home page, /tonight, /tomorrow, date pages and /free list
+    music first, then an "Also happening" (or "Also free") block. If there's no
+    music, the page says "No live music listed" and shows the other events
+    below. On the home page only Tonight shows a night's other events: a night
+    with no music is left out of Later this week and Coming up, "Next up" skips
+    to the next music night, and "Every week" splits into music then "Also
+    every week".
+  - The filter row is All, the music categories, Free, then a dashed "Other
+    events" chip linking to the new /other-events. That page and the other
+    category pages add a second row (Trivia, Bingo, Karaoke, Comedy). At 360px
+    the main row wraps to two lines (checked by screenshot). 'other' has no
+    page of its own.
+  - /trivia is now "Trivia nights in Rockford, IL" (was music trivia). /bingo
+    is new. /karaoke and /comedy titles are unchanged, as are every music
+    page's titles and canonicals. Empty category pages stay noindexed and out
+    of the sitemap. Category pages are linked from /other-events and every
+    "Also happening" block, not the header.
+  - JSON-LD: `MusicEvent` for music (open mics included, previously `Event`),
+    `ComedyEvent` for comedy, `SocialEvent` for trivia, bingo and karaoke,
+    `Event` for other. Bands are performers only on music; comedians become
+    `Person`; trivia and karaoke hosts aren't listed as performers.
+    check-jsonld rejects a `MusicGroup` performer on a non-music event.
+  - Social graphic: busy nights are music only. On quiet nights (under 3
+    music listings) other events fill whatever room the music and the week
+    leave, at the bottom under a muted "Also tonight" in smaller rows. If they
+    don't fit, the last row reads "+ N more on 815live.com". The caption lists
+    them last. Coming-up highlights are live music only; comedy was dropped.
+  - Ingestion: `scripts/ingest/lib/classify.ts` returns a category or a
+    question. Inscape and Hard Rock use it, and CLAUDE.md carries the same
+    rules for inbox runs, where a question goes to needs-review.

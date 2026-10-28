@@ -905,3 +905,56 @@ section + section {
     grid-template-columns: 5.5rem 1fr;
   }
 }
+
+/* Other events: a side door after the music, quieter than it. */
+.filters a.side {
+  border-style: dashed;
+}
+
+.filters a.side.is-parent {
+  border-style: solid;
+  border-color: var(--accent);
+  color: var(--text);
+}
+
+.filters.sub {
+  margin-top: -0.9rem;
+}
+
+.also {
+  margin-top: 2.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
+}
+
+.also-heading {
+  margin: 0 0 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.also .show-card,
+.also-night .show-card {
+  opacity: 0.9;
+}
+
+.also-night {
+  margin-top: 1rem;
+  padding-top: 0.75rem;
+  border-top: 1px dashed var(--line);
+}
+
+/* Only the Tonight section shows a night's other events. */
+.home-later [data-also],
+.home-coming [data-also] {
+  display: none;
+}
+
+.also-links,
+.also-more {
+  font-size: 0.9rem;
+  color: var(--muted);
+}

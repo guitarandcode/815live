@@ -7,6 +7,7 @@
 // keywords and any other event that mentions music is logged for a person.
 import { fetchText } from '../lib/http.ts';
 import { matchArtist } from '../lib/artists.ts';
+import { classifyEvent } from '../lib/classify.ts';
 import { deferToHandEntered, type IngestedShow } from '../lib/store.ts';
 import { addDays, chicagoDate, TZ } from '../../../src/lib/time.ts';
 
@@ -19,7 +20,6 @@ const EVENT_PATH = '/event-details/';
 const STALE_DAYS = 365;
 
 const NOT_MUSIC = /\b(sound bath|meditation|drum circle|crafternoons?|workshops?|class(es)?|boutique|sale|poetry|yoga|ritual)\b/i;
-const OPEN_MIC = /\bopen mic\b/i;
 const CONCERT = /^(.+?)\s+in concert\b/i;
 const MUSICISH = /\b(music|concert|band|jazz|blues|singer|songwriter|dj)\b/i;
 
@@ -58,15 +58,20 @@ const local = (iso: string) => {
   return { date: chicagoDate(d), time: timeFmt.format(d) };
 };
 
-/** What kind of listing an event is, or why it isn't one. */
-export function classify(ev: JsonLdEvent): { kind: 'concert'; act: string } | { kind: 'open-mic' } | { kind: 'skip'; ask: boolean } {
-  if (OPEN_MIC.test(ev.name)) return { kind: 'open-mic' };
+type Kind = { kind: 'concert'; act: string } | { kind: 'open-mic'; category: 'open-mic' | 'comedy' | 'other' };
+
+/** What kind of listing an event is, or why it isn't one (ask: a person should look). */
+export function classify(ev: JsonLdEvent): Kind | { kind: 'skip'; ask: boolean | string } {
+  const c = classifyEvent(ev.name, ev.description);
+  if (c && 'ask' in c) return { kind: 'skip', ask: c.ask };
+  if (c && (c.category === 'open-mic' || c.category === 'comedy' || c.category === 'other') && /\bopen (mic|stage)\b/i.test(ev.name))
+    return { kind: 'open-mic', category: c.category };
   const concert = ev.name.match(CONCERT);
   if (concert && !NOT_MUSIC.test(ev.name)) return { kind: 'concert', act: concert[1].trim() };
   return { kind: 'skip', ask: !NOT_MUSIC.test(ev.name) && MUSICISH.test(`${ev.name}\n${ev.description ?? ''}`) };
 }
 
-export function toShow(slug: string, ev: JsonLdEvent, c: { kind: 'concert'; act: string } | { kind: 'open-mic' }): IngestedShow {
+export function toShow(slug: string, ev: JsonLdEvent, c: Kind): IngestedShow {
   const start = local(ev.startDate);
   const end = ev.endDate ? local(ev.endDate) : undefined;
   const artist = c.kind === 'concert' ? matchArtist(c.act) : undefined;
@@ -77,7 +82,7 @@ export function toShow(slug: string, ev: JsonLdEvent, c: { kind: 'concert'; act:
     startTime: start.time,
     ...(end && end.date === start.date && end.time > start.time && { endTime: end.time }),
     venue: VENUE,
-    category: c.kind === 'open-mic' ? 'open-mic' : 'live-music',
+    category: c.kind === 'open-mic' ? c.category : 'live-music',
     ...(c.kind === 'open-mic' && { title: 'Open Mic' }),
     artists: artist ? [{ slug: artist.slug, name: artist.name }] : [],
     sourceUrl: `${ORIGIN}${EVENT_PATH}${slug}`,
@@ -118,7 +123,8 @@ export async function run(state: Record<string, string>, today: string, full = f
       if (/cancel/i.test(ev.eventStatus ?? '')) log.push(`skipped ${slug}: cancelled`);
       else if (ev.location?.name && !/inscape/i.test(ev.location.name)) log.push(`skipped ${slug}: elsewhere (${ev.location.name})`);
       else if (c.kind === 'skip') {
-        if (c.ask) log.push(`ASK ${slug}: "${ev.name}" on ${start.date} mentions music; not listed`);
+        if (typeof c.ask === 'string') log.push(`ASK ${slug}: "${ev.name}" on ${start.date}: ${c.ask}; not listed`);
+        else if (c.ask) log.push(`ASK ${slug}: "${ev.name}" on ${start.date} mentions music; not listed`);
         refetched.set(slug, []);
         continue;
       } else {

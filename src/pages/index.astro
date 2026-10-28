@@ -5,7 +5,8 @@ import DateJump from '../components/DateJump.astro';
 import DayStrip from '../components/DayStrip.astro';
 import HomeNight from '../components/HomeNight.astro';
 import WeeklyList from '../components/WeeklyList.astro';
-import { dayHref, loadAll, NOW, pageListing } from '../lib/data.ts';
+import { isMusic } from '../lib/categories.ts';
+import { dayHref, loadAll, NOW, pageListing, splitMusic } from '../lib/data.ts';
 import { website } from '../lib/jsonld.ts';
 import { dayPart, groupByNight, laterWindow, nightOf, RECURRING_LIST_DAYS } from '../lib/shows.ts';
 import { addDays, chicagoDate, formatMediumDay, formatShortDay } from '../lib/time.ts';
@@ -14,10 +15,14 @@ import { addDays, chicagoDate, formatMediumDay, formatShortDay } from '../lib/ti
 // The build sorts nights into them for its own date; the inline script below
 // re-sorts on load for the visitor's night, so the page stays right all day
 // and the day after. That's why the page carries the previous night and a
-// few spare days beyond what the build itself shows.
+// few spare days beyond what the build itself shows. Music leads: other events
+// only show under tonight's "Also happening", and a night with no music is
+// left out of the later sections.
 const COMING_UP_SHOWS = 8;
 const { shows } = await loadAll();
-const { weekly } = await pageListing();
+const { shows: listed, weekly: allWeekly } = await pageListing();
+const weekly = splitMusic(allWeekly);
+const anyOther = listed.some((s) => !isMusic(s.category));
 const today = chicagoDate(NOW);
 const later = laterWindow(today);
 const first = addDays(today, -1);
@@ -30,11 +35,12 @@ const nights = groupByNight(
   }),
 );
 
-const oneOffs = (n: (typeof nights)[number]) => n.shows.filter((s) => !s.recurring).length;
+const music = (n: (typeof nights)[number]) => n.shows.filter((s) => isMusic(s.category));
+const oneOffs = (n: (typeof nights)[number]) => music(n).filter((s) => !s.recurring).length;
 let comingCount = 0;
 const placed = nights.map((n) => {
   let where: 'today' | 'later' | 'coming' | undefined =
-    n.date < today ? undefined : n.date === today ? 'today' : n.date <= later.end ? 'later' : 'coming';
+    n.date < today ? undefined : n.date === today ? 'today' : !music(n).length ? undefined : n.date <= later.end ? 'later' : 'coming';
   if (where === 'coming') {
     if (!oneOffs(n) || comingCount >= COMING_UP_SHOWS) where = undefined;
     else comingCount += oneOffs(n);
@@ -42,8 +48,9 @@ const placed = nights.map((n) => {
   return { ...n, where };
 });
 const inSection = (where: string) => placed.filter((n) => n.where === where);
-const nextNight = placed.find((n) => n.date > today);
-const hasTonight = inSection('today').length > 0;
+const nextNight = placed.find((n) => n.date > today && music(n).length);
+const anyTonight = inSection('today').length > 0;
+const hasTonight = inSection('today').some((n) => music(n).length > 0);
 const hasLater = inSection('later').length > 0;
 ---
 
@@ -65,7 +72,7 @@ const hasLater = inSection('later').length > 0;
       <a href="/free">Free shows</a>
     </nav>
     <p class="tonight-empty" data-home-empty hidden={hasTonight}>
-      Nothing's listed for <span data-home-part-lower>{dayPart(NOW).toLowerCase()}</span>.{' '}
+      No live music listed for <span data-home-part-lower>{dayPart(NOW).toLowerCase()}</span>.{' '}
       <span data-next>
         {
           nextNight ? (
@@ -80,7 +87,7 @@ const hasLater = inSection('later').length > 0;
         }
       </span>
     </p>
-    <div class="tonight-list" data-home-list hidden={!hasTonight}>
+    <div class="tonight-list" data-home-list hidden={!anyTonight}>
       {placed.filter((n) => !n.where || n.where === 'today').map((n) => <HomeNight {...n} />)}
     </div>
   </section>
@@ -90,8 +97,9 @@ const hasLater = inSection('later').length > 0;
       <span data-later-label>{later.label}</span>
     </h2>
     <p class="sec-range" data-later-range>{formatShortDay(later.start)} – {formatShortDay(later.end)}</p>
-    <p class="empty" data-home-empty hidden={hasLater}>Nothing else is listed for these days yet.</p>
+    <p class="empty" data-home-empty hidden={hasLater}>No other live music is listed for these days yet.</p>
     <div data-home-list>{inSection('later').map((n) => <HomeNight {...n} />)}</div>
+    {anyOther && <p class="also-more"><a href="/other-events">Trivia, bingo, karaoke and comedy: other events →</a></p>}
   </section>
 
   <section class="home-sec home-coming" aria-labelledby="coming-heading" data-home="coming">
@@ -104,7 +112,8 @@ const hasLater = inSection('later').length > 0;
     <DateJump />
     <CategoryNav />
   </div>
-  <WeeklyList rules={weekly} />
+  <WeeklyList rules={weekly.music} />
+  <WeeklyList rules={weekly.other} heading="Also every week" />
 
   <script is:inline define:vars={{ comingUpShows: COMING_UP_SHOWS }}>
     // Re-sort the nights for the visitor's own night (set in Base's <head>).
@@ -140,9 +149,11 @@ const hasLater = inSection('later').length > 0;
       nights.sort((a, b) => a.dataset.night.localeCompare(b.dataset.night));
       nights.forEach((g) => {
         const d = g.dataset.night;
-        const oneOffs = g.querySelectorAll('.show-card:not([data-recurring])').length;
-        let where = d < night ? null : d === night ? 'today' : d <= end ? 'later' : 'coming';
-        if (d > night && !next) next = d;
+        // Music cards are the night's direct children; other events sit in [data-also].
+        const music = g.querySelectorAll(':scope > .show-card').length;
+        const oneOffs = g.querySelectorAll(':scope > .show-card:not([data-recurring])').length;
+        let where = d < night ? null : d === night ? 'today' : !music ? null : d <= end ? 'later' : 'coming';
+        if (d > night && music && !next) next = d;
         if (where === 'coming') {
           if (!oneOffs || coming >= comingUpShows) where = null;
           else coming += oneOffs;
@@ -153,7 +164,7 @@ const hasLater = inSection('later').length > 0;
       for (const [name, b] of Object.entries(box)) {
         const any = !!b.list.querySelector('[data-night]:not([hidden])');
         if (name === 'today') b.list.hidden = !any;
-        if (b.empty) b.empty.hidden = any;
+        if (b.empty) b.empty.hidden = !!b.list.querySelector('[data-night]:not([hidden]) > .show-card');
       }
       document.querySelector('[data-next]').innerHTML = next
         ? `Next up: <a href="/date/${next}" data-day-link="${next}">${medium(next)}</a>.`
