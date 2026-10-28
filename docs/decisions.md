@@ -589,7 +589,8 @@ Calls made while filling out listings unattended (session of 2026-10-24).
     `Event` for other. Bands are performers only on music; comedians become
     `Person`; trivia and karaoke hosts aren't listed as performers.
     check-jsonld rejects a `MusicGroup` performer on a non-music event.
-  - Social graphic: busy nights are music only. On quiet nights (under 3
+  - Social graphic (replaced 2026-10-28, see "Tonight graphic lists every
+    category" below): busy nights are music only. On quiet nights (under 3
     music listings) other events fill whatever room the music and the week
     leave, at the bottom under a muted "Also tonight" in smaller rows. If they
     don't fit, the last row reads "+ N more on 815live.com". The caption lists
@@ -640,3 +641,33 @@ Calls made while filling out listings unattended (session of 2026-10-24).
      step 3 (it has to come after it), then the notification.
   The gate applies to the 5 PM run too. Keep this order if the script changes;
   an uncommitted edit in `data/` or `docs/` now blocks the day's graphic.
+- **Tonight graphic lists every category (user, 2026-10-28).** Karaoke,
+  trivia and bingo were on /tonight but missing from the graphic, which showed
+  other events only on quiet nights, in small muted rows that no longer fit
+  once the week list was full. Now `npm run social:tonight` uses the same
+  night as /tonight (the 4 AM rule, recurring dedupe) and shows all of it,
+  grouped by category in `CATEGORIES` order: live music, DJ, open mic, then
+  trivia, bingo, karaoke, comedy, other events. Other events use full-size
+  rows under their own category labels, not "Also tonight", and the caption
+  lists every one. Checked against the build for Oct 28 to Nov 7: same
+  number of listings each night.
+  - Room: music always fits (busy nights still spill onto more images).
+    Other events take the room left on the last image. When they don't fit,
+    rows are dropped karaoke first, then trivia, bingo, other, comedy (latest
+    start first within each), and a "+ N more at 815live.com" line is added.
+    Text never shrinks. The last music row leaves room under it for that
+    line, so it can move to a new image instead of crowding the line out (Oct
+    30: 3 images, all three karaoke nights shown).
+  - Quiet nights (under 3 music listings): tonight comes first, all
+    categories, then "Coming up" in whatever room is left. If none is left,
+    the header reads "Tonight in the 815" instead of "+ Coming up". The
+    coming-up list keeps its exclusions: one-off live music only, no weekly
+    nights, open mics, jams or DJs.
+  - Titles wrap to two lines instead of being cut off ("Reverend Raven & the
+    Chain Smokin' Altar Boys"). Rows with a wrapped title are 48 px taller.
+    satori measures each title (`measure()` in scripts/social/lib.mjs), so
+    pagination knows the real height. Past two lines the title ends in an
+    ellipsis (`lineClamp`). The venue line still truncates on one line.
+  - Section labels are the category names from `CATEGORY_LABEL` ("Trivia",
+    "Bingo", "Karaoke"). Music trivia and music bingo show under Trivia and
+    Bingo, as on the site.
