@@ -624,7 +624,9 @@ Calls made while filling out listings unattended (session of 2026-10-24).
   switch to `main` (switching branches needs approval), so it was committed
   on `other-events` and not pushed.
 - **Daily job order (user, 2026-10-28).** `~/.local/bin/815live-inbox.sh`
-  (timer `815live-inbox.timer`, 9 AM and 5 PM) runs in this fixed order:
+  (timer `815live-inbox.timer`, 9 AM and 5 PM) runs in this fixed order
+  (step 0, the branch guard, was added later the same day; see "Daily job runs
+  only on a clean main" below):
   1. Inbox: `claude -p "process the inbox"` (skipped when the inbox is
      empty), retried on a non-zero exit. The run commits its own changes.
   2. Gate: `npm run social:tonight` runs only if step 1 finished (claude
@@ -671,3 +673,19 @@ Calls made while filling out listings unattended (session of 2026-10-24).
   - Section labels are the category names from `CATEGORY_LABEL` ("Trivia",
     "Bingo", "Karaoke"). Music trivia and music bingo show under Trivia and
     Bingo, as on the site.
+- **Daily job runs only on a clean main (user, 2026-10-28).** The morning
+  inbox run committed its listings on `other-events`, where the site never
+  sees them, because the repo had been left on that branch. Before the inbox
+  step, `~/.local/bin/815live-inbox.sh` now checks that the repo is on `main`
+  with a clean tree. If not, it skips the whole run (no inbox, no graphic, no
+  reel) and sends a critical notification naming the current branch, logged
+  in `runs.log`. "Clean" means no changes to tracked files and no untracked
+  files in `data/` or `docs/`. Untracked files elsewhere (e.g. a stray
+  `.patch` at the root) don't block it. After fixing, rerun with
+  `systemctl --user start 815live-inbox.service`.
+  - Same day: `other-events` (non-music events, show title disambiguation,
+    the tonight graphic changes, the 10-28 inbox run) was finished (tests and
+    build passing, no TODOs) and went to `main` in full. The script's
+    `git pull --rebase` before the graphic linearized the local merge commit,
+    so `main` ended up as a fast-forward to `other-events` (same commits,
+    same tree). Any unpushed local merge commit will be flattened the same way.
