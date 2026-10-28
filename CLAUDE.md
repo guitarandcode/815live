@@ -24,7 +24,14 @@ area. Astro static site; data is one JSON file per record in `data/`
   the source says it's for musicians; poetry is `other`, a comedy open mic is
   `comedy`. `scripts/ingest/lib/classify.ts` encodes these rules. Never guess:
   a mixed night ("Open Mic & Karaoke"), an open mic that doesn't say what
-  kind, or anything else unclear goes in needs-review.
+  kind, or anything else unclear goes in needs-review. Settled by the user
+  (2026-10-28): the open mics at Shattered Saloon (including its Thursday
+  "Open Mic & Karaoke Night") and Maxine's Social are music, `open-mic`,
+  like Murphy's. Don't flag them again.
+- **Crossroads Blues Society:** list only their events in the 815 area
+  (the coverage rule above; Oregon and Freeport count). Their out-of-area
+  events go to `skipped/` like any other. If a post doesn't show the
+  venue, log it in needs-review and move the file to `waiting/`.
 - **Facts only:** who, where, when, cover, ticket link. Never copy
   descriptions, bios or images. Leave out host/DJ/bartender names, drink
   specials and giveaways. Cover unknown means omit `cover`; `null` means free.

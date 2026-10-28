@@ -689,3 +689,19 @@ Calls made while filling out listings unattended (session of 2026-10-24).
     `git pull --rebase` before the graphic linearized the local merge commit,
     so `main` ended up as a fast-forward to `other-events` (same commits,
     same tree). Any unpushed local merge commit will be flattened the same way.
+- **Three calls from the user (2026-10-28).**
+  - Open mics at Shattered Saloon (its Thursday "Open Mic & Karaoke Night")
+    and Maxine's Social are music: `open-mic`, under Open mic like Murphy's.
+    Both were already filed that way pending this answer, so no listing
+    changed. The two needs-review items are closed, and CLAUDE.md says not to
+    flag them again.
+  - Crossroads Blues Society: only their 815-area events are listed (the
+    usual coverage rule, Oregon and Freeport included); out-of-area ones are
+    skipped. The pending Fri Oct 30 post (hosts Paul Prue and Peter Chase)
+    is neither added nor skipped. The screenshot cuts off the venue,
+    Crossroads' site loads its events with JavaScript (not readable),
+    and a web search found nothing. It stays in `waiting/`, with the rule
+    noted in needs-review. Added to CLAUDE.md for inbox runs.
+  - Tonight graphic labels: joining artist names with "+" ("The Forty Twos +
+    King Falcon") is intentional, even where the site shows an event title
+    ("The Forty Twos with King Falcon"). Not a mismatch to fix.
