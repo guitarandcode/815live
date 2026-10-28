@@ -170,7 +170,10 @@ A Halloween flyer (2026-10-27 inbox) says "Regal Beagle" plays "Morts Pub" on
 Saturday, October 31 (weekday matches 2026), 8–11 PM. The flyer gives no town.
 The only nearby match found is Mort's Bar & Grill, 114 S Chicago Ave, Freeport
 (Enjoy Illinois listing), a different name. Confirm it's the same place (and
-that the band is local) before publishing. The flyer is in `waiting/`.
+that the band is local) before publishing. The flyer is in `waiting/`. A
+second copy came in the 2026-10-28 evening inbox, still with no town; a web
+search found no link between the band and Mort's in Freeport. Also in
+`waiting/`.
 
 ## Rascals Bar and Grill: Halloween party with "The Wolfman", Sat Oct 31, 8 PM–midnight
 
@@ -181,6 +184,14 @@ performer. The post gives no town; directories (Superpages, Sirved, BringFido)
 list Rascals Bar & Grill at 5223 Torque Rd, Loves Park 61111, but the bar has
 no website to confirm it's the same Rascals. No venue record yet. The
 screenshot is in `waiting/`.
+
+Also waiting on the venue: **"Bingo for a Cause"** (Christmas for Kids
+benefit), Thu Nov 19, 7 PM, at "Rascal's Bar & Grill" (flyer, 2026-10-28
+evening inbox; no weekday stated, no town). It would be a one-off `bingo`
+show. A Thanksgiving Eve bar-crawl flyer in the same inbox puts Rascals on a
+bus route with Ashley's Dirty Martini, Neighbors, Top Dog, Legends, Easy Tiger
+and Windsor Pizza Parlor, which supports the Loves Park location but still
+isn't the bar's own word. In `waiting/`.
 
 ## Shattered Saloon: "Mothman" or "Mothmen"?
 

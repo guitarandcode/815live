@@ -1,13 +1,16 @@
 {
   "date": "2026-10-30",
-  "startTime": "18:00",
+  "startTime": "19:00",
   "venue": "mulligans-pub-and-grill",
   "category": "live-music",
   "title": "Helloween at Mulligan's",
   "artists": [
-    "faith-in-vain"
+    "reckless-redemption",
+    "faith-in-vain",
+    "lights-out-alaska"
   ],
-  "checked": "2026-10-25",
+  "notes": "Doors 6 PM. Also on the bill: Blood & Bone Burlesque.",
+  "checked": "2026-10-28",
   "source": {
     "type": "manual"
   }

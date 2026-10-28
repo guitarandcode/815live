@@ -1,0 +1,10 @@
+{
+  "name": "Mustang's Bar & Grill",
+  "address": "482 Gardner St",
+  "city": "South Beloit",
+  "state": "IL",
+  "zip": "61080",
+  "lat": 42.49226,
+  "lng": -89.03353,
+  "description": "Bar and grill on Gardner Street in South Beloit."
+}
