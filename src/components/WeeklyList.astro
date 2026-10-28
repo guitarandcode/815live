@@ -5,16 +5,17 @@ import { formatTimeRange } from '../lib/time.ts';
 
 interface Props {
   rules: Recurring[];
+  heading?: string;
 }
 
-const { rules } = Astro.props;
+const { rules, heading = 'Every week' } = Astro.props;
 const plural = (weekday: string) => `${weekday.charAt(0).toUpperCase()}${weekday.slice(1)}s`;
 ---
 
 {
   rules.length > 0 && (
     <section class="weekly">
-      <h2>Every week</h2>
+      <h2>{heading}</h2>
       <ul class="index-list">
         {rules.map((r) => {
           const cover = coverLabel(r.cover);

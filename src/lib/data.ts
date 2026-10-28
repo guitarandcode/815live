@@ -1,7 +1,7 @@
 // Loads the collections once per build and resolves show references.
 import { readFileSync } from 'node:fs';
 import { getCollection, type CollectionEntry } from 'astro:content';
-import { CATEGORIES, type Category } from './categories.ts';
+import { CATEGORIES, isMusic, type Category } from './categories.ts';
 import { DATA_DIR } from './paths.ts';
 import type { SOURCE_KINDS } from './sources.ts';
 import { buildNow, byStart, dedupeRecurring, listing, recurringDates, upcoming, WEEKDAYS } from './shows.ts';
@@ -121,6 +121,11 @@ export async function pageListing(category?: Category) {
     shows: listing(shows.filter(inCat), NOW),
     weekly: recurring.filter(inCat),
   };
+}
+
+/** Music first; the rest goes under "Also happening". Order within each is kept. */
+export function splitMusic<T extends { category: Category }>(list: T[]): { music: T[]; other: T[] } {
+  return { music: list.filter((x) => isMusic(x.category)), other: list.filter((x) => !isMusic(x.category)) };
 }
 
 /** Upcoming listing count per category (all expanded recurring instances included). */

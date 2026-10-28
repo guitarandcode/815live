@@ -1,5 +1,5 @@
 // schema.org structured data builders.
-import { CATEGORY_SCHEMA } from './categories.ts';
+import { CATEGORY_SCHEMA, isMusic } from './categories.ts';
 import { endDate, showTitle, type Artist, type Show, type Venue } from './data.ts';
 import { chicagoIso } from './time.ts';
 
@@ -35,7 +35,11 @@ const STATUS = {
   postponed: 'https://schema.org/EventPostponed',
 } as const;
 
-/** MusicEvent, ComedyEvent or Event depending on the show's category. */
+/**
+ * MusicEvent, ComedyEvent, SocialEvent or Event depending on the show's
+ * category. Performers: bands for music, comedians (as people) for comedy, and
+ * none for trivia, bingo, karaoke and the rest, whose hosts aren't performers.
+ */
 export function showEvent(show: Show, site: URL) {
   const v = show.venue;
   const url = abs(`/shows/${show.id}`, site);
@@ -59,15 +63,16 @@ export function showEvent(show: Show, site: URL) {
       geo: geo(v),
       url: abs(`/venues/${v.id}`, site),
     },
-    ...(show.artists.length > 0 && {
+    ...(show.artists.length > 0 &&
+      (isMusic(show.category) || show.category === 'comedy') && {
       performer: show.artists.map((a) => ({
-        '@type': 'MusicGroup',
+        '@type': isMusic(show.category) ? 'MusicGroup' : 'Person',
         name: a.data.name,
         url: abs(`/artists/${a.id}`, site),
         ...(artistLinks(a).length && { sameAs: artistLinks(a) }),
       })),
     }),
-    ...(show.host && { performer: [{ '@type': 'Person', name: show.host }] }),
+    ...(show.host && isMusic(show.category) && { performer: [{ '@type': 'Person', name: show.host }] }),
     organizer: {
       '@type': 'Organization',
       name: v.data.name,

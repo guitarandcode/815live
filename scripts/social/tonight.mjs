@@ -6,12 +6,18 @@
 //
 // Writes social/tonight-YYYY-MM-DD[-2].png and social/tonight-YYYY-MM-DD.txt.
 // Busy nights spill onto extra images (post them together as one album).
-// Quiet nights (fewer than QUIET listings) get one "Tonight + Coming Up"
-// image instead: tonight on top, then up to WEEK_MAX one-off shows from the
-// next 7 days, soonest first. Highlights are one-off live shows (bands,
-// comedy): no weekly nights, and no karaoke, open mics, jams, trivia or DJs.
+// Quiet nights (fewer than QUIET music listings) get one "Tonight + Coming Up"
+// image instead: tonight's music on top, then up to WEEK_MAX one-off shows
+// from the next 7 days, soonest first. Highlights are one-off live music:
+// no weekly nights, and no open mics, jams or DJs.
+//
+// Music leads. Other events (trivia, bingo, karaoke, comedy; see
+// src/lib/categories.ts) never appear on busy nights; on quiet nights they
+// fill whatever room is left at the bottom, in smaller muted rows under
+// "Also tonight", and the caption lists them last.
 import { readdirSync, readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { join } from 'node:path';
+import { CATEGORY_LABEL, isMusic } from '../../src/lib/categories.ts';
 import { C, h, render, wordmark } from './lib.mjs';
 
 const ROOT = join(import.meta.dirname, '../..');
@@ -54,7 +60,7 @@ const artists = load('artists');
 const allShows = Object.values(load('shows')).filter((s) => !s.placeholder && (s.status ?? 'scheduled') !== 'cancelled');
 
 const oneOffs = allShows.filter((s) => s.date === date);
-const HIGHLIGHT_CATEGORIES = ['live-music', 'comedy'];
+const HIGHLIGHT_CATEGORIES = ['live-music'];
 const isHighlight = (s) =>
   HIGHLIGHT_CATEGORIES.includes(s.category ?? 'live-music') && !/\bjam\b/i.test(s.title ?? '');
 // Recurring nights, minus any that a one-off at the same venue replaces (same rule as the site).
@@ -84,27 +90,29 @@ const toEvent = (e) => {
 const byStart = (a, b) =>
   a.date.localeCompare(b.date) || a.startTime.localeCompare(b.startTime) || a.venueName.localeCompare(b.venueName);
 
-const events = [...oneOffs, ...recurring].map(toEvent).sort(byStart);
+const all = [...oneOffs, ...recurring].map(toEvent).sort(byStart);
+const events = all.filter((e) => isMusic(e.category));
+const others = all.filter((e) => !isMusic(e.category));
 const quiet = events.length < QUIET;
 const weekEnd = addDays(date, WEEK_DAYS);
 const week = quiet
   ? allShows.filter((s) => s.date > date && s.date <= weekEnd && isHighlight(s)).map(toEvent).sort(byStart).slice(0, WEEK_MAX)
   : [];
 
-if (!events.length && !week.length) {
+if (!events.length && !week.length && !others.length) {
   console.log(`Nothing listed for ${date} or the 7 days after. No image made.`);
   process.exit(0);
 }
 
 // ---------- formatting ----------
+// Music only; other events go in "Also tonight" on quiet nights.
 const SECTIONS = [
   ['live-music', 'Live music'],
   ['dj', 'DJ'],
-  ['comedy', 'Comedy'],
   ['open-mic', 'Open mic'],
-  ['karaoke', 'Karaoke'],
-  ['trivia', 'Music trivia'],
 ];
+// "Karaoke" stays "Karaoke"; "Name That Tune" becomes "Trivia: Name That Tune".
+const otherAct = (e) => (e.act === CATEGORY_LABEL[e.category] ? e.act : `${CATEGORY_LABEL[e.category]}: ${e.act}`);
 
 function clock(t) {
   let hr = Number(t.slice(0, 2));
@@ -164,8 +172,20 @@ if (page.length) pages.push(page);
 const ellipsis = { whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' };
 
 // withDay: the week list, with weekday and date over the time.
-function rowEl(e, { withDay = false, rowH = ROW_H } = {}) {
+// secondary: an "Also tonight" row, smaller and muted.
+function rowEl(e, { withDay = false, rowH = ROW_H, secondary = false } = {}) {
   const timeW = withDay ? 230 : 170;
+  if (secondary) {
+    const sub = [e.venueName, e.town].filter(Boolean).join(' · ');
+    return h(
+      'div',
+      { width: INNER, height: rowH, flexShrink: 0, alignItems: 'center', borderBottom: `1px solid ${C.line}` },
+      h('div', { width: timeW, flexShrink: 0, fontFamily: 'Cond', fontWeight: 700, fontSize: 28, color: C.muted }, clock(e.startTime)),
+      h('div', { width: INNER - timeW, fontFamily: 'Sans', fontSize: 26, color: C.muted, ...ellipsis },
+        h('span', { fontWeight: 600, color: C.ink, marginRight: 10 }, otherAct(e)),
+        sub),
+    );
+  }
   // Venues with more than one room note it like "On the Council Oak stage."
   const stage = e.notes?.match(/^On the (.+?) stage\.?$/i)?.[1];
   const sub = [e.eventTitle, e.venueName, stage, e.town].filter(Boolean).join(' · ');
@@ -238,6 +258,15 @@ function footerEl() {
 const Q_HEADER = 300;
 const Q_ROW = 80;
 const Q_BODY = H - TOP - BOTTOM - Q_HEADER - FOOTER - 24;
+const ALSO_ROW = 58;
+// Other events only get the room music leaves: tonight's rows, then the week.
+const musicH = SECTION_H + Math.max(events.length, 1) * Q_ROW + (week.length ? SECTION_H + week.length * Q_ROW : 0);
+const alsoFit = Math.max(0, Math.floor((Q_BODY - musicH - SECTION_H) / ALSO_ROW));
+// When they don't all fit, the last row says how many more are on the site.
+const alsoShown = others.length <= alsoFit ? others : others.slice(0, Math.max(0, alsoFit - 1));
+const alsoMore = others.length - alsoShown.length;
+const mutedLabel = (text) =>
+  h('div', { height: SECTION_H, flexShrink: 0, alignItems: 'flex-end', paddingBottom: 6, fontFamily: 'Cond', fontWeight: 700, fontSize: 24, letterSpacing: 3, color: C.muted, textTransform: 'uppercase' }, text);
 const sectionLabel = (text) =>
   h('div', { height: SECTION_H, flexShrink: 0, alignItems: 'flex-end', paddingBottom: 6, fontFamily: 'Cond', fontWeight: 800, fontSize: 28, letterSpacing: 3, color: C.accent, textTransform: 'uppercase' }, text);
 
@@ -262,9 +291,14 @@ function quietEl() {
       sectionLabel(heading),
       events.length
         ? events.map((e) => rowEl(e, { rowH: Q_ROW }))
-        : h('div', { height: Q_ROW, flexShrink: 0, alignItems: 'center', fontFamily: 'Sans', fontSize: 30, color: C.muted, borderBottom: `2px solid ${C.line}` }, isToday ? 'Nothing listed tonight.' : 'Nothing listed.'),
+        : h('div', { height: Q_ROW, flexShrink: 0, alignItems: 'center', fontFamily: 'Sans', fontSize: 30, color: C.muted, borderBottom: `2px solid ${C.line}` }, isToday ? 'No live music listed tonight.' : 'No live music listed.'),
       week.length ? sectionLabel('Coming up') : null,
       week.map((e) => rowEl(e, { withDay: true, rowH: Q_ROW })),
+      others.length && alsoFit ? mutedLabel(isToday ? 'Also tonight' : 'Also that night') : null,
+      alsoFit ? alsoShown.map((e) => rowEl(e, { rowH: ALSO_ROW, secondary: true })) : null,
+      alsoFit && alsoMore
+        ? h('div', { height: ALSO_ROW, flexShrink: 0, alignItems: 'center', fontFamily: 'Sans', fontSize: 24, color: C.muted }, `+ ${alsoMore} more on 815live.com`)
+        : null,
     ),
     footerEl(),
   );
@@ -279,7 +313,7 @@ else for (const [i, items] of pages.entries()) {
 
 // ---------- caption ----------
 const lines = [`${isToday ? 'Tonight' : longDate}${quiet ? ' + Coming Up' : ''} in the 815 🎶`, ''];
-if (!events.length) lines.push(isToday ? 'Nothing listed tonight.' : 'Nothing listed.', '');
+if (!events.length) lines.push(isToday ? 'No live music listed tonight.' : 'No live music listed.', '');
 for (const [cat, label] of SECTIONS) {
   const rows = events.filter((e) => e.category === cat);
   if (!rows.length) continue;
@@ -290,6 +324,12 @@ for (const [cat, label] of SECTIONS) {
 if (week.length) {
   lines.push('COMING UP');
   for (const e of week) lines.push(`• ${shortDay(e.date)}: ${e.act} @ ${e.venueName}${e.town ? ` (${e.town})` : ''}, ${clock(e.startTime)}`);
+  lines.push('');
+}
+// Other events: quiet nights only, after the music.
+if (quiet && others.length) {
+  lines.push(isToday ? 'ALSO TONIGHT' : 'ALSO THAT NIGHT');
+  for (const e of others) lines.push(`• ${otherAct(e)} @ ${e.venueName}${e.town ? ` (${e.town})` : ''}, ${clock(e.startTime)}`);
   lines.push('');
 }
 lines.push('Full calendar: https://815live.com', 'Got a show? shows@815live.com', '', '#Rockford #RockfordIL #LiveMusic #815');
