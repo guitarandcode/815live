@@ -726,3 +726,24 @@ Calls made while filling out listings unattended (session of 2026-10-24).
   entertainment). Waiting: Regal Beagle at "Morts Pub" (second copy, still no
   town) and Rascal's "Bingo for a Cause" Nov 19 (venue unconfirmed, as for
   its Halloween party).
+- **Inbox run (scheduled, 2026-10-29).** 15 files. Published: On The Rocks
+  (new artist) at Splitter's, Sat Oct 31, 8 PM–midnight (closes that part
+  of the Splitter's needs-review item); Marco's Slots (new venue, 7164
+  Cherryvale N Blvd, Rockford, from the event page; the Census geocoder only
+  matched it as "7164 N Cherryvale Mall Dr", the same block near the mall)
+  "Halloween Bangaroo 4", Sat Oct 31, 8 PM, as `dj` (the DJ isn't named);
+  Valley Tap, German Valley (new venue, 45 Church St from the bar's own
+  flyer, Census geocoded; about 25 minutes west of Rockford, so in area)
+  Halloween karaoke Fri Oct 30, 9 PM–midnight (DJ name left out); Whiskey's
+  Roadhouse first-Friday open stage Nov 6 and Dec 4, 7:30 PM, `open-mic`
+  (PA, drums and bass amp provided, so it's for musicians). The host band
+  and the featured act ("12-& lightning", name unclear) are left off.
+  Re-confirmed, `checked` bumped: Gang of Martians at the Music Box,
+  Rollin' Whiskey at Hot Rod Nellie's and Stereotype at Shattered (Oct 31;
+  the last two gained an 8 PM–midnight end time), Murphy's Wednesday open
+  mic. Skipped: The Hurricane Project at Johnny's Blitz, Westmont (out of
+  area); the Rusty Fox open mic (the Rusty Fox is in Sterling, out of area,
+  as on 10-28); The Groove Hotel's band page (no upcoming dates). Waiting:
+  Mullarkey's Pistol Whip (no town; the only match is Mount Morris, borderline),
+  Mustang's Halloween DJ (no time), On A Roll's open mic (kind not stated),
+  Trifecta Trio at Hidden Creek Estates (not a known public venue).

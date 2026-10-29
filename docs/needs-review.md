@@ -26,12 +26,13 @@ and bands play Saturdays, with details posted on Facebook only. No times or
 performers on the venue site, so not published. Karaoke (every other Thursday, 7–11)
 and Name That Tune (Mon 7–9) are published.
 
-## Whiskey's Roadhouse: monthly open mic
+## Whiskey's Roadhouse: monthly open stage after December
 
-The venue's home page says "Open Mic night is the First Friday of every
-month" with no start time. Not published: no time, and recurring rules are
-weekly only (a first-Friday rule would need an `nth` field). Weekly karaoke
-(Wed & Sun, 9 PM) is published.
+The host band's Facebook event (2026-10-29 inbox) gives the dates Sept 4,
+Oct 2, Nov 6 and Dec 4, sign-up 7:30 PM, so Nov 6 and Dec 4 are published as
+one-off `open-mic` shows. Recurring rules are weekly only (a first-Friday rule
+would need an `nth` field), so 2027 dates need adding when they're posted.
+Weekly karaoke (Wed & Sun, 9 PM) is published.
 
 
 ## Town Hall Lounge: Halloween party, Sat Oct 31
@@ -98,14 +99,15 @@ event pages). Student bands, so list it as one show with the group as the act.
   the paste gives no venue name or town, and the address didn't turn up in
   searches.
 
-## Splitter's Bar & Grill: Oct 31 (no time); Oct 30 fourth band
+## Splitter's Bar & Grill: Oct 30 fourth band
 
 Splitter's is the bar inside Park Lanes, 5318 N 2nd St, Loves Park (venue now
 published). Fri Oct 30 "Metal Night" is published from C&L Sound's flyer
 (2026-10-26 inbox: music 8 PM, free, 21+): Our Dying Whisper, Sworn to None,
 Thorgrim, plus a fourth band whose logo is unreadable (looks like "Ixdaunh"),
-so it's marked `lineupPartial`. Sat Oct 31 "On The Rocks" (costume contest)
-still has no start time. The October flyer stays in `waiting/`.
+so it's marked `lineupPartial`. (Sat Oct 31 On The Rocks is now published,
+8 PM–midnight, from the band's Facebook event, 2026-10-29 inbox.) The
+October flyer stays in `waiting/`.
 
 ## Hot Rod Nellie's: "Halloween Pre-Game with Holly", Fri Oct 30, 8:30 PM
 
@@ -279,3 +281,35 @@ own site loads its events with JavaScript (nothing readable without a
 browser), and a web search found nothing. Publish if the full post shows a
 local venue; skip it if not. In `waiting/` (the same screenshot also
 re-confirmed Cahoots' Decades of Rock).
+
+## Mullarkey's Bar & Grill: Pistol Whip, Sat Oct 31, 7 PM (venue town unconfirmed)
+
+The bar's "Winnerween" flyer (2026-10-29 inbox): live music by Pistol Whip
+starting 7 PM on Saturday, October 31 (weekday matches 2026), plus hourly
+prize drawings. The flyer gives no town. The only match found is Mullarkey's
+Bar & Grill, 12 W Main St, Mount Morris (Enjoy Illinois listing). Mount
+Morris is just north of Oregon, about 35 minutes from downtown Rockford,
+so it's a borderline area call even if it's the same bar. Publish (new venue
+and artist) if both check out. In `waiting/`.
+
+## Mustang's Bar & Grill: Halloween Bash with a DJ, Sat Oct 31 (no time)
+
+The bar's flyer (2026-10-29 inbox) gives October 31, "Sounds by" a DJ,
+482 Gardner St, South Beloit. No start time, so it isn't published. Add as a
+`dj` show once a time is known. In `waiting/`.
+
+## On A Roll Spirits and Slots (Machesney Park): Open Mic Night, Thu Oct 29
+
+The bar's flyer (2026-10-29 inbox) gives 7007 N 2nd St, Machesney Park;
+Thursday, October 29 (weekday matches); sign-up 6:30 PM, show 7 PM;
+"10 spots / 3 winners". It doesn't say whether it's for musicians, comics or
+anyone, so the category is unclear and it isn't published (no venue record
+yet). Past after tonight; if it turns out to be a regular music open mic,
+add a rule. In `waiting/`.
+
+## Trifecta Trio at "Hidden Creek Estates", Thu Oct 29, 5:30–8:30 PM
+
+The band's Facebook post (2026-10-29 inbox) says they play Hidden Creek
+Estates tonight. The name sounds like a residential or senior community,
+not a public venue, and no address or town is given. Not published (no
+artist or venue record). Past after tonight. In `waiting/`.
