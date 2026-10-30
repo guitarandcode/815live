@@ -1,0 +1,13 @@
+{
+  "date": "2026-12-19",
+  "startTime": "20:00",
+  "venue": "inscape-collective",
+  "category": "live-music",
+  "artists": [
+    "the-synergy-band"
+  ],
+  "checked": "2026-10-30",
+  "source": {
+    "type": "manual"
+  }
+}

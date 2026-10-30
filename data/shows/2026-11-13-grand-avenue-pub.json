@@ -5,9 +5,9 @@
   "venue": "grand-avenue-pub",
   "category": "live-music",
   "artists": [
-    "synergy"
+    "the-synergy-band"
   ],
-  "checked": "2026-10-26",
+  "checked": "2026-10-30",
   "source": {
     "type": "manual",
     "url": "https://www.grandavenuebeloit.com/",

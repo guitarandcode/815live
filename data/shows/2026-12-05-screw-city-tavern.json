@@ -1,0 +1,15 @@
+{
+  "date": "2026-12-05",
+  "startTime": "20:30",
+  "venue": "screw-city-tavern",
+  "category": "live-music",
+  "artists": [
+    "the-synergy-band"
+  ],
+  "checked": "2026-10-30",
+  "source": {
+    "type": "manual",
+    "url": "https://screwcitytavern.com/",
+    "kind": "venue"
+  }
+}

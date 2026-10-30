@@ -1,0 +1,13 @@
+{
+  "date": "2026-11-21",
+  "startTime": "20:30",
+  "venue": "sheilas-daiquiri-lounge",
+  "category": "live-music",
+  "artists": [
+    "the-synergy-band"
+  ],
+  "checked": "2026-10-30",
+  "source": {
+    "type": "manual"
+  }
+}
