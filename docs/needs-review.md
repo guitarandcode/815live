@@ -143,8 +143,10 @@ the bands' pages). The calendar image's right edge is cut off through the
 Saturday column, so these names may be incomplete:
 - **Nov 7 "Shuffle This"**, **Nov 21 "Soul 2 Soul"**: published under those
   names.
-- **Nov 13 "Synergy"**: given its own artist record, not merged with The
-  Synergy Band. Merge if they turn out to be the same act.
+- **Nov 13 "Synergy"**: resolved 2026-10-30. The Synergy Band's own flyer
+  shows that date and time, so the show now points to `the-synergy-band`. The old
+  `data/artists/synergy.json` has no shows left but is still in the repo; the
+  scheduled run wasn't allowed to delete it. Delete it.
 
 ## Boxcars Pub & Grub (Clinton, WI): Addison Johnson, Wed Oct 28
 
@@ -156,15 +158,6 @@ published: Clinton is about 10 miles east of Beloit, so it's probably a bit
 more than 30 minutes from downtown Rockford, a borderline call under the area
 rule. Also, the venue's address and ticket link are unverified. The screenshot
 is in `waiting/`.
-
-## Grand Avenue Pub: Mr. Pink, Fri Oct 30, 8 PM–midnight
-
-A Halloween party flyer (2026-10-27 inbox) gives "Friday night costume contest:
-Mr. Pink, 8:00 PM – Midnight" and "Saturday night: DJ Audiboi, 9 PM – 1 AM".
-The flyer has no dates, but the pub's own "Spooky Bash" flyer puts DJ Audiboi
-on Oct 31, 2026, so Friday is Oct 30. Saturday is published. Friday isn't,
-because it's unclear whether Mr. Pink is a DJ or a band (`dj` vs
-`live-music`), and a search found nothing. The flyer is in `waiting/`.
 
 ## Mort's Pub: The Regal Beagle, Sat Oct 31, 8–11 PM
 
@@ -194,13 +187,6 @@ show. A Thanksgiving Eve bar-crawl flyer in the same inbox puts Rascals on a
 bus route with Ashley's Dirty Martini, Neighbors, Top Dog, Legends, Easy Tiger
 and Windsor Pizza Parlor, which supports the Loves Park location but still
 isn't the bar's own word. In `waiting/`.
-
-## Shattered Saloon: "Mothman" or "Mothmen"?
-
-The October flyer (2026-10-24) named the Oct 30 band "Mothman"; the bar's
-"Events This Week" graphic (2026-10-27 inbox) says "Mothmen Band". The listing
-stays under the existing `mothman` record (date and time match). Rename the
-artist if the band's own page uses "Mothmen".
 
 
 ## RPL Nordlof Center: library times vs. Crossroads times
@@ -313,3 +299,33 @@ The band's Facebook post (2026-10-29 inbox) says they play Hidden Creek
 Estates tonight. The name sounds like a residential or senior community,
 not a public venue, and no address or town is given. Not published (no
 artist or venue record). Past after tonight. In `waiting/`.
+
+## Lyran Society Fish Fry: Blind Eye Willis and the Blue Notes, Fri Oct 30, 7–10 PM
+
+A Crossroads Blues Society / Lyran Society flyer (2026-10-30 inbox): Blind
+Eye Willis and the Blue Notes at the Lyran Club, Friday Oct 30 (weekday
+matches 2026), 7–10 PM, with a fish fry before. Not published: the flyer
+says it's "open to all Lyran and Crossroads members, their families and
+friends", so it may not be a public show, and the Lyran Society's address
+is still unconfirmed (see the Knott Us benefit item above). It may also be
+the event in the cropped Crossroads "Friday evening 10/30/26" post. Past
+after tonight. In `waiting/`.
+
+## New Mill Tap (Rockford): Halloween karaoke, date not shown
+
+The bar's Facebook post (screenshot, 2026-10-30 inbox) shows a Halloween
+Party flyer: costume contest 6–8 PM, karaoke 7–11 PM, 6935 11th St,
+Rockford. The visible flyer and post text give no date (the post is cut off
+at "See more"), so it could be Fri Oct 30 or Sat Oct 31. No venue record
+yet (address from the flyer; Census geocode it when adding). Add as a
+`karaoke` show once the date is known. In `waiting/`.
+
+## The Synergy Band: Music on Chicago, Freeport, Fri Jul 9, 2027, 8 PM
+
+The band's 2026 schedule graphic (2026-10-30 inbox) lists "Music on Chicago,
+Freeport IL, showtime 8:00 PM" for Jul 9, 2027 (a Friday). Freeport is in
+area, but "Music on Chicago" looks like a downtown series, not a venue with
+a known address. Publish once the location is confirmed. The graphic's other
+upcoming dates are published (Nov 13, 21, 28, Dec 5, 12, 19). Left out:
+private events (Nov 12 at Ho-Chunk, Apr 24, 2027 wedding) and Jun 19, 2027
+"Rising Queens Juneteenth" (no place or time). In `waiting/`.

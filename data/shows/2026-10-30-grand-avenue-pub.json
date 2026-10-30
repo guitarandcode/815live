@@ -1,0 +1,18 @@
+{
+  "date": "2026-10-30",
+  "startTime": "20:00",
+  "endTime": "00:00",
+  "venue": "grand-avenue-pub",
+  "category": "live-music",
+  "title": "Mister Pink's Halloween Show",
+  "artists": [
+    "mister-pink"
+  ],
+  "notes": "Costume contest.",
+  "checked": "2026-10-30",
+  "source": {
+    "type": "manual",
+    "url": "https://www.grandavenuebeloit.com/",
+    "kind": "venue"
+  }
+}

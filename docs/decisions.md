@@ -747,3 +747,21 @@ Calls made while filling out listings unattended (session of 2026-10-24).
   Mullarkey's Pistol Whip (no town; the only match is Mount Morris, borderline),
   Mustang's Halloween DJ (no time), On A Roll's open mic (kind not stated),
   Trifecta Trio at Hidden Creek Estates (not a known public venue).
+- **Inbox run (scheduled, 2026-10-30).** 7 files. Published: Mister Pink's
+  Halloween Show at Grand Avenue Pub, Fri Oct 30, 8 PM–midnight, as
+  `live-music` (new artist). The Facebook event's cover photo shows a
+  five-piece group, one in a drumsticks shirt, so it's a band, not a DJ.
+  That closes the 10-27 Mr. Pink item; the costume-contest prizes are left
+  out. The Synergy Band's 2026 schedule graphic and Grand Ave flyer: Sheila's
+  Daiquiri Lounge Nov 21 and Dec 12, Screw City Tavern Dec 5 (all 8:30 PM),
+  and "Inscape, Rockford" Dec 19, 8 PM, read as Inscape Midtown Collective,
+  the only Inscape in Rockford. The Nov 13 Grand Ave show ("Synergy" on the
+  pub's cropped calendar) is the same act per the band's own flyer, so it now
+  points to `the-synergy-band`. Hard Rock's Nov 28 (adapter-owned) matches.
+  "Mothman" renamed to Mothmen (slug `mothmen`): a hand-drawn "Mothmen at
+  Shattered, Oct 30th 2026, 8:00 PM" flyer makes two sources against one.
+  Re-confirmed, `checked` bumped: Gang of Martians at the Music Box Oct 31
+  (gained an 8 PM–midnight end time; still free). Waiting: the Lyran Society
+  fish fry with Blind Eye Willis (members-and-friends event, no address),
+  New Mill Tap's Halloween karaoke (no date shown), and The Synergy Band's
+  Jul 9, 2027 Music on Chicago in Freeport (no location). Nothing skipped.
