@@ -765,3 +765,12 @@ Calls made while filling out listings unattended (session of 2026-10-24).
   fish fry with Blind Eye Willis (members-and-friends event, no address),
   New Mill Tap's Halloween karaoke (no date shown), and The Synergy Band's
   Jul 9, 2027 Music on Chicago in Freeport (no location). Nothing skipped.
+- **Inbox run (scheduled, 2026-10-30 afternoon).** 5 files. Published: DJ Dez
+  (new artist) at Tad's on the Rock, "Halloween Neon Creepy Carnival Party",
+  Fri Oct 30, 9 PM–2 AM, as `dj` (the bartender, drink specials and
+  costume-contest prizes are left out). Re-confirmed, `checked` bumped:
+  Stereotype's Emo Night at Grand Avenue Pub, Nov 14, 8 PM–midnight (band's
+  own post). Skipped: "Keys for Kids" dueling pianos at the Sandwich Moose
+  Lodge, Sandwich IL (out of area); Brass From The Past at McCormick Place,
+  Chicago, Oct 29 (out of area and past). Waiting: a third copy of the Regal
+  Beagle "Morts Pub" flyer (still no town).

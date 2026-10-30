@@ -1,0 +1,15 @@
+{
+  "date": "2026-10-30",
+  "startTime": "21:00",
+  "endTime": "02:00",
+  "venue": "tads-on-the-rock",
+  "category": "dj",
+  "title": "Halloween Neon Creepy Carnival Party",
+  "artists": [
+    "dj-dez"
+  ],
+  "checked": "2026-10-30",
+  "source": {
+    "type": "manual"
+  }
+}

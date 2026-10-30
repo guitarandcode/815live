@@ -168,7 +168,8 @@ The only nearby match found is Mort's Bar & Grill, 114 S Chicago Ave, Freeport
 that the band is local) before publishing. The flyer is in `waiting/`. A
 second copy came in the 2026-10-28 evening inbox, still with no town; a web
 search found no link between the band and Mort's in Freeport. Also in
-`waiting/`.
+`waiting/`. A third copy (2026-10-30 inbox), same flyer, still no town; in
+`waiting/` as `2026-10_morts-pub-regal-beagle-3.jpg`.
 
 ## Rascals Bar and Grill: Halloween party with "The Wolfman", Sat Oct 31, 8 PM–midnight
 
