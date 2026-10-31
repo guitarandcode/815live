@@ -6,5 +6,9 @@
   "zip": "61061",
   "lat": 42.01451,
   "lng": -89.33113,
-  "description": "Bar on South 3rd Street in downtown Oregon."
+  "description": "Bar on South 3rd Street in downtown Oregon.",
+  "social": {
+    "fb": "https://www.facebook.com/p/TIPSY-HOG-100054497257822/",
+    "verified": true
+  }
 }

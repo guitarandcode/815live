@@ -6,5 +6,10 @@
   "zip": "61108",
   "lat": 42.267,
   "lng": -88.97997,
-  "description": "Irish pub on South Perryville Road on Rockford's east side, with karaoke on Thursday nights."
+  "description": "Irish pub on South Perryville Road on Rockford's east side, with karaoke on Thursday nights.",
+  "social": {
+    "ig": "murphyspub",
+    "fb": "https://www.facebook.com/150484878343634/",
+    "verified": true
+  }
 }

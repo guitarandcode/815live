@@ -7,5 +7,9 @@
   "lat": 42.27104,
   "lng": -89.09384,
   "website": "https://districtdowntown.com/",
-  "description": "Downtown Rockford bar and grill on West State Street with a stage for local, regional and touring acts."
+  "description": "Downtown Rockford bar and grill on West State Street with a stage for local, regional and touring acts.",
+  "social": {
+    "fb": "https://www.facebook.com/districtbarandgrillrockford/",
+    "verified": true
+  }
 }

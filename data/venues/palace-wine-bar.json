@@ -7,5 +7,10 @@
   "lat": 42.2723,
   "lng": -89.09381,
   "website": "https://www.palacewinebar.com/",
-  "description": "Wine bar on North Main Street in downtown Rockford with weekly jazz and singer-songwriter nights."
+  "description": "Wine bar on North Main Street in downtown Rockford with weekly jazz and singer-songwriter nights.",
+  "social": {
+    "ig": "palacewinebar",
+    "fb": "https://facebook.com/palacewinebar815",
+    "verified": true
+  }
 }

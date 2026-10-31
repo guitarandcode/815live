@@ -13,7 +13,8 @@
     "ingest": "node scripts/ingest/run.ts",
     "social:tonight": "node scripts/social/tonight.mjs",
     "social:reel": "node scripts/social/reel.mjs",
-    "social:brand": "node scripts/social/brand-images.mjs"
+    "social:brand": "node scripts/social/brand-images.mjs",
+    "social:handles": "node scripts/social/handles.mjs"
   },
   "dependencies": {
     "astro": "^7.4.2"

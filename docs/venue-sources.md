@@ -24,7 +24,7 @@ permission or a feed from them).
 | The Top, Embassy Suites Riverfront (Rockford) | hilton.com dining page; Tock for ticketed events; Toast | Hilton (bot-blocked 403); Tock & Toast behind Cloudflare challenge | None reachable | Blocked by bot protection | **ask** |
 | The GOAT Pub and Grill (Rockford) | No website found | — | — | — | **skip** (no evidence of live music) |
 | New Mill Tap (Rockford) | No website found | — | — | — | **ask** / verify it still has music |
-| Shattered Saloon (Loves Park) | No website found | Facebook; Bandsintown venue page | Bandsintown blocks ClaudeBot | No (Bandsintown) | **manual** from monthly flyers / **ask**. Address 5440 N 2nd St, 61111 (Rock River Current + Census) |
+| Shattered Bar, formerly Shattered Saloon (Loves Park) | No website found | Facebook (Shattered Bar Loves Park); Bandsintown venue page | Bandsintown blocks ClaudeBot | No (Bandsintown) | **manual** from monthly flyers / **ask**. Address 5440 N 2nd St, 61111 (Rock River Current + Census) |
 | Tad's on the Rock (Loves Park) | No website found | — | — | — | **manual** from flyers / **ask**. Address 10 E Riverside Blvd, 61111 (directories, WIFR + Census) |
 | Benny's at Nest (Machesney Park) | Toast page; Facebook | Toast behind Cloudflare challenge | — | Blocked by bot protection | **ask** |
 | G5 Brewing (Beloit, WI) | g5brewing.com | Static HTML; "Events" = private parties | None | Yes (no robots.txt) | **ask** (weekly music posted elsewhere) |

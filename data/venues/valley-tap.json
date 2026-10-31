@@ -6,5 +6,9 @@
   "zip": "61039",
   "lat": 42.21517,
   "lng": -89.4746,
-  "description": "Bar on Church Street in German Valley."
+  "description": "Bar on Church Street in German Valley.",
+  "social": {
+    "ig": "valleytapgermanvalley",
+    "verified": true
+  }
 }

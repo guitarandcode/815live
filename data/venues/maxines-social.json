@@ -6,5 +6,9 @@
   "zip": "53511",
   "lat": 42.50648,
   "lng": -89.03903,
-  "description": "Bar on 5th Street in Beloit."
+  "description": "Bar on 5th Street in Beloit.",
+  "social": {
+    "fb": "https://www.facebook.com/MaxinesSocial/",
+    "verified": true
+  }
 }

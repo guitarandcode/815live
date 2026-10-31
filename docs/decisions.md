@@ -802,3 +802,28 @@ Calls made while filling out listings unattended (session of 2026-10-24).
   shorter than the video, the run fails with a message instead of looping.
   Timing lives in `scripts/social/reel-timing.mjs`, tested in
   `tests/reel.test.ts`.
+- **Venue tags in the social captions (user, 2026-10-31).** Venues carry
+  `social: { ig, fb, verified, large }`; only verified handles are used.
+  `npm run social:tonight` now writes the Instagram caption
+  (`tonight-DATE.txt`, still the file the Reel reads: verified venues as
+  @handle on first mention, at most 20, every line "Act at Venue"), the
+  Facebook caption (`-fb.txt`: plain names with "@" as before, plus the top 5
+  venues to tag by hand) and `-tags.txt` (image tags: handles that didn't fit
+  in the caption first, then the rest). Priority: live music, DJ, open mic,
+  karaoke, trivia, bingo, comedy, other, Coming Up last; smaller venues before
+  `large` ones (Hard Rock, Mendelssohn PAC, Nordlof). Handles were researched
+  2026-10-31; `npm run social:handles` lists what's missing or unverified.
+  Rules in `scripts/social/venue-tags.mjs`, tested in `tests/venue-tags.test.ts`.
+- **Shattered Saloon is now Shattered Bar (user, 2026-10-31).** New owners,
+  same address. `name` changed, the old name kept in the new `aliases` field
+  (flyers still use it), slug and file stay `shattered-saloon` so links and
+  past listings don't break. Its "Shattered Bar Loves Park" Facebook page is
+  verified; no Instagram yet. Inbox processing matches venues by name and
+  aliases (CLAUDE.md, step 1).
+- **Venue tag calls (user, 2026-10-31).** Instagram accepted for Mulligan's
+  (@mulligans_of_rockford), Splitter's (@parklanesbowlil, the Park Lanes
+  account; Splitter's is inside Park Lanes) and Mendelssohn PAC
+  (@mendelssohnpac). Kings' @kings_barandgrill dropped (no city to match).
+- **Our Savior's Lutheran Church address (user, 2026-10-31).** 3300 Rural St,
+  61107, per the church's own website and Facebook page, replacing 3301
+  Corbridge Ln (from a Zeffy ticket page). Census coordinates updated.

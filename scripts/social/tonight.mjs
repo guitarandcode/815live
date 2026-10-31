@@ -4,7 +4,9 @@
 //   node scripts/social/tonight.mjs                 # today (Chicago)
 //   node scripts/social/tonight.mjs --date 2026-10-31
 //
-// Writes social/tonight-YYYY-MM-DD[-2].png and social/tonight-YYYY-MM-DD.txt.
+// Writes social/tonight-YYYY-MM-DD[-2].png, the Instagram caption
+// social/tonight-YYYY-MM-DD.txt, the Facebook caption -fb.txt and the
+// image-tag list -tags.txt, then reports venues missing social handles.
 // Busy nights spill onto extra images (post them together as one album).
 // Quiet nights (fewer than QUIET music listings) get one "Tonight + Coming Up"
 // image instead: tonight's listings on top, then up to WEEK_MAX one-off shows
@@ -23,6 +25,7 @@ import { join } from 'node:path';
 import { CATEGORIES, CATEGORY_LABEL, isMusic } from '../../src/lib/categories.ts';
 import { nightOf } from '../../src/lib/shows.ts';
 import { C, h, measure, render, wordmark } from './lib.mjs';
+import { IG_CAP, fbPage, handleStatus, igHandle, noEmDash, planTags } from './venue-tags.mjs';
 
 const ROOT = join(import.meta.dirname, '../..');
 const OUT = join(ROOT, 'social');
@@ -349,24 +352,63 @@ else for (const [i, items] of pages.entries()) {
 }
 
 // ---------- caption ----------
-const lines = [`${isToday ? 'Tonight' : longDate}${weekShown.length ? ' + Coming Up' : ''} in the 815 🎶`, ''];
-if (!events.length) lines.push(isToday ? 'No live music listed tonight.' : 'No live music listed.', '');
-for (const [cat, label] of SECTIONS) {
-  const rows = all.filter((e) => e.category === cat);
-  if (!rows.length) continue;
-  lines.push(`${label.toUpperCase()}`);
-  for (const e of rows) lines.push(`• ${e.act} @ ${e.venueName}${e.town ? ` (${e.town})` : ''}, ${clock(e.startTime)}`);
-  lines.push('');
-}
-if (weekShown.length) {
-  lines.push('COMING UP');
-  for (const e of weekShown) lines.push(`• ${shortDay(e.date)}: ${e.act} @ ${e.venueName}${e.town ? ` (${e.town})` : ''}, ${clock(e.startTime)}`);
-  lines.push('');
-}
-lines.push('Full calendar: https://815live.com', 'Got a show? shows@815live.com', '', '#Rockford #RockfordIL #LiveMusic #815');
-const pagesToTag = [...new Set([...events, ...weekShown].flatMap((e) => e.artistPages))];
-if (pagesToTag.length) lines.push('', '(Tag these pages when you post:)', ...pagesToTag);
+// Three files: tonight-DATE.txt is the Instagram caption (verified venues as
+// @handle, up to IG_CAP; reel.mjs reads its title and hashtag lines),
+// -fb.txt the Facebook caption (plain names, pasted @mentions don't link
+// there) with the top venues to tag by hand, and -tags.txt the Instagram
+// handles to tag on the image. See venue-tags.mjs for the priority order.
+const captionRows = [];
+for (const [cat] of SECTIONS) for (const e of all.filter((e) => e.category === cat)) captionRows.push(e);
+const appearances = [
+  ...captionRows.map((e) => ({ venue: e.venue, category: e.category })),
+  ...weekShown.map((e) => ({ venue: e.venue, category: e.category, coming: true })),
+];
+const plan = planTags(appearances, venues);
 
-const captionPath = join(OUT, `tonight-${date}.txt`);
-writeFileSync(captionPath, lines.join('\n') + '\n');
-console.log(`wrote ${captionPath}`);
+function caption(venueLabel, sep) {
+  const lines = [`${isToday ? 'Tonight' : longDate}${weekShown.length ? ' + Coming Up' : ''} in the 815 🎶`, ''];
+  if (!events.length) lines.push(isToday ? 'No live music listed tonight.' : 'No live music listed.', '');
+  for (const [cat, label] of SECTIONS) {
+    const rows = all.filter((e) => e.category === cat);
+    if (!rows.length) continue;
+    lines.push(`${label.toUpperCase()}`);
+    for (const e of rows) lines.push(`• ${e.act} ${sep} ${venueLabel(e)}${e.town ? ` (${e.town})` : ''}, ${clock(e.startTime)}`);
+    lines.push('');
+  }
+  if (weekShown.length) {
+    lines.push('COMING UP');
+    for (const e of weekShown) lines.push(`• ${shortDay(e.date)}: ${e.act} ${sep} ${venueLabel(e)}${e.town ? ` (${e.town})` : ''}, ${clock(e.startTime)}`);
+    lines.push('');
+  }
+  lines.push('Full calendar: https://815live.com', 'Got a show? shows@815live.com', '', '#Rockford #RockfordIL #LiveMusic #815');
+  const pagesToTag = [...new Set([...events, ...weekShown].flatMap((e) => e.artistPages))];
+  if (pagesToTag.length) lines.push('', '(Tag these pages when you post:)', ...pagesToTag);
+  return lines;
+}
+
+// Instagram: each tagged venue's first mention becomes @handle, later ones stay
+// plain; lines read "Act at Venue" so a handle never follows a bare @.
+const mentioned = new Set();
+const igLines = caption((e) => {
+  if (!plan.igTagged.has(e.venue) || mentioned.has(e.venue)) return e.venueName;
+  mentioned.add(e.venue);
+  return `@${igHandle(venues[e.venue])}`;
+}, 'at');
+const fbLines = caption((e) => e.venueName, '@');
+if (plan.fbTop.length) {
+  fbLines.push('', '(Tag these venues by hand:)', ...plan.fbTop.map((s) => `${venues[s].name}: ${fbPage(venues[s])}`));
+}
+
+const write = (path, lines) => {
+  writeFileSync(path, noEmDash(lines.join('\n') + '\n'));
+  console.log(`wrote ${path}`);
+};
+write(join(OUT, `tonight-${date}.txt`), igLines);
+write(join(OUT, `tonight-${date}-fb.txt`), fbLines);
+write(join(OUT, `tonight-${date}-tags.txt`), plan.imageTags.map((h) => `@${igHandle(venues[h])}`));
+if (plan.imageTags.length > IG_CAP) console.log(`note: ${plan.imageTags.length} image tags; Instagram allows ${IG_CAP} per image, so split them across the album`);
+
+// Report: tonight's venues with missing or unverified handles.
+const todo = plan.needsWork.map((s) => handleStatus(s, venues[s])).filter(Boolean);
+console.log(`venue tags: ${plan.igTagged.size} Instagram mentions in caption, ${plan.imageTags.length} image tags, ${plan.fbTop.length} Facebook to tag by hand`);
+if (todo.length) console.log(`venues to fill in (npm run social:handles for all):\n${todo.map((t) => `  - ${t}`).join('\n')}`);

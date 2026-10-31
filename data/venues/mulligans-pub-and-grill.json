@@ -6,5 +6,10 @@
   "zip": "61103",
   "lat": 42.29608,
   "lng": -89.07711,
-  "description": "North End neighborhood bar and grill on North Main Street with live music."
+  "description": "North End neighborhood bar and grill on North Main Street with live music.",
+  "social": {
+    "ig": "mulligans_of_rockford",
+    "fb": "https://www.facebook.com/mulligansPubandGrill",
+    "verified": true
+  }
 }
