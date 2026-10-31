@@ -6,5 +6,9 @@
   "zip": "61104",
   "lat": 42.26247,
   "lng": -89.08073,
-  "description": "Coffee shop on Seventh Street in Rockford."
+  "description": "Coffee shop on Seventh Street in Rockford.",
+  "social": {
+    "fb": "https://www.facebook.com/KatiesCup/",
+    "verified": true
+  }
 }

@@ -6,5 +6,9 @@
   "zip": "61112",
   "lat": 42.24772,
   "lng": -88.97688,
-  "description": "Slots parlor on Cherryvale North Boulevard near CherryVale Mall."
+  "description": "Slots parlor on Cherryvale North Boulevard near CherryVale Mall.",
+  "social": {
+    "fb": "https://www.facebook.com/p/Marcos-Slots-100090622466268/",
+    "verified": true
+  }
 }

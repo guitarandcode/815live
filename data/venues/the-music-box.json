@@ -7,5 +7,10 @@
   "lat": 42.26921,
   "lng": -89.09044,
   "description": "Live music venue on East State Street in downtown Rockford.",
-  "website": "https://themusicboxrockford.com/"
+  "website": "https://themusicboxrockford.com/",
+  "social": {
+    "ig": "themusicboxrockford",
+    "fb": "https://www.facebook.com/p/The-Music-Box-of-Rockford-61550873804034/",
+    "verified": true
+  }
 }

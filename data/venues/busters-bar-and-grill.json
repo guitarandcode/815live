@@ -6,5 +6,9 @@
   "zip": "61111",
   "lat": 42.32575,
   "lng": -89.02827,
-  "description": "Neighborhood bar and grill on North Alpine Road in Loves Park."
+  "description": "Neighborhood bar and grill on North Alpine Road in Loves Park.",
+  "social": {
+    "fb": "https://www.facebook.com/p/Busters-Bar-Grill-100069529718783/",
+    "verified": true
+  }
 }

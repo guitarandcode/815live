@@ -6,5 +6,10 @@
   "zip": "53511",
   "lat": 42.50051,
   "lng": -89.03356,
-  "description": "Rooftop bar at Hotel Goodwin in downtown Beloit."
+  "description": "Rooftop bar at Hotel Goodwin in downtown Beloit.",
+  "social": {
+    "ig": "therooftopathg",
+    "fb": "https://www.facebook.com/TheRooftopatHG/",
+    "verified": true
+  }
 }

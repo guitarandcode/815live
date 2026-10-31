@@ -6,5 +6,10 @@
   "zip": "61111",
   "lat": 42.31868,
   "lng": -88.99493,
-  "description": "Bar and grill on East Riverside Boulevard in Loves Park."
+  "description": "Bar and grill on East Riverside Boulevard in Loves Park.",
+  "social": {
+    "ig": "fozzysbar",
+    "fb": "https://www.facebook.com/fozzysLP/",
+    "verified": true
+  }
 }

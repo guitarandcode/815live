@@ -6,5 +6,8 @@
   "zip": "61115",
   "lat": 42.35075,
   "lng": -89.04839,
-  "description": "Bar and grill on North 2nd Street in Machesney Park."
+  "description": "Bar and grill on North 2nd Street in Machesney Park.",
+  "social": {
+    "verified": false
+  }
 }

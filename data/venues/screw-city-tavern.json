@@ -7,5 +7,10 @@
   "lat": 42.23692,
   "lng": -89.03127,
   "website": "https://screwcitytavern.com/",
-  "description": "Neighborhood tavern on Manchester Drive in southeast Rockford."
+  "description": "Neighborhood tavern on Manchester Drive in southeast Rockford.",
+  "social": {
+    "ig": "screwcitytavernrockford",
+    "fb": "https://www.facebook.com/SCTRockford/",
+    "verified": true
+  }
 }

@@ -6,5 +6,10 @@
   "zip": "61107",
   "lat": 42.27354,
   "lng": -89.08603,
-  "description": "Bar and live music spot on North Madison Street in downtown Rockford."
+  "description": "Bar and live music spot on North Madison Street in downtown Rockford.",
+  "social": {
+    "ig": "marys_place_rkfd",
+    "fb": "https://www.facebook.com/marysplace/",
+    "verified": true
+  }
 }

@@ -6,5 +6,10 @@
   "zip": "61107",
   "lat": 42.27428,
   "lng": -89.06769,
-  "description": "Neighborhood craft-beer bar on Rural Street in Rockford, with karaoke on Saturday nights."
+  "description": "Neighborhood craft-beer bar on Rural Street in Rockford, with karaoke on Saturday nights.",
+  "social": {
+    "ig": "ruralontap",
+    "fb": "https://www.facebook.com/RuralOnTapRockford/",
+    "verified": true
+  }
 }

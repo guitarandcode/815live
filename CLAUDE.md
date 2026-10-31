@@ -25,7 +25,7 @@ area. Astro static site; data is one JSON file per record in `data/`
   `comedy`. `scripts/ingest/lib/classify.ts` encodes these rules. Never guess:
   a mixed night ("Open Mic & Karaoke"), an open mic that doesn't say what
   kind, or anything else unclear goes in needs-review. Settled by the user
-  (2026-10-28): the open mics at Shattered Saloon (including its Thursday
+  (2026-10-28): the open mics at Shattered Bar (formerly Shattered Saloon; including its Thursday
   "Open Mic & Karaoke Night") and Maxine's Social are music, `open-mic`,
   like Murphy's. Don't flag them again.
 - **Crossroads Blues Society:** list only their events in the 815 area
@@ -83,7 +83,10 @@ All moved files are renamed `YYYY-MM_description.ext` (month of the shows).
 
 For each file in `inbox/`:
 
-1. Read it and identify the venue or band.
+1. Read it and identify the venue or band. Match venues by `name` and by
+   `aliases` (old names): a flyer saying "Shattered Saloon" is
+   `shattered-saloon`, now named Shattered Bar. On a rename, change `name`,
+   add the old name to `aliases` and keep the slug, so links don't break.
 2. Out of the 815 area (see above) or out of scope: add nothing, move it to
    `skipped/`, and mention it in the summary.
 3. Otherwise classify each event (music or other, see above) and add its

@@ -7,5 +7,10 @@
   "lat": 42.30767,
   "lng": -89.0579,
   "website": "https://parklanesbowl.com/",
-  "description": "Bar and grill inside Park Lanes bowling center on North 2nd Street in Loves Park."
+  "description": "Bar and grill inside Park Lanes bowling center on North 2nd Street in Loves Park.",
+  "social": {
+    "ig": "parklanesbowlil",
+    "fb": "https://www.facebook.com/people/Splitters-Bar-Grill-Cafe/100063714412799/",
+    "verified": true
+  }
 }

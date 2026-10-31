@@ -6,5 +6,9 @@
   "zip": "61061",
   "lat": 42.01503,
   "lng": -89.32369,
-  "description": "Bar and grill on North River Road in Oregon."
+  "description": "Bar and grill on North River Road in Oregon.",
+  "social": {
+    "fb": "https://www.facebook.com/p/Chrissys-Corner-100064994593278/",
+    "verified": false
+  }
 }

@@ -7,5 +7,9 @@
   "lat": 42.30801,
   "lng": -89.07708,
   "website": "http://whiskeysroadhouse.com/",
-  "description": "Bar and grill on North Main Street with weekly karaoke and live bands."
+  "description": "Bar and grill on North Main Street with weekly karaoke and live bands.",
+  "social": {
+    "fb": "https://www.facebook.com/whiskeys.roadhouse",
+    "verified": true
+  }
 }

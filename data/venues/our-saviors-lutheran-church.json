@@ -1,10 +1,15 @@
 {
   "name": "Our Savior's Lutheran Church",
-  "address": "3301 Corbridge Ln",
+  "address": "3300 Rural St",
   "city": "Rockford",
   "state": "IL",
   "zip": "61107",
-  "lat": 42.27531,
-  "lng": -89.04458,
-  "description": "Lutheran church on Corbridge Lane in east Rockford that hosts occasional concerts."
+  "lat": 42.27445,
+  "lng": -89.04463,
+  "description": "Lutheran church on Rural Street in east Rockford that hosts occasional concerts.",
+  "social": {
+    "ig": "oslcrockford",
+    "fb": "https://www.facebook.com/oslcrockford/",
+    "verified": true
+  }
 }

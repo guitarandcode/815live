@@ -7,5 +7,10 @@
   "lat": 42.27252,
   "lng": -89.08664,
   "website": "https://cahootsrockford.com/",
-  "description": "Downtown Rockford entertainment spot with duckpin bowling, mini golf, an arcade, a restaurant and a bar."
+  "description": "Downtown Rockford entertainment spot with duckpin bowling, mini golf, an arcade, a restaurant and a bar.",
+  "social": {
+    "ig": "cahootsrockford",
+    "fb": "https://www.facebook.com/p/Cahoots-Rockford-61582668372681/",
+    "verified": true
+  }
 }

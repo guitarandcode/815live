@@ -6,5 +6,10 @@
   "zip": "61101",
   "lat": 42.27143,
   "lng": -89.09512,
-  "description": "Daiquiri bar on West State Street in downtown Rockford."
+  "description": "Daiquiri bar on West State Street in downtown Rockford.",
+  "social": {
+    "ig": "sheila_daiquirilounge",
+    "fb": "https://www.facebook.com/p/Sheilas-Daiquiri-Lounge-61558605670373/",
+    "verified": true
+  }
 }

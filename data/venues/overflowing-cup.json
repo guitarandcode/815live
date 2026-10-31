@@ -7,5 +7,9 @@
   "lat": 42.51207,
   "lng": -89.05723,
   "website": "https://www.overflowingcup.org/",
-  "description": "Christian coffeehouse in Beloit, running since 1974, with concerts on Saturday nights."
+  "description": "Christian coffeehouse in Beloit, running since 1974, with concerts on Saturday nights.",
+  "social": {
+    "fb": "https://facebook.com/the.overflowing.cup",
+    "verified": true
+  }
 }

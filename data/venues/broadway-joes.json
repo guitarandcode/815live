@@ -6,5 +6,10 @@
   "zip": "61108",
   "lat": 42.25262,
   "lng": -89.03293,
-  "description": "Sports bar on Broadway in southeast Rockford, formerly Dusty Boots."
+  "description": "Sports bar on Broadway in southeast Rockford, formerly Dusty Boots.",
+  "social": {
+    "ig": "broadwayjoes815",
+    "fb": "https://facebook.com/broadwayjoes815",
+    "verified": true
+  }
 }

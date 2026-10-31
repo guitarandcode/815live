@@ -1,6 +1,8 @@
 // One JSON file per record under /data; the filename (minus .json) is the
 // slug/id. Shapes are flat on purpose so each collection maps to a SQL table:
 //   venues(slug PK, name, address, city, state, zip, lat, lng, website, description)
+//     + venue_aliases(venue_slug, name)
+//     + venue_social(venue_slug, ig, fb, verified BOOL, large BOOL)
 //   artists(slug PK, name, hometown, website, bio)
 //     + artist_genres(artist_slug, genre) + artist_links(artist_slug, platform, url)
 //   shows(id PK, date, start_time, end_time, venue_slug FK, category, title NULL,
@@ -26,6 +28,8 @@ const venues = defineCollection({
   loader: glob({ pattern: '*.json', base: `${DATA_DIR}/venues` }),
   schema: z.object({
     name: z.string(),
+    // Other names the venue goes by (old names still on flyers); match inbox files against these too.
+    aliases: z.array(z.string()).default([]),
     address: z.string(),
     city: z.string(),
     state: z.string().length(2).default('IL'),
@@ -34,6 +38,16 @@ const venues = defineCollection({
     lng: z.number().min(-180).max(180),
     website: z.url().optional(),
     description: z.string(),
+    // Used by the social caption (scripts/social/venue-tags.mjs) to tag venues.
+    // Handles are only used when verified; large rooms are tagged last.
+    social: z
+      .object({
+        ig: z.string().regex(/^[A-Za-z0-9._]{1,30}$/).optional().describe('Instagram username, no @'),
+        fb: z.string().optional().describe('Facebook Page URL or name'),
+        verified: z.boolean().default(false).describe('Account clearly matches the venue (name, city, address)'),
+        large: z.boolean().optional().describe('Big room (casino, theater): tagged after smaller venues'),
+      })
+      .optional(),
     placeholder,
   }),
 });

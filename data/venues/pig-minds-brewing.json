@@ -7,5 +7,10 @@
   "lat": 42.36918,
   "lng": -89.02101,
   "website": "https://www.pigmindsbrewing.com/",
-  "description": "Brewery and taproom in Machesney Park with occasional live comedy nights."
+  "description": "Brewery and taproom in Machesney Park with occasional live comedy nights.",
+  "social": {
+    "ig": "pigmindsbrewingco",
+    "fb": "https://www.facebook.com/PigMindsBrewingCo/",
+    "verified": true
+  }
 }
