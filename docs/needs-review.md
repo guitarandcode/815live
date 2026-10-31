@@ -330,3 +330,13 @@ a known address. Publish once the location is confirmed. The graphic's other
 upcoming dates are published (Nov 13, 21, 28, Dec 5, 12, 19). Left out:
 private events (Nov 12 at Ho-Chunk, Apr 24, 2027 wedding) and Jun 19, 2027
 "Rising Queens Juneteenth" (no place or time). In `waiting/`.
+
+## New Mill Tap (Rockford): "Open Mic Open Jam" Friday with Monarch Blues Band
+
+A screenshot (2026-10-31 inbox) of an Oct 23 post shared to Rockford Area
+Music Scene shows a New Mill Tap flyer: "Open Mic Open Jam, Friday, music
+starts at 8:30 PM, featuring opening act Monarch Blues Band". No date, and
+it doesn't say whether it's weekly or a one-off (likely Fri Oct 23 or 30,
+both past). The jam is for musicians, so `open-mic` once dated; if it's a
+weekly Friday night, add a recurring rule. Still no venue record (see the
+Halloween karaoke item above; 6935 11th St per that flyer). In `waiting/`.
