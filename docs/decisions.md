@@ -783,3 +783,22 @@ Calls made while filling out listings unattended (session of 2026-10-24).
   Apr 1, May 6; weekdays checked) are separate show files. Host names left
   out. Waiting: New Mill Tap "Open Mic Open Jam" with Monarch Blues Band
   (flyer says only "Friday", no date). Nothing skipped.
+- **Multi-page Reel (user, 2026-10-31).** On busy nights `npm run
+  social:reel` now uses every page of the graphic (`tonight-DATE-1.png`,
+  `-2`, ... in order) instead of page 1 only: 7.5 s per page (4 pages = 30 s),
+  capped at 30 s, so more than 4 pages split the 30 s evenly (whole frames per
+  page, so 7 pages come to 29.9 s). Each page fades in from and out to the
+  brand background over 0.5 s (drawn as image opacity per frame, the same
+  blend as ffmpeg's fade to a color; the first and last frame of each page are
+  pure background) and zooms 100→105% linearly from its own start, on the
+  same 84% scale and (470, 900) center, so it stays inside the 108% safe box.
+  Same encode as before (1080x1920, H.264 High, yuv420p, 30 fps,
+  `-preset veryfast`, CRF 18). A single page is unchanged (15 s, 108%, 0.6 s
+  fades, `reel.m4a` copied); checked byte-identical against the old script.
+  Audio for multi-page reels is `~/815live-sources/audio/reel-30s.flac`: 30 s
+  of "Chirp" from the same 1:12 start, 0.3 s fade in, two-pass loudnorm to
+  -14 LUFS (linear gain; -13.9 LUFS, peak -3.3 dBFS), no fade out. The reel
+  trims it to the video length and adds a 2 s fade out (AAC 192k). If it's
+  shorter than the video, the run fails with a message instead of looping.
+  Timing lives in `scripts/social/reel-timing.mjs`, tested in
+  `tests/reel.test.ts`.
