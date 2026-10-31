@@ -1,0 +1,13 @@
+{
+  "date": "2027-04-01",
+  "startTime": "19:00",
+  "endTime": "20:30",
+  "venue": "katies-cup",
+  "category": "open-mic",
+  "title": "Acoustic Open Mic",
+  "notes": "First Thursdays. Sign-up starts at 6:30 PM; sound and an acoustic guitar provided.",
+  "checked": "2026-10-31",
+  "source": {
+    "type": "manual"
+  }
+}

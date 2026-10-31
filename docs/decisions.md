@@ -774,3 +774,12 @@ Calls made while filling out listings unattended (session of 2026-10-24).
   Lodge, Sandwich IL (out of area); Brass From The Past at McCormick Place,
   Chicago, Oct 29 (out of area and past). Waiting: a third copy of the Regal
   Beagle "Morts Pub" flyer (still no town).
+- **Inbox run (scheduled, 2026-10-31).** 2 files. Published: Katie's Cup
+  (new venue, 504 7th St, Rockford, Census-geocoded) Acoustic Open Mic,
+  first Thursdays 7–8:30 PM, Sept 2026–May 2027 per the flyer in the
+  Facebook event screenshot. `open-mic` because the flyer says acoustic,
+  with sound and an acoustic guitar provided. Recurring rules are weekly
+  only, so the seven remaining dates (Nov 5, Dec 3, Jan 7, Feb 4, Mar 4,
+  Apr 1, May 6; weekdays checked) are separate show files. Host names left
+  out. Waiting: New Mill Tap "Open Mic Open Jam" with Monarch Blues Band
+  (flyer says only "Friday", no date). Nothing skipped.
