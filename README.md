@@ -243,11 +243,22 @@ npm run social:tonight                      # today's "Tonight in the 815" post 
 npm run social:tonight -- --date 2026-10-31 # any date
 npm run social:reel                         # today's graphic as a 15 s 9:16 Reel + short caption (needs ffmpeg)
 npm run social:brand                        # Facebook profile picture, cover, wordmark
+npm run social:handles                      # venues with missing or unverified social handles
 ```
 
 Busy nights spill onto extra 1080x1350 images (`-1.png`, `-2.png`); post them
-together as one album. The `.txt` next to them is a ready-to-paste caption,
-plus any artist Facebook pages worth tagging.
+together as one album. Next to them, all ready to paste:
+
+- `tonight-YYYY-MM-DD.txt`: the Instagram caption. Venues with a verified
+  handle (`social` in `data/venues`) appear as @handle, at most 20.
+- `tonight-YYYY-MM-DD-fb.txt`: the Facebook caption, with plain venue names.
+- `tonight-YYYY-MM-DD-tags.txt`: Instagram handles to tag on the image, the
+  ones that didn't fit in the caption first.
+- `tonight-YYYY-MM-DD-fb-tag-by-hand.txt`: the top 5 venues to tag by hand on
+  Facebook, with their page URLs.
+
+Both captions end with any artist Facebook pages worth tagging. Tag priority
+is in `scripts/social/venue-tags.mjs`.
 
 `social:reel` turns that graphic (page 1 on busy nights) into
 `tonight-YYYY-MM-DD.mp4`: 1080x1920, H.264, 30 fps, 15 s, a slow 100→108% zoom,

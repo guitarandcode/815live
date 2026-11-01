@@ -5,8 +5,9 @@
 //   node scripts/social/tonight.mjs --date 2026-10-31
 //
 // Writes social/tonight-YYYY-MM-DD[-2].png, the Instagram caption
-// social/tonight-YYYY-MM-DD.txt, the Facebook caption -fb.txt and the
-// image-tag list -tags.txt, then reports venues missing social handles.
+// social/tonight-YYYY-MM-DD.txt, the Facebook caption -fb.txt, the
+// image-tag list -tags.txt and the Facebook venues to tag by hand
+// -fb-tag-by-hand.txt, then reports venues missing social handles.
 // Busy nights spill onto extra images (post them together as one album).
 // Quiet nights (fewer than QUIET music listings) get one "Tonight + Coming Up"
 // image instead: tonight's listings on top, then up to WEEK_MAX one-off shows
@@ -352,11 +353,13 @@ else for (const [i, items] of pages.entries()) {
 }
 
 // ---------- caption ----------
-// Three files: tonight-DATE.txt is the Instagram caption (verified venues as
+// Four files: tonight-DATE.txt is the Instagram caption (verified venues as
 // @handle, up to IG_CAP; reel.mjs reads its title and hashtag lines),
-// -fb.txt the Facebook caption (plain names, pasted @mentions don't link
-// there) with the top venues to tag by hand, and -tags.txt the Instagram
-// handles to tag on the image. See venue-tags.mjs for the priority order.
+// -fb.txt the Facebook caption, paste-ready (plain names, pasted @mentions
+// don't link there), -tags.txt the Instagram handles to tag on the image, and
+// -fb-tag-by-hand.txt the top FB_TOP venues to tag by hand on Facebook (name
+// and page URL, one per line; empty when none). All start with tonight-DATE
+// so the daily job's cleanup removes them. See venue-tags.mjs for the order.
 const captionRows = [];
 for (const [cat] of SECTIONS) for (const e of all.filter((e) => e.category === cat)) captionRows.push(e);
 const appearances = [
@@ -395,17 +398,16 @@ const igLines = caption((e) => {
   return `@${igHandle(venues[e.venue])}`;
 }, 'at');
 const fbLines = caption((e) => e.venueName, '@');
-if (plan.fbTop.length) {
-  fbLines.push('', '(Tag these venues by hand:)', ...plan.fbTop.map((s) => `${venues[s].name}: ${fbPage(venues[s])}`));
-}
+const fbTagLines = plan.fbTop.map((s) => `${venues[s].name}: ${fbPage(venues[s])}`);
 
 const write = (path, lines) => {
-  writeFileSync(path, noEmDash(lines.join('\n') + '\n'));
+  writeFileSync(path, noEmDash(lines.length ? lines.join('\n') + '\n' : ''));
   console.log(`wrote ${path}`);
 };
 write(join(OUT, `tonight-${date}.txt`), igLines);
 write(join(OUT, `tonight-${date}-fb.txt`), fbLines);
 write(join(OUT, `tonight-${date}-tags.txt`), plan.imageTags.map((h) => `@${igHandle(venues[h])}`));
+write(join(OUT, `tonight-${date}-fb-tag-by-hand.txt`), fbTagLines);
 if (plan.imageTags.length > IG_CAP) console.log(`note: ${plan.imageTags.length} image tags; Instagram allows ${IG_CAP} per image, so split them across the album`);
 
 // Report: tonight's venues with missing or unverified handles.

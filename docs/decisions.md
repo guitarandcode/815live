@@ -827,3 +827,9 @@ Calls made while filling out listings unattended (session of 2026-10-24).
 - **Our Savior's Lutheran Church address (user, 2026-10-31).** 3300 Rural St,
   61107, per the church's own website and Facebook page, replacing 3301
   Corbridge Ln (from a Zeffy ticket page). Census coordinates updated.
+- **Facebook tag-by-hand list in its own file (user, 2026-11-01).** The
+  "(Tag these venues by hand:)" block moved out of `tonight-DATE-fb.txt`, so
+  the Facebook caption pastes as is. The list (same top 5, same order, one
+  "Name: page URL" per line) is now `tonight-DATE-fb-tag-by-hand.txt` next
+  to `-tags.txt`, empty when no venue has a verified Facebook page. The
+  `tonight-DATE` prefix keeps it in the daily job's cleanup.
