@@ -1,0 +1,13 @@
+{
+  "date": "2026-12-19",
+  "startTime": "20:00",
+  "venue": "shattered-saloon",
+  "category": "live-music",
+  "artists": [
+    "dont-tell-mom"
+  ],
+  "checked": "2026-11-01",
+  "source": {
+    "type": "manual"
+  }
+}

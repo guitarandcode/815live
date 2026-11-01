@@ -1,0 +1,14 @@
+{
+  "date": "2026-12-31",
+  "startTime": "20:00",
+  "venue": "shattered-saloon",
+  "category": "live-music",
+  "title": "New Year's Eve",
+  "artists": [
+    "stereotype"
+  ],
+  "checked": "2026-11-01",
+  "source": {
+    "type": "manual"
+  }
+}

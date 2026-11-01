@@ -1,0 +1,14 @@
+{
+  "date": "2026-11-07",
+  "startTime": "19:00",
+  "venue": "shattered-saloon",
+  "category": "live-music",
+  "artists": [
+    "wait-what"
+  ],
+  "notes": "Followed by a DJ.",
+  "checked": "2026-11-01",
+  "source": {
+    "type": "manual"
+  }
+}

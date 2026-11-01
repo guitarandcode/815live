@@ -1,0 +1,14 @@
+{
+  "date": "2026-11-28",
+  "startTime": "18:00",
+  "endTime": "21:00",
+  "venue": "tipsy-hog",
+  "category": "live-music",
+  "artists": [
+    "mother-of-all-duos"
+  ],
+  "checked": "2026-11-01",
+  "source": {
+    "type": "manual"
+  }
+}
