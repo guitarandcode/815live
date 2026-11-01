@@ -9,7 +9,8 @@
   "description": "Sports bar on Broadway in southeast Rockford, formerly Dusty Boots.",
   "social": {
     "ig": "broadwayjoes815",
+    "ig_verified": true,
     "fb": "https://facebook.com/broadwayjoes815",
-    "verified": true
+    "fb_verified": true
   }
 }

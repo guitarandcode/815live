@@ -8,7 +8,8 @@
   "lng": -89.63153,
   "description": "Bar and grill on South West Avenue in Freeport.",
   "social": {
+    "ig_verified": true,
     "fb": "https://www.facebook.com/61560795186596/",
-    "verified": true
+    "fb_verified": true
   }
 }

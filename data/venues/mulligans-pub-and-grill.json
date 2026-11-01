@@ -9,7 +9,8 @@
   "description": "North End neighborhood bar and grill on North Main Street with live music.",
   "social": {
     "ig": "mulligans_of_rockford",
+    "ig_verified": true,
     "fb": "https://www.facebook.com/mulligansPubandGrill",
-    "verified": true
+    "fb_verified": true
   }
 }

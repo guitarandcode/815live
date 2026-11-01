@@ -10,7 +10,8 @@
   "description": "Roscoe location of Mary's Market Cafe & Bakery, with live music on Thursday evenings.",
   "social": {
     "ig": "marysmarket815",
+    "ig_verified": true,
     "fb": "https://www.facebook.com/marysmarketcafe",
-    "verified": true
+    "fb_verified": true
   }
 }

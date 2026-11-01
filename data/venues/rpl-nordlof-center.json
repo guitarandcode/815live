@@ -8,8 +8,9 @@
   "lng": -89.09442,
   "description": "Rockford Public Library's downtown arts center, home of the 280-seat J.R. Sullivan Theater.",
   "social": {
+    "ig_verified": true,
     "fb": "https://www.facebook.com/nordlofcenter/",
-    "verified": true,
+    "fb_verified": true,
     "large": true
   }
 }

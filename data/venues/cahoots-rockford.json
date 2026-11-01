@@ -10,7 +10,8 @@
   "description": "Downtown Rockford entertainment spot with duckpin bowling, mini golf, an arcade, a restaurant and a bar.",
   "social": {
     "ig": "cahootsrockford",
+    "ig_verified": true,
     "fb": "https://www.facebook.com/p/Cahoots-Rockford-61582668372681/",
-    "verified": true
+    "fb_verified": true
   }
 }

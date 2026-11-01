@@ -2,7 +2,7 @@
 // slug/id. Shapes are flat on purpose so each collection maps to a SQL table:
 //   venues(slug PK, name, address, city, state, zip, lat, lng, website, description)
 //     + venue_aliases(venue_slug, name)
-//     + venue_social(venue_slug, ig, fb, verified BOOL, large BOOL)
+//     + venue_social(venue_slug, ig, ig_verified BOOL, fb, fb_verified BOOL, large BOOL)
 //   artists(slug PK, name, hometown, website, bio)
 //     + artist_genres(artist_slug, genre) + artist_links(artist_slug, platform, url)
 //   shows(id PK, date, start_time, end_time, venue_slug FK, category, title NULL,
@@ -39,12 +39,13 @@ const venues = defineCollection({
     website: z.url().optional(),
     description: z.string(),
     // Used by the social caption (scripts/social/venue-tags.mjs) to tag venues.
-    // Handles are only used when verified; large rooms are tagged last.
+    // Each handle is only used when its own platform flag is verified; large rooms are tagged last.
     social: z
       .object({
         ig: z.string().regex(/^[A-Za-z0-9._]{1,30}$/).optional().describe('Instagram username, no @'),
         fb: z.string().optional().describe('Facebook Page URL or name'),
-        verified: z.boolean().default(false).describe('Account clearly matches the venue (name, city, address)'),
+        ig_verified: z.boolean().default(false).describe('Instagram account clearly matches the venue (name, city, address)'),
+        fb_verified: z.boolean().default(false).describe('Facebook Page clearly matches the venue (name, city, address)'),
         large: z.boolean().optional().describe('Big room (casino, theater): tagged after smaller venues'),
       })
       .optional(),

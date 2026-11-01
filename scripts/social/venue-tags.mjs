@@ -1,7 +1,9 @@
 // Venue tagging for the "Tonight in the 815" captions.
 //
 // Handles live in data/venues/<slug>.json under `social`
-// ({ ig, fb, verified, large }). Only verified handles are ever used.
+// ({ ig, ig_verified, fb, fb_verified, large }). Each platform has its own
+// flag: an Instagram handle is used only when ig_verified, a Facebook Page only
+// when fb_verified.
 //
 // Priority (for the Instagram 20-mention cap, the Facebook "tag by hand" top 5
 // and the order of the image-tag list): category in TAG_ORDER, with the Coming
@@ -13,8 +15,8 @@ export const TAG_ORDER = ['live-music', 'dj', 'open-mic', 'karaoke', 'trivia', '
 export const IG_CAP = 20;
 export const FB_TOP = 5;
 
-export const igHandle = (v) => (v?.social?.verified && v.social.ig ? v.social.ig : null);
-export const fbPage = (v) => (v?.social?.verified && v.social.fb ? v.social.fb : null);
+export const igHandle = (v) => (v?.social?.ig_verified && v.social.ig ? v.social.ig : null);
+export const fbPage = (v) => (v?.social?.fb_verified && v.social.fb ? v.social.fb : null);
 
 // appearances: [{ venue: slug, category, coming?: boolean }] in caption order.
 // Returns unique venue slugs, best first.
@@ -51,11 +53,10 @@ export function handleStatus(slug, v) {
   const s = v?.social;
   if (!s) return `${v?.name ?? slug} (${slug}): no social entry`;
   const bits = [];
-  if (!s.verified) bits.push(`unverified (ig: ${s.ig ? '@' + s.ig : 'none'}, fb: ${s.fb ?? 'none'})`);
-  else {
-    if (!s.ig) bits.push('no Instagram');
-    if (!s.fb) bits.push('no Facebook');
-  }
+  if (!s.ig) bits.push('no Instagram');
+  else if (!s.ig_verified) bits.push(`Instagram unverified (@${s.ig})`);
+  if (!s.fb) bits.push('no Facebook');
+  else if (!s.fb_verified) bits.push(`Facebook unverified (${s.fb})`);
   return bits.length ? `${v.name} (${slug}): ${bits.join(', ')}` : null;
 }
 

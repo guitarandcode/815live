@@ -10,6 +10,6 @@ const venues = readdirSync(dir)
   .map((f) => [f.slice(0, -5), JSON.parse(readFileSync(join(dir, f), 'utf8'))]);
 
 const todo = venues.map(([slug, v]) => handleStatus(slug, v)).filter(Boolean);
-const ok = venues.filter(([, v]) => v.social?.verified && v.social.ig && v.social.fb).length;
+const ok = venues.filter(([, v]) => v.social?.ig_verified && v.social.ig && v.social.fb_verified && v.social.fb).length;
 console.log(`${venues.length} venues: ${ok} with verified Instagram and Facebook, ${todo.length} to fill in or check.`);
 for (const t of todo) console.log(`  - ${t}`);

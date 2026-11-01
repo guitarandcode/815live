@@ -1,10 +1,10 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { planTags, rankVenues, noEmDash, handleStatus } from '../scripts/social/venue-tags.mjs';
+import { planTags, rankVenues, noEmDash, handleStatus, igHandle, fbPage } from '../scripts/social/venue-tags.mjs';
 
 const v = (ig: string | null, extra: Record<string, unknown> = {}) => ({
   name: ig ?? 'x',
-  social: { ...(ig ? { ig, fb: `https://facebook.com/${ig}` } : {}), verified: true, ...extra },
+  social: { ...(ig ? { ig, fb: `https://facebook.com/${ig}` } : {}), ig_verified: true, fb_verified: true, ...extra },
 });
 
 test('venue tags: category order, then small before large, then caption order', () => {
@@ -38,15 +38,41 @@ test('venue tags: cap of 20, each venue once, overflow first in image tags', () 
 });
 
 test('venue tags: unverified handles are never used', () => {
-  const venues = { a: { name: 'A', social: { ig: 'a', fb: 'https://facebook.com/a', verified: false } }, b: { name: 'B' } };
+  const venues = {
+    a: { name: 'A', social: { ig: 'a', ig_verified: false, fb: 'https://facebook.com/a', fb_verified: false } },
+    b: { name: 'B' },
+  };
   const plan = planTags([{ venue: 'a', category: 'live-music' }, { venue: 'b', category: 'dj' }], venues);
   assert.equal(plan.igTagged.size, 0);
   assert.deepEqual(plan.fbTop, []);
   assert.deepEqual(plan.needsWork, ['a', 'b']);
-  assert.match(handleStatus('a', venues.a)!, /unverified/);
+  assert.equal(handleStatus('a', venues.a), 'A (a): Instagram unverified (@a), Facebook unverified (https://facebook.com/a)');
   assert.match(handleStatus('b', venues.b)!, /no social entry/);
 });
 
+test('venue tags: each platform uses its own flag', () => {
+  const venues = {
+    fbOnly: { name: 'FB only', social: { ig: 'fbonly', ig_verified: false, fb: 'https://facebook.com/fbonly', fb_verified: true } },
+    igOnly: { name: 'IG only', social: { ig: 'igonly', ig_verified: true, fb: 'https://facebook.com/igonly', fb_verified: false } },
+    noIg: { name: 'No IG', social: { ig_verified: false, fb: 'https://facebook.com/noig', fb_verified: true } },
+  };
+  assert.equal(igHandle(venues.fbOnly), null);
+  assert.equal(fbPage(venues.fbOnly), 'https://facebook.com/fbonly');
+  assert.equal(igHandle(venues.igOnly), 'igonly');
+  assert.equal(fbPage(venues.igOnly), null);
+
+  const plan = planTags(
+    ['fbOnly', 'igOnly', 'noIg'].map((venue) => ({ venue, category: 'live-music' })),
+    venues,
+  );
+  assert.deepEqual([...plan.igTagged], ['igOnly']);
+  assert.deepEqual(plan.imageTags, ['igOnly']);
+  assert.deepEqual(plan.fbTop, ['fbOnly', 'noIg']);
+  assert.equal(handleStatus('fbOnly', venues.fbOnly), 'FB only (fbOnly): Instagram unverified (@fbonly)');
+  assert.equal(handleStatus('igOnly', venues.igOnly), 'IG only (igOnly): Facebook unverified (https://facebook.com/igonly)');
+  assert.equal(handleStatus('noIg', venues.noIg), 'No IG (noIg): no Instagram');
+});
+
 test('captions never contain an em-dash', () => {
-  assert.equal(noEmDash('Band — Venue'), 'Band, Venue');
+  assert.equal(noEmDash('Band \u2014 Venue'), 'Band, Venue');
 });

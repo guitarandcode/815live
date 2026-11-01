@@ -10,7 +10,8 @@
   "description": "Neighborhood tavern on Manchester Drive in southeast Rockford.",
   "social": {
     "ig": "screwcitytavernrockford",
+    "ig_verified": true,
     "fb": "https://www.facebook.com/SCTRockford/",
-    "verified": true
+    "fb_verified": true
   }
 }

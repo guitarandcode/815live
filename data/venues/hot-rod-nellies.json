@@ -9,7 +9,8 @@
   "description": "Bar in Pecatonica with live bands on Saturday nights.",
   "social": {
     "ig": "hotrodnellies",
+    "ig_verified": true,
     "fb": "https://www.facebook.com/hotrodnellies/",
-    "verified": true
+    "fb_verified": true
   }
 }

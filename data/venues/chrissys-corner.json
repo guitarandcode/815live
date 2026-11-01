@@ -8,7 +8,8 @@
   "lng": -89.32369,
   "description": "Bar and grill on North River Road in Oregon.",
   "social": {
+    "ig_verified": false,
     "fb": "https://www.facebook.com/p/Chrissys-Corner-100064994593278/",
-    "verified": false
+    "fb_verified": false
   }
 }

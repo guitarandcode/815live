@@ -9,7 +9,8 @@
   "description": "Loves Park bar and grill with live bands on weekends.",
   "social": {
     "ig": "neighborsbarandgrilllovespark",
+    "ig_verified": true,
     "fb": "https://www.facebook.com/NeighborsBarLovesPark/",
-    "verified": true
+    "fb_verified": true
   }
 }

@@ -8,7 +8,8 @@
   "lng": -89.08073,
   "description": "Coffee shop on Seventh Street in Rockford.",
   "social": {
+    "ig_verified": true,
     "fb": "https://www.facebook.com/KatiesCup/",
-    "verified": true
+    "fb_verified": true
   }
 }

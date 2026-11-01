@@ -833,3 +833,11 @@ Calls made while filling out listings unattended (session of 2026-10-24).
   "Name: page URL" per line) is now `tonight-DATE-fb-tag-by-hand.txt` next
   to `-tags.txt`, empty when no venue has a verified Facebook page. The
   `tonight-DATE` prefix keeps it in the daily job's cleanup.
+- **Venue verification per platform (user, 2026-11-01).** `social.verified`
+  is replaced by `ig_verified` and `fb_verified`. An Instagram handle is used
+  (caption @mention, image tag) only when `ig_verified`; a Facebook Page is
+  used (tag-by-hand list) only when `fb_verified`. All 43 venues were migrated
+  with their old value on both flags. The Rooftop at Hotel Goodwin: no
+  Instagram, `fb_verified: true`, so it shows as plain text on Instagram and
+  can still be tagged by hand on Facebook. The handles report lists each
+  platform separately (missing or unverified).

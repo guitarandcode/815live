@@ -8,7 +8,8 @@
   "lng": -89.14992,
   "description": "West State Street bar on Rockford's west side with pool, darts and karaoke.",
   "social": {
+    "ig_verified": true,
     "fb": "https://www.facebook.com/RockRockABagoHall/",
-    "verified": true
+    "fb_verified": true
   }
 }

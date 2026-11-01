@@ -11,7 +11,8 @@
   "lng": -89.05792,
   "description": "Loves Park bar on North Second Street with live local bands several nights a week.",
   "social": {
+    "ig_verified": true,
     "fb": "https://www.facebook.com/p/Shattered-Bar-Loves-Park-61580061670808/",
-    "verified": true
+    "fb_verified": true
   }
 }
