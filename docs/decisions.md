@@ -841,3 +841,27 @@ Calls made while filling out listings unattended (session of 2026-10-24).
   Instagram, `fb_verified: true`, so it shows as plain text on Instagram and
   can still be tagged by hand on Facebook. The handles report lists each
   platform separately (missing or unverified).
+- **Inbox run (scheduled, 2026-11-01).** 9 Facebook screenshots; every
+  weekday checked against 2026. Published: Shattered Bar's November and
+  December flyers (the bar's own), 17 one-offs, Nov 6 to Dec 31, mostly
+  8 PM (Wait, What? Nov 7 and Hang Ten Nov 20 at 7 PM; DJ Turn 1 Sat Dec 26,
+  9 PM, `dj`). "Followed by DJ" after Wait, What? is a note (DJ not named).
+  "Hang 10" is the existing Hang Ten. NYE with Stereotype (Thu Dec 31, 8 PM)
+  closes that part of the Stereotype needs-review item. It falls on the
+  Thursday open mic & karaoke rule at the same hour, so the usual recurring
+  dedupe hides the rule that night. The flyers' "Karaoke & Open Mic Night
+  every Thursday" re-confirms the rule (`checked` bumped). 10 new artists.
+  Tipsy Hog (Oregon) November: Korey Pepper Nov 14, EJ Kane Nov 25, Mother
+  of All Duos Nov 28, all 6–9 PM (new artists). L A Drive (new artist) at
+  the Freeport Eagles Club, Fri Nov 6, 6–9 PM: new venue, Fraternal Order of
+  Eagles Aerie 679, 1200 W Galena Ave, from the club's own site (no
+  robots.txt; it says the club serves "members as well as the general
+  public") and the Greater Freeport Partnership directory; Census geocoded.
+  Rebel Hearts at Neighbors, Nov 6: added Sheez-It (the flyer's "special
+  guests") and the 8–12 end time. Re-confirmed, `checked` bumped: Too Deep
+  at Mary's Place, Nov 7, 8 PM. Skipped: Regal Beagle's "Gobble Til You
+  Wobble Wednesday" at Riverfront Bar & Grill, Peru IL (out of area; it
+  doesn't settle where "Morts Pub" is either). Waiting: Hard Rock's November
+  lounge graphic. Two adapter times disagree with it, and the acts the
+  adapter doesn't have yet were left to it rather than hand-entered, because
+  a guessed file id would become a permanent duplicate (see needs-review).

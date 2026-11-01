@@ -1,0 +1,14 @@
+{
+  "date": "2026-11-14",
+  "startTime": "18:00",
+  "endTime": "21:00",
+  "venue": "tipsy-hog",
+  "category": "live-music",
+  "artists": [
+    "korey-pepper"
+  ],
+  "checked": "2026-11-01",
+  "source": {
+    "type": "manual"
+  }
+}

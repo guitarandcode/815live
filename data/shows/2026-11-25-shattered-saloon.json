@@ -1,0 +1,13 @@
+{
+  "date": "2026-11-25",
+  "startTime": "20:00",
+  "venue": "shattered-saloon",
+  "category": "live-music",
+  "artists": [
+    "rollin-whiskey"
+  ],
+  "checked": "2026-11-01",
+  "source": {
+    "type": "manual"
+  }
+}

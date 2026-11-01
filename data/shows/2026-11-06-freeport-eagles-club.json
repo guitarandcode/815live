@@ -1,0 +1,14 @@
+{
+  "date": "2026-11-06",
+  "startTime": "18:00",
+  "endTime": "21:00",
+  "venue": "freeport-eagles-club",
+  "category": "live-music",
+  "artists": [
+    "l-a-drive"
+  ],
+  "checked": "2026-11-01",
+  "source": {
+    "type": "manual"
+  }
+}

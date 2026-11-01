@@ -1,0 +1,13 @@
+{
+  "date": "2026-12-26",
+  "startTime": "21:00",
+  "venue": "shattered-saloon",
+  "category": "dj",
+  "artists": [
+    "dj-turn-1"
+  ],
+  "checked": "2026-11-01",
+  "source": {
+    "type": "manual"
+  }
+}

@@ -215,7 +215,8 @@ Not published:
   found no HydeOut Bar in the Rockford area.
 - **Sat Dec 12, Whiskey's Roadhouse "Toys for Tots" show**: Stereotype opens
   ("early for us"), so other acts follow; no start time given.
-- **Thu Dec 31, Shattered Saloon, NYE masquerade party**: no start time given.
+- ~~Thu Dec 31, Shattered Saloon, NYE masquerade party~~: resolved 2026-11-01.
+  Shattered's own December flyer gives "NYE with Stereotype 8 PM"; published.
 
 ## Grand Avenue Pub: Sensations, Tue Oct 27 (no time)
 
@@ -330,6 +331,35 @@ a known address. Publish once the location is confirmed. The graphic's other
 upcoming dates are published (Nov 13, 21, 28, Dec 5, 12, 19). Left out:
 private events (Nov 12 at Ho-Chunk, Apr 24, 2027 wedding) and Jun 19, 2027
 "Rising Queens Juneteenth" (no place or time). In `waiting/`.
+
+## Hard Rock Casino Rockford: November flyer vs. the adapter
+
+Two screenshots of the casino's November lounge-stage graphic (2026-11-01
+inbox, in `waiting/` as `2026-11_hard-rock-november-1.jpg` and `-2.jpg`).
+Hard Rock shows belong to the `hard-rock-rockford` adapter, so nothing was
+hand-entered: a hand-made file only merges with the adapter's if its id
+matches the casino's event slug exactly (ids like `the-boom-boom-room`,
+`the-synergy-band`, `stevee-nix` can't be guessed from the flyer), and a
+wrong guess leaves a permanent duplicate. Open points:
+- **Times disagree** (adapter, from the casino's event pages, vs. flyer):
+  Abram Collier Quintet, Sat Nov 7, and Feestet, Sat Nov 14, are 6 PM in
+  our files but listed on the flyer under Council Oak, 7–10 PM.
+- **Name**: the flyer says "Boom Boom Boom" (Fri Nov 20, 9 PM–midnight,
+  Cafe stage); our record, from the casino's page, is The Boom Boom Room.
+  Probably a flyer typo.
+- **On the flyer, not in our data yet** (the casino hasn't posted pages
+  for them, or the bot hasn't picked them up). Cafe stage: Nov 13 Eric Algae
+  6–8 and Jolly Ringwalds 9–12; Nov 21 Nauti Nauti 9–12; Nov 25 Emilio
+  Salinas 6–8 and The Compass Band 9–12; Nov 27 Acoustic Reverie 6–8 and
+  My Weekend Crush 9–12; Nov 28 Justine Ewald 6–8. Council Oak: Nov 6 Joel
+  Baer Quartet 7–10; Nov 13 Vince Chiarelli Band 7–10; Nov 20 Caitlin Simone
+  & The Lounge Cats 7–10; Nov 21 Charlie Painter Quartet ("Quarter" on the
+  flyer) 7–10; Nov 25 Nick @ Knight 7–10; Nov 27 Acoustic Reverie 9–11 and
+  Groove Hotel 7–10; Nov 28 Justine Ewald 9–11 and Trifecta Trio 7–10.
+  If they're still missing a few days before each date, hand-enter them
+  (accepting a possible duplicate later) or check the adapter's logs.
+Everything else on the flyer matches our data (Nov 6, 7, 14, 20, 21, 28
+Cafe and Council Oak sets already listed).
 
 ## New Mill Tap (Rockford): "Open Mic Open Jam" Friday with Monarch Blues Band
 

@@ -1,0 +1,13 @@
+{
+  "date": "2026-11-14",
+  "startTime": "20:00",
+  "venue": "shattered-saloon",
+  "category": "live-music",
+  "artists": [
+    "audio-drive"
+  ],
+  "checked": "2026-11-01",
+  "source": {
+    "type": "manual"
+  }
+}
