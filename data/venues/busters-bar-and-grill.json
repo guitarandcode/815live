@@ -8,7 +8,8 @@
   "lng": -89.02827,
   "description": "Neighborhood bar and grill on North Alpine Road in Loves Park.",
   "social": {
+    "ig_verified": true,
     "fb": "https://www.facebook.com/p/Busters-Bar-Grill-100069529718783/",
-    "verified": true
+    "fb_verified": true
   }
 }

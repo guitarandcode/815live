@@ -10,8 +10,9 @@
   "description": "Casino off I-90 on Rockford's east side, with live music on its Hard Rock Cafe stage and in the Council Oak lounge.",
   "social": {
     "ig": "hardrockrockford",
+    "ig_verified": true,
     "fb": "https://www.facebook.com/HardRockRockford",
-    "verified": true,
+    "fb_verified": true,
     "large": true
   }
 }

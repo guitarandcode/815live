@@ -8,7 +8,8 @@
   "lng": -89.08475,
   "description": "Downtown Rockford bar on Market Street known for karaoke on Thursday, Friday and Saturday nights.",
   "social": {
+    "ig_verified": false,
     "fb": "https://www.facebook.com/507186102770939/",
-    "verified": false
+    "fb_verified": false
   }
 }

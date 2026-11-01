@@ -9,6 +9,7 @@
   "description": "Bar on Church Street in German Valley.",
   "social": {
     "ig": "valleytapgermanvalley",
-    "verified": true
+    "ig_verified": true,
+    "fb_verified": true
   }
 }

@@ -8,6 +8,7 @@
   "lng": -89.04839,
   "description": "Bar and grill on North 2nd Street in Machesney Park.",
   "social": {
-    "verified": false
+    "ig_verified": false,
+    "fb_verified": false
   }
 }

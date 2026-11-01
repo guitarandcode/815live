@@ -10,7 +10,8 @@
   "description": "Brewery and taproom in Machesney Park with occasional live comedy nights.",
   "social": {
     "ig": "pigmindsbrewingco",
+    "ig_verified": true,
     "fb": "https://www.facebook.com/PigMindsBrewingCo/",
-    "verified": true
+    "fb_verified": true
   }
 }

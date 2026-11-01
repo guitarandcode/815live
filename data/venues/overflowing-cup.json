@@ -9,7 +9,8 @@
   "website": "https://www.overflowingcup.org/",
   "description": "Christian coffeehouse in Beloit, running since 1974, with concerts on Saturday nights.",
   "social": {
+    "ig_verified": true,
     "fb": "https://facebook.com/the.overflowing.cup",
-    "verified": true
+    "fb_verified": true
   }
 }

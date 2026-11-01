@@ -9,7 +9,8 @@
   "website": "https://www.grandavenuebeloit.com/",
   "description": "Downtown Beloit pub, open since 2014, with live bands on weekends plus pool, darts and a dance floor.",
   "social": {
+    "ig_verified": false,
     "fb": "https://www.facebook.com/Grand-Avenue-Pub-558178877715440/",
-    "verified": false
+    "fb_verified": false
   }
 }

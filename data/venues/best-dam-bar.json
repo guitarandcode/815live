@@ -8,7 +8,8 @@
   "lng": -89.38109,
   "description": "Bar by Lake Summerset in Davis with live bands most Saturday nights.",
   "social": {
+    "ig_verified": true,
     "fb": "https://www.facebook.com/people/Best-Dam-Bar/100052172205578/",
-    "verified": true
+    "fb_verified": true
   }
 }
