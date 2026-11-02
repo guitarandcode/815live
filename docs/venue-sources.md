@@ -16,17 +16,17 @@ permission or a feed from them).
 | Hard Rock Casino Rockford | casino.hardrock.com/rockford/entertainment/upcoming-events | Sitecore; server-rendered cards | None; `/rockford/sitemap.xml` lists every event page | Yes (blocks only /sitecore/, /internal/, PDFs) | **Automated**: `hard-rock-rockford` adapter (sitemap → event pages) |
 | Prairie Street Brewing Co. (Rockford) | psbrewingco.com/events/ | WordPress + The Events Calendar Pro | `/wp-json/tribe/events/v1/events` (JSON) and `/events/?ical=1` (returned empty) | Yes | **feed** (Tribe REST). Calendar currently has 0 upcoming events; Dockside Live is a summer series page |
 | Screw City Tavern (Rockford) | screwcitytavern.com/events/ | WordPress (agency-built), static page | None | Yes | **recurring** (Mon Name That Tune) + **manual** from venue flyers (karaoke every other Thu; Amp-O-Calypse 10/24); acoustic Fri / band Sat posted on Facebook only |
-| Whiskey's Roadhouse (Rockford) | whiskeysroadhouse.com (HTTP; HTTPS cert expired) | WordPress, no calendar | Blog RSS only | Yes (over HTTP) | **recurring** (karaoke Wed & Sun 9 PM — published); first-Friday open mic lacks a time |
+| Whiskey's Roadhouse (Rockford) | whiskeysroadhouse.com (HTTP; HTTPS cert expired) | WordPress, no calendar | Blog RSS only | Yes (over HTTP) | **recurring** (karaoke Wed & Sun 9 PM, published); first-Friday open mic lacks a time |
 | Pig Minds Brewing (Machesney Park) | pigmindsbrewing.com | Behind Cloudflare challenge | Unknown | Couldn't read robots.txt (challenge) | **ask**; not fetched further |
 | Urban Forest Craft Brewing (Rockford) | urbanforestcraftbrewing.com | Squarespace one-pager, no events | None | Yes | **manual/ask** (Facebook-only events) |
-| Rural On Tap (Rockford) | No website (ruralontap.com is parked) | Facebook-only; monthly calendar image | — | — | **manual** from flyers (Sat karaoke 9 PM published) / **ask**. Address 1710 Rural St, 61107 (directories + Census) |
-| Broadway Joe's (fka Dusty Boots) (Rockford) | No website found (Facebook page only) | Facebook-only | — | — | **ask** |
+| Rural On Tap (Rockford) | No website (ruralontap.com is parked) | Facebook-only; monthly calendar image | n/a | n/a | **manual** from flyers (Sat karaoke 9 PM published) / **ask**. Address 1710 Rural St, 61107 (directories + Census) |
+| Broadway Joe's (fka Dusty Boots) (Rockford) | No website found (Facebook page only) | Facebook-only | n/a | n/a | **ask** |
 | The Top, Embassy Suites Riverfront (Rockford) | hilton.com dining page; Tock for ticketed events; Toast | Hilton (bot-blocked 403); Tock & Toast behind Cloudflare challenge | None reachable | Blocked by bot protection | **ask** |
-| The GOAT Pub and Grill (Rockford) | No website found | — | — | — | **skip** (no evidence of live music) |
-| New Mill Tap (Rockford) | No website found | — | — | — | **ask** / verify it still has music |
+| The GOAT Pub and Grill (Rockford) | No website found | n/a | n/a | n/a | **skip** (no evidence of live music) |
+| New Mill Tap (Rockford) | No website found | n/a | n/a | n/a | **ask** / verify it still has music |
 | Shattered Bar, formerly Shattered Saloon (Loves Park) | No website found | Facebook (Shattered Bar Loves Park); Bandsintown venue page | Bandsintown blocks ClaudeBot | No (Bandsintown) | **manual** from monthly flyers / **ask**. Address 5440 N 2nd St, 61111 (Rock River Current + Census) |
-| Tad's on the Rock (Loves Park) | No website found | — | — | — | **manual** from flyers / **ask**. Address 10 E Riverside Blvd, 61111 (directories, WIFR + Census) |
-| Benny's at Nest (Machesney Park) | Toast page; Facebook | Toast behind Cloudflare challenge | — | Blocked by bot protection | **ask** |
+| Tad's on the Rock (Loves Park) | No website found | n/a | n/a | n/a | **manual** from flyers / **ask**. Address 10 E Riverside Blvd, 61111 (directories, WIFR + Census) |
+| Benny's at Nest (Machesney Park) | Toast page; Facebook | Toast behind Cloudflare challenge | n/a | Blocked by bot protection | **ask** |
 | G5 Brewing (Beloit, WI) | g5brewing.com | Static HTML; "Events" = private parties | None | Yes (no robots.txt) | **ask** (weekly music posted elsewhere) |
 | Cheezhead Brewing (Beloit, WI) | cheezheadbrewing.com/events | Duda; events page has no listings | None | Yes | **ask** |
 | Grand Avenue Pub (Beloit, WI) | grandavenuebeloit.com | Website-builder site; says "live music every weekend" but has no calendar | None; shows posted on social media | Yes (no robots.txt) | **manual/ask**. Address (132 W Grand Ave, 53511) confirmed via Travel Wisconsin |
@@ -36,14 +36,14 @@ permission or a feed from them).
 | Inscape Collective (Rockford) | inscapecollective.org/events | Wix Events | None; `/event-pages-sitemap.xml` (lastmod) + schema.org Event JSON-LD on each event page (~850 KB each) | Yes | **Automated**: `inscape-collective` (concerts "X in Concert" and open mics; other music mentions logged) |
 | Palace Wine Bar (Rockford, 202 N Main St) | palacewinebar.com/calendar | Squarespace events | `?format=json` and `?format=ical` **disallowed** by robots.txt; list page HTML is allowed and well structured | List page yes | Weekly music: **Fri "Downtown After Dark"** jazz 8:30 PM, **Sat "Local Sounds"** singer-songwriters 7 PM (every week since late July 2026); also comedy and poetry nights. Candidate HTML adapter or recurring rules |
 | Mary's Market Cafe & Bakery (Roscoe, 4866 Bluestem Rd) | marysmarket.com/upcoming-events/ | WordPress page (no events plugin) | None; static list of Thursday performers | Yes | **recurring** (Thu 5:30–7:30 PM "Live Music at Mary's") + per-date performers; lineup posted through Dec 3, closed Nov 26 |
-| Abreo (Rockford, 515 E State St) | abreorockford.com | — | — | **403 to our bot** (stop) | Wednesday "Dive Bar Live" not confirmed anywhere public; needs a flyer/post from you |
+| Abreo (Rockford, 515 E State St) | abreorockford.com | n/a | n/a | **403 to our bot** (stop) | Wednesday "Dive Bar Live" not confirmed anywhere public; needs a flyer/post from you |
 
 ## Bands
 
 | Band | Site | Calendar source | Usable? |
 |---|---|---|---|
 | Sunset Strip | No official site found | Hard Rock had a (past) event page | No current dates found |
-| Rebel Hearts | Not found (search hits are other bands) | — | Needs a link from you |
+| Rebel Hearts | Not found (search hits are other bands) | n/a | Needs a link from you |
 | The Lone Canary | thelonecanary.com (Wix) | Bandsintown widget | No: widget data comes from Bandsintown (blocks Anthropic agents; API needs the band's app id) |
 | Miles Nielsen & The Rusted Hearts | milesnielsen.com (Wix) | Bandsintown widget | No (same) |
 | Erik Koskinen | erikkoskinen.com (Squarespace) | Tour page is a widget, no dates in HTML | No |

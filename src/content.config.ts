@@ -48,6 +48,9 @@ const venues = defineCollection({
         fb_verified: z.boolean().default(false).describe('Facebook Page clearly matches the venue (name, city, address)'),
         large: z.boolean().optional().describe('Big room (casino, theater): tagged after smaller venues'),
       })
+      // Verified means a human checked an actual handle, so a flag needs its handle.
+      .refine((s) => !s.ig_verified || !!s.ig, { message: 'ig_verified needs an ig handle', path: ['ig_verified'] })
+      .refine((s) => !s.fb_verified || !!s.fb, { message: 'fb_verified needs an fb page', path: ['fb_verified'] })
       .optional(),
     placeholder,
   }),

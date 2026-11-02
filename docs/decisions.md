@@ -865,3 +865,13 @@ Calls made while filling out listings unattended (session of 2026-10-24).
   lounge graphic. Two adapter times disagree with it, and the acts the
   adapter doesn't have yet were left to it rather than hand-entered, because
   a guessed file id would become a permanent duplicate (see needs-review).
+
+## 2026-11-02: Verified only with a handle
+
+`ig_verified` / `fb_verified` mean a human checked an actual handle. The
+2026-11-01 migration had copied the old single flag onto both platforms, so
+13 venues with no Instagram handle had `ig_verified: true` and Valley Tap had
+`fb_verified: true` with no Facebook page; all were set to false. The venue
+schema now rejects a verified flag without its handle. Same day, the last
+em-dashes in docs were replaced; the `mdash` entry in
+`scripts/ingest/lib/html.ts` stays because it decodes source HTML.
