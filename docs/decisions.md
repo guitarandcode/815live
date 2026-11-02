@@ -865,6 +865,12 @@ Calls made while filling out listings unattended (session of 2026-10-24).
   lounge graphic. Two adapter times disagree with it, and the acts the
   adapter doesn't have yet were left to it rather than hand-entered, because
   a guessed file id would become a permanent duplicate (see needs-review).
+- **Inbox run (scheduled, 2026-11-02).** 2 Facebook screenshots, no new
+  listings. Re-confirmed: Cahoots "Decades of Rock" Sat Nov 7 (same flyer and
+  line-up; `checked` bumped, `lineupPartial` kept per the user's 10-26 call)
+  and The Stevee Nix at Hard Rock Sat Nov 7, 9 PM ("Farewell show 1 of 2",
+  the band's event page; adapter-owned record, left to the bot). Nothing
+  skipped or waiting.
 
 ## 2026-11-02: Verified only with a handle
 
