@@ -201,7 +201,7 @@ simply the door time. The band's own Facebook event (2026-10-27 inbox) says
 
 ## Mary's Market Roscoe: Dec 24 and Dec 31
 
-The venue's list says "Christmas Eve — Holiday Hours" and "New Year's Eve —
+The venue's list says "Christmas Eve: Holiday Hours" and "New Year's Eve:
 Holiday Hours" for those Thursdays, with no performer. Both are in the weekly
 rule's `skip` list until the venue says there's music. (Its Dec 5 "Fireside
 Jazz Lunch" is at the Rockford cafe, 2636 McFarland Rd, a venue we don't have.)
