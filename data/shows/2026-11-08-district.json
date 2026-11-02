@@ -1,0 +1,17 @@
+{
+  "date": "2026-11-08",
+  "startTime": "16:00",
+  "venue": "district",
+  "category": "live-music",
+  "artists": [
+    "los-austeros-de-durango",
+    "estilo-815",
+    "nivel-xv"
+  ],
+  "checked": "2026-11-02",
+  "source": {
+    "type": "manual",
+    "url": "https://districtdowntown.com/",
+    "kind": "venue"
+  }
+}

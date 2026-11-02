@@ -1,0 +1,14 @@
+{
+  "name": "The Witches Haven",
+  "address": "4075 W Rockton Rd",
+  "city": "Rockton",
+  "state": "IL",
+  "zip": "61072",
+  "lat": 42.45928,
+  "lng": -89.12011,
+  "description": "All-ages spot on West Rockton Road in Rockton that hosts local band shows.",
+  "social": {
+    "ig_verified": false,
+    "fb_verified": false
+  }
+}

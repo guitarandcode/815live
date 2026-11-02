@@ -189,6 +189,15 @@ bus route with Ashley's Dirty Martini, Neighbors, Top Dog, Legends, Easy Tiger
 and Windsor Pizza Parlor, which supports the Loves Park location but still
 isn't the bar's own word. In `waiting/`.
 
+Also waiting on the venue: the bar's **November band line-up** (Facebook
+post screenshot, 2026-11-02 inbox; no town again), all 2026 weekdays check
+out: Sat Nov 7 That Gurl 8–11; Fri Nov 13 The Sensations 8–11 (existing
+artist `sensations`); Sat Nov 14 Hang 10 8–12 (probably existing `hang-ten`,
+"Hang Ten"); Sat Nov 21 Wait, What? 8–11 (`wait-what`); Fri Nov 27 karaoke
+8–12 (host name left out); Sat Nov 28 Rollin Whiskey 8–12
+(`rollin-whiskey`). Publish once the Loves Park address is confirmed. In
+`waiting/` as `2026-11_rascals-november-lineup.png`.
+
 
 ## RPL Nordlof Center: library times vs. Crossroads times
 
@@ -239,7 +248,9 @@ before (Oct 24, past). The DJ isn't named. Publish as a `dj` show on Oct 31
 The pub's flyer (2026-10-27 inbox) gives 111 Buchanan St, Belvidere,
 10-31-2026, 8:30 PM, "Halloween Party", and nothing about music, a DJ or
 karaoke. Publish if there's entertainment we list (and create the venue). In
-`waiting/`.
+`waiting/`. Now past. The venue was created 2026-11-02 (`buchanan-st-pub`,
+address from this flyer) for Grunge Unplugged on Nov 7; the flyer can move
+to `venues/buchanan-st-pub/` once this entry is closed.
 
 ## Genoa Veterans Home: Polly Says, Sat Oct 31, 7:30–10:30 PM (area call)
 
@@ -370,3 +381,20 @@ it doesn't say whether it's weekly or a one-off (likely Fri Oct 23 or 30,
 both past). The jam is for musicians, so `open-mic` once dated; if it's a
 weekly Friday night, add a recurring rule. Still no venue record (see the
 Halloween karaoke item above; 6935 11th St per that flyer). In `waiting/`.
+
+## Rural On Tap: November calendar, events with no times
+
+The bar's November 2026 calendar (Facebook post screenshot, 2026-11-02
+inbox; marked "AI content" by Facebook) shows, with no start times:
+- **Tue Nov 3, "90's Music Trivia"** (`trivia`).
+- **Tue Nov 17, "Pie Bingo"** (`bingo`).
+- **Fri Nov 6 and Fri Nov 20, "DJ"** (`dj`; no DJ named).
+- **Wed Nov 25, "Black Out Wednesday"**, drawn with a DJ and speaker; may be
+  a DJ night, not stated.
+Publish each once there's a time. Saturday karaoke is already a weekly rule
+(9 PM); the calendar themes Nov 14 ("Boy Band Karaoke") and Nov 28 ("80's
+Hairband Karaoke") and shows plain karaoke Nov 21, but Nov 7 shows only a
+3–6 PM meat raffle, no karaoke. Left on the rule unless the bar says it's
+off. Left out: free pizza, joker jackpot, darts, ticket and chili events,
+Friendsgiving, Thanksgiving hours. In `waiting/` as
+`2026-11_rural-on-tap-november-calendar.png`.

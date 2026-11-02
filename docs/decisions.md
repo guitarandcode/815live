@@ -871,6 +871,30 @@ Calls made while filling out listings unattended (session of 2026-10-24).
   and The Stevee Nix at Hard Rock Sat Nov 7, 9 PM ("Farewell show 1 of 2",
   the band's event page; adapter-owned record, left to the bot). Nothing
   skipped or waiting.
+- **Inbox run (scheduled, 2026-11-02, second).** 10 files. Added:
+  - Los Austeros de Durango with Estilo 815 and Nivel XV at District, Sun
+    Nov 8, 4 PM (promoter flyer; "Domingo 8 Noviembre", Nov 8, 2026 is a
+    Sunday). Regional Mexican band, club show, so in scope. RSVP phone left
+    out. 3 new artists.
+  - Grunge Unplugged at Buchanan St Pub, Belvidere, Sat Nov 7, 8 PM (the
+    pub's own post). New venue `buchanan-st-pub`: 111 Buchanan St from the
+    pub's Oct 31 flyer (see needs-review), Census matched. No website, so no
+    `source.url`.
+  - "Turkey Day Hangover Show" at The Witches Haven, Rockton, Sat Nov 28:
+    six bands, music 6:30 PM, doors 6, $5, all ages (flyer in an 815 music
+    scene group post). New venue `the-witches-haven`, 4075 W Rockton Rd from
+    the flyer, Census matched. `source.url` is the Facebook event link shown
+    in the post (stored, not fetched), kind `presenter`. 6 new artists.
+  - Re-confirmed, `checked` bumped: Stefan Hilleshime at Grand Avenue Pub
+    Thu Nov 5 (event says the blues night moves from Monday to Thursday from
+    Nov 5, matching the rule), McKenna Faith Winters there Fri Nov 6, Too
+    Deep at Mary's Place Sat Nov 7, Cahoots Decades of Rock (same flyer as
+    the earlier run), Rural On Tap's Saturday karaoke rule.
+  - Left out: Hot Rod Nellie's free line-dance lessons (first Wednesday
+    monthly, 7 PM), as on 10-25.
+  - Waiting: Rural On Tap's November calendar (trivia, bingo, DJ nights with
+    no times) and Rascals Bar and Grill's November band line-up (venue still
+    unconfirmed). See needs-review.
 
 ## 2026-11-02: Verified only with a handle
 

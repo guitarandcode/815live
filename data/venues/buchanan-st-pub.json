@@ -1,0 +1,17 @@
+{
+  "name": "Buchanan St Pub",
+  "aliases": [
+    "Buchanan Street Pub"
+  ],
+  "address": "111 Buchanan St",
+  "city": "Belvidere",
+  "state": "IL",
+  "zip": "61008",
+  "lat": 42.25581,
+  "lng": -88.83948,
+  "description": "Pub on Buchanan Street in downtown Belvidere with occasional live bands.",
+  "social": {
+    "ig_verified": false,
+    "fb_verified": false
+  }
+}

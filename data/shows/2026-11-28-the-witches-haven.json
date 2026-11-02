@@ -1,0 +1,23 @@
+{
+  "date": "2026-11-28",
+  "startTime": "18:30",
+  "venue": "the-witches-haven",
+  "category": "live-music",
+  "title": "Turkey Day Hangover Show",
+  "artists": [
+    "ten-minutes-til",
+    "x-oracles-x",
+    "fuzzy-kitty",
+    "the-whammos",
+    "polly-wants-nirvana",
+    "over-the-limit"
+  ],
+  "cover": 5,
+  "notes": "Doors 6 PM. All ages.",
+  "checked": "2026-11-02",
+  "source": {
+    "type": "manual",
+    "url": "https://www.facebook.com/events/2920179211714375/",
+    "kind": "presenter"
+  }
+}

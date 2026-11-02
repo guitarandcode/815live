@@ -1,0 +1,13 @@
+{
+  "date": "2026-11-07",
+  "startTime": "20:00",
+  "venue": "buchanan-st-pub",
+  "category": "live-music",
+  "artists": [
+    "grunge-unplugged"
+  ],
+  "checked": "2026-11-02",
+  "source": {
+    "type": "manual"
+  }
+}
