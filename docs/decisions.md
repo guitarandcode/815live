@@ -936,3 +936,32 @@ Calls made while filling out listings unattended (session of 2026-10-24).
 schema now rejects a verified flag without its handle. Same day, the last
 em-dashes in docs were replaced; the `mdash` entry in
 `scripts/ingest/lib/html.ts` stays because it decodes source HTML.
+
+## 2026-11-03: Skipped runs fail loudly
+
+The 9 AM scheduled run processed 5 inbox files but committed nothing, and no
+tonight graphic was made, while systemd recorded the run as a success.
+
+- **Cause.** The headless `claude -p` run only has an allowlist of exact
+  command prefixes (`Bash(npm test)`, `Bash(git status:*)`, ...). It tried
+  `cd ... && npm test`, `PATH=... npm test`, `npm --prefix ... test` and
+  `git -C ... status`, all denied, and stopped without trying the plain
+  forms (the 11-02 runs hit the same denials but fell back to plain
+  `npm test`). The gate then correctly skipped the graphic, but the script
+  exited 0.
+- **Fix in `~/.local/bin/815live-inbox.sh`.**
+  - Every skip now exits 1, so `systemctl --user status 815live-inbox` and
+    the journal show a failure: the clean-main guard, an inbox step that
+    fails or leaves uncommitted changes, and a failed `social:tonight`. Each
+    sends a critical notification titled "815live daily: FAILED" saying what
+    was skipped (inbox, graphic, reel) and why, and prints it to stderr.
+    A reel failure or "nothing listed tonight" still exits 0.
+  - When a later run (usually 5 PM) hits a dirty tree, the guard message
+    lists the uncommitted files and names the earlier run that left them,
+    instead of only "working tree isn't clean".
+  - The unattended prompt now says to run `npm test`, `npm run build` and the
+    git commands in their plain form, one per call, with no `cd`/`PATH=`/
+    `-C`/`--prefix` (the script already starts in the repo with Node on
+    PATH). CLAUDE.md says the same for unattended runs.
+  - `STATE` and `REPO` can be overridden (like `INBOX` and `CLAUDE_BIN`)
+    so the failure paths can be tested against a scratch clone.
