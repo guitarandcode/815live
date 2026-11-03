@@ -54,7 +54,8 @@ area. Astro static site; data is one JSON file per record in `data/`
 - Never run wrangler or touch Cloudflare; deploys happen from pushes to main.
   The 4 AM rebuild Worker (`workers/daily-rebuild/`) is deployed by the user
   by hand; its deploy hook URL is a Worker secret, never in the repo.
-- Node 24 via fnm: prefix PATH with `~/.local/share/fnm/aliases/default/bin`.
+- Node 24 via fnm: prefix PATH with `~/.local/share/fnm/aliases/default/bin`
+  (interactive sessions only; unattended runs already have it, see below).
 - Before pushing: `npm test` and `npm run build` must pass. The daily bot
   also pushes, so `git pull --rebase` if a push is rejected.
 
@@ -102,3 +103,23 @@ For each file in `inbox/`:
    `docs/needs-review.md`, and move the file to `waiting/`.
 7. Log notable calls in `docs/decisions.md`, then test, build, commit, push,
    and summarize what was added, skipped and moved to waiting.
+
+## Unattended (scheduled) runs
+
+`~/.local/bin/815live-inbox.sh` runs `claude -p "process the inbox"` at 9 AM
+and 5 PM with a fixed tool allowlist that matches the start of each command.
+In those runs:
+
+- The working directory is already the repo and Node 24 is already on PATH.
+  Run `npm test`, `npm run build`, `git status`, `git diff`, `git add <paths>`,
+  `git commit -m "..."`, `git pull --rebase` and `git push` in exactly that
+  plain form, one per Bash call. Never prefix them with `cd`, `export`,
+  `PATH=` or `env`, and never use `git -C` or `npm --prefix`. Those forms are
+  denied and leave the run's edits uncommitted (2026-11-03).
+- Finishing means committed and pushed. Uncommitted changes in `data/` or
+  `docs/` make the script skip the tonight graphic, exit 1 (a systemd
+  failure) and send a critical notification. Every later run then skips
+  until the user reviews the changes. If a plain-form command is still
+  denied, say so plainly in the summary.
+- A dirty tree or a branch other than `main` at the start skips the whole
+  run the same way. Don't try to clean it up; the user reviews it.
