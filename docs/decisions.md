@@ -965,3 +965,12 @@ tonight graphic was made, while systemd recorded the run as a success.
     PATH). CLAUDE.md says the same for unattended runs.
   - `STATE` and `REPO` can be overridden (like `INBOX` and `CLAUDE_BIN`)
     so the failure paths can be tested against a scratch clone.
+- **Pull before the inbox step (user, 2026-11-03).** The ingest bot's 10:17
+  commit got the morning's two commits rejected on push. The script now runs
+  `git pull --rebase` right after the clean-main guard, before the inbox
+  step, so the headless run starts from origin's tip. If the pull fails
+  (offline, auth) or the rebase conflicts, the run is skipped: a conflicted
+  rebase is aborted first (repo left as it was), then the script exits 1
+  with a critical "815live daily: FAILED" notification and a `RUN SKIPPED`
+  line in `runs.log`. The best-effort pull before the graphic stays, for bot
+  commits that land during the inbox step.
