@@ -1,0 +1,14 @@
+{
+  "name": "Legends Bar and Grill",
+  "address": "618 Superior Ave",
+  "city": "Machesney Park",
+  "state": "IL",
+  "zip": "61115",
+  "lat": 42.33855,
+  "lng": -89.05282,
+  "description": "Bar and grill on Superior Avenue in Machesney Park.",
+  "social": {
+    "ig_verified": false,
+    "fb_verified": false
+  }
+}
