@@ -1,0 +1,13 @@
+{
+  "date": "2026-11-14",
+  "startTime": "19:00",
+  "venue": "legends-bar-and-grill",
+  "category": "live-music",
+  "artists": [
+    "jim-and-manda"
+  ],
+  "checked": "2026-11-03",
+  "source": {
+    "type": "manual"
+  }
+}

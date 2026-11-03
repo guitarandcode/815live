@@ -974,3 +974,8 @@ tonight graphic was made, while systemd recorded the run as a success.
   with a critical "815live daily: FAILED" notification and a `RUN SKIPPED`
   line in `runs.log`. The best-effort pull before the graphic stays, for bot
   commits that land during the inbox step.
+- **Legends Bar and Grill, Machesney Park (inbox, 2026-11-03).** New venue
+  from a Facebook event screenshot (Jim & Manda, Sat Nov 14, 7 PM). The
+  flyer's street number was cropped ("…Superior Ave"); 618 Superior Ave,
+  61115 comes from two directory listings (Yellow Pages, iExit) and fits the
+  flyer and the map pin near Harlem Rd. Census geocoder matched it.
