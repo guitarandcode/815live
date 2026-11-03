@@ -1,13 +1,14 @@
 {
   "date": "2026-11-03",
   "startTime": "19:00",
+  "endTime": "22:00",
   "venue": "the-music-box",
   "category": "karaoke",
   "title": "Karaoke & Open Mic Night",
   "artists": [],
   "cover": null,
-  "notes": "Hosted by Riley Sanders.",
-  "checked": "2026-10-24",
+  "notes": "Sign-ups 6:30 PM.",
+  "checked": "2026-11-03",
   "source": {
     "type": "manual",
     "url": "https://themusicboxrockford.com/",

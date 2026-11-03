@@ -895,6 +895,37 @@ Calls made while filling out listings unattended (session of 2026-10-24).
   - Waiting: Rural On Tap's November calendar (trivia, bingo, DJ nights with
     no times) and Rascals Bar and Grill's November band line-up (venue still
     unconfirmed). See needs-review.
+- **Inbox run (scheduled, 2026-11-03).** 5 Facebook screenshots, no new
+  shows. Nov 6 is a Friday and Nov 7 a Saturday in 2026.
+  - Music Box "this week" post: Sophie Coyote (new artist) added as special
+    guest to Logan Metz, Fri Nov 6, 8 PM. Tue Nov 3 Karaoke & Open Mic got
+    `endTime` 22:00 and a sign-up note; the host name in its notes was
+    removed (facts-only rule). Its music-or-other call is in needs-review.
+    Monday "Industry Night" isn't listed (not an event in scope).
+  - Re-confirmed, `checked` bumped: Grunge Unplugged at Buchanan St Pub Nov 7
+    (same post as 11-02, here via an 815 music scene share; free pool and
+    drink specials left out), the Witches Haven Turkey Day Hangover Nov 28
+    (event page says 6 PM, matching doors; music 6:30 per the flyer), and the
+    Whiskeys Roadhouse open stage Nov 6 (RAMI group post; note now names the
+    featured duo, host band left out).
+  - Waiting: That Gurl at Rascals, Sat Nov 7, 8 PM (venue still
+    unconfirmed). Nothing skipped.
+  - Reviewed by the user the same day, decided from the sources:
+    - Music Box Tuesday: the post says "Karaoke & Open Mic Night with
+      [host]! 7–10 PM | Sign-ups at 6:30 PM in person or in advance on our
+      event page / Come sing, perform, or enjoy the show!", under "THIS WEEK
+      AT THE MUSIC BOX!"; the 10-24 venue listing says "KARAOKE/OPEN MIC
+      NIGHT". Both name it karaoke and open mic. Shows take one category, and
+      neither says the open mic is for musicians, so it stays `karaoke` with
+      the venue's title, which names both. Neither source says weekly, so it
+      stays as dated shows (Nov 3, Nov 17), not a recurring rule. The
+      needs-review item is closed. The host name left in the Nov 17 entry's
+      notes was removed (facts-only rule); its `checked` stays 10-24, since
+      this week's post doesn't cover Nov 17.
+    - Rascals / That Gurl: no town in the post, so it stays held.
+    - Music Box Nov 6 cover 15.08: matches the source (the 10-24 venue
+      listing: "From$15.08", recorded as X per the Music Box rule). The
+      11-03 post gives no cover. Unchanged.
 
 ## 2026-11-02: Verified only with a handle
 

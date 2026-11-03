@@ -198,6 +198,10 @@ artist `sensations`); Sat Nov 14 Hang 10 8–12 (probably existing `hang-ten`,
 (`rollin-whiskey`). Publish once the Loves Park address is confirmed. In
 `waiting/` as `2026-11_rascals-november-lineup.png`.
 
+That Gurl's own post (2026-11-03 inbox) re-confirms Sat Nov 7 at 8 PM at
+"Rascals Bar and Grill", but it doesn't give a town either (and Facebook
+labels the post "AI content"). Held until the town is confirmed. In
+`waiting/` as `2026-11_rascals-that-gurl.jpg`.
 
 ## RPL Nordlof Center: library times vs. Crossroads times
 
