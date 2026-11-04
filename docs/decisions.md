@@ -991,6 +991,46 @@ tonight graphic was made, while systemd recorded the run as a success.
   area): Rusty Fox Alehouse's Lord of the Rings trivia (Sterling/Rock
   Falls). Waiting: Harlan Jefferson at Sheila's Daiquiri Lounge Nov 21,
   which overlaps The Synergy Band's listing there.
+- **Inbox run (scheduled, 2026-11-04 evening batch).** 33 files (32 Facebook
+  screenshots, one flyer); every weekday checked against 2026 (Nov 4 is a
+  Wednesday; "Saturday"/"Friday"/"Tomorrow" on screenshots taken Nov 4 read as
+  Nov 7, Nov 6, Nov 5).
+  - Added: Fozzy's (all from the bar's own events): Pop Princesses Ladies
+    Night Music Bingo Wed Nov 4, 7 PM and Pop Royalty Music Bingo Wed Nov 18,
+    7 PM (`bingo`, games are other); Disney's Pixar & Pals Trivia Tue Nov 24,
+    6 PM; DJ Dez Fri Nov 20 and the Black Wednesday Glow Party Nov 25, VJ
+    Eddiemix Sat Nov 21, DJ Visio Fri Nov 27, all 9 PM `dj`. District: Scorpio
+    SZN with DJ Tydal Wave, Fri Nov 6, doors 9:30 PM, and a weekly Thursday
+    rule "The Hideaway" (DJ Nunu, doors 9:30 PM, the bar's "every Thursday"
+    event). The DJ is the act on a DJ night, so the name is kept (as with DJ
+    Dez before), stored as the rule's `host`. Rural On Tap: Black Out
+    Wednesday, Nov 25, 10 PM, DJ Giovanny (closes that needs-review line).
+    Ivy Ford at Screw City Tavern, Sat Nov 7, 8–11 PM (the tavern's post).
+    The Shifty Boys Unplugged at Macktown Lounge, South Beloit, Sat Nov 7,
+    7–10 PM (the duo's post; FB event link stored, not fetched).
+    Naughty Kat Bingo at Rockton Inn, Wed Nov 4, 7 PM (hosts left out).
+  - New venues: `macktown-lounge` (1339 Dearborn Ave, South Beloit 61080,
+    from the band's post) and `rockton-inn` (102 E Main St, Rockton 61072,
+    from the bar's own Oct flyer); both Census matched. 4 new artists.
+  - Re-confirmed, `checked` bumped: Shifty Boys at Rock-A-Bago Nov 6 (gained
+    8–11 PM end time and the duo's FB event link) and Pistol Pete there Nov 7
+    (8 PM–midnight); Harpo's Revue at Best Dam Bar Nov 7 (the event calls it
+    "Harpo's Band", 8–11:59 PM); Music Box Nov 6 Logan Metz/Sophie Coyote,
+    Nov 13 Six Mile Grove, Dec 3 Pat McCurdy, Dec 4 Steepwater Band; Grand
+    Avenue Pub Nov 5 Stefan Hilleshime (and the Thursday blues rule) and Nov
+    14 Stereotype; Grunge Unplugged at Buchanan St Pub Nov 7; Shattered's
+    November line-up except Nov 7 (see needs-review); Rural On Tap's
+    Saturday karaoke rule (Nov 28 "80's Hairband Karaoke", 9 PM).
+  - District's "Karaoke for Cash" Thursday post gives no start time (only
+    happy hour at 7), so the 9 PM rule is unchanged; host and specials left
+    out. Filed under the venue.
+  - Skipped: Embers Rise (Battle Creek MI and Ringle WI dates, out of area);
+    Screw City's "Justice for Kesha" fundraiser, Nov 6 (benefit party with
+    no performer named, out of scope).
+  - Waiting: District "Juke Me" Nov 7 (no time), Jon Hayes at the Music Box
+    Nov 18 (no time), Pig Minds Black Wednesday (no music time), Rollin'
+    Whiskey at Louie's Tap House (Nov 7 vs Dec 7), Shattered's Wait, What?
+    time (7 vs 8 PM).
 
 ## 2026-11-04: Social archive
 

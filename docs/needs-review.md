@@ -245,7 +245,8 @@ techno and EDM DJ night; 9 PM–1 AM; no cover. It says "This Saturday" with no
 date and the file has no post date, so it could be Oct 31 or the Saturday
 before (Oct 24, past). The DJ isn't named. Publish as a `dj` show on Oct 31
 (and create the venue, Census geocoded) if the date is confirmed. In
-`waiting/`.
+`waiting/`. Now past. The venue was created 2026-11-04 (`rockton-inn`,
+address from this flyer) for Naughty Kat Bingo on Nov 4.
 
 ## Buchanan St Pub (Belvidere): Halloween Party, Sat Oct 31, 8:30 PM
 
@@ -393,8 +394,8 @@ inbox; marked "AI content" by Facebook) shows, with no start times:
 - **Tue Nov 3, "90's Music Trivia"** (`trivia`).
 - **Tue Nov 17, "Pie Bingo"** (`bingo`).
 - **Fri Nov 6 and Fri Nov 20, "DJ"** (`dj`; no DJ named).
-- **Wed Nov 25, "Black Out Wednesday"**, drawn with a DJ and speaker; may be
-  a DJ night, not stated.
+- ~~Wed Nov 25, "Black Out Wednesday"~~: resolved 2026-11-04. The bar's
+  Facebook event gives 10 PM with DJ Giovanny; published as `dj`.
 Publish each once there's a time. Saturday karaoke is already a weekly rule
 (9 PM); the calendar themes Nov 14 ("Boy Band Karaoke") and Nov 28 ("80's
 Hairband Karaoke") and shows plain karaoke Nov 21, but Nov 7 shows only a
@@ -402,6 +403,36 @@ Hairband Karaoke") and shows plain karaoke Nov 21, but Nov 7 shows only a
 off. Left out: free pizza, joker jackpot, darts, ticket and chili events,
 Friendsgiving, Thanksgiving hours. In `waiting/` as
 `2026-11_rural-on-tap-november-calendar.png`.
+
+## Inbox 2026-11-04 (scheduled): held items
+
+- **District: "Juke Me Through The Floor Vol. 2", Sat Nov 7.** Tsunami Ent.
+  flyer: DJ Tydal Wave, twerk contest, "everyone free till 10:30 PM", 205 W
+  State St. No start time (the same promoter's Scorpio SZN on Nov 6 says
+  doors 9:30 PM, published, but this flyer doesn't). Add as `dj` once a time
+  is posted. In `waiting/` as `2026-11_district-juke-me-vol-2.jpeg`.
+- **Music Box: Jon Hayes, Wed Nov 18.** Our House Music's post and its ticket
+  card ("Jon Hayes: The Music Box, Wed 11/18, Rockford, IL", tickets on
+  jonhayesofficial.ticketspice.com, full link not shown). No start time or
+  price. Add once the venue lists it. In `waiting/` as
+  `2026-11_music-box-jon-hayes.jpg`.
+- **Pig Minds Brewing: 15th annual Black Wednesday, Wed Nov 25.** The
+  brewery's post: doors at noon, no cover, live music by Mana Kintorso and Jon
+  Bon Stamos (`jon-bon-stamos` exists), but no music start time ("all day
+  long"). Publish once set times are known. In `waiting/` as
+  `2026-11_pig-minds-black-wednesday.jpg`.
+- **Louie's Tap House (Roscoe): Rollin' Whiskey, date conflict.** The band's
+  Facebook event says Monday, December 7, 2026, 6–10 PM; its own graphic says
+  Saturday, November 7, 7–11 PM. Address on the event: 5689 Elevator Rd,
+  Roscoe 61073 (no venue record yet). Publish (new venue, Census geocode)
+  once the date is clear. In `waiting/` as
+  `2026-11_louies-tap-house-rollin-whiskey.jpg`.
+- **Shattered Bar: Wait, What?, Sat Nov 7, 7 PM or 8 PM.** Published at 7 PM
+  from the bar's November flyer (2026-11-01 run). The bar's newer November
+  flyer (2026-11-04) says 8 PM; it also keeps Hang 10 on Nov 20 at 7 PM, so
+  the 8 PM may be a correction. Left at 7 PM (`checked` not bumped) until
+  confirmed. The rest of the newer flyer matched and was re-confirmed. In
+  `waiting/` as `2026-11_shattered-november-live-music-v2.jpg`.
 
 ## Sheila's Daiquiri Lounge: Harlan Jefferson, Sat Nov 21, 9–11 PM (overlaps The Synergy Band)
 

@@ -1,0 +1,15 @@
+{
+  "venue": "district",
+  "category": "dj",
+  "title": "The Hideaway",
+  "weekday": "thursday",
+  "startTime": "21:30",
+  "host": "DJ Nunu",
+  "notes": "Doors 9:30 PM.",
+  "checked": "2026-11-04",
+  "source": {
+    "type": "manual",
+    "url": "https://districtdowntown.com/",
+    "kind": "venue"
+  }
+}

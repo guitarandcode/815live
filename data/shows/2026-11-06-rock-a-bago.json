@@ -1,13 +1,17 @@
 {
   "date": "2026-11-06",
   "startTime": "20:00",
+  "endTime": "23:00",
   "venue": "rock-a-bago",
   "category": "live-music",
   "artists": [
     "shifty-boys-unplugged"
   ],
-  "checked": "2026-10-26",
+  "notes": "Acoustic set.",
+  "checked": "2026-11-04",
   "source": {
-    "type": "manual"
+    "type": "manual",
+    "url": "https://www.facebook.com/events/1143260937339977/",
+    "kind": "artist"
   }
 }
