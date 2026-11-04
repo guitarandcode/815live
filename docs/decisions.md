@@ -991,3 +991,27 @@ tonight graphic was made, while systemd recorded the run as a success.
   area): Rusty Fox Alehouse's Lord of the Rings trivia (Sterling/Rock
   Falls). Waiting: Harlan Jefferson at Sheila's Daiquiri Lounge Nov 21,
   which overlaps The Synergy Band's listing there.
+
+## 2026-11-04: Social archive
+
+- **Past posts move to `social/archive/YYYY-MM/` (user, 2026-11-04).**
+  `social/` was filling up with every day's `tonight-YYYY-MM-DD*` files
+  (png, captions, reel mp4). `npm run social:archive`
+  (`scripts/social/archive.mjs`) moves top-level files whose name starts
+  `tonight-YYYY-MM-DD` with a date before today (America/Chicago) into the
+  month folder. Today's and future-dated files, the brand images and
+  anything not named that way stay in `social/`. Safe to rerun: a name
+  already in the month folder is skipped and reported (left in `social/`),
+  never overwritten, and nothing is deleted. Tested in
+  `tests/social-archive.test.ts`.
+- **9 AM run only.** `~/.local/bin/815live-inbox.sh` runs it in step 3 after
+  the pull and before `social:tonight`, only when it isn't the evening run.
+  A failure is logged and the run carries on. `social:tonight` and
+  `social:reel` are unchanged and still read and write today's files at the
+  top of `social/`, as does the evening "same as morning" check.
+- **No git or .gitignore change.** The whole `/social/` folder is
+  gitignored (nothing in it was ever tracked), so there was no history to
+  keep with `git mv`, and `social/archive/` is already covered.
+- **First run, 2026-11-04.** 50 files (Oct 26 to Nov 3) moved: 29 to
+  `archive/2026-10/`, 21 to `archive/2026-11/`. The 2-byte
+  `tonight-2026-10-29.txt` (rewritten Oct 31) was archived as is.

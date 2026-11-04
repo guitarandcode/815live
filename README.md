@@ -243,6 +243,7 @@ npm run social:tonight                      # today's "Tonight in the 815" post 
 npm run social:tonight -- --date 2026-10-31 # any date
 npm run social:reel                         # today's graphic as a 15 s 9:16 Reel + short caption (needs ffmpeg)
 npm run social:brand                        # Facebook profile picture, cover, wordmark
+npm run social:archive                      # move past days' tonight-* files to social/archive/YYYY-MM/
 npm run social:handles                      # venues with missing or unverified social handles
 ```
 
