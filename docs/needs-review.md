@@ -402,3 +402,14 @@ Hairband Karaoke") and shows plain karaoke Nov 21, but Nov 7 shows only a
 off. Left out: free pizza, joker jackpot, darts, ticket and chili events,
 Friendsgiving, Thanksgiving hours. In `waiting/` as
 `2026-11_rural-on-tap-november-calendar.png`.
+
+## Sheila's Daiquiri Lounge: Harlan Jefferson, Sat Nov 21, 9–11 PM (overlaps The Synergy Band)
+
+Harlan Jefferson's own Facebook post (screenshot taken Nov 3) says he plays
+Sheila's "every 3rd Saturday of the month (Next up: November 21st)", 9–11 PM,
+with a live painter. Sheila's already has The Synergy Band on Nov 21 at
+8:30 PM (from the band's 2026 schedule graphic). Not published: nothing says
+it's a double bill, so one of the two may be wrong. Check with Sheila's who
+plays Nov 21. If Harlan's 3rd Saturdays are confirmed, they could be listed
+monthly (Dec 19 would be next). In `waiting/` as
+`2026-11_harlan-jefferson-sheilas.jpg`.
