@@ -1,0 +1,14 @@
+{
+  "name": "Macktown Lounge",
+  "address": "1339 Dearborn Ave",
+  "city": "South Beloit",
+  "state": "IL",
+  "zip": "61080",
+  "lat": 42.47170,
+  "lng": -89.01890,
+  "description": "Lounge on Dearborn Avenue in South Beloit.",
+  "social": {
+    "ig_verified": false,
+    "fb_verified": false
+  }
+}

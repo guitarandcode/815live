@@ -1,0 +1,17 @@
+{
+  "date": "2026-11-06",
+  "startTime": "21:30",
+  "venue": "district",
+  "category": "dj",
+  "title": "Scorpio SZN",
+  "artists": [
+    "dj-tydal-wave"
+  ],
+  "notes": "Doors 9:30 PM.",
+  "checked": "2026-11-04",
+  "source": {
+    "type": "manual",
+    "url": "https://districtdowntown.com/",
+    "kind": "venue"
+  }
+}

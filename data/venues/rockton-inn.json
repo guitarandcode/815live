@@ -1,0 +1,14 @@
+{
+  "name": "Rockton Inn",
+  "address": "102 E Main St",
+  "city": "Rockton",
+  "state": "IL",
+  "zip": "61072",
+  "lat": 42.45245,
+  "lng": -89.07236,
+  "description": "Bar on East Main Street in downtown Rockton.",
+  "social": {
+    "ig_verified": false,
+    "fb_verified": false
+  }
+}
