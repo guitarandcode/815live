@@ -1,13 +1,14 @@
 {
   "date": "2026-11-25",
   "startTime": "20:00",
+  "endTime": "00:00",
   "venue": "best-dam-bar",
   "category": "live-music",
   "title": "Blackout Wednesday",
   "artists": [
     "the-real-deal"
   ],
-  "checked": "2026-10-26",
+  "checked": "2026-11-04",
   "source": {
     "type": "manual"
   }

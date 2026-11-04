@@ -979,3 +979,15 @@ tonight graphic was made, while systemd recorded the run as a success.
   flyer's street number was cropped ("…Superior Ave"); 618 Superior Ave,
   61115 comes from two directory listings (Yellow Pages, iExit) and fits the
   flyer and the map pin near Harlem Rd. Census geocoder matched it.
+- **Inbox run (scheduled, 2026-11-04 morning).** 6 files. Published: Last
+  Call 815 at Benny's @ Nest, Sat Nov 7, 7 PM (Facebook event screenshot
+  taken Tue Nov 3 saying "Saturday at 7 PM", so Nov 7). Re-confirmed,
+  `checked` bumped: Miles Nielsen & the Rusted Hearts early and late shows
+  at the Music Box, Nov 27 (6:30 PM on the event; tickets on the venue
+  site); The Real Deal at Best Dam Bar, Nov 25, which gained an 8 PM–midnight
+  end time from the band's event (its title "Black Wednesday" left as the
+  venue's "Blackout Wednesday"). District's pop-up karaoke was Tue Nov 3,
+  already past, so nothing added; filed under the venue. Skipped (out of
+  area): Rusty Fox Alehouse's Lord of the Rings trivia (Sterling/Rock
+  Falls). Waiting: Harlan Jefferson at Sheila's Daiquiri Lounge Nov 21,
+  which overlaps The Synergy Band's listing there.
