@@ -1,0 +1,14 @@
+{
+  "date": "2026-11-06",
+  "startTime": "18:00",
+  "endTime": "21:00",
+  "venue": "buchanan-st-pub",
+  "category": "live-music",
+  "artists": [
+    "john-major"
+  ],
+  "checked": "2026-11-05",
+  "source": {
+    "type": "manual"
+  }
+}
