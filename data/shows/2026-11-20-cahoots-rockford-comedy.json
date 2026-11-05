@@ -1,0 +1,15 @@
+{
+  "date": "2026-11-20",
+  "startTime": "20:00",
+  "endTime": "22:00",
+  "venue": "cahoots-rockford",
+  "category": "comedy",
+  "title": "Cahoots Comedy Night: Kristen Toomey",
+  "cover": 10,
+  "checked": "2026-11-05",
+  "source": {
+    "type": "manual",
+    "url": "https://cahootsrockford.com/",
+    "kind": "venue"
+  }
+}

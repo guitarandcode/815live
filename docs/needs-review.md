@@ -225,7 +225,13 @@ The band's Facebook post (2026-10-27 inbox, now in `waiting/`) lists its
 dates through New Year's Eve; Oct 31, Nov 14, Nov 21 and Nov 25 are published.
 Not published:
 - **Sat Nov 7, HydeOut Bar, 8 PM**: no town or address given, and a search
-  found no HydeOut Bar in the Rockford area.
+  found no HydeOut Bar in the Rockford area. Update 2026-11-05: the band's
+  own flyer names "Hyde Out Bar 'n' Grill", live music, 21+, no cover,
+  Sat Nov 7, 8 PM, still with no address. A search now finds Hydeout Bar &
+  Grill, 13502 Julie Dr, Poplar Grove IL 61065 (OpenTable, MapQuest, Yellow
+  Pages listings), in the area, but nothing ties the flyer to it. Publish
+  (new venue, Census geocode) once the band or bar confirms it's the Poplar
+  Grove bar. Flyer in `waiting/` as `2026-11_stereotype-hyde-out.jpg`.
 - **Sat Dec 12, Whiskey's Roadhouse "Toys for Tots" show**: Stereotype opens
   ("early for us"), so other acts follow; no start time given.
 - ~~Thu Dec 31, Shattered Saloon, NYE masquerade party~~: resolved 2026-11-01.
@@ -426,7 +432,10 @@ Friendsgiving, Thanksgiving hours. In `waiting/` as
   Saturday, November 7, 7–11 PM. Address on the event: 5689 Elevator Rd,
   Roscoe 61073 (no venue record yet). Publish (new venue, Census geocode)
   once the date is clear. In `waiting/` as
-  `2026-11_louies-tap-house-rollin-whiskey.jpg`.
+  `2026-11_louies-tap-house-rollin-whiskey.jpg`. A second screenshot
+  (2026-11-05 inbox) shows the same conflict, unchanged: event Mon Dec 7,
+  6–10 PM CST; graphic Sat Nov 7, 7–11 PM. In `waiting/` as
+  `2026-11_louies-tap-house-rollin-whiskey-2.jpg`.
 - **Shattered Bar: Wait, What?, Sat Nov 7, 7 PM or 8 PM.** Published at 7 PM
   from the bar's November flyer (2026-11-01 run). The bar's newer November
   flyer (2026-11-04) says 8 PM; it also keeps Hang 10 on Nov 20 at 7 PM, so
@@ -444,3 +453,21 @@ it's a double bill, so one of the two may be wrong. Check with Sheila's who
 plays Nov 21. If Harlan's 3rd Saturdays are confirmed, they could be listed
 monthly (Dec 19 would be next). In `waiting/` as
 `2026-11_harlan-jefferson-sheilas.jpg`.
+
+## Broadway Joe's: "Blackout on Broadway", Wed Nov 25 (no time)
+
+The bar's own post (2026-11-05 inbox): Thanksgiving Eve, Wednesday,
+November 25 (weekday matches 2026), DJ Slick, all-black attire encouraged.
+No start time or cover shown (post text cut off at "more"). Add as a `dj`
+show once a time is posted. In `waiting/` as
+`2026-11_broadway-joes-blackout-on-broadway.jpg`.
+
+## Lisa's Pub, Rochelle: The Couch Coins, Sat Nov 7, 5–8 PM (area call)
+
+Facebook event screenshot (2026-11-05 inbox, taken Thu Nov 5, "Saturday at
+5 PM – 8 PM", so Nov 7): The Couch Coins (event also by Tim Logsdon) at
+Lisa's Pub, 215 Lincoln Hwy, Rochelle IL 61068. Rochelle is about 25 miles
+south of Rockford on I-39, roughly 30–35 minutes from downtown: closer than
+Dixon, but borderline under the 30-minute rule, like Genoa. Not published
+(no venue or artist record). Decide whether Rochelle is in; past after Nov 7.
+In `waiting/` as `2026-11_lisas-pub-rochelle-couch-coins.jpg`.

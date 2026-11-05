@@ -1067,3 +1067,37 @@ tonight graphic was made, while systemd recorded the run as a success.
 - **Jim & Manda at Legends, Sat Nov 14.** Jim Thomas's own post repeats the
   date already listed (added 2026-11-03); no time stated, so the existing
   7 PM listing stands and only `checked` was bumped.
+
+## 2026-11-05: Inbox (scheduled, evening batch)
+
+16 files (Facebook screenshots and flyers); weekdays checked against 2026
+(Nov 5 is a Thursday, so "Saturday" = Nov 7, "Tomorrow" = Nov 6).
+
+- **Added: John Major at Buchanan St Pub, Fri Nov 6, 6–9 PM.** The pub's own
+  "last minute booking" post and flyer (111 Buchanan St, Belvidere). Artist
+  `john-major` created. No cover stated, so omitted.
+- **Added: Cahoots Comedy Night with Kristen Toomey, Fri Nov 20, 8–10 PM,
+  $10 cover** (`comedy`). From the FATS Productions / Cahoots event. The
+  event's location line says "101 S Main St", but the flyer itself says
+  314 Prairie St, which matches our venue record, so the record stands.
+  The comedian goes in the title (no artist record, like other comedy).
+- **Re-confirmed, `checked` bumped:** Murphy's Wednesday open mic (7 PM;
+  the Nov 4 featured act is past), Shattered's Thursday Open Mic & Karaoke
+  (8 PM; open-mic per the 2026-10-28 ruling), Sheila's Thirsty Thursday
+  Karaoke (7–11 PM), Katie's Cup first-Thursday acoustic open mic (Nov 5 and
+  Dec 3; Sept 2026–May 2027 per the event), Whiskey's first-Friday open stage
+  (Nov 6, Dec 4), District's Los Austeros de Durango (Sun Nov 8, doors 4 PM;
+  early-bird $20 tickets "this week only" and a truncated Eventbrite link,
+  so no cover or ticket link stored), The Witches Haven's Turkey Day Hangover
+  Show (Nov 28).
+- **Cahoots Decades of Rock (Nov 7): `lineupPartial` removed.** The full
+  flyer now shows exactly three sets (Dirty Fishnet Stockings 3 PM, That 70s
+  Band 6 PM, Sunset Strip 9 PM); the earlier entry came from a cropped post.
+- **Past, nothing added:** Whiskey's Halloween party (Oct 30), filed under
+  the venue. Paul Bronson at Hidden Creek Estates, Roscoe (Oct 30): past and
+  marked cancelled on the event; moved to `skipped/`.
+- **Waiting:** Stereotype at "Hyde Out Bar 'n' Grill" Nov 7 (likely the
+  Poplar Grove Hydeout, unconfirmed), Broadway Joe's Blackout on Broadway
+  Nov 25 (no time), The Couch Coins at Lisa's Pub, Rochelle (area call),
+  and a second Rollin' Whiskey / Louie's Tap House screenshot (same date
+  conflict).
