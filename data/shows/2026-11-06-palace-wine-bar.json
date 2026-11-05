@@ -1,0 +1,16 @@
+{
+  "date": "2026-11-06",
+  "startTime": "20:30",
+  "venue": "palace-wine-bar",
+  "category": "live-music",
+  "title": "Downtown After Dark",
+  "artists": [
+    "mark-malin-trio"
+  ],
+  "checked": "2026-11-05",
+  "source": {
+    "type": "manual",
+    "url": "https://www.palacewinebar.com/calendar",
+    "kind": "venue"
+  }
+}

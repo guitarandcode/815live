@@ -1055,3 +1055,15 @@ tonight graphic was made, while systemd recorded the run as a success.
 - **First run, 2026-11-04.** 50 files (Oct 26 to Nov 3) moved: 29 to
   `archive/2026-10/`, 21 to `archive/2026-11/`. The 2-byte
   `tonight-2026-10-29.txt` (rewritten Oct 31) was archived as is.
+
+## 2026-11-05: Inbox (Palace Wine Bar, Jim & Manda repeat)
+
+- **Mark Malin Trio at Palace Wine Bar, Fri Nov 6.** From the bar's own
+  event post (screenshot taken Wed Nov 4, "This Friday at 8:30 PM",
+  "Downtown After Dark: Mark Malin Trio", 202 N Main St). One-off show with
+  the artist added; it replaces that week's "Downtown After Dark" series
+  night through the 2-hour dedupe, like Halloween Eve. The post gives no end
+  time or cover, so both are left out.
+- **Jim & Manda at Legends, Sat Nov 14.** Jim Thomas's own post repeats the
+  date already listed (added 2026-11-03); no time stated, so the existing
+  7 PM listing stands and only `checked` was bumped.
