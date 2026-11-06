@@ -85,10 +85,6 @@ Folders in `~/815live-sources/`:
   touring arena concerts).
 - `kevin/`: pasted copies of Kevin's daily roundup post, kept after the
   cross-check below. Never a listing source on their own.
-- `fb-saves/`: receive-only Syncthing copy of the phone's Pictures/Facebook
-  folder. The timer script (not Claude) copies new files from it into
-  `inbox/` and records them in `fb-saves/.processed`. **Never move, rename,
-  delete or edit anything in `fb-saves/`**; work only on the inbox copies.
 
 All moved files are renamed `YYYY-MM_description.ext` (month of the shows).
 

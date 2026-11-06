@@ -1213,20 +1213,13 @@ rule now says what to do when Census has no match.
 - **Noche de las Calaveras** (Nicholas Conservatory, Nov 6, from Kevin's
   post): not listed, per the user. Dropped from needs-review.
 
-## 2026-11-06: Facebook saves come in through fb-saves/ (user)
+## 2026-11-06: fb-saves/ pipeline dropped (user)
 
-The phone's Pictures/Facebook folder is not added to the two-way inbox
-(moving a file out of the inbox would delete it from the phone). Instead
-`~/815live-sources/fb-saves/` is a receive-only Syncthing folder
-(`815fbsaves`, shared with the phone, which the user sets to Send Only).
-Each timer run (9 AM and 5 PM), `815live-inbox.sh` step 0c copies files not
-yet listed in `fb-saves/.processed` into `inbox/` (name clashes get an
-`fbN-` prefix) and appends them to `.processed`. Hidden files and folders
-are skipped (Syncthing partials). Nothing in fb-saves/ is moved or deleted.
-`.processed` is in the folder's `.stignore`, so Syncthing neither syncs it
-nor removes it on "Revert Local Changes". The copies then go through the
-normal inbox rules (non-shows to `skipped/` as `not-a-show-*`). Script
-backup: `~/.local/state/815live-inbox/815live-inbox.sh.bak-20261106b`.
+A receive-only `fb-saves/` folder with a timer step copying new files into
+the inbox was added and then removed the same day, in favor of the existing
+two-way inbox: Facebook saves go straight into `inbox/`, and non-shows move
+to `skipped/` as `not-a-show-*` (see "Non-show images in the inbox" above).
+The `~/815live-sources/fb-saves/` directory was left in place, unused.
 
 ## 2026-11-06: Fozzy's adapter (user)
 
