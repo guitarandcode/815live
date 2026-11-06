@@ -1,0 +1,13 @@
+{
+  "date": "2026-11-07",
+  "startTime": "19:00",
+  "venue": "new-mill-tap",
+  "category": "karaoke",
+  "title": "Karaoke",
+  "artists": [],
+  "checked": "2026-11-06",
+  "source": {
+    "type": "manual",
+    "file": "venues/new-mill-tap/2026-11_karaoke-nov-7.png"
+  }
+}
