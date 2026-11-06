@@ -15,7 +15,8 @@
     "social:reel": "node scripts/social/reel.mjs",
     "social:brand": "node scripts/social/brand-images.mjs",
     "social:handles": "node scripts/social/handles.mjs",
-    "social:archive": "node scripts/social/archive.mjs"
+    "social:archive": "node scripts/social/archive.mjs",
+    "listings": "node scripts/listings.mjs"
   },
   "dependencies": {
     "astro": "^7.4.2"

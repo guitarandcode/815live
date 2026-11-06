@@ -79,10 +79,40 @@ Folders in `~/815live-sources/`:
   publish and move the file to its venue or band folder.
 - `skipped/`: files that won't be listed (out of area, or out of scope such as
   touring arena concerts).
+- `kevin/`: pasted copies of Kevin's daily roundup post, kept after the
+  cross-check below. Never a listing source on their own.
 
 All moved files are renamed `YYYY-MM_description.ext` (month of the shows).
 
-For each file in `inbox/`:
+### Kevin's daily post: cross-check, don't publish
+
+A text file whose text starts with "Here's the daily post cued up" is a
+pasted copy of Kevin's "Rockford's Local Music Scene" daily post. It is
+never auto-published (his list has errors, and it never overrides a venue's
+own source). Instead:
+
+1. Find the date it covers (the weekday and date in the post; check they
+   match). Run `npm run listings -- --date YYYY-MM-DD` for our listings that
+   night (one-offs plus weekly rules, as the site shows them).
+2. Compare, matching venues by name and aliases. Ignore entries with no
+   actual event ("Enjoy your Friday", "Good times await", a bar named with
+   nothing on) and entries marked as not happening that night.
+3. Add a section to `docs/needs-review.md` headed
+   `## Kevin cross-check: <Weekday Month D>` with three lists:
+   - **He has, we don't** (live music, open mic, DJ, karaoke): act, venue,
+     time as he gives them.
+   - **Differences**: time, venue or spelling differences from our listing,
+     each with our value, his value and our listing's file. Where our
+     listing has its own venue or act source, say that it stands.
+   - **We have, he doesn't**: our listings missing from his post.
+   Write "none" under an empty list. Nothing in `data/` changes because of
+   the post; the user decides from the section.
+4. Move the file to `kevin/` as `YYYY-MM_kevin-daily-YYYY-MM-DD.txt`
+   (the date it covers), commit the needs-review change and push.
+
+### Every other inbox file
+
+For each other file in `inbox/`:
 
 1. **Count first.** Before adding anything from an image (or a PDF or
    pasted list), write out a numbered list of every distinct event it shows
