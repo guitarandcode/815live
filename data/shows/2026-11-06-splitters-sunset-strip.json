@@ -1,0 +1,15 @@
+{
+  "date": "2026-11-06",
+  "startTime": "20:00",
+  "venue": "splitters",
+  "category": "live-music",
+  "artists": [
+    "sunset-strip"
+  ],
+  "checked": "2026-11-06",
+  "source": {
+    "type": "manual",
+    "url": "https://parklanesbowl.com/",
+    "kind": "venue"
+  }
+}

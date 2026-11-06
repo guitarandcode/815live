@@ -1,0 +1,13 @@
+{
+  "date": "2026-11-06",
+  "startTime": "17:30",
+  "venue": "stockholm-inn",
+  "category": "live-music",
+  "artists": [
+    "trinadora"
+  ],
+  "checked": "2026-11-06",
+  "source": {
+    "type": "manual"
+  }
+}

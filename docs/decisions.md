@@ -1101,3 +1101,41 @@ tonight graphic was made, while systemd recorded the run as a success.
   Nov 25 (no time), The Couch Coins at Lisa's Pub, Rochelle (area call),
   and a second Rollin' Whiskey / Louie's Tap House screenshot (same date
   conflict).
+
+## 2026-11-06: Tonight's fixes and Kevin's Friday post (user session)
+
+- **User-confirmed corrections** (the user checked the venues' own ads):
+  Buchanan Street Pub 6 PM is John Major (already listed; `checked`
+  bumped). The Freeport Club and Freeport Eagles Club are one venue: the
+  `freeport-eagles-club` record keeps its name and now carries "The Freeport
+  Club" and "Freeport Club" as aliases (there was no second record).
+  McKinley James at Hard Rock: 9 PM to midnight on the Hard Rock Cafe stage
+  (`endTime` added by hand to the adapter-owned file; the adapter doesn't
+  parse end times and the next ingest runs after the show). Whiskey's
+  first-Friday open stage: the featured act is now "a father and son duo". The
+  earlier note named "12-string Mike and Chris Michael" and was replaced;
+  host band left out per the host-names rule. Salt.Rockford: no music, not
+  added.
+- **Kevin's "Rockford's Local Music Scene" daily post (Fri Nov 6)** added
+  as `source.type: "manual"`. `source.url` is the venue's own site only where
+  one was confirmed (Splitter's/Park Lanes, Lyran Club, Butterfly Club);
+  otherwise empty. New venues, all Census-geocoded: The Stockholm Inn, Wild
+  Cherries (Belvidere), Jax Pub (Loves Park), The Butterfly Club (Beloit WI),
+  The Lyran Club, New Mill Tap (New Milford), CJ's Public House, Easy Tiger
+  (Loves Park), Windsor Pizza Parlor (address confirmed on its own site),
+  Scanlan's Bar & Grill. New artists: Eddie Rebel, Jeff Wunderlich, Mike
+  Williamson & Friends, The Rocksurfers, DJ B-Side, DJ Slick, DJ Diiovanny.
+  - DJ names are the act on `dj` nights (as before), but karaoke hosts are not
+    ("KJ Lisa" and "It's Just Karaoke" are left out). On the New Mill Tap
+    open mic/jam the host band is left out and the featured player (Pistol
+    Pete) is in notes, like Whiskey's featured acts.
+  - All karaoke and DJ nights are one-offs: none of these bars posts a weekly
+    schedule on a site of its own (Windsor's site has none; the rest have no
+    site on record). Broadway Joe's October-only rule was left alone.
+  - Cahoots Decades of Rock (Nov 7): "fundraiser for homeless veterans" added
+    to notes. The times already matched the venue's flyer. Kevin's "That 70's
+    Band Chicagoland" is the existing That 70s Band, named as on the flyer.
+  - Skipped per the user: The Mill "Friday night grooves" (no act or type),
+    the play "1984" at Rock Valley College, and bars listed with no event.
+  - Held (see needs-review): Noche de las Calaveras (music not confirmed) and
+    DJ Dee Franko at Ho-Chunk Gaming Beloit (no Census match for the address).
