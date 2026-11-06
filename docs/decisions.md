@@ -1188,3 +1188,11 @@ tonight graphic was made, while systemd recorded the run as a success.
   `~/.local/state/815live-inbox/815live-inbox.sh.bak-20261106`).
 - Today's listings from Kevin's Nov 6 post were added by hand at the user's
   request (Part 1 above), before this rule existed.
+
+## 2026-11-06: Non-show images in the inbox (user)
+
+The user is syncing the phone's Pictures/Facebook folder (everything saved
+from Facebook) into the inbox, so some files won't be shows. Those go to
+`skipped/` as `YYYY-MM_not-a-show-<desc>.ext` with one line in the run
+summary, not to needs-review, and never stay in `inbox/`. Unclear maybe-shows
+still go to `waiting/`. Rule in CLAUDE.md step 3.
