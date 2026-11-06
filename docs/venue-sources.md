@@ -62,3 +62,47 @@ permission or a feed from them).
 - Bandsintown, Songkick: block ClaudeBot.
 - Rock River Current: `/events/`, `/event/` and `?ical=1` disallowed.
 - GoRockford: not checked in depth.
+
+## Every venue, 2026-11-06 (Part 4b survey)
+
+Re-checked for every record in `data/venues` (59). "Fetchable" means
+robots.txt allows our bot **and** the ClaudeBot / Claude-User /
+Claude-SearchBot / anthropic-ai groups, with no bot challenge, from this
+server. Nothing is wired into the timer; the user picks from this table.
+Facebook and Instagram weren't fetched. "No site" = no website of the
+venue's own found by search (directories and Facebook only).
+
+| Venue | URL | Format | Fetchable |
+|---|---|---|---|
+| Hard Rock Casino Rockford | casino.hardrock.com/rockford/entertainment/upcoming-events | Event pages via sitemap | yes (already automated: `hard-rock-rockford`) |
+| Mendelssohn PAC | mendelssohnpac.org/feed/eo-events/ | iCal feed (Event Organiser) | yes, Crawl-delay 60 (already automated) |
+| RPL Nordlof Center | services.rockfordpubliclibrary.org/events | Communico iCal feed | yes (already automated) |
+| Inscape Collective | inscapecollective.org/events | Wix events: event sitemap + Event JSON-LD | yes (already automated) |
+| **Fozzy's Bar & Grill** | fozzys.net/events/ | WordPress Modern Events Calendar: `mec-events-sitemap1.xml` (lastmod), per-event iCal (`/?method=ical&id=N`), events RSS (`/events/feed/`), `wp-json/mec/v1` | **yes**. Current: DJ Dez / VJ Eddiemix / DJ Visio pages updated 10-30. Caveat: the iCal says `TZID=UTC` but the times are Chicago local (DJ Visio Nov 27 "21:00") |
+| Prairie Street Brewing | psbrewingco.com/events/ | The Events Calendar Pro: REST `/wp-json/tribe/events/v1/events` + `?ical=1` | yes, but 0 upcoming events (summer series only) |
+| Palace Wine Bar | palacewinebar.com/calendar | Squarespace events list (HTML) | list page yes; `?format=ical` / `?format=json` **disallowed** |
+| Splitter's (Park Lanes) | parklanesbowl.com | Monthly "Live Music" poster image on the home page (Nov 2026 poster up) | yes (image: read by hand, no feed) |
+| Mary's Market Roscoe | marysmarket.com/upcoming-events/ | WordPress page, static performer list | yes (HTML; already entered by hand) |
+| Screw City Tavern | screwcitytavern.com/events/ | WordPress static page, no event plugin | yes (HTML, rarely updated) |
+| District | districtdowntown.com/events | GoDaddy builder page | yes, but no events listed |
+| The Overflowing Cup | overflowingcup.org/new-calendar.php | Hand-built PHP pages; no dated text in the HTML | yes (no robots.txt), nothing machine-readable |
+| Cahoots Rockford | cahootsrockford.com | Squarespace; only "book an event" page | home yes; `?format=ical` disallowed; no public calendar |
+| The Lyran Club | lyranclub.tidyhq.com/public/schedule/events + `/public/events.ics` | TidyHQ iCal | yes (Content-Signal ai-input=yes), but the feed's last event is from 2017 |
+| Mary's Place | marysplacebar.com/calendar/ | WordPress ai1ec calendar; iCal export | **no**: export disallowed by robots.txt (2026-10-24), and today the site's TLS certificate is self-signed |
+| The Music Box | themusicboxrockford.com | React app + DICE widget | **no**: DICE hosts block Anthropic agents; no events in the site's own HTML/API |
+| Pig Minds Brewing | pigmindsbrewing.com | n/a | **no**: Cloudflare challenge (403) |
+| Murphy's Pub & Grill | murphyspubandgrillrockford.com | n/a | **no**: bot challenge (403) |
+| The Butterfly Club | thebutterflyclub.com | n/a | **no**: robots.txt times out (treated as disallowed) |
+| Whiskey's Roadhouse | whiskeysroadhouse.com (HTTP only) | WordPress, no calendar | yes, nothing to read |
+| Windsor Pizza Parlor | windsorpizzaparlor.com | WordPress, no events (old ai1ec paths in robots.txt, `/calendar/` 404) | yes, nothing to read |
+| Freeport Eagles Club | freeporteaglesfoe679.com | WordPress + Elementor events add-on, no events page | yes, nothing to read |
+| Grand Avenue Pub | grandavenuebeloit.com | Website builder, no calendar (monthly calendar image goes to Facebook) | yes, nothing to read |
+| Sheila's Daiquiri Lounge | sheilasdaiquirilounge.com | Wix, no events app | yes, nothing to read |
+| Hotel Goodwin (Rooftop) | hotelgoodwin.com | Wix, no events app | yes, nothing to read |
+| The Stockholm Inn | stockholminn.com | Restaurant site, catering page only | yes, nothing to read |
+| Buster's Bar & Grill | bustersbarandgrilllovespark.com (from a directory) | domain doesn't resolve | no site |
+| CJ's Public House | cjspublichouse.com (from a directory) | domain doesn't resolve | no site |
+| Benny's @ Nest, Benny's Roscoe, Best Dam Bar, Broadway Joe's, Buchanan St Pub, Chrissy's Corner, Easy Tiger, Hot Rod Nellie's, Jax Pub, Katie's Cup, Kings Bar & Grill, Legends, Macktown Lounge, Marco's Slots, Maxine's Social, Mulligan's, Mustang's, Neighbors, New Mill Tap, Our Savior's Lutheran, Rock-A-Bago, Rockton Inn, Rue Marché, Rural On Tap, Scanlan's, Shattered Bar, Tad's on the Rock, The Witches Haven, Tipsy Hog, Valley Tap, Wild Cherries | none | Facebook / directories only | no site |
+
+Best new automation candidate: **Fozzy's** (MEC sitemap + per-event iCal,
+fix the UTC label). Next: a monthly reminder to read the Park Lanes poster.
