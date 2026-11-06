@@ -37,6 +37,10 @@ const venues = defineCollection({
     lat: z.number().min(-90).max(90),
     lng: z.number().min(-180).max(180),
     website: z.url().optional(),
+    coordsSource: z
+      .string()
+      .optional()
+      .describe('Where lat/lng came from when it is not a Census geocoder address match (e.g. a TIGER road intersection)'),
     description: z.string(),
     // Used by the social caption (scripts/social/venue-tags.mjs) to tag venues.
     // Each handle is only used when its own platform flag is verified; large rooms are tagged last.

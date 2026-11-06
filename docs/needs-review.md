@@ -480,11 +480,6 @@ In `waiting/` as `2026-11_lisas-pub-rochelle-couch-coins.jpg`.
   only its past Día de los Muertos evenings, which aren't billed as music.
   Publish as `live-music` or `other` once the event's own listing says which.
   No venue record yet (1354 N 2nd St).
-- **DJ Dee Franko, Ho-Chunk Gaming Beloit, 9:30 PM.** The casino opened
-  Oct 23 at 777 Willowbrook Rd, Beloit WI 53511, but the Census geocoder has
-  no match for that address (new road), and venues need Census coordinates.
-  Supply coordinates or approve another source for them, then add the venue
-  and the show.
 - **Wild Cherries (Belvidere): street number.** Published at 413 Southtowne
   Dr (MapQuest listing); a directory says 437 Southtowne Dr. Both are in the
   same strip, about 50 m apart, so the map pin is right either way. Confirm

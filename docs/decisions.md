@@ -1196,3 +1196,17 @@ from Facebook) into the inbox, so some files won't be shows. Those go to
 `skipped/` as `YYYY-MM_not-a-show-<desc>.ext` with one line in the run
 summary, not to needs-review, and never stay in `inbox/`. Unclear maybe-shows
 still go to `waiting/`. Rule in CLAUDE.md step 3.
+
+## 2026-11-06: Ho-Chunk Gaming Beloit coordinates (user)
+
+The user confirmed 777 Willowbrook Rd, Beloit WI 53511 (Google, the casino's
+site) and asked for the Willowbrook Rd / Colley Rd intersection from
+Nominatim (the casino is at its southeast corner). Nominatim's robots.txt
+disallows `/search` (and `/reverse`, `/lookup`) for all agents, and Overpass
+(`/api/`) and api.openstreetmap.org (`/api/`) do too, so OSM wasn't queried.
+The same intersection came from Census TIGER/Line 2025 roads for Rock
+County (`tl_2025_55105_roads`, www2.census.gov, allowed): the one vertex
+Willowbrook Rd and Colley Rd share, 42.50689, -88.99474. New optional venue
+field `coordsSource` records this. Published: DJ Dee Franko, Fri Nov 6,
+9:30 PM (from Kevin's Nov 6 post, as the user asked). CLAUDE.md's geocode
+rule now says what to do when Census has no match.
