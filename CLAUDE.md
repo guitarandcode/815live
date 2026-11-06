@@ -131,6 +131,14 @@ For each other file in `inbox/`:
    add the old name to `aliases` and keep the slug, so links don't break.
 3. Out of the 815 area (see above) or out of scope: add nothing, move it to
    `skipped/`, and mention it in the summary.
+   **Not a show at all** (the inbox also gets the user's general Facebook
+   saves: memes, photos, recipes, news, ads, posts with no event): don't
+   leave it in `inbox/` and don't log it in needs-review. Move it to
+   `skipped/` as `YYYY-MM_not-a-show-<short-description>.ext` (the month
+   it was saved) and give it one line in the run summary, e.g.
+   "skipped, not a show: meme screenshot". Look only far enough to tell;
+   don't describe people or personal content. An image that might be a show
+   but you can't tell (no date, no venue) follows step 7 instead.
 4. Otherwise classify each event (music or other, see above) and add its
    upcoming shows to `data/shows` (or `data/recurring` for weekly nights;
    most trivia, bingo and karaoke nights are weekly) with `source.type: "manual"`, `checked` set to today, and
