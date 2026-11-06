@@ -84,24 +84,42 @@ All moved files are renamed `YYYY-MM_description.ext` (month of the shows).
 
 For each file in `inbox/`:
 
-1. Read it and identify the venue or band. Match venues by `name` and by
+1. **Count first.** Before adding anything from an image (or a PDF or
+   pasted list), write out a numbered list of every distinct event it shows
+   (date + act + venue): small print, every date of a multi-date calendar,
+   dates that run into the next month, and cropped neighbouring posts when
+   their date and venue are readable. Past dates and out-of-scope items stay
+   on the list, marked as such. Then create one listing per remaining item
+   (a multi-act night with one start time can be one listing naming every
+   act; note the set times), set `source.file` on each (see step 6), and
+   check that the count of listings plus marked items matches the list
+   before moving the file. Missing an item is the commonest error (audit,
+   2026-11-06).
+2. Read it and identify the venue or band. Match venues by `name` and by
    `aliases` (old names): a flyer saying "Shattered Saloon" is
    `shattered-saloon`, now named Shattered Bar. On a rename, change `name`,
    add the old name to `aliases` and keep the slug, so links don't break.
-2. Out of the 815 area (see above) or out of scope: add nothing, move it to
+3. Out of the 815 area (see above) or out of scope: add nothing, move it to
    `skipped/`, and mention it in the summary.
-3. Otherwise classify each event (music or other, see above) and add its
+4. Otherwise classify each event (music or other, see above) and add its
    upcoming shows to `data/shows` (or `data/recurring` for weekly nights;
    most trivia, bingo and karaoke nights are weekly) with `source.type: "manual"`, `checked` set to today, and
    `source.url`/`source.kind` set to the venue's or band's own page if there
    is one. Skip dates already past.
-4. Create the venue (confirmed address, Census coordinates) or artist if
+5. Create the venue (confirmed address, Census coordinates) or artist if
    missing.
-5. Move the file to `venues/<venue-slug>/` or `bands/<artist-slug>/`.
-6. Anything ambiguous (unclear year or time, unverified venue, conflicting
+6. Move the file to `venues/<venue-slug>/` or `bands/<artist-slug>/`.
+   Every listing taken from it carries `source.file`: the file's path
+   under `~/815live-sources/` after the move (e.g.
+   `venues/district/2026-11_scorpio-szn.jpg`). Set it to the final path,
+   and update it whenever a file moves later (`waiting/` to a venue folder,
+   a rename). `npm test` checks the path format everywhere and, on this
+   machine, that the file exists. Adapter-owned listings (`source.uid`)
+   don't get one.
+7. Anything ambiguous (unclear year or time, unverified venue, conflicting
    details, music-or-other unclear, unreadable file): publish what's certain, log the rest in
    `docs/needs-review.md`, and move the file to `waiting/`.
-7. Log notable calls in `docs/decisions.md`, then test, build, commit, push,
+8. Log notable calls in `docs/decisions.md`, then test, build, commit, push,
    and summarize what was added, skipped and moved to waiting.
 
 ## Unattended (scheduled) runs

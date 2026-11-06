@@ -11,6 +11,7 @@
   "notes": "12th annual Halloween party with costume contests.",
   "checked": "2026-10-24",
   "source": {
-    "type": "manual"
+    "type": "manual",
+    "file": "venues/bennys-at-nest/2026-10_facebook-events.txt"
   }
 }

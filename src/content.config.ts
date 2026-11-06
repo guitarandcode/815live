@@ -8,12 +8,12 @@
 //   shows(id PK, date, start_time, end_time, venue_slug FK, category, title NULL,
 //         cover_cents NULL, cover_known BOOL, ticket_url, notes, status,
 //         lineup_partial BOOL, checked DATE,
-//         source_type, source_url, source_kind, source_uid UNIQUE NULL)
+//         source_type, source_url, source_kind, source_uid UNIQUE NULL, source_file NULL)
 //     + show_artists(show_id, artist_slug, position)  -- position = array order
 //     + show_sources(show_id, url, kind)              -- source.also
 //   recurring(slug PK, venue_slug FK, category, title, weekday, start_time,
 //             end_time, months, host, cover_cents NULL, cover_known BOOL, notes,
-//             checked DATE, source_type, source_url, source_kind)
+//             checked DATE, source_type, source_url, source_kind, source_file NULL)
 //     + recurring_skips(recurring_slug, date)
 import { defineCollection, reference } from 'astro:content';
 import { glob } from 'astro/loaders';
@@ -98,6 +98,11 @@ const source = z.object({
     .default([])
     .describe('Other places the same event is posted'),
   uid: z.string().optional().describe('Set by ingestion: "<adapter>:<page>:<detail>"; marks the file as adapter-owned'),
+  file: z
+    .string()
+    .regex(/^(venues|bands)\/[^/]+\/[^/]+$|^(waiting|skipped|kevin)\/[^/]+$/, 'path under ~/815live-sources/, e.g. venues/<slug>/<file>')
+    .optional()
+    .describe('The original flyer/screenshot/text under ~/815live-sources/ (never committed) the listing was taken from'),
 }).refine((s) => !s.url || s.kind, { message: 'source.kind is required when source.url is set', path: ['kind'] });
 
 const checked = z.iso.date().describe('Chicago date the listing was last checked against its source');
