@@ -1,0 +1,15 @@
+{
+  "date": "2027-01-30",
+  "startTime": "20:30",
+  "endTime": "23:30",
+  "venue": "best-dam-bar",
+  "category": "live-music",
+  "artists": [
+    "jason-d-petitt-band"
+  ],
+  "checked": "2026-11-06",
+  "source": {
+    "type": "manual",
+    "file": "venues/best-dam-bar/2027-01_jason-d-petitt-band-event.png"
+  }
+}

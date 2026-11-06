@@ -203,6 +203,10 @@ That Gurl's own post (2026-11-03 inbox) re-confirms Sat Nov 7 at 8 PM at
 labels the post "AI content"). Held until the town is confirmed. In
 `waiting/` as `2026-11_rascals-that-gurl.jpg`.
 
+A second screenshot of the same November line-up (2026-11-06 inbox, same
+six dates and times, still no town) is in `waiting/` as
+`2026-11_rascals-november-lineup-2.png`. Nothing new.
+
 ## RPL Nordlof Center: library times vs. Crossroads times
 
 The library calendar lists every Music Off the Rock show at 5 PM (Oct 28 at
@@ -232,6 +236,10 @@ Not published:
   Pages listings), in the area, but nothing ties the flyer to it. Publish
   (new venue, Census geocode) once the band or bar confirms it's the Poplar
   Grove bar. Flyer in `waiting/` as `2026-11_stereotype-hyde-out.jpg`.
+  Update 2026-11-06: another band post ("Tomorrow we start the show at 8pm
+  at HydeOut Bar ... rock til midnight", posted Nov 6) adds an 8 PM–midnight
+  end time but still no town. In `waiting/` as
+  `2026-11_stereotype-hydeout-post.png`.
 - **Sat Dec 12, Whiskey's Roadhouse "Toys for Tots" show**: Stereotype opens
   ("early for us"), so other acts follow; no start time given.
 - ~~Thu Dec 31, Shattered Saloon, NYE masquerade party~~: resolved 2026-11-01.
@@ -478,3 +486,28 @@ In `waiting/` as `2026-11_lisas-pub-rochelle-couch-coins.jpg`.
   Dr (MapQuest listing); a directory says 437 Southtowne Dr. Both are in the
   same strip, about 50 m apart, so the map pin is right either way. Confirm
   the number.
+
+## Music Box: The Lone Canary (full band), "Friday, December 5th"
+
+The Music Box's Facebook post (2026-11-06 inbox, posted with The Lone Canary)
+announces The Lone Canary full band, "Friday, December 5th", doors 7 PM,
+show 8 PM; tickets Table/Bar $25.14, GA $18.85, https://link.dice.fm/x38c25f16b07.
+Dec 5, 2026 is a **Saturday**; Friday is Dec 4, when we already list The
+Steepwater Band's album release at the Music Box at 8 PM
+(`data/shows/2026-12-04-the-music-box.json`), so Saturday Dec 5 looks
+likelier, but it isn't stated. Not published (no artist record yet).
+Confirm the date. The same post's Wed Dec 23 "Holiday Evening with Miles &
+Kelly" (weekday matches) is published (`2026-12-23-the-music-box.json`,
+new artists `miles-nielsen` and `kelly-steward`). Screenshot in `waiting/`
+as `2026-12_music-box-lone-canary-miles-kelly.png`; when this is settled,
+move it to `venues/the-music-box/` and update the Dec 23 `source.file`.
+
+## District: "HUNKS The Show" and Sex Toy Bingo, Wed Nov 11 (scope)
+
+District Bar and Grill's post (2026-11-06 inbox): "Ladies Night Bash",
+Wed Nov 11 (a Wednesday in 2026), doors 6 PM, Sex Toy Bingo 7 PM, HUNKS
+(male revue dancers) 8 PM, 21+, $20 advance (avenueticket.com link in the
+post), $25 day of. Bingo is in scope as `bingo`, but this is one ticketed
+night built around a male revue, which isn't a listed kind of night. Not
+published. Decide: list it (as `bingo`, `other`, or both parts) or skip it.
+In `waiting/` as `2026-11_district-hunks-bingo.png`.

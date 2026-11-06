@@ -1,0 +1,21 @@
+{
+  "date": "2026-12-23",
+  "startTime": "19:30",
+  "venue": "the-music-box",
+  "category": "live-music",
+  "title": "A Holiday Evening with Miles & Kelly",
+  "artists": [
+    "miles-nielsen",
+    "kelly-steward"
+  ],
+  "cover": 18.85,
+  "ticketUrl": "https://link.dice.fm/e671cbe82287",
+  "notes": "Doors 6:30 PM. Tickets: Table $31.14 / Row or Bar $25.14 / Side Bar Table or Standing Room $18.85.",
+  "checked": "2026-11-06",
+  "source": {
+    "type": "manual",
+    "url": "https://themusicboxrockford.com/",
+    "kind": "venue",
+    "file": "waiting/2026-12_music-box-lone-canary-miles-kelly.png"
+  }
+}

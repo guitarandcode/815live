@@ -1241,3 +1241,29 @@ pushes its changes after test and build, or discards them on failure. First
 dry run: 6 new listings (DJ nights Nov 7, 13, 14, 28; country music bingo
 Nov 11; Harry Potter trivia Nov 10). Venue record gets website fozzys.net.
 Script backup: `~/.local/state/815live-inbox/815live-inbox.sh.bak-20261106c`.
+
+## 2026-11-06: Inbox run (scheduled, evening)
+
+12 Facebook screenshots. Nov 7, 2026 is a Saturday; Dec 23, 2026 a
+Wednesday; Jan 30, 2027 a Saturday.
+- **Published:** Jason D. Petitt Band (new artist) at Best Dam Bar, Sat
+  Jan 30, 2027, 8:30–11:30 PM (two screenshots of the same event, both filed
+  under the venue); New Mill Tap karaoke, Sat Nov 7, 7 PM (title "Karaoke";
+  host and light-show details left out); A Holiday Evening with Miles &
+  Kelly at the Music Box, Wed Dec 23, doors 6:30, show 7:30 PM, cover the
+  lowest tier ($18.85) with the full price line in notes and the DICE link
+  as `ticketUrl` (new artists `miles-nielsen`, solo, kept separate from
+  `miles-nielsen-and-the-rusted-hearts`, and `kelly-steward`).
+- **Re-confirmed, `checked` bumped:** Pablo & the Rhythmix at Hot Rod
+  Nellie's Nov 7 8:30 PM (the event tags it "Seward, Illinois", the
+  township; same bar); McKenna Faith Winters at Grand Avenue Pub Nov 6
+  8–11 PM; Andrew Diehl, Grand Avenue Thursday blues Nov 12 7 PM; Pistol
+  Pete at Rock-A-Bago Nov 7 8 PM–midnight (event location reads "Rock-A-Bago
+  Hall & Mama C's pizza", tagged Winnebago; taken as the same venue).
+- **Filed, no change:** a personal birthday event at Whiskey's tonight
+  mentioning a band doing songs at the open mic; it backs up the existing
+  Nov 6 open stage listing. Filed under the venue; nothing added.
+- **Waiting:** Music Box's Lone Canary "Friday, December 5th" (Dec 5 is a
+  Saturday); District's HUNKS / Sex Toy Bingo Nov 11 (scope call); another
+  Stereotype "HydeOut Bar" post and another copy of Rascals' November
+  line-up (still no town for either). Nothing skipped.
