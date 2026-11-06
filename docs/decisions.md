@@ -1227,3 +1227,24 @@ are skipped (Syncthing partials). Nothing in fb-saves/ is moved or deleted.
 nor removes it on "Revert Local Changes". The copies then go through the
 normal inbox rules (non-shows to `skipped/` as `not-a-show-*`). Script
 backup: `~/.local/state/815live-inbox/815live-inbox.sh.bak-20261106b`.
+
+## 2026-11-06: Fozzy's adapter (user)
+
+`scripts/ingest/adapters/fozzys.ts` (id `fozzys`): fozzys.net's Modern Events
+Calendar. Event pages come from `mec-events-sitemap*.xml` (lastmod), each
+page gives its post id, and `/?method=ical&id=N` gives the event. The iCal
+labels times `TZID=UTC`, but they're Chicago wall clock (DJ Visio Fri Nov 27
+is "21:00" there and "9 PM" in its own text), so the label is dropped and
+the times are read as America/Chicago (test: `fozzys: "UTC" iCal times are
+read as Chicago local`, fixture `tests/fixtures/fozzys/`). End times are left
+out (MEC writes a 23:55 placeholder). Classified with `classifyEvent`; specials,
+dinners, darts and giveaways are skipped. "DJ X — Live DJ" lists DJ X as the
+act; "No cover" / "Free to Play" means free. Hand-entered Fozzy's shows on
+the same date win (as for every adapter). At most 40 page + iCal fetches per
+run; entries untouched for 60+ days are skipped. The adapter is
+`onlyWhenNamed`: the nightly CI ingest doesn't run it; the 9 AM timer run
+does (`npm run ingest -- fozzys`, step 0d of `815live-inbox.sh`), commits and
+pushes its changes after test and build, or discards them on failure. First
+dry run: 6 new listings (DJ nights Nov 7, 13, 14, 28; country music bingo
+Nov 11; Harry Potter trivia Nov 10). Venue record gets website fozzys.net.
+Script backup: `~/.local/state/815live-inbox/815live-inbox.sh.bak-20261106c`.

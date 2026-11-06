@@ -247,3 +247,35 @@ test('classify: games, karaoke and comedy are other events; mixed and unclear ni
   assert.ok('ask' in cat('Karaoke & Trivia')!);
   assert.equal(cat('Emily Hurd in Concert'), undefined); // the caller's default: live music
 });
+
+// Fozzy's iCal (saved 2026-11-06 from fozzys.net/?method=ical&id=5692) labels
+// times TZID=UTC, but they're Chicago wall clock: DJ Visio is Friday Nov 27
+// at 9 PM ("9 PM to 1:30 AM" in the same event's text), not 3 PM.
+test('fozzys: "UTC" iCal times are read as Chicago local', async () => {
+  const { parseFozzysIcs, toShow } = await import('../scripts/ingest/adapters/fozzys.ts');
+  const text = readFileSync(new URL('./fixtures/fozzys/dj-visio-2026-11-27.ics', import.meta.url), 'utf8');
+  assert.match(text, /DTSTART;TZID=UTC:20261127T210000/);
+  const [ev] = parseFozzysIcs(text);
+  assert.deepEqual(ev.start, { date: '2026-11-27', time: '21:00' });
+  assert.throws(() => parseIcs(text), /unsupported TZID UTC/); // the plain parser refuses it
+  const show = toShow({ summary: ev.summary, description: ev.description, date: ev.start.date, time: ev.start.time, url: ev.url! });
+  assert.ok(!('skip' in show));
+  assert.equal(show.date, '2026-11-27');
+  assert.equal(show.startTime, '21:00');
+  assert.equal(show.category, 'dj');
+  assert.deepEqual(show.artists.map((a) => a.name), ['DJ Visio']);
+  assert.equal(show.cover, null); // "No cover."
+  assert.equal(show.endTime, undefined); // MEC's 23:55 placeholder isn't used
+});
+
+test('fozzys: sitemap and titles', async () => {
+  const { parseEventSitemap, toShow } = await import('../scripts/ingest/adapters/fozzys.ts');
+  const xml = `<urlset><url><loc>https://fozzys.net/events/dj-dez-live-dj-9/</loc><lastmod>2026-10-30T02:36:14+00:00</lastmod></url>
+    <url><loc>https://fozzys.net/events/</loc><lastmod>2026-10-30T02:36:14+00:00</lastmod></url></urlset>`;
+  assert.deepEqual([...parseEventSitemap(xml)], [['https://fozzys.net/events/dj-dez-live-dj-9/', '2026-10-30T02:36:14+00:00']]);
+  const base = { date: '2026-11-18', time: '19:00', url: 'https://fozzys.net/events/pop-royalty-music-bingo-3/' };
+  const bingo = toShow({ ...base, summary: 'Pop Royalty Music Bingo' });
+  assert.ok(!('skip' in bingo) && bingo.category === 'bingo' && bingo.title === 'Pop Royalty Music Bingo' && bingo.id === '2026-11-18-fozzys-pop-royalty-music-bingo');
+  assert.ok('skip' in toShow({ ...base, summary: 'Veterans Day 50% off a meal' }));
+  assert.ok('skip' in toShow({ ...base, summary: 'Free Darts' }));
+});
