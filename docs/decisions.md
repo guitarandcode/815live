@@ -1169,3 +1169,22 @@ tonight graphic was made, while systemd recorded the run as a success.
   "Diiovanny" artist record was removed. Whiskey's Nov 6 featured act is
   back in notes: the RAMI post in the venue folder names "12-string Mike
   and Chris Michael", the father and son duo, so the review item is closed.
+
+## 2026-11-06: Kevin's daily post is a cross-check, not a source (user)
+
+- A pasted copy of Kevin's "Rockford's Local Music Scene" daily post (text
+  starting "Here's the daily post cued up") is never auto-published. The
+  inbox run compares it with `npm run listings -- --date D` and writes a
+  `## Kevin cross-check: <date>` section to needs-review (he has / we don't,
+  differences, we have / he doesn't), then files the text under
+  `~/815live-sources/kevin/`. Entries with no actual event and ones marked
+  as not happening are ignored. His data never overrides a venue's own
+  source. Procedure in CLAUDE.md.
+- New `npm run listings -- --date YYYY-MM-DD` (scripts/listings.mjs): every
+  listing for a night, one-offs plus expanded weekly rules after the site's
+  dedupe, with the data file each comes from. Added to the timer script's
+  allowlist as `Bash(npm run listings:*)`, and the run prompt names the Kevin
+  rule (script backup:
+  `~/.local/state/815live-inbox/815live-inbox.sh.bak-20261106`).
+- Today's listings from Kevin's Nov 6 post were added by hand at the user's
+  request (Part 1 above), before this rule existed.
