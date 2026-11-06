@@ -472,7 +472,7 @@ Dixon, but borderline under the 30-minute rule, like Genoa. Not published
 (no venue or artist record). Decide whether Rochelle is in; past after Nov 7.
 In `waiting/` as `2026-11_lisas-pub-rochelle-couch-coins.jpg`.
 
-## Kevin's Fri Nov 6 post: items not published
+## Kevin's Fri Nov 6 post: open question
 
 - **Wild Cherries (Belvidere): street number.** Published at 413 Southtowne
   Dr (MapQuest listing); a directory says 437 Southtowne Dr. Both are in the
