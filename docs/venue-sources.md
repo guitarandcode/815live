@@ -78,7 +78,7 @@ venue's own found by search (directories and Facebook only).
 | Mendelssohn PAC | mendelssohnpac.org/feed/eo-events/ | iCal feed (Event Organiser) | yes, Crawl-delay 60 (already automated) |
 | RPL Nordlof Center | services.rockfordpubliclibrary.org/events | Communico iCal feed | yes (already automated) |
 | Inscape Collective | inscapecollective.org/events | Wix events: event sitemap + Event JSON-LD | yes (already automated) |
-| **Fozzy's Bar & Grill** | fozzys.net/events/ | WordPress Modern Events Calendar: `mec-events-sitemap1.xml` (lastmod), per-event iCal (`/?method=ical&id=N`), events RSS (`/events/feed/`), `wp-json/mec/v1` | **yes**. Current: DJ Dez / VJ Eddiemix / DJ Visio pages updated 10-30. Caveat: the iCal says `TZID=UTC` but the times are Chicago local (DJ Visio Nov 27 "21:00") |
+| **Fozzy's Bar & Grill** (automated 2026-11-06: `fozzys`, 9 AM run) | fozzys.net/events/ | WordPress Modern Events Calendar: `mec-events-sitemap1.xml` (lastmod), per-event iCal (`/?method=ical&id=N`), events RSS (`/events/feed/`), `wp-json/mec/v1` | **yes**. Current: DJ Dez / VJ Eddiemix / DJ Visio pages updated 10-30. Caveat: the iCal says `TZID=UTC` but the times are Chicago local (DJ Visio Nov 27 "21:00") |
 | Prairie Street Brewing | psbrewingco.com/events/ | The Events Calendar Pro: REST `/wp-json/tribe/events/v1/events` + `?ical=1` | yes, but 0 upcoming events (summer series only) |
 | Palace Wine Bar | palacewinebar.com/calendar | Squarespace events list (HTML) | list page yes; `?format=ical` / `?format=json` **disallowed** |
 | Splitter's (Park Lanes) | parklanesbowl.com | Monthly "Live Music" poster image on the home page (Nov 2026 poster up) | yes (image: read by hand, no feed) |

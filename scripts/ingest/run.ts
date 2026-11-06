@@ -1,9 +1,11 @@
 // Runs ingestion adapters and updates /data in place.
 // Usage: node scripts/ingest/run.ts [--full] [--dry-run] [adapter-id ...]
+//   (adapters marked onlyWhenNamed, e.g. fozzys, run only when listed)
 //   --full     refetch every source page, ignoring saved lastmod state
 //   --dry-run  fetch and parse, print what would change, write nothing
 // One failing adapter doesn't stop the others; the exit code is 1 if any failed.
 import { join } from 'node:path';
+import * as fozzys from './adapters/fozzys.ts';
 import * as hardRock from './adapters/hard-rock-rockford.ts';
 import * as inscape from './adapters/inscape-collective.ts';
 import * as mendelssohn from './adapters/mendelssohn-pac.ts';
@@ -11,7 +13,8 @@ import * as rplNordlof from './adapters/rpl-nordlof.ts';
 import { DATA, readJson, reconcile, writeJson } from './lib/store.ts';
 import { chicagoDate } from '../../src/lib/time.ts';
 
-const ADAPTERS = [hardRock, mendelssohn, rplNordlof, inscape];
+// fozzys runs only when named (the 9 AM timer run), not in the nightly CI ingest.
+const ADAPTERS = [hardRock, mendelssohn, rplNordlof, inscape, fozzys];
 
 const args = process.argv.slice(2);
 const full = args.includes('--full');
@@ -24,7 +27,7 @@ const checkedPath = join(DATA, 'ingest', 'checked.json');
 const checked = readJson<Record<string, string>>(checkedPath, {});
 
 for (const adapter of ADAPTERS) {
-  if (only.length && !only.includes(adapter.id)) continue;
+  if (only.length ? !only.includes(adapter.id) : 'onlyWhenNamed' in adapter && adapter.onlyWhenNamed) continue;
   const statePath = join(DATA, 'ingest', `${adapter.id}.json`);
   try {
     // Each adapter defines the shape of its own saved state.
