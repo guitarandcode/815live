@@ -1210,3 +1210,5 @@ Willowbrook Rd and Colley Rd share, 42.50689, -88.99474. New optional venue
 field `coordsSource` records this. Published: DJ Dee Franko, Fri Nov 6,
 9:30 PM (from Kevin's Nov 6 post, as the user asked). CLAUDE.md's geocode
 rule now says what to do when Census has no match.
+- **Noche de las Calaveras** (Nicholas Conservatory, Nov 6, from Kevin's
+  post): not listed, per the user. Dropped from needs-review.

@@ -474,12 +474,6 @@ In `waiting/` as `2026-11_lisas-pub-rochelle-couch-coins.jpg`.
 
 ## Kevin's Fri Nov 6 post: items not published
 
-- **Noche de las Calaveras, Nicholas Conservatory & Gardens, 7 PM.** Kevin
-  files it under live music, but nothing says what it is. The conservatory's
-  site (Squarespace) disallows ClaudeBot/anthropic-ai, and a web search found
-  only its past Día de los Muertos evenings, which aren't billed as music.
-  Publish as `live-music` or `other` once the event's own listing says which.
-  No venue record yet (1354 N 2nd St).
 - **Wild Cherries (Belvidere): street number.** Published at 413 Southtowne
   Dr (MapQuest listing); a directory says 437 Southtowne Dr. Both are in the
   same strip, about 50 m apart, so the map pin is right either way. Confirm
