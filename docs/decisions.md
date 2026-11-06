@@ -1139,3 +1139,33 @@ tonight graphic was made, while systemd recorded the run as a success.
     the play "1984" at Rock Valley College, and bars listed with no event.
   - Held (see needs-review): Noche de las Calaveras (music not confirmed) and
     DJ Dee Franko at Ho-Chunk Gaming Beloit (no Census match for the address).
+
+## 2026-11-06: `source.file` and the image audit (user request)
+
+- **`source.file`** (shows and recurring rules): the original under
+  `~/815live-sources/` the listing came from, e.g.
+  `venues/district/2026-11_scorpio-szn.jpg` (format `venues|bands/<slug>/<file>`
+  or `waiting|skipped|kevin/<file>`). Optional in the schema; `npm test`
+  checks the format, and the file's existence where the folder exists (not
+  in CI). Backfilled on 184 listings from the 149 files filed in the last
+  14 days: when several files back one listing, the earliest-filed file in
+  the listing's own venue folder (or its band folder) was used. Adapter-owned
+  listings get none. Today's Kevin listings point at
+  `kevin/2026-11_kevin-daily-2026-11-06.txt`, the user's retyping of his post.
+- **Audit** (full table in `docs/source-audit-2026-11.md`): 149 files
+  re-read. One event was missed: Shattered's Halloween Bingo, Wed Oct 28
+  (past, not added). Nothing upcoming was missing. Not counted as misses:
+  dates already past when filed, and items left out by earlier calls (Neighbors'
+  Monday Bingo for a Cause and paint nights, Grand Avenue's Thursday bingo
+  and meat raffles, Hot Rod Nellie's line dancing, Rock-A-Bago's male revue).
+  Two small gaps, both past: Fozzy's Oct 31 party lists no act (the flyer
+  says DJ Visio), and Splitter's Metal Night 8 has a fourth band logo that
+  can't be read.
+- **New rule in CLAUDE.md:** count every event on an image first, create
+  one listing per item with `source.file`, and check the count before
+  moving the file.
+- **Fixes from the audit:** tonight's Rural On Tap DJ is DJ Giovanny (the
+  bar's own Black Out Wednesday event spells it that way); Kevin's
+  "Diiovanny" artist record was removed. Whiskey's Nov 6 featured act is
+  back in notes: the RAMI post in the venue folder names "12-string Mike
+  and Chris Michael", the father and son duo, so the review item is closed.

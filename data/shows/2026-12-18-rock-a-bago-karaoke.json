@@ -6,6 +6,7 @@
   "title": "Karaoke",
   "checked": "2026-10-26",
   "source": {
-    "type": "manual"
+    "type": "manual",
+    "file": "venues/rock-a-bago/2026-11_facebook-events.txt"
   }
 }

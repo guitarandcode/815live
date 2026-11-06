@@ -489,7 +489,3 @@ In `waiting/` as `2026-11_lisas-pub-rochelle-couch-coins.jpg`.
   Dr (MapQuest listing); a directory says 437 Southtowne Dr. Both are in the
   same strip, about 50 m apart, so the map pin is right either way. Confirm
   the number.
-- **Whiskey's open stage (Nov 6): featured act.** The user's check of the
-  venue's ad says "a father and son duo". The earlier note named "12-string
-  Mike and Chris Michael" (from the Nov 5 inbox). Those may be the same two
-  people; if so, the names can go back in notes.

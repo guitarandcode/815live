@@ -12,6 +12,7 @@
   "source": {
     "type": "facebook",
     "url": "https://www.facebook.com/events/2117510702175424",
-    "kind": "artist"
+    "kind": "artist",
+    "file": "venues/best-dam-bar/2026-10_facebook-events.txt"
   }
 }
