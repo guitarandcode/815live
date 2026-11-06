@@ -1,0 +1,14 @@
+{
+  "date": "2026-11-06",
+  "startTime": "19:00",
+  "venue": "jax-pub",
+  "category": "live-music",
+  "title": "Tom Petty Tribute",
+  "artists": [
+    "eddie-rebel"
+  ],
+  "checked": "2026-11-06",
+  "source": {
+    "type": "manual"
+  }
+}

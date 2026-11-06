@@ -1,0 +1,13 @@
+{
+  "date": "2026-11-06",
+  "startTime": "18:00",
+  "venue": "wild-cherries",
+  "category": "live-music",
+  "artists": [
+    "jeff-wunderlich"
+  ],
+  "checked": "2026-11-06",
+  "source": {
+    "type": "manual"
+  }
+}

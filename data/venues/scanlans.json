@@ -1,0 +1,13 @@
+{
+  "name": "Scanlan's Bar & Grill",
+  "aliases": [
+    "Scanlan's"
+  ],
+  "address": "2921 City View Dr",
+  "city": "Rockford",
+  "state": "IL",
+  "zip": "61103",
+  "lat": 42.31675,
+  "lng": -89.09542,
+  "description": "Sports bar on City View Drive in north Rockford."
+}

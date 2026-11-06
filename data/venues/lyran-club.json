@@ -1,0 +1,15 @@
+{
+  "name": "The Lyran Club",
+  "aliases": [
+    "Lyran Club",
+    "Lyran Society"
+  ],
+  "address": "1115 4th Ave",
+  "city": "Rockford",
+  "state": "IL",
+  "zip": "61104",
+  "lat": 42.26256,
+  "lng": -89.08048,
+  "website": "https://lyranclub.tidyhq.com/",
+  "description": "Swedish-American social club's hall on 4th Avenue in Rockford's 7th Street district."
+}

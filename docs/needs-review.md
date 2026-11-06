@@ -471,3 +471,25 @@ south of Rockford on I-39, roughly 30–35 minutes from downtown: closer than
 Dixon, but borderline under the 30-minute rule, like Genoa. Not published
 (no venue or artist record). Decide whether Rochelle is in; past after Nov 7.
 In `waiting/` as `2026-11_lisas-pub-rochelle-couch-coins.jpg`.
+
+## Kevin's Fri Nov 6 post: items not published
+
+- **Noche de las Calaveras, Nicholas Conservatory & Gardens, 7 PM.** Kevin
+  files it under live music, but nothing says what it is. The conservatory's
+  site (Squarespace) disallows ClaudeBot/anthropic-ai, and a web search found
+  only its past Día de los Muertos evenings, which aren't billed as music.
+  Publish as `live-music` or `other` once the event's own listing says which.
+  No venue record yet (1354 N 2nd St).
+- **DJ Dee Franko, Ho-Chunk Gaming Beloit, 9:30 PM.** The casino opened
+  Oct 23 at 777 Willowbrook Rd, Beloit WI 53511, but the Census geocoder has
+  no match for that address (new road), and venues need Census coordinates.
+  Supply coordinates or approve another source for them, then add the venue
+  and the show.
+- **Wild Cherries (Belvidere): street number.** Published at 413 Southtowne
+  Dr (MapQuest listing); a directory says 437 Southtowne Dr. Both are in the
+  same strip, about 50 m apart, so the map pin is right either way. Confirm
+  the number.
+- **Whiskey's open stage (Nov 6): featured act.** The user's check of the
+  venue's ad says "a father and son duo". The earlier note named "12-string
+  Mike and Chris Michael" (from the Nov 5 inbox). Those may be the same two
+  people; if so, the names can go back in notes.
