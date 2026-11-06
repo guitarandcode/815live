@@ -41,7 +41,11 @@ area. Astro static site; data is one JSON file per record in `data/`
   Claude-SearchBot, Claude-Web and anthropic-ai. Treat a bot challenge or 403
   as a stop sign. Never scrape Facebook (pasted or flyer content is fine).
 - **Geocode** venues with the US Census geocoder
-  (geocoding.geo.census.gov), not Nominatim.
+  (geocoding.geo.census.gov), not Nominatim. If it has no match (a brand-new
+  address), don't guess: log it in needs-review. With the user's OK, use a
+  nearby road intersection from Census TIGER/Line roads and say so in the
+  venue's `coordsSource` (Ho-Chunk Gaming Beloit, 2026-11-06). OpenStreetMap's
+  Nominatim, Overpass and API hosts all disallow bots in robots.txt.
 - Recurring rules need a start time; with no time, log it in needs-review.
   A cancelled week goes in the rule's `skip` list, not a new file.
 - **Trust fields** on every show and recurring rule: `checked` (the Chicago

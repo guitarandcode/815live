@@ -1,0 +1,15 @@
+{
+  "name": "Ho-Chunk Gaming Beloit",
+  "aliases": [
+    "Ho-Chunk Beloit"
+  ],
+  "address": "777 Willowbrook Rd",
+  "city": "Beloit",
+  "state": "WI",
+  "zip": "53511",
+  "lat": 42.50689,
+  "lng": -88.99474,
+  "website": "https://www.ho-chunkgaming.com/beloit/",
+  "coordsSource": "No Census address match (casino opened 2026-10-23). Coordinates are the Willowbrook Rd / Colley Rd intersection from Census TIGER/Line 2025 roads (Rock County, WI); the casino is at its southeast corner.",
+  "description": "Ho-Chunk Nation casino off I-39/90 on Beloit's east side, opened October 2026."
+}
