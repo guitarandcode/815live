@@ -398,7 +398,8 @@ const igLines = caption((e) => {
   mentioned.add(e.venue);
   return `@${igHandle(venues[e.venue])}`;
 }, 'at');
-const fbLines = caption((e) => e.venueName, '@');
+// Facebook: "at", never "@" (every @ fires FB's Page search; user rule 2026-11-07).
+const fbLines = caption((e) => e.venueName, 'at');
 const pagesToTag = [...new Set([...events, ...weekShown].flatMap((e) => e.artistPages))];
 const noteLines = pagesToTag.length ? ['Artist Facebook Pages to tag when you post:', ...pagesToTag] : [];
 const fbTagLines = plan.fbTop.map((s) => `${venues[s].name}: ${fbPage(venues[s])}`);
