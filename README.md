@@ -260,8 +260,11 @@ together as one album. Next to them, all ready to paste:
 - `tonight-YYYY-MM-DD-fb-tag-by-hand.txt`: the top 5 venues to tag by hand on
   Facebook (`social.fb_verified`), with their page URLs.
 
-The Facebook caption ends with any artist Facebook pages worth tagging; the
-Instagram one doesn't. Tag priority
+- `tonight-YYYY-MM-DD-notes.txt`: notes for you, not for posting: artist
+  Facebook Pages worth tagging (also printed to the terminal).
+
+The two caption files hold only the post text, ready to copy and paste;
+anything meant for you goes in the other files or the terminal. Tag priority
 is in `scripts/social/venue-tags.mjs`.
 
 `social:reel` turns that graphic (page 1 on busy nights) into

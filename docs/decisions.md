@@ -1291,3 +1291,9 @@ Wednesday; Jan 30, 2027 a Saturday.
   reads the `-instagram.txt` one. The Facebook caption keeps plain venue names
   (never IG handles). The "(Tag these pages when you post:)" block of artist
   Facebook Pages is now in the Facebook caption only, not the Instagram one.
+
+- **Post files are post text only (user rule, 2026-11-07).** `-instagram.txt`
+  and `-fb.txt` must never contain anything but the post itself. Notes for
+  the poster go to `tonight-DATE-notes.txt` (artist Facebook Pages to tag,
+  which used to be a "(Tag these pages when you post:)" block in the FB
+  caption) or the terminal.
