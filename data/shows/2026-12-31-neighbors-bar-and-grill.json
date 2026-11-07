@@ -1,0 +1,17 @@
+{
+  "date": "2026-12-31",
+  "startTime": "20:00",
+  "venue": "neighbors-bar-and-grill",
+  "category": "live-music",
+  "title": "NYE Bash with Land of Linkin",
+  "artists": [
+    "land-of-linkin"
+  ],
+  "notes": "Linkin Park tribute; also an LOL acoustic set. Special guests TBA.",
+  "lineupPartial": true,
+  "checked": "2026-11-07",
+  "source": {
+    "type": "manual",
+    "file": "venues/neighbors-bar-and-grill/2026-12_nye-land-of-linkin.jpg"
+  }
+}

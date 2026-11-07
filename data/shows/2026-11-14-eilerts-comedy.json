@@ -1,0 +1,13 @@
+{
+  "date": "2026-11-14",
+  "startTime": "20:00",
+  "venue": "eilerts",
+  "category": "comedy",
+  "title": "Comedy Night at Eilert's: Tito, Chris Damen, Christine Ferrera",
+  "cover": null,
+  "checked": "2026-11-07",
+  "source": {
+    "type": "manual",
+    "file": "venues/eilerts/2026-11_comedy-night.jpg"
+  }
+}
