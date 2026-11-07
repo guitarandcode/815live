@@ -1284,3 +1284,10 @@ Wednesday; Jan 30, 2027 a Saturday.
   Dirty Harry Duo at Cooms Corner, Lockport (Nov 6, also past). The cropped
   Tim Logsdon post under the LaSalle one (Lisa's Pub, Rochelle, "Saturday")
   has no date and is out of area; not listed.
+
+- **Caption file labels (user request, 2026-11-07).** The Instagram caption is
+  now `tonight-DATE-instagram.txt` (was `tonight-DATE.txt`), matching the
+  Facebook `-fb.txt`; `social:tonight` always writes both, and `reel.mjs`
+  reads the `-instagram.txt` one. The Facebook caption keeps plain venue names
+  (never IG handles). The "(Tag these pages when you post:)" block of artist
+  Facebook Pages is now in the Facebook caption only, not the Instagram one.

@@ -5,7 +5,7 @@
 //   node scripts/social/tonight.mjs --date 2026-10-31
 //
 // Writes social/tonight-YYYY-MM-DD[-2].png, the Instagram caption
-// social/tonight-YYYY-MM-DD.txt, the Facebook caption -fb.txt, the
+// social/tonight-YYYY-MM-DD-instagram.txt, the Facebook caption -fb.txt, the
 // image-tag list -tags.txt and the Facebook venues to tag by hand
 // -fb-tag-by-hand.txt, then reports venues missing social handles.
 // Busy nights spill onto extra images (post them together as one album).
@@ -353,10 +353,11 @@ else for (const [i, items] of pages.entries()) {
 }
 
 // ---------- caption ----------
-// Four files: tonight-DATE.txt is the Instagram caption (verified venues as
-// @handle, up to IG_CAP; reel.mjs reads its title and hashtag lines),
-// -fb.txt the Facebook caption, paste-ready (plain names, pasted @mentions
-// don't link there), -tags.txt the Instagram handles to tag on the image, and
+// Four files: tonight-DATE-instagram.txt is the Instagram caption (verified
+// venues as @handle, up to IG_CAP; reel.mjs reads its title and hashtag
+// lines), -fb.txt the Facebook caption, paste-ready (plain venue names only,
+// never IG handles; pasted @mentions don't link there, and it ends with the
+// artist Facebook Pages to tag), -tags.txt the Instagram handles to tag on the image, and
 // -fb-tag-by-hand.txt the top FB_TOP venues to tag by hand on Facebook (name
 // and page URL, one per line; empty when none). All start with tonight-DATE
 // so the daily job's cleanup removes them. See venue-tags.mjs for the order.
@@ -368,7 +369,7 @@ const appearances = [
 ];
 const plan = planTags(appearances, venues);
 
-function caption(venueLabel, sep) {
+function caption(venueLabel, sep, { tagNote }) {
   const lines = [`${isToday ? 'Tonight' : longDate}${weekShown.length ? ' + Coming Up' : ''} in the 815 🎶`, ''];
   if (!events.length) lines.push(isToday ? 'No live music listed tonight.' : 'No live music listed.', '');
   for (const [cat, label] of SECTIONS) {
@@ -385,7 +386,7 @@ function caption(venueLabel, sep) {
   }
   lines.push('Full calendar: https://815live.com', 'Got a show? shows@815live.com', '', '#Rockford #RockfordIL #LiveMusic #815');
   const pagesToTag = [...new Set([...events, ...weekShown].flatMap((e) => e.artistPages))];
-  if (pagesToTag.length) lines.push('', '(Tag these pages when you post:)', ...pagesToTag);
+  if (tagNote && pagesToTag.length) lines.push('', '(Tag these pages when you post:)', ...pagesToTag);
   return lines;
 }
 
@@ -396,15 +397,15 @@ const igLines = caption((e) => {
   if (!plan.igTagged.has(e.venue) || mentioned.has(e.venue)) return e.venueName;
   mentioned.add(e.venue);
   return `@${igHandle(venues[e.venue])}`;
-}, 'at');
-const fbLines = caption((e) => e.venueName, '@');
+}, 'at', { tagNote: false });
+const fbLines = caption((e) => e.venueName, '@', { tagNote: true });
 const fbTagLines = plan.fbTop.map((s) => `${venues[s].name}: ${fbPage(venues[s])}`);
 
 const write = (path, lines) => {
   writeFileSync(path, noEmDash(lines.length ? lines.join('\n') + '\n' : ''));
   console.log(`wrote ${path}`);
 };
-write(join(OUT, `tonight-${date}.txt`), igLines);
+write(join(OUT, `tonight-${date}-instagram.txt`), igLines);
 write(join(OUT, `tonight-${date}-fb.txt`), fbLines);
 write(join(OUT, `tonight-${date}-tags.txt`), plan.imageTags.map((h) => `@${igHandle(venues[h])}`));
 write(join(OUT, `tonight-${date}-fb-tag-by-hand.txt`), fbTagLines);

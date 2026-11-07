@@ -10,7 +10,7 @@
 //   node scripts/social/reel.mjs --date 2026-10-31
 //
 // Reads social/tonight-YYYY-MM-DD.png (or -1.png, -2.png, ... on busy
-// nights) and its .txt caption from `npm run social:tonight`. Writes
+// nights) and its -instagram.txt caption from `npm run social:tonight`. Writes
 // social/tonight-YYYY-MM-DD.mp4 and social/tonight-YYYY-MM-DD-reel.txt.
 // No graphic for the date (nothing listed) means no reel, and exit 0.
 //
@@ -137,7 +137,7 @@ console.log(`wrote ${mp4} (${pages.length} page${multi ? 's' : ''}, ${SECONDS} s
 
 // ---------- caption ----------
 // The post caption's title line and hashtags; the video carries the listings.
-const post = join(OUT, `tonight-${date}.txt`);
+const post = join(OUT, `tonight-${date}-instagram.txt`);
 const postLines = existsSync(post) ? readFileSync(post, 'utf8').split('\n') : [];
 const title = postLines[0] || 'Tonight in the 815 🎶';
 const tags = postLines.find((l) => l.startsWith('#')) ?? '#Rockford #RockfordIL #LiveMusic #815';

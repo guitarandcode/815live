@@ -250,16 +250,18 @@ npm run social:handles                      # venues with missing or unverified 
 Busy nights spill onto extra 1080x1350 images (`-1.png`, `-2.png`); post them
 together as one album. Next to them, all ready to paste:
 
-- `tonight-YYYY-MM-DD.txt`: the Instagram caption. Venues whose Instagram
+- `tonight-YYYY-MM-DD-instagram.txt`: the Instagram caption. Venues whose Instagram
   is verified (`social.ig_verified` in `data/venues`) appear as @handle, at
   most 20.
-- `tonight-YYYY-MM-DD-fb.txt`: the Facebook caption, with plain venue names.
+- `tonight-YYYY-MM-DD-fb.txt`: the Facebook caption, with plain venue names
+  (no Instagram handles).
 - `tonight-YYYY-MM-DD-tags.txt`: Instagram handles to tag on the image, the
   ones that didn't fit in the caption first.
 - `tonight-YYYY-MM-DD-fb-tag-by-hand.txt`: the top 5 venues to tag by hand on
   Facebook (`social.fb_verified`), with their page URLs.
 
-Both captions end with any artist Facebook pages worth tagging. Tag priority
+The Facebook caption ends with any artist Facebook pages worth tagging; the
+Instagram one doesn't. Tag priority
 is in `scripts/social/venue-tags.mjs`.
 
 `social:reel` turns that graphic (page 1 on busy nights) into
