@@ -1,0 +1,12 @@
+{
+  "date": "2026-12-01",
+  "startTime": "19:00",
+  "venue": "mulligans-pub-and-grill",
+  "category": "trivia",
+  "title": "Mulligan's Trivia Night",
+  "checked": "2026-11-07",
+  "source": {
+    "type": "manual",
+    "file": "venues/mulligans-pub-and-grill/2026-12_trivia-night.png"
+  }
+}

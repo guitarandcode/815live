@@ -1267,3 +1267,20 @@ Wednesday; Jan 30, 2027 a Saturday.
   Saturday); District's HUNKS / Sex Toy Bingo Nov 11 (scope call); another
   Stereotype "HydeOut Bar" post and another copy of Rascals' November
   line-up (still no town for either). Nothing skipped.
+
+## 2026-11-07: Inbox run (scheduled, morning)
+
+- **New venue:** Eilert's, 1100 W Galena Ave, Freeport (Census match;
+  in area). Comedy night Nov 14 listed as `comedy`, free; the three
+  comedians named in the title, the host left out.
+- **Confirmed:** The Real Deal at Best Dam Bar, Blackout Wednesday Nov 25,
+  8 PM to midnight, already listed; `checked` bumped and `source.file`
+  pointed at the venue's own event screenshot.
+- **One-off, not a rule:** Mulligan's Trivia Night, Tue Dec 1, 7 PM. The
+  post shows one date only, so it's a single show; prizes left out.
+- **New artist:** Land of Linkin (Linkin Park tribute), NYE at Neighbors,
+  `lineupPartial` for the TBA guests.
+- **Skipped (out of area):** Doug n Kev at Sportsman's Tap, LaSalle (Nov 13);
+  Dirty Harry Duo at Cooms Corner, Lockport (Nov 6, also past). The cropped
+  Tim Logsdon post under the LaSalle one (Lisa's Pub, Rochelle, "Saturday")
+  has no date and is out of area; not listed.
