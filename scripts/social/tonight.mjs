@@ -303,9 +303,7 @@ for (const [cat, label] of SECTIONS.filter(([c]) => isMusic(c))) {
   const rows = events.filter((e) => e.category === cat);
   if (rows.length) qMusic.push({ label }, ...rows.map((row) => ({ row })));
 }
-const qMusicH = events.length
-  ? qMusic.reduce((n, it) => n + (it.label ? SECTION_H : rowH(it.row, Q_ROW)), 0)
-  : Q_ROW;
+const qMusicH = qMusic.reduce((n, it) => n + (it.label ? SECTION_H : rowH(it.row, Q_ROW)), 0);
 const qOthers = quiet ? fitOthers(Q_BODY - qMusicH, Q_ROW) : { items: [], height: 0 };
 // The week gets what tonight leaves.
 const weekShown = [];
@@ -315,6 +313,14 @@ for (const e of week) {
   weekShown.push(e);
   weekRoom -= rowH(e, Q_ROW);
 }
+// Posts never say "No live music listed" (user rule, 2026-11-07): a night with
+// nothing on it posts only "Coming Up", and with nothing coming up, nothing.
+const nothingTonight = !all.length;
+if (nothingTonight && !weekShown.length) {
+  console.log(`Nothing listed for ${date} and no room for the week. No image made.`);
+  process.exit(0);
+}
+const qTitle = nothingTonight ? ['Coming up', 'in the 815'] : weekShown.length ? [`${heading} +`, 'Coming up'] : [heading, 'in the 815'];
 
 function quietEl() {
   return h(
@@ -325,20 +331,18 @@ function quietEl() {
       { width: INNER, height: Q_HEADER, flexDirection: 'column' },
       wordmark(46),
       h('div', { flexDirection: 'column', fontFamily: 'Cond', fontWeight: 900, fontSize: 92, lineHeight: 0.92, textTransform: 'uppercase', letterSpacing: -1, marginTop: 24 },
-        h('div', { color: C.ink }, weekShown.length ? `${heading} +` : heading),
-        h('div', { color: C.accent }, weekShown.length ? 'Coming up' : 'in the 815'),
+        h('div', { color: C.ink }, qTitle[0]),
+        h('div', { color: C.accent }, qTitle[1]),
       ),
-      h('div', { fontFamily: 'Sans', fontWeight: 600, fontSize: 30, color: C.muted, marginTop: 16 }, weekShown.length ? `${longDate} · in the 815` : longDate),
+      h('div', { fontFamily: 'Sans', fontWeight: 600, fontSize: 30, color: C.muted, marginTop: 16 }, weekShown.length && !nothingTonight ? `${longDate} · in the 815` : longDate),
       h('div', { height: 4, background: C.accent, width: 120, marginTop: 20 }),
     ),
     h(
       'div',
       { width: INNER, height: Q_BODY, marginTop: 12, marginBottom: 12, flexDirection: 'column', justifyContent: 'center' },
-      events.length
-        ? qMusic.map((it) => itemEl(it, Q_ROW))
-        : h('div', { height: Q_ROW, flexShrink: 0, alignItems: 'center', fontFamily: 'Sans', fontSize: 30, color: C.muted, borderBottom: `2px solid ${C.line}` }, isToday ? 'No live music listed tonight.' : 'No live music listed.'),
+      qMusic.map((it) => itemEl(it, Q_ROW)),
       qOthers.items.map((it) => itemEl(it, Q_ROW)),
-      weekShown.length ? sectionLabel('Coming up') : null,
+      weekShown.length && !nothingTonight ? sectionLabel('Coming up') : null,
       weekShown.map((e) => rowEl(e, { withDay: true, base: Q_ROW })),
     ),
     footerEl(),
@@ -372,8 +376,7 @@ const appearances = [
 const plan = planTags(appearances, venues);
 
 function caption(venueLabel, sep) {
-  const lines = [`${isToday ? 'Tonight' : longDate}${weekShown.length ? ' + Coming Up' : ''} in the 815 🎶`, ''];
-  if (!events.length) lines.push(isToday ? 'No live music listed tonight.' : 'No live music listed.', '');
+  const lines = [nothingTonight ? 'Coming Up in the 815 🎶' : `${isToday ? 'Tonight' : longDate}${weekShown.length ? ' + Coming Up' : ''} in the 815 🎶`, ''];
   for (const [cat, label] of SECTIONS) {
     const rows = all.filter((e) => e.category === cat);
     if (!rows.length) continue;

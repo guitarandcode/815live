@@ -1297,3 +1297,10 @@ Wednesday; Jan 30, 2027 a Saturday.
   the poster go to `tonight-DATE-notes.txt` (artist Facebook Pages to tag,
   which used to be a "(Tag these pages when you post:)" block in the FB
   caption) or the terminal.
+
+- **No "No live music listed" (user rule, 2026-11-07).** Posts never say it.
+  On a night with no music, the graphic and both captions just leave the line
+  out: other events (trivia, karaoke, ...) still show, then Coming Up. A night
+  with nothing at all posts only the week: heading "Coming up in the 815"
+  (graphic) / "Coming Up in the 815 🎶" (caption). With nothing in the next
+  7 days either, no files are made, as before.
