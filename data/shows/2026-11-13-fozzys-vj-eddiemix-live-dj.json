@@ -1,0 +1,17 @@
+{
+  "date": "2026-11-13",
+  "startTime": "21:00",
+  "venue": "fozzys-bar-and-grill",
+  "category": "dj",
+  "artists": [
+    "vj-eddiemix"
+  ],
+  "cover": null,
+  "checked": "2026-11-07",
+  "source": {
+    "type": "venue-site",
+    "url": "https://fozzys.net/events/vj-eddiemix-live-dj-2/",
+    "kind": "venue",
+    "uid": "fozzys:vj-eddiemix-live-dj-2:2026-11-13T21:00"
+  }
+}
