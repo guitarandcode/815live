@@ -375,7 +375,7 @@ const appearances = [
 ];
 const plan = planTags(appearances, venues);
 
-function caption(venueLabel, sep) {
+function caption(venueLabel, sep, { calendar = 'https://815live.com' } = {}) {
   const lines = [nothingTonight ? 'Coming Up in the 815 🎶' : `${isToday ? 'Tonight' : longDate}${weekShown.length ? ' + Coming Up' : ''} in the 815 🎶`, ''];
   for (const [cat, label] of SECTIONS) {
     const rows = all.filter((e) => e.category === cat);
@@ -389,18 +389,27 @@ function caption(venueLabel, sep) {
     for (const e of weekShown) lines.push(`• ${shortDay(e.date)}: ${e.act} ${sep} ${venueLabel(e)}${e.town ? ` (${e.town})` : ''}, ${clock(e.startTime)}`);
     lines.push('');
   }
-  lines.push('Full calendar: https://815live.com', 'Got a show? shows@815live.com', '', '#Rockford #RockfordIL #LiveMusic #815');
+  lines.push(`Full calendar: ${calendar}`, 'Got a show? shows@815live.com', '', '#Rockford #RockfordIL #LiveMusic #815');
   return lines;
 }
 
-// Instagram: each tagged venue's first mention becomes @handle, later ones stay
-// plain; lines read "Act at Venue" so a handle never follows a bare @.
+// Instagram: every line at a tagged venue gets its @handle (user request,
+// 2026-11-07), within IG_CAP @mentions for the whole caption. Each tagged
+// venue's first mention always counts (planTags already ranked and capped
+// those); repeats use what's left of the cap, in caption order. Lines read
+// "Act at Venue" so a handle never follows a bare @. Links don't work in IG
+// captions, so the calendar line says "link in bio".
 const mentioned = new Set();
+let repeatsLeft = IG_CAP - plan.igTagged.size;
 const igLines = caption((e) => {
-  if (!plan.igTagged.has(e.venue) || mentioned.has(e.venue)) return e.venueName;
+  if (!plan.igTagged.has(e.venue)) return e.venueName;
+  if (mentioned.has(e.venue)) {
+    if (repeatsLeft <= 0) return e.venueName;
+    repeatsLeft--;
+  }
   mentioned.add(e.venue);
   return `@${igHandle(venues[e.venue])}`;
-}, 'at');
+}, 'at', { calendar: 'link in bio' });
 // Facebook: "at", never "@" (every @ fires FB's Page search; user rule 2026-11-07).
 const fbLines = caption((e) => e.venueName, 'at');
 const pagesToTag = [...new Set([...events, ...weekShown].flatMap((e) => e.artistPages))];
@@ -421,5 +430,5 @@ if (plan.imageTags.length > IG_CAP) console.log(`note: ${plan.imageTags.length} 
 
 // Report: tonight's venues with missing or unverified handles.
 const todo = plan.needsWork.map((s) => handleStatus(s, venues[s])).filter(Boolean);
-console.log(`venue tags: ${plan.igTagged.size} Instagram mentions in caption, ${plan.imageTags.length} image tags, ${plan.fbTop.length} Facebook to tag by hand`);
+console.log(`venue tags: ${IG_CAP - repeatsLeft} Instagram mentions in caption (${plan.igTagged.size} venues), ${plan.imageTags.length} image tags, ${plan.fbTop.length} Facebook to tag by hand`);
 if (todo.length) console.log(`venues to fill in (npm run social:handles for all):\n${todo.map((t) => `  - ${t}`).join('\n')}`);

@@ -251,8 +251,9 @@ Busy nights spill onto extra 1080x1350 images (`-1.png`, `-2.png`); post them
 together as one album. Next to them, all ready to paste:
 
 - `tonight-YYYY-MM-DD-instagram.txt`: the Instagram caption. Venues whose Instagram
-  is verified (`social.ig_verified` in `data/venues`) appear as @handle, at
-  most 20.
+  is verified (`social.ig_verified` in `data/venues`) appear as @handle on
+  every line, at most 20 @mentions in all, and the calendar line says "link
+  in bio".
 - `tonight-YYYY-MM-DD-fb.txt`: the Facebook caption, with plain venue names
   (no Instagram handles).
 - `tonight-YYYY-MM-DD-tags.txt`: Instagram handles to tag on the image, the

@@ -1304,3 +1304,13 @@ Wednesday; Jan 30, 2027 a Saturday.
   with nothing at all posts only the week: heading "Coming up in the 815"
   (graphic) / "Coming Up in the 815 🎶" (caption). With nothing in the next
   7 days either, no files are made, as before.
+
+- **Instagram caption: tag every line, "link in bio" (user request,
+  2026-11-07).** A tagged venue's @handle now goes on every line it appears
+  on, not just the first, within 20 @mentions for the whole caption. Each
+  ranked venue's first mention is counted first; repeats get what's left, in
+  caption order. The Instagram calendar line reads "Full calendar: link in
+  bio" (links don't work in IG captions); Facebook keeps the URL.
+- **Artist names (user-confirmed from the acts' own pages, 2026-11-07).**
+  `that-70s-band` is "That 70's Band Chicagoland"; `sheez-it-duoz` is
+  "Sheez-It Duoz" (hyphenated like `sheez-it`). Slugs kept.
