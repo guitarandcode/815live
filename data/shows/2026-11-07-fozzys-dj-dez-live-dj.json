@@ -1,0 +1,17 @@
+{
+  "date": "2026-11-07",
+  "startTime": "21:00",
+  "venue": "fozzys-bar-and-grill",
+  "category": "dj",
+  "artists": [
+    "dj-dez"
+  ],
+  "cover": null,
+  "checked": "2026-11-07",
+  "source": {
+    "type": "venue-site",
+    "url": "https://fozzys.net/events/dj-dez-live-dj-6/",
+    "kind": "venue",
+    "uid": "fozzys:dj-dez-live-dj-6:2026-11-07T21:00"
+  }
+}
