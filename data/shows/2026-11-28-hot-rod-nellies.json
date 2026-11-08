@@ -6,8 +6,9 @@
   "artists": [
     "jupiter-sky"
   ],
-  "checked": "2026-10-25",
+  "checked": "2026-11-08",
   "source": {
-    "type": "manual"
+    "type": "manual",
+    "file": "venues/hot-rod-nellies/2026-11_jupiter-sky.jpeg"
   }
 }

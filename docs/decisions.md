@@ -1339,3 +1339,7 @@ Nov 14 Sat; Dec 5 Sat; Jan 2, 2027 Sat; Jan 30, 2027 Sat; Apr 30, 2027 Fri.
   Joe's DJ Marshun "Tonight" (no date); Shifty Boys Unplugged at Backyard
   Grill and Bar, Loves Park, Nov 14 (no Census match for the address).
   Nothing skipped.
+- **Late arrivals (same run):** Jupiter Sky at Hot Rod Nellie's, Nov 28,
+  8 PM (flyer gives no weekday or year; the next Nov 28 is a Saturday in 2026)
+  matched the existing listing, which gained the flyer as `source.file` and
+  a bumped `checked`; another copy of the Hang Ten event, filed.
