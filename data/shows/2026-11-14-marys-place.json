@@ -3,6 +3,7 @@
   "startTime": "20:00",
   "venue": "marys-place",
   "category": "live-music",
+  "cover": 10,
   "artists": [
     "the-handcuffs",
     "monkeymind"

@@ -1,0 +1,15 @@
+{
+  "date": "2026-11-14",
+  "startTime": "20:00",
+  "endTime": "00:00",
+  "venue": "rock-a-bago",
+  "category": "live-music",
+  "artists": [
+    "master-plan"
+  ],
+  "checked": "2026-11-08",
+  "source": {
+    "type": "manual",
+    "file": "venues/rock-a-bago/2026-11_master-plan-event.png"
+  }
+}

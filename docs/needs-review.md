@@ -511,3 +511,30 @@ post), $25 day of. Bingo is in scope as `bingo`, but this is one ticketed
 night built around a male revue, which isn't a listed kind of night. Not
 published. Decide: list it (as `bingo`, `other`, or both parts) or skip it.
 In `waiting/` as `2026-11_district-hunks-bingo.png`.
+
+## Inbox 2026-11-08 (scheduled, morning): held items
+
+- **Best Dam Bar: DJ Stylez Karaoke, Fridays Dec 4, 11 and 18.** The bar's
+  "December 2026 Events" graphic lists karaoke on those three Fridays
+  (weekdays match 2026) with no start time. The Nov 6 karaoke listing's
+  8:30 PM came from Kevin's post, not the bar, so it isn't reused here. Add
+  as `karaoke` (title "Karaoke", DJ name left out) once the bar gives a time.
+  The same graphic's bands (BCT Dec 5, Rat Baxter Dec 12, Hanks Neighbors
+  Dec 19, Decades Dec 26, Rollin' Whiskey NYE Dec 31) match our listings and
+  were re-confirmed; its Sunday football and Christmas Day game parties are
+  out of scope. In `waiting/` as `2026-12_best-dam-bar-december-events.jpg`;
+  move it to `venues/best-dam-bar/` once the karaoke time is settled.
+- **Broadway Joe's: DJ Marshun, "Tonight", date unknown.** The bar's graphic
+  ("Tonight at Broadway Joe's! Featuring DJ Marshun") has no date or time.
+  It was saved Sun Nov 8 at 9:12 AM, so "tonight" was probably Sat Nov 7
+  (past) or Sun Nov 8. Not published. Add as `dj` if the bar posts a date and
+  time. In `waiting/` as `2026-11_broadway-joes-dj-marshun-tonight.jpg`.
+- **Backyard Grill and Bar (Loves Park): The Shifty Boys Unplugged, Sat
+  Nov 14, 7–10 PM.** The band's own post: the bar's 30th anniversary,
+  acoustic favorites, 6473 N 2nd St, Loves Park. Event link as read from the
+  screenshot: https://www.facebook.com/events/28577194611979232/ (check the
+  digits). The US Census geocoder has no match for 6473 N 2nd St (tried
+  "N 2nd St" and "N Second St"), so there's no venue record yet. Per the
+  Ho-Chunk precedent, using a nearby TIGER/Line road intersection needs your
+  OK. Publish once the venue is settled (`shifty-boys-unplugged` exists). In
+  `waiting/` as `2026-11_backyard-grill-shifty-boys-unplugged.png`.

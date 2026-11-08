@@ -1,0 +1,14 @@
+{
+  "date": "2027-04-30",
+  "startTime": "20:00",
+  "venue": "grand-avenue-pub",
+  "category": "live-music",
+  "artists": [
+    "titan-fun-key"
+  ],
+  "checked": "2026-11-08",
+  "source": {
+    "type": "manual",
+    "file": "venues/grand-avenue-pub/2027-04_titan-fun-key-event.png"
+  }
+}

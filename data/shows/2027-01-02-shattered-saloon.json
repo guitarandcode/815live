@@ -1,0 +1,15 @@
+{
+  "date": "2027-01-02",
+  "startTime": "20:00",
+  "venue": "shattered-saloon",
+  "category": "live-music",
+  "title": "Random AF Farewell Show",
+  "artists": [
+    "random-af"
+  ],
+  "checked": "2026-11-08",
+  "source": {
+    "type": "manual",
+    "file": "venues/shattered-saloon/2027-01_random-af-farewell-event.png"
+  }
+}

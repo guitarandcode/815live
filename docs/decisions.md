@@ -1314,3 +1314,28 @@ Wednesday; Jan 30, 2027 a Saturday.
 - **Artist names (user-confirmed from the acts' own pages, 2026-11-07).**
   `that-70s-band` is "That 70's Band Chicagoland"; `sheez-it-duoz` is
   "Sheez-It Duoz" (hyphenated like `sheez-it`). Slugs kept.
+
+## 2026-11-08: Inbox run (scheduled, morning)
+
+13 files (one arrived during the run). Weekdays checked: Nov 13, 2026 Fri;
+Nov 14 Sat; Dec 5 Sat; Jan 2, 2027 Sat; Jan 30, 2027 Sat; Apr 30, 2027 Fri.
+- **Published:** Master Plan (new artist) at Rock-A-Bago, Sat Nov 14,
+  8 PM–midnight (venue's Facebook event); Random AF Farewell Show at Shattered
+  Bar, Sat Jan 2, 2027, 8 PM; Titan Fun Key (new artist) at Grand Avenue Pub,
+  Beloit, Fri Apr 30, 2027, 8 PM (the event's tagline title left out).
+- **Re-confirmed, `checked` bumped:** Best Dam Bar's December bands (BCT,
+  Rat Baxter, Hanks Neighbors, Decades, Rollin' Whiskey NYE) from the bar's
+  December graphic; Jason D. Petitt Band at Best Dam Bar Jan 30 (third copy
+  of the event); Los Austeros de Durango with Estilo 815 and Nivel XV at
+  District tonight, 4 PM (second copy of the flyer); Hang Ten at Rock-A-Bago
+  Nov 13, 8 PM (the event says 8 PM–12 AM but its banner says 8–11, so no end
+  time); Blue Steel at Shattered Bar Dec 5, end time midnight added from the
+  event.
+- **Mary's Place, Nov 14:** a second copy of The Handcuffs / Monkeymind
+  flyer shows "8 pm / 21+ / $10"; `cover: 10` added.
+- **Filed, past:** Mustang's "Saturday Party" DJ night, Sat Nov 7, 9 PM;
+  The Shifty Boys Unplugged at Macktown Lounge Nov 7 (already listed).
+- **Waiting:** Best Dam Bar Friday karaoke Dec 4/11/18 (no time); Broadway
+  Joe's DJ Marshun "Tonight" (no date); Shifty Boys Unplugged at Backyard
+  Grill and Bar, Loves Park, Nov 14 (no Census match for the address).
+  Nothing skipped.

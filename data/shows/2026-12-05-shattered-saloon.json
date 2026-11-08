@@ -1,12 +1,13 @@
 {
   "date": "2026-12-05",
   "startTime": "20:00",
+  "endTime": "00:00",
   "venue": "shattered-saloon",
   "category": "live-music",
   "artists": [
     "blue-steel"
   ],
-  "checked": "2026-11-01",
+  "checked": "2026-11-08",
   "source": {
     "type": "manual",
     "file": "venues/shattered-saloon/2026-12_december-live-music.jpg"
