@@ -538,3 +538,12 @@ In `waiting/` as `2026-11_district-hunks-bingo.png`.
   Ho-Chunk precedent, using a nearby TIGER/Line road intersection needs your
   OK. Publish once the venue is settled (`shifty-boys-unplugged` exists). In
   `waiting/` as `2026-11_backyard-grill-shifty-boys-unplugged.png`.
+  A second screenshot of the same post came in on Nov 9 (same details;
+  re-tried Census with ZIP 61111 and Machesney Park, still no match). In
+  `waiting/` as `2026-11_backyard-grill-shifty-boys-unplugged-2.png`; move
+  both to the venue folder when it's published.
+- **Mustang's Bar & Grill (South Beloit): "Comedy Night", a Wednesday, date
+  cut off.** The same Nov 9 screenshot (`2026-11_backyard-grill-shifty-boys-unplugged-2.png`)
+  shows the top of a Mustang's post, "Comedy Night at Mustangs Bar & Grill
+  Wednesday", with two comedians named; the date and time are cropped off.
+  Not published. Add as `comedy` if the full post turns up.
