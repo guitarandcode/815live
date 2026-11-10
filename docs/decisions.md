@@ -1343,3 +1343,31 @@ Nov 14 Sat; Dec 5 Sat; Jan 2, 2027 Sat; Jan 30, 2027 Sat; Apr 30, 2027 Fri.
   8 PM (flyer gives no weekday or year; the next Nov 28 is a Saturday in 2026)
   matched the existing listing, which gained the flyer as `source.file` and
   a bumped `checked`; another copy of the Hang Ten event, filed.
+
+## 2026-11-10: Inbox run (scheduled, evening)
+
+18 files. Weekdays checked: Wed Nov 11, Thu Nov 12, Fri Nov 13, Sat Nov 14,
+Sat Nov 21, Thu Nov 26, 2026 all match.
+- **Published:** Rockstar Karaoke at New Mill Tap, Sat Nov 14, 7 PM (host
+  name left out); Comedy Night at Mustang's, Wed Nov 11, 8 PM, free (four
+  comedians named in the title, as with Eilert's); Rat Baxter at Wild
+  Cherries, Sat Nov 14, 7–11 PM, free, 21+; 2000's Pop Culture Trivia (Rock
+  Valley Pub Trivia) at Cahoots, Wed Nov 11, 6:30 PM, free; John Major at
+  Buchanan St Pub, Fri Nov 13, 6–9 PM (the pub's own post); Open Mic Night
+  with Acoustic Revolution (new artist) at New Mill Tap, Fri Nov 13, 8:30 PM.
+- **New Mill Tap open mic is music.** The duo's event says they play songs
+  at the open mic, and the bar's earlier flyer calls the Friday night "Open
+  Mic Open Jam" with music from 8:30 PM, so it's `open-mic`. Whether it's
+  weekly is still open (see needs-review).
+- **Re-confirmed, `checked` bumped:** Andrew Diehl at Grand Avenue Pub
+  Nov 12 (his own post); Stereotype Emo Night at Grand Avenue Pub Nov 14
+  (band flyer); The Handcuffs / Monkeymind at Mary's Place Nov 14 (venue
+  post); Next Stop Comedy at Pig Minds Nov 21 (venue post). VJ EddieMix at
+  Fozzy's Nov 13 is adapter-owned and matched; the post was filed.
+- **Skipped:** Mark from Wait, What? at Fatty's Pub & Grille, Fri Nov 13
+  (the only Fatty's Pub & Grille found is in DeKalb, out of area); Hot Rod
+  Nellie's Thanksgiving dinner and dart tournament (out of scope).
+- **Waiting:** Audiodrive NYE at "SM&SF Club" (unknown venue); Lino's Jazz
+  Thursday (no time); Mortimer's Roadhouse Extreme Music Bingo (address not
+  confirmed by Census); a third copy of the Shifty Boys Unplugged / Backyard
+  Grill post.

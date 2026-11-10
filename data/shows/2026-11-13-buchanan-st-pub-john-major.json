@@ -1,0 +1,15 @@
+{
+  "date": "2026-11-13",
+  "startTime": "18:00",
+  "endTime": "21:00",
+  "venue": "buchanan-st-pub",
+  "category": "live-music",
+  "artists": [
+    "john-major"
+  ],
+  "checked": "2026-11-10",
+  "source": {
+    "type": "manual",
+    "file": "venues/buchanan-st-pub/2026-11_john-major-nov-13.png"
+  }
+}

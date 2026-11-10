@@ -1,0 +1,15 @@
+{
+  "date": "2026-11-13",
+  "startTime": "20:30",
+  "venue": "new-mill-tap",
+  "category": "open-mic",
+  "title": "Open Mic Night with Acoustic Revolution",
+  "artists": [
+    "acoustic-revolution"
+  ],
+  "checked": "2026-11-10",
+  "source": {
+    "type": "manual",
+    "file": "venues/new-mill-tap/2026-11_acoustic-revolution-open-mic.png"
+  }
+}

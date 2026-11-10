@@ -1,0 +1,13 @@
+{
+  "date": "2026-11-11",
+  "startTime": "20:00",
+  "venue": "mustangs-bar-and-grill",
+  "category": "comedy",
+  "title": "Comedy Night: Henry Spoon, Jack Allen, Stan Dabrowski, Matt Weldon",
+  "cover": null,
+  "checked": "2026-11-10",
+  "source": {
+    "type": "manual",
+    "file": "venues/mustangs-bar-and-grill/2026-11_comedy-night.jpeg"
+  }
+}

@@ -542,8 +542,32 @@ In `waiting/` as `2026-11_district-hunks-bingo.png`.
   re-tried Census with ZIP 61111 and Machesney Park, still no match). In
   `waiting/` as `2026-11_backyard-grill-shifty-boys-unplugged-2.png`; move
   both to the venue folder when it's published.
-- **Mustang's Bar & Grill (South Beloit): "Comedy Night", a Wednesday, date
-  cut off.** The same Nov 9 screenshot (`2026-11_backyard-grill-shifty-boys-unplugged-2.png`)
-  shows the top of a Mustang's post, "Comedy Night at Mustangs Bar & Grill
-  Wednesday", with two comedians named; the date and time are cropped off.
-  Not published. Add as `comedy` if the full post turns up.
+  A third screenshot of the same post (2026-11-10 inbox, unchanged) is in
+  `waiting/` as `2026-11_backyard-grill-shifty-boys-unplugged-3.png`.
+- ~~Mustang's Bar & Grill: "Comedy Night", date cut off~~: resolved
+  2026-11-10. The full flyer gives Wed Nov 11, 8 PM, free; published.
+
+## Inbox 2026-11-10 (scheduled, evening): held items
+
+- **Mustang's Bar & Grill: street number.** Our venue record says 482
+  Gardner St (from the bar's Halloween flyer); the bar's comedy flyer
+  (2026-11-10) says 472 Gardner St, South Beloit. The comedy night is
+  published under the existing venue. Confirm the number.
+- **Audiodrive: New Year's Eve party at "the SM&SF Club", Thu Dec 31,
+  7–10 PM.** The band's flyer gives no town or address, and a web search
+  found no "SM&SF Club" (maybe a sportsmen's or fraternal club). `audio-drive`
+  exists. Publish once the venue's name and address are known. In `waiting/`
+  as `2026-12_smsf-club-audiodrive-nye.jpeg`.
+- **Lino's (State St location): "Jazz Thursday".** Lino's Facebook post
+  mentions a weekly Jazz Thursday at its State St location, with no time or
+  performer. No venue record. Add a Thursday `live-music` rule once there's a
+  start time (and the address). In `waiting/` as
+  `2026-11_linos-jazz-thursday.png`.
+- **Mortimer's Roadhouse (Poplar Grove): Extreme Music Bingo, every Tuesday,
+  7 PM, 21+.** From a post by one of the hosts in the "What's Happening in
+  Rockford IL?" group (hosts' and DJ service names left out). It would be a
+  weekly `bingo` rule. No venue record: the BBB lists "Mortimer's Road House
+  & Grill" at 105 W Grove St, Poplar Grove 61065, but the Census geocoder
+  only matched 105 **E** Grove St (42.37145, -88.81786), so the address
+  isn't confirmed. Publish once the address is settled. In `waiting/` as
+  `2026-11_mortimers-extreme-music-bingo.png`.
