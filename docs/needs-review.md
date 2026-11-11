@@ -468,7 +468,10 @@ The bar's own post (2026-11-05 inbox): Thanksgiving Eve, Wednesday,
 November 25 (weekday matches 2026), DJ Slick, all-black attire encouraged.
 No start time or cover shown (post text cut off at "more"). Add as a `dj`
 show once a time is posted. In `waiting/` as
-`2026-11_broadway-joes-blackout-on-broadway.jpg`.
+`2026-11_broadway-joes-blackout-on-broadway.jpg`. A second copy (2026-11-11
+inbox, titled "Blackout Wednesday") still shows no time; the bottom line is
+hidden behind the reaction bar. In `waiting/` as
+`2026-11_broadway-joes-blackout-on-broadway-2.jpg`.
 
 ## Lisa's Pub, Rochelle: The Couch Coins, Sat Nov 7, 5–8 PM (area call)
 
@@ -571,3 +574,21 @@ In `waiting/` as `2026-11_district-hunks-bingo.png`.
   only matched 105 **E** Grove St (42.37145, -88.81786), so the address
   isn't confirmed. Publish once the address is settled. In `waiting/` as
   `2026-11_mortimers-extreme-music-bingo.png`.
+
+## 2026-11-11 inbox run
+
+- **Inscape Collective: Open Mic Night, Fri Dec 11, 6–8 PM.** Inscape's own
+  Facebook event (201 7th St, Midtown Rockford; Dec 11, 2026 is a Friday).
+  The screenshot doesn't say what kind of open mic it is (music, poetry or
+  mixed), so not published. The `inscape-collective` adapter should pick it
+  up from inscapecollective.org with the site's description; if it doesn't,
+  decide the category. In `waiting/` as `2026-12_inscape-open-mic-night.jpg`.
+- **Shattered Bar, Thu Nov 12: Country Music Singo at 8 PM vs. the Thursday
+  "Open Mic & Karaoke Night" rule (also 8 PM).** The bar's "This Week" post
+  lists only Singo for Thursday (and a Sunday meat raffle). Singo is
+  published as a one-off `bingo` show
+  (`data/shows/2026-11-12-shattered-saloon-singo.json`). Because it's at
+  the same venue and time, it replaces that night's open mic slot on the
+  site, which matches the post. The rule itself was left alone. If the bar
+  says both are on, the open mic needs its own one-off for Nov 12
+  (`data/recurring/shattered-saloon-open-mic-karaoke-thursday.json`).

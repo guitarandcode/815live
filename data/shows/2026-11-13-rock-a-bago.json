@@ -1,12 +1,13 @@
 {
   "date": "2026-11-13",
   "startTime": "20:00",
+  "endTime": "23:00",
   "venue": "rock-a-bago",
   "category": "live-music",
   "artists": [
     "hang-ten"
   ],
-  "checked": "2026-11-08",
+  "checked": "2026-11-11",
   "source": {
     "type": "manual",
     "file": "venues/rock-a-bago/2026-11_facebook-events.txt"

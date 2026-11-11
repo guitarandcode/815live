@@ -1,0 +1,13 @@
+{
+  "date": "2026-11-12",
+  "startTime": "21:00",
+  "endTime": "00:00",
+  "venue": "mulligans-pub-and-grill",
+  "category": "karaoke",
+  "title": "Back Yard Karaoke",
+  "checked": "2026-11-11",
+  "source": {
+    "type": "manual",
+    "file": "venues/mulligans-pub-and-grill/2026-11_back-yard-karaoke.jpg"
+  }
+}

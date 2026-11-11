@@ -1371,3 +1371,31 @@ Sat Nov 21, Thu Nov 26, 2026 all match.
   Thursday (no time); Mortimer's Roadhouse Extreme Music Bingo (address not
   confirmed by Census); a third copy of the Shifty Boys Unplugged / Backyard
   Grill post.
+
+## 2026-11-11: Inbox run (scheduled)
+
+13 files. Weekdays checked: Thu Nov 12, Fri Nov 13, Sat Nov 14, Wed Nov 25,
+Fri Nov 27, Fri Dec 11, 2026 all match ("Tomorrow" on a Nov 11 screenshot =
+Thu Nov 12; "Friday" on another = Nov 13).
+- **Published:** Jonathan Garrett Trio (new artist) at Palace Wine Bar,
+  "Downtown After Dark", Fri Nov 27, 8:30–10:30 PM (the bar's event; it
+  replaces that week's series night, as with Mark Malin Trio; the ticket
+  link shows only "exploretock.com", so no URL stored); Back Yard Karaoke at
+  Mulligan's, Thu Nov 12, 9 PM–midnight (a one-off: the event doesn't say
+  weekly); Country Music Singo at Shattered Bar, Thu Nov 12, 8 PM, `bingo`
+  (a music game; overlap with the Thursday open mic rule in needs-review).
+- **Re-confirmed, `checked` bumped:** Katie's Cup first-Thursday acoustic
+  open mic, Dec 3 through May 6 (the Nov 5 event, now past); Jim & Manda at
+  Legends, Sat Nov 14, end time 10 PM added from the bar's flyer (Jim
+  Thomas's post, also filed, names Mj Miller as the duo partner; the
+  listing keeps the flyer's "Jim & Manda"); Hang Ten at Rock-A-Bago, Fri
+  Nov 13, end time 11 PM added (the event now says 8–11 PM, matching its
+  banner).
+- **Skipped (out of area):** Uncle Mike & The Hitman at Red's on 7th,
+  Delavan WI; Sheez-It at The Bears Den, Amboy IL; The Whiskey Kittens at
+  Newman's Corner Pub, Hampshire IL. **Skipped (out of scope):** Mulligan's
+  Ugly Sweater Christmas Party, Fri Dec 18 (anniversary party with
+  giveaways, no music named), and Shattered's Sunday meat raffle (Nov 15).
+- **Waiting:** Inscape Open Mic Night, Dec 11 (kind of open mic not stated);
+  a second copy of Broadway Joe's Thanksgiving Eve DJ Slick flyer (still no
+  time).
