@@ -1399,3 +1399,14 @@ Thu Nov 12; "Friday" on another = Nov 13).
 - **Waiting:** Inscape Open Mic Night, Dec 11 (kind of open mic not stated);
   a second copy of Broadway Joe's Thanksgiving Eve DJ Slick flyer (still no
   time).
+
+## 2026-11-11: Inbox run (scheduled, second)
+
+2 files. Weekdays checked: Sat Nov 14 and Sat Nov 21, 2026 both match.
+- **Re-confirmed, `checked` bumped:** Next Stop Comedy at Pig Minds, Sat
+  Nov 21, 7 PM (Next Stop Comedy's own ad: same date, time and ticket site).
+  The listing keeps its venue source and file; the ad was filed as
+  `venues/pig-minds-brewing/2026-11_next-stop-comedy-ad.png`.
+- **Waiting:** District "Girls Just Wanna Have Fun" with DJ Nunu, Sat Nov 14
+  (no start time). The cropped neighbouring post (Broadway Joe's veterans'
+  food discount) isn't an event. Nothing skipped.

@@ -592,3 +592,8 @@ In `waiting/` as `2026-11_district-hunks-bingo.png`.
   site, which matches the post. The rule itself was left alone. If the bar
   says both are on, the open mic needs its own one-off for Nov 12
   (`data/recurring/shattered-saloon-open-mic-karaoke-thursday.json`).
+- **District: "Girls Just Wanna Have Fun", Sat Nov 14.** District Bar and
+  Grill's own post: DJ Nunu Ent presents, music by DJ Nunu, "ladies free til
+  10" (Nov 14, 2026 is a Saturday). No start time, so not published (same
+  as Juke Me, Nov 7). Add as `dj` at District once a time is posted. In
+  `waiting/` as `2026-11_district-girls-just-wanna-have-fun.jpg`.
