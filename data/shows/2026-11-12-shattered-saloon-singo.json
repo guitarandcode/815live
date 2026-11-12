@@ -4,7 +4,8 @@
   "venue": "shattered-saloon",
   "category": "bingo",
   "title": "Country Music Singo",
-  "checked": "2026-11-11",
+  "notes": "Karaoke to follow.",
+  "checked": "2026-11-12",
   "source": {
     "type": "manual",
     "file": "venues/shattered-saloon/2026-11_country-music-singo-meat-raffle.jpg"

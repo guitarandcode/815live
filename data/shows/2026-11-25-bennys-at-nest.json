@@ -1,0 +1,17 @@
+{
+  "date": "2026-11-25",
+  "startTime": "19:00",
+  "endTime": "23:00",
+  "venue": "bennys-at-nest",
+  "category": "live-music",
+  "title": "Final Farewell Show",
+  "artists": [
+    "stevee-nix"
+  ],
+  "checked": "2026-11-12",
+  "source": {
+    "type": "manual",
+    "kind": "artist",
+    "file": "venues/bennys-at-nest/2026-11_stevee-nix-farewell-event.png"
+  }
+}

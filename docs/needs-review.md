@@ -547,6 +547,8 @@ In `waiting/` as `2026-11_district-hunks-bingo.png`.
   both to the venue folder when it's published.
   A third screenshot of the same post (2026-11-10 inbox, unchanged) is in
   `waiting/` as `2026-11_backyard-grill-shifty-boys-unplugged-3.png`.
+  A fourth copy (2026-11-12 inbox, unchanged) is in `waiting/` as
+  `2026-11_backyard-grill-shifty-boys-unplugged-4.png`.
 - ~~Mustang's Bar & Grill: "Comedy Night", date cut off~~: resolved
   2026-11-10. The full flyer gives Wed Nov 11, 8 PM, free; published.
 
@@ -592,8 +594,43 @@ In `waiting/` as `2026-11_district-hunks-bingo.png`.
   site, which matches the post. The rule itself was left alone. If the bar
   says both are on, the open mic needs its own one-off for Nov 12
   (`data/recurring/shattered-saloon-open-mic-karaoke-thursday.json`).
+  Update 2026-11-12: the bar's "Events This Week" graphic says "Country
+  Singo, Karaoke to follow, 8PM" (no open mic). "Karaoke to follow" was
+  added to the Singo listing's notes.
 - **District: "Girls Just Wanna Have Fun", Sat Nov 14.** District Bar and
   Grill's own post: DJ Nunu Ent presents, music by DJ Nunu, "ladies free til
   10" (Nov 14, 2026 is a Saturday). No start time, so not published (same
   as Juke Me, Nov 7). Add as `dj` at District once a time is posted. In
   `waiting/` as `2026-11_district-girls-just-wanna-have-fun.jpg`.
+
+## 2026-11-12 inbox run
+
+- **Murphy's Pub & Grill: November events, no times.** The pub's own
+  "Murphy's November Events!" post (posted Nov 6). Weekdays match 2026. With
+  no start times, none is published:
+  - Fri Nov 13, "Friday the 13th Party", DJ Jbhvnfun (`dj`).
+  - Thu Nov 19, "Friends" trivia (`trivia`).
+  - Sat Nov 21, "EDM Dance Party", DJ Wyld Rice (`dj`).
+  - Wed Nov 25, "Black Wednesday Party", DJ Eddie (`dj`).
+  Thu Nov 26 karaoke is covered by the Thursday karaoke rule (9 PM). Left
+  out (giveaway nights, no music named): Friendsgiving Nov 14, Black Friday
+  ladies' night Nov 27, Spin the Wheel Nov 28. Publish each once the pub
+  gives a time. In `waiting/` as `2026-11_murphys-november-events.jpg`.
+- **Poison Ivy: Ryan V Music, Thu Nov 12, 5:30–8:30 PM.** The act's own
+  graphic ("Poison Ivy, Thursday 11/12"). No venue record and no town or
+  address on the graphic, so not published (and it's past after tonight).
+  If Poison Ivy is a bar in the area, add the venue (Census geocode) for
+  future dates. In `waiting/` as `2026-11_poison-ivy-ryan-v-music.jpg`.
+- **Top Dollar Slots Windsor: karaoke, Wednesdays 7–11 PM (schedule
+  unclear).** Facebook event by the host (name left out), "Top Dollar
+  Karaoke!! Every other Wednesday!" The description lists Oct 14, Oct 28,
+  Nov 11 and (cut off) more, i.e. every other week; but the event's date
+  list shows Wed Nov 4, Nov 11 and Nov 18 (+3), i.e. weekly, and the page
+  is headed Nov 18. The graphic still says "October". No venue record or
+  address ("Windsor location"; town not shown). Publish as `karaoke` once
+  the address and the schedule (weekly or biweekly, and which weeks) are
+  confirmed. In `waiting/` as `2026-11_top-dollar-windsor-karaoke.png`.
+- **Whiskey's Roadhouse, Nov 28: fourth band.** "The Thanks Killing Show"
+  is published with three acts; the flyer's fourth logo (lower right, looks
+  like "Hallowed ... Ground") can't be read. Add the artist once it's known
+  (`data/shows/2026-11-28-whiskeys-roadhouse.json`).

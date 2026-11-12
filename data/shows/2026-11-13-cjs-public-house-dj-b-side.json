@@ -1,0 +1,16 @@
+{
+  "date": "2026-11-13",
+  "startTime": "20:00",
+  "venue": "cjs-public-house",
+  "category": "dj",
+  "title": "Friday the 13th",
+  "artists": [
+    "dj-b-side"
+  ],
+  "notes": "Tarot card readings.",
+  "checked": "2026-11-12",
+  "source": {
+    "type": "manual",
+    "file": "venues/cjs-public-house/2026-11_friday-the-13th-dj-b-side.jpg"
+  }
+}

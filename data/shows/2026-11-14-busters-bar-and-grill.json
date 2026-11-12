@@ -1,0 +1,17 @@
+{
+  "date": "2026-11-14",
+  "startTime": "20:00",
+  "endTime": "00:00",
+  "venue": "busters-bar-and-grill",
+  "category": "live-music",
+  "artists": [
+    "rollin-whiskey"
+  ],
+  "checked": "2026-11-12",
+  "source": {
+    "type": "manual",
+    "url": "https://www.facebook.com/events/2663326097503053/",
+    "kind": "artist",
+    "file": "venues/busters-bar-and-grill/2026-11_rollin-whiskey-event.png"
+  }
+}

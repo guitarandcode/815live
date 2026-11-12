@@ -1410,3 +1410,36 @@ Thu Nov 12; "Friday" on another = Nov 13).
 - **Waiting:** District "Girls Just Wanna Have Fun" with DJ Nunu, Sat Nov 14
   (no start time). The cropped neighbouring post (Broadway Joe's veterans'
   food discount) isn't an event. Nothing skipped.
+
+## 2026-11-12: Inbox run (scheduled)
+
+16 files. Weekdays checked: Thu Nov 12, Fri Nov 13, Sat Nov 14, Wed Nov 18,
+Wed Nov 25, Thu Nov 26, Sat Nov 28, 2026 all match ("Tomorrow" on Nov 12
+screenshots = Fri Nov 13; "Saturday" = Nov 14).
+- **Published:** Friday the 13th with DJ B-Side at CJ's Public House, Fri
+  Nov 13, 8 PM (`dj`; tarot readings noted, photo ops left out); Rollin'
+  Whiskey at Buster's Bar & Grill, Sat Nov 14, 8 PM–midnight (the band's
+  event; link read from the screenshot's status bar); The Stevee Nix "Final
+  Farewell Show" at Benny's @ Nest, Wed Nov 25, 7–11 PM (the act's event);
+  "The Thanks Killing Show" at Whiskey's Roadhouse, Sat Nov 28, 8 PM, $5:
+  Reckless Redemption, Lights Out Alaska, Next To Eternity (new artist) and
+  a fourth band whose logo can't be read (noted on the listing; one
+  listing).
+- **Re-confirmed, `checked` bumped:** Rat Baxter at Wild Cherries Nov 14
+  (second copy of the flyer); Andrew Diehl blues night at Grand Avenue Pub
+  Nov 12 and The Synergy Band there Nov 13 (the pub's events); Split Signal
+  at Shattered Nov 13 (end time midnight added from the event) and Audio
+  Drive Nov 14; Shattered's Country Music Singo Nov 12 (the bar's "This
+  Week" graphic adds "Karaoke to follow", now in notes); District's
+  Thursday Hideaway rule. Murphy's November calendar shows karaoke on
+  Thanksgiving (Nov 26), which the Thursday karaoke rule already covers
+  (rule left as is, no time given).
+- **Skipped (out of area):** a punk show at The Hub, Harvard IL (about 40
+  minutes from downtown); KaBoom Acoustic Tunes at Legends Bar & Grill,
+  Erie IL. **Out of scope:** Shattered's Sunday meat raffle; Murphy's
+  Friendsgiving, Black Friday ladies' night and spin-the-wheel nights
+  (giveaway nights, no music named).
+- **Waiting:** Murphy's DJ and trivia nights (no times); Ryan V Music at
+  Poison Ivy (venue unknown); Top Dollar Slots Windsor karaoke (venue
+  unknown, schedule conflict); a fourth copy of the Shifty Boys / Backyard
+  Grill post.
