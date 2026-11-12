@@ -1,0 +1,18 @@
+{
+  "date": "2026-11-21",
+  "startTime": "19:00",
+  "endTime": "21:00",
+  "venue": "palace-wine-bar",
+  "category": "live-music",
+  "title": "Local Sounds",
+  "artists": [
+    "cole-brandt"
+  ],
+  "checked": "2026-11-12",
+  "source": {
+    "type": "manual",
+    "url": "https://www.palacewinebar.com/calendar",
+    "kind": "venue",
+    "file": "venues/palace-wine-bar/2026-11_local-sounds-cole-brandt.jpg"
+  }
+}
