@@ -1,12 +1,13 @@
 {
   "date": "2026-11-28",
   "startTime": "20:00",
+  "endTime": "23:00",
   "venue": "shattered-saloon",
   "category": "live-music",
   "artists": [
     "missing-links"
   ],
-  "checked": "2026-11-04",
+  "checked": "2026-11-13",
   "source": {
     "type": "manual",
     "file": "venues/shattered-saloon/2026-11_november-live-music.jpg"

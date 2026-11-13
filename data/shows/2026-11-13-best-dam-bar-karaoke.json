@@ -1,0 +1,15 @@
+{
+  "date": "2026-11-13",
+  "startTime": "20:00",
+  "venue": "best-dam-bar",
+  "category": "karaoke",
+  "title": "Karaoke",
+  "artists": [],
+  "checked": "2026-11-13",
+  "source": {
+    "type": "manual",
+    "url": "https://www.facebook.com/people/Best-Dam-Bar/100052172205578/",
+    "kind": "venue",
+    "file": "venues/best-dam-bar/2026-11_karaoke-nov-13.jpg"
+  }
+}

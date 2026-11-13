@@ -1453,3 +1453,25 @@ Nov 12) = Fri Nov 13, 2026 (weekday checked).
   The post gives no time or cover, so 8 PM and the cover stay from the
   earlier source; `source.file` stays on the original flyer. Screenshot
   filed as `venues/the-music-box/2026-11_six-mile-grove-this-friday-post.png`.
+
+## 2026-11-13: Inbox run (scheduled, afternoon)
+
+4 files. Fri Nov 13, Sat Nov 14 and Sat Nov 28, 2026 weekdays checked.
+- **New venue: Grand Slam, Beloit** (173 W Grand Ave, address from its
+  Facebook event; US Census geocoder match). No social links stored (the
+  page URL isn't visible in the screenshot).
+- **Published:** Pistol Pete at Grand Slam, Sat Nov 14, 7–10 PM. The event
+  says "Tomorrow" and the screenshot was taken Fri Nov 13 at 1:15 PM, so
+  Nov 14. Best Dam Bar karaoke tonight (Fri Nov 13), 8 PM: the bar's post
+  says "DJ Stylez Karaoke 8pm tonight" while the graphic says "Live DJ
+  Event"; the bar's own text names it karaoke, so `karaoke`, title
+  "Karaoke", DJ name left out. Hot Rod Nellie's Friday karaoke, Nov 13,
+  8:30 PM (bar's post from 3h before the screenshot; host name and the
+  Joker drawing left out). It shows Holly as the karaoke host, which
+  answers the old Oct 30 "Pre-Game with Holly" question (past).
+- **Updated:** Missing Links at Shattered Bar, Sat Nov 28: end time 11 PM
+  from the band's Facebook event, `checked` bumped; `source.file` stays on
+  the venue's November flyer, the event screenshot filed with it.
+- **Not listed:** a cropped neighbouring post about a "Shanahan's Thursday
+  ProJam" (no date or town shown); a meme post next to the Nellie's post.
+- Nothing skipped or moved to waiting.
