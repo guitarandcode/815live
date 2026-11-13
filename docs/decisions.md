@@ -1443,3 +1443,13 @@ screenshots = Fri Nov 13; "Saturday" = Nov 14).
   Poison Ivy (venue unknown); Top Dollar Slots Windsor karaoke (venue
   unknown, schedule conflict); a fourth copy of the Shifty Boys / Backyard
   Grill post.
+
+## 2026-11-13: Inbox run (scheduled)
+
+1 file. "This Friday" on a Music Box post from about Nov 11 (screenshot
+Nov 12) = Fri Nov 13, 2026 (weekday checked).
+- **Re-confirmed, `checked` bumped:** "An Evening with Six Mile Grove" at
+  the Music Box, Fri Nov 13 (`data/shows/2026-11-13-the-music-box.json`).
+  The post gives no time or cover, so 8 PM and the cover stay from the
+  earlier source; `source.file` stays on the original flyer. Screenshot
+  filed as `venues/the-music-box/2026-11_six-mile-grove-this-friday-post.png`.
