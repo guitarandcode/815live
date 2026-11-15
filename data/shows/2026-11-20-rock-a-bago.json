@@ -1,0 +1,16 @@
+{
+  "date": "2026-11-20",
+  "startTime": "20:00",
+  "endTime": "23:00",
+  "venue": "rock-a-bago",
+  "category": "live-music",
+  "title": "Danny Grams Acoustic",
+  "artists": [
+    "danny-grams"
+  ],
+  "checked": "2026-11-15",
+  "source": {
+    "type": "manual",
+    "file": "venues/rock-a-bago/2026-11_danny-grams-acoustic-event.png"
+  }
+}
