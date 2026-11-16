@@ -1,12 +1,13 @@
 {
   "date": "2026-11-28",
   "startTime": "20:00",
+  "endTime": "00:00",
   "venue": "hot-rod-nellies",
   "category": "live-music",
   "artists": [
     "jupiter-sky"
   ],
-  "checked": "2026-11-08",
+  "checked": "2026-11-16",
   "source": {
     "type": "manual",
     "file": "venues/hot-rod-nellies/2026-11_jupiter-sky.jpeg"

@@ -471,7 +471,10 @@ show once a time is posted. In `waiting/` as
 `2026-11_broadway-joes-blackout-on-broadway.jpg`. A second copy (2026-11-11
 inbox, titled "Blackout Wednesday") still shows no time; the bottom line is
 hidden behind the reaction bar. In `waiting/` as
-`2026-11_broadway-joes-blackout-on-broadway-2.jpg`.
+`2026-11_broadway-joes-blackout-on-broadway-2.jpg`. A third copy (2026-11-16
+inbox, full "Blackout Wednesday" flyer: UV lighting, all-black attire) has
+no time or cover either. In `waiting/` as
+`2026-11_broadway-joes-blackout-on-broadway-3.jpg`.
 
 ## Lisa's Pub, Rochelle: The Couch Coins, Sat Nov 7, 5–8 PM (area call)
 
@@ -634,3 +637,18 @@ In `waiting/` as `2026-11_district-hunks-bingo.png`.
   is published with three acts; the flyer's fourth logo (lower right, looks
   like "Hallowed ... Ground") can't be read. Add the artist once it's known
   (`data/shows/2026-11-28-whiskeys-roadhouse.json`).
+
+## After the Vine: Trifecta Trio, Fri Nov 20, 6–9 PM (venue address)
+
+Facebook event screenshot (2026-11-16 inbox) by Trifecta Trio and After The
+Vine: "After the vine", live jazz, blues and R&B. The screenshot shows times
+in GMT (Nov 21, 12–3 AM GMT), so Fri Nov 20, 6–9 PM Chicago (3 hr). The
+event's location says only "Rockford, IL". No venue record. After the Vine
+is a wine bar at 163 Hawick St, Rockton IL 61072 (GoRockford listing, Rock
+River Current 2021, Roscoe News 2022; an older article says 181 Hawick St).
+The Census geocoder has no match for 163 Hawick St or 163 E Hawick St, so
+no venue was created. Confirm the address and that this is the Rockton
+shop (the event says Rockford). With your OK, place it at a nearby
+TIGER/Line road intersection, then publish as `live-music` with a new
+`trifecta-trio` artist. In `waiting/` as
+`2026-11_after-the-vine-trifecta-trio.png`.

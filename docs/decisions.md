@@ -1475,3 +1475,22 @@ Nov 12) = Fri Nov 13, 2026 (weekday checked).
 - **Not listed:** a cropped neighbouring post about a "Shanahan's Thursday
   ProJam" (no date or town shown); a meme post next to the Nellie's post.
 - Nothing skipped or moved to waiting.
+
+## 2026-11-16: Inbox run (scheduled, morning)
+
+6 files: five Facebook event screenshots (times shown in GMT, converted to
+Chicago, CST = GMT−6) and one flyer. Weekdays checked: Fri Nov 20, Sat
+Nov 21, Wed Nov 25, Fri Nov 27, Sat Nov 28, 2026 and Sat Jan 2, 2027 all
+match.
+- **Re-confirmed, `checked` bumped (no other change):** Dirty Pop at
+  Shattered, Sat Nov 21, 8 PM; Sunset Strip at Shattered, Fri Nov 27, 8 PM
+  (Black Friday); Random AF Farewell Show at Shattered, Sat Jan 2, 2027,
+  8 PM. Each listing keeps its `source.file`; the event screenshots were
+  filed in `venues/shattered-saloon/`.
+- **Updated:** Jupiter Sky at Hot Rod Nellie's, Sat Nov 28: end time
+  midnight (event says 8 PM–12 AM), `checked` bumped. Screenshot filed as
+  `venues/hot-rod-nellies/2026-11_jupiter-sky-event.png`.
+- **Waiting:** a third copy of Broadway Joe's Thanksgiving Eve DJ Slick
+  flyer (still no time); Trifecta Trio at After the Vine, Fri Nov 20
+  (no Census match for the venue address; the event says Rockford, but the
+  shop is in Rockton). Nothing skipped.
