@@ -652,3 +652,13 @@ shop (the event says Rockford). With your OK, place it at a nearby
 TIGER/Line road intersection, then publish as `live-music` with a new
 `trifecta-trio` artist. In `waiting/` as
 `2026-11_after-the-vine-trifecta-trio.png`.
+
+## Mulligan's: Back Yard Karaoke, Thu Nov 19 (no time)
+
+Mulligan's Pub & Grill post (screenshot Mon 2026-11-16) in Back Yard
+Karaoke: "Karaoke this Thursday night!" = Thu Nov 19, 2026. No time or
+cover given. The Nov 12 listing (9 PM–midnight) came from a flyer for that
+night only, so the time isn't assumed. Confirm the start time (and whether
+it's now weekly, which would make it a recurring rule), then publish as
+`karaoke`. In `waiting/` as
+`2026-11_mulligans-back-yard-karaoke-thursday-post.png`.

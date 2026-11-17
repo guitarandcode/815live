@@ -1494,3 +1494,21 @@ match.
   flyer (still no time); Trifecta Trio at After the Vine, Fri Nov 20
   (no Census match for the venue address; the event says Rockford, but the
   shop is in Rockton). Nothing skipped.
+
+## 2026-11-17: Inbox run (scheduled)
+
+6 Facebook screenshots (taken Mon Nov 16; event times shown in GMT,
+converted to Chicago, CST = GMT−6). Weekdays checked: Wed Nov 18, Thu
+Nov 19, Fri Nov 20, Sat Nov 21, 2026 all match.
+- **Added:** "Friends Thanksgiving Episodes Trivia" (Rock Valley Pub
+  Trivia) at Cahoots, Wed Nov 18, 6:30 PM, free (`trivia`, one-off).
+- **Updated:** DJ Dez at Fozzy's, Fri Nov 20: end time 1:30 AM from the
+  venue's post. Vintage Vinyl at Rock-A-Bago, Sat Nov 21: end time
+  midnight (event says 8–12). `checked` bumped on both; `source.file`
+  stays on the original sources, and the new screenshots are filed in the
+  venue folders.
+- **Re-confirmed, `checked` bumped:** Danny Grams Acoustic at Rock-A-Bago,
+  Fri Nov 20, 8–11 PM (the event title misspells it "Gramd").
+- **Skipped (out of scope):** male revue at Rock-A-Bago, Thu Nov 19 (same
+  call as the earlier Rock-A-Bago male revue).
+- **Waiting:** Mulligan's Back Yard Karaoke, Thu Nov 19 (no time).
