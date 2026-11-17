@@ -1,0 +1,14 @@
+{
+  "name": "The Club Tavern",
+  "address": "1975 Porter Ave",
+  "city": "Beloit",
+  "state": "WI",
+  "zip": "53511",
+  "lat": 42.52710,
+  "lng": -89.02066,
+  "description": "Neighborhood tavern on Porter Avenue in Beloit.",
+  "social": {
+    "ig_verified": false,
+    "fb_verified": false
+  }
+}

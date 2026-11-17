@@ -1,0 +1,15 @@
+{
+  "date": "2026-11-21",
+  "startTime": "18:00",
+  "endTime": "22:00",
+  "venue": "club-tavern",
+  "category": "live-music",
+  "artists": [
+    "rebel-hearts"
+  ],
+  "checked": "2026-11-17",
+  "source": {
+    "type": "manual",
+    "file": "venues/club-tavern/2026-11_rebel-hearts-event.png"
+  }
+}

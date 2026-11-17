@@ -1512,3 +1512,34 @@ Nov 19, Fri Nov 20, Sat Nov 21, 2026 all match.
 - **Skipped (out of scope):** male revue at Rock-A-Bago, Thu Nov 19 (same
   call as the earlier Rock-A-Bago male revue).
 - **Waiting:** Mulligan's Back Yard Karaoke, Thu Nov 19 (no time).
+
+## 2026-11-17: Inbox run (scheduled, evening)
+
+9 files: two flyers and seven Facebook screenshots. Weekdays checked: Thu
+Nov 19, Fri Nov 20, Sat Nov 21, Sun Nov 22, Fri Dec 11 and Sat Dec 12, 2026
+all match.
+- **Added:** Rebel Hearts at The Club Tavern, Beloit WI, Sat Nov 21,
+  6–10 PM (the band's Facebook event). New venue `club-tavern`: the event
+  shows only "The Club Tavern, Beloit, Wisconsin"; the address (1975 Porter
+  Ave, Beloit 53511) comes from Make Music Beloit's venue listing and the
+  Census geocoder matched it. Tony Loya with Los Elevados de Chicago and
+  Destrampados de Chicago at District, Sun Nov 22, doors 4 PM (one listing,
+  `lineupPartial`; the special guest's name can't be read, see
+  needs-review). Harlan Jefferson at Sheila's Daiquiri Lounge, Sat Nov 21,
+  9–11 PM: Sheila's now posts it itself, which answers the earlier "who
+  plays Nov 21" question for Harlan (live painter left out; The Synergy
+  Band overlap still open). 4 new artists.
+- **Re-confirmed, `checked` bumped:** District's Thursday Hideaway (the
+  flyer now says "The Hideaway Room"; rule title left as is, `source.file`
+  moved to the new flyer) and Thursday karaoke (another "Karaoke for Cash"
+  post, still no start time, so 9 PM is unchanged); Sheila's Thirsty
+  Thursday Karaoke, 7–11 PM; Ivy Ford (Nov 19) and Blue Olives (Nov 20) at
+  Grand Avenue Pub. "Bingo & Blues" on Thursday follows the 2026-10-26 call
+  (bingo left out, blues listed).
+- **Skipped:** Savana and Matthew Adam at Studio Winery, Lake Geneva WI,
+  Fri Nov 20 (out of area); Grand Avenue Pub's Sunday meat raffle (out of
+  scope).
+- **Waiting:** Grand Avenue Pub, Sat Nov 21 (Blood Brothers in the pub's
+  new post vs. Soul 2 Soul from its November calendar); J.R. Sullivan's
+  Hometown Holiday at the Nordlof Center, Dec 11–12 (no times); the Tony
+  Loya flyer (special guest unreadable).

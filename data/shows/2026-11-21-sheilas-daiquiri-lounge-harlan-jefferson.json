@@ -1,0 +1,17 @@
+{
+  "date": "2026-11-21",
+  "startTime": "21:00",
+  "endTime": "23:00",
+  "venue": "sheilas-daiquiri-lounge",
+  "category": "live-music",
+  "artists": [
+    "harlan-jefferson"
+  ],
+  "checked": "2026-11-17",
+  "source": {
+    "type": "manual",
+    "url": "https://www.sheilasdaiquirilounge.com/",
+    "kind": "venue",
+    "file": "venues/sheilas-daiquiri-lounge/2026-11_harlan-jefferson-venue-post.png"
+  }
+}

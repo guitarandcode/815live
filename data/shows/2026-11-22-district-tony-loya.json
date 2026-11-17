@@ -1,0 +1,20 @@
+{
+  "date": "2026-11-22",
+  "startTime": "16:00",
+  "venue": "district",
+  "category": "live-music",
+  "artists": [
+    "tony-loya",
+    "los-elevados-de-chicago",
+    "destrampados-de-chicago"
+  ],
+  "lineupPartial": true,
+  "notes": "Doors 4 PM.",
+  "checked": "2026-11-17",
+  "source": {
+    "type": "manual",
+    "url": "https://districtdowntown.com/",
+    "kind": "venue",
+    "file": "waiting/2026-11_district-tony-loya.jpeg"
+  }
+}

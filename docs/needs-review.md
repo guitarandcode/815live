@@ -451,16 +451,20 @@ Friendsgiving, Thanksgiving hours. In `waiting/` as
   confirmed. The rest of the newer flyer matched and was re-confirmed. In
   `waiting/` as `2026-11_shattered-november-live-music-v2.jpg`.
 
-## Sheila's Daiquiri Lounge: Harlan Jefferson, Sat Nov 21, 9–11 PM (overlaps The Synergy Band)
+## Sheila's Daiquiri Lounge, Sat Nov 21: The Synergy Band (8:30 PM) still listed beside Harlan Jefferson
 
-Harlan Jefferson's own Facebook post (screenshot taken Nov 3) says he plays
-Sheila's "every 3rd Saturday of the month (Next up: November 21st)", 9–11 PM,
-with a live painter. Sheila's already has The Synergy Band on Nov 21 at
-8:30 PM (from the band's 2026 schedule graphic). Not published: nothing says
-it's a double bill, so one of the two may be wrong. Check with Sheila's who
-plays Nov 21. If Harlan's 3rd Saturdays are confirmed, they could be listed
-monthly (Dec 19 would be next). In `waiting/` as
-`2026-11_harlan-jefferson-sheilas.jpg`.
+Harlan Jefferson's own post (Nov 3) said he plays Sheila's "every 3rd
+Saturday of the month (Next up: November 21st)", 9–11 PM. Update
+2026-11-17: Sheila's Daiquiri Lounge itself shared it with its own flyer
+("Nov 21 | 9–11 PM", jazz/soul/R&B/blues), so Harlan Jefferson is now
+published (`data/shows/2026-11-21-sheilas-daiquiri-lounge-harlan-jefferson.json`)
+and both of his files are under `venues/sheilas-daiquiri-lounge/`.
+Still open: The Synergy Band's Nov 21, 8:30 PM listing
+(`data/shows/2026-11-21-sheilas-daiquiri-lounge.json`, from the band's 2026
+schedule graphic, no `source.file`) overlaps it. Nothing says it's a double
+bill. Check whether Synergy still plays Nov 21 and remove that listing if
+not. If Harlan's 3rd Saturdays are a standing date, they could be listed
+monthly (Dec 19 would be next).
 
 ## Broadway Joe's: "Blackout on Broadway", Wed Nov 25 (no time)
 
@@ -662,3 +666,37 @@ night only, so the time isn't assumed. Confirm the start time (and whether
 it's now weekly, which would make it a recurring rule), then publish as
 `karaoke`. In `waiting/` as
 `2026-11_mulligans-back-yard-karaoke-thursday-post.png`.
+
+## Grand Avenue Pub, Sat Nov 21: Blood Brothers or Soul 2 Soul?
+
+The pub's own weekend post (screenshot 2026-11-17, posted that day) lists
+Thursday "Bingo & Blues featuring Ivy Ford", Friday Blue Olives, Saturday
+Blood Brothers and a Sunday meat raffle. Thursday and Friday match our
+listings (`checked` bumped). For Saturday Nov 21 our listing is Soul 2 Soul,
+8 PM–midnight (`data/shows/2026-11-21-grand-avenue-pub.json`, from the pub's
+November calendar). The new post is the newer venue source, but it gives no
+time and doesn't say Soul 2 Soul is off, so nothing changed. If Blood
+Brothers replaces Soul 2 Soul, swap the artist (new `blood-brothers`
+record) and point `source.file` at this screenshot. In `waiting/` as
+`2026-11_grand-avenue-pub-weekend-lineup.png`.
+
+## RPL Nordlof Center: J.R. Sullivan's Hometown Holiday, Fri Dec 11 and Sat Dec 12 (no times)
+
+The Nordlof Center's own post (screenshot 2026-11-17) shares the show's
+post: "Hometown Holiday", Dec 11 and 12, 2026, at the Nordlof Center
+(J.R. Sullivan Theater), a holiday music show with pianist and vocalist
+Shawn Wallace and J.R. Sullivan's cast. "Get your tickets now", but no
+show times, price or ticket link are shown, and a web search found no event
+page. Publish as `live-music` (two listings) once the times are known. In
+`waiting/` as `2026-12_nordlof-hometown-holiday.png`.
+
+## District, Sun Nov 22: Tony Loya's special guest
+
+District's flyer: Tony Loya with Los Elevados de Chicago and Destrampados
+de Chicago, Sunday November 22, doors 4 PM (published as one listing,
+`data/shows/2026-11-22-district-tony-loya.json`, `lineupPartial: true`).
+The "invitado especial" group's name is stylised and can't be read
+reliably (it ends "...Hacendado"). Add the artist once the name is
+confirmed, then drop `lineupPartial` and move the flyer to
+`venues/district/` (update `source.file`). In `waiting/` as
+`2026-11_district-tony-loya.jpeg`.
