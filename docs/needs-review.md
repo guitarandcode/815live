@@ -700,3 +700,16 @@ reliably (it ends "...Hacendado"). Add the artist once the name is
 confirmed, then drop `lineupPartial` and move the flyer to
 `venues/district/` (update `source.file`). In `waiting/` as
 `2026-11_district-tony-loya.jpeg`.
+
+## Anderson Japanese Gardens: Illuminated holiday caroling, Fri Dec 4 (in scope?)
+
+A RAWLE roundup post (Nov 14, screenshot 2026-11-17) lists holiday caroling
+outdoors in the Guest House Circle during Illuminated at Anderson Japanese
+Gardens on Fri Dec 4: Guilford High School at 6 PM and Voices of Harlem at
+7 PM; Illuminated admission is bought in person at the gardens. School choir
+concerts have been left out before (Harlem High School's Kaleidoscope,
+decisions.md), but this is part of a public ticketed event, so it's your
+call: list as `live-music` (new venue `anderson-japanese-gardens`, Census
+geocode; roundup source unless the gardens post it) or skip. The post's other
+item, Clark Kelly at Hard Rock Sat Nov 14, is past and already listed. In
+`waiting/` as `2026-12_anderson-gardens-illuminated-caroling.png`.

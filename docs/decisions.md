@@ -1543,3 +1543,12 @@ all match.
   new post vs. Soul 2 Soul from its November calendar); J.R. Sullivan's
   Hometown Holiday at the Nordlof Center, Dec 11–12 (no times); the Tony
   Loya flyer (special guest unreadable).
+
+## 2026-11-18: Inbox run (scheduled, morning)
+
+One file, a RAWLE roundup post (Nov 14). Its Clark Kelly at Hard Rock
+(Sat Nov 14) is past and already listed. The Dec 4 Illuminated caroling at
+Anderson Japanese Gardens (Guilford High School 6 PM, Voices of Harlem 7 PM)
+wasn't published: school choirs were left out before (Harlem High School's
+Kaleidoscope), but this one is inside a public ticketed event, so the scope
+call went to needs-review and the file to `waiting/`.
