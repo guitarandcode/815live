@@ -6,7 +6,7 @@
 // event's own page, which is fetched only when the feed's LAST-MODIFIED for
 // that event changes, because robots.txt sets Crawl-delay: 60.
 import { textLines } from '../lib/html.ts';
-import { fetchText } from '../lib/http.ts';
+import { emptySourceError, fetchResponse, fetchText } from '../lib/http.ts';
 import { parseIcs, type IcsEvent } from '../lib/ics.ts';
 import { matchArtist } from '../lib/artists.ts';
 import { deferToHandEntered, type IngestedShow } from '../lib/store.ts';
@@ -91,8 +91,9 @@ export interface RunResult {
 
 /** @param state event slug -> what its page said at a given LAST-MODIFIED. */
 export async function run(state: Record<string, Detail>, today: string, full = false): Promise<RunResult> {
-  const events = parseIcs(await fetchText(FEED));
-  if (events.length === 0) throw new Error('feed had no events; refusing to treat every listing as removed');
+  const feed = await fetchResponse(FEED);
+  const events = parseIcs(feed.text);
+  if (events.length === 0) throw emptySourceError('feed had no events', feed);
   const refetched = new Map<string, IngestedShow[]>();
   const alive = new Set<string>();
   const next: Record<string, Detail> = {};

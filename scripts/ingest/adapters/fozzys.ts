@@ -17,7 +17,7 @@
 import { matchArtist } from '../lib/artists.ts';
 import { classifyEvent } from '../lib/classify.ts';
 import { decode } from '../lib/html.ts';
-import { fetchText } from '../lib/http.ts';
+import { emptySourceError, fetchResponse, fetchText, type Fetched } from '../lib/http.ts';
 import { parseIcs, type IcsEvent } from '../lib/ics.ts';
 import { deferToHandEntered, type IngestedShow } from '../lib/store.ts';
 import { addDays } from '../../../src/lib/time.ts';
@@ -85,8 +85,13 @@ export async function run(state: Record<string, Seen>, today: string, full = fal
   const maps = [...index.matchAll(/<loc>([^<]*mec-events-sitemap\d*\.xml)<\/loc>/g)].map((m) => m[1]);
   if (!maps.length) throw new Error('no mec-events sitemaps in sitemap_index.xml');
   const pages = new Map<string, string>();
-  for (const sm of maps) for (const [u, lm] of parseEventSitemap(await fetchText(sm))) pages.set(u, lm);
-  if (!pages.size) throw new Error('event sitemaps listed no events; refusing to treat every listing as removed');
+  const sitemaps: Fetched[] = [];
+  for (const sm of maps) {
+    const res = await fetchResponse(sm);
+    sitemaps.push(res);
+    for (const [u, lm] of parseEventSitemap(res.text)) pages.set(u, lm);
+  }
+  if (!pages.size) throw emptySourceError('event sitemaps listed no events', sitemaps);
 
   const refetched = new Map<string, IngestedShow[]>();
   const alive = new Set([...pages.keys()].map(slugOf));

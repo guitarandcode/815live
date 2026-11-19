@@ -48,7 +48,16 @@ async function assertAllowed(url: string) {
   if (!verdict.allowed) throw new RobotsBlocked(`${url} disallowed (${verdict.rule})`);
 }
 
-export async function fetchText(url: string): Promise<string> {
+/** A response body plus what the server said about it. */
+export interface Fetched {
+  url: string;
+  status: number;
+  contentType: string;
+  bytes: number;
+  text: string;
+}
+
+export async function fetchResponse(url: string): Promise<Fetched> {
   let current = url;
   for (let hop = 0; hop <= MAX_REDIRECTS; hop++) {
     await assertAllowed(current);
@@ -59,7 +68,34 @@ export async function fetchText(url: string): Promise<string> {
       continue;
     }
     if (!res.ok) throw new Error(`HTTP ${res.status} for ${current}`);
-    return res.text();
+    const body = await res.arrayBuffer();
+    return {
+      url: current,
+      status: res.status,
+      contentType: res.headers.get('content-type') ?? '(none)',
+      bytes: body.byteLength,
+      text: new TextDecoder().decode(body),
+    };
   }
   throw new Error(`Too many redirects for ${url}`);
+}
+
+export async function fetchText(url: string): Promise<string> {
+  return (await fetchResponse(url)).text;
+}
+
+const SNIPPET_CHARS = 300;
+
+/**
+ * The error an adapter throws when its source lists nothing, so the run keeps
+ * every existing listing. Says what the server actually sent (status, type,
+ * size, start of the body) so a glitch can be told from a block or a format change.
+ */
+export function emptySourceError(what: string, responses: Fetched | Fetched[]): Error {
+  const sent = [responses].flat().map((r) => {
+    const chars = [...r.text.replace(/\s+/g, ' ').trim()];
+    const snippet = chars.slice(0, SNIPPET_CHARS).join('') + (chars.length > SNIPPET_CHARS ? '…' : '');
+    return `${r.url}: HTTP ${r.status}, ${r.contentType}, ${r.bytes} bytes, body: "${snippet}"`;
+  });
+  return new Error(`${what}; refusing to treat every listing as removed (${sent.join('; ')})`);
 }

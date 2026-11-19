@@ -3,7 +3,7 @@
 // lastmod date; only new or changed pages are fetched. Event pages give
 // "Saturday, November 21 | 6PM" followed by the stage name, with no year.
 import { textLines, titleOf } from '../lib/html.ts';
-import { fetchText } from '../lib/http.ts';
+import { emptySourceError, fetchResponse, fetchText } from '../lib/http.ts';
 import { classifyEvent } from '../lib/classify.ts';
 import type { IngestedShow } from '../lib/store.ts';
 import { addDays, weekday } from '../../../src/lib/time.ts';
@@ -121,8 +121,9 @@ export interface RunResult {
 
 /** @param state slug -> lastmod from the previous run; pages with an unchanged lastmod aren't fetched. */
 export async function run(state: Record<string, string>, today: string, full = false): Promise<RunResult> {
-  const pages = parseSitemap(await fetchText(SITEMAP));
-  if (pages.size === 0) throw new Error('sitemap had no event pages; refusing to treat every listing as removed');
+  const sitemap = await fetchResponse(SITEMAP);
+  const pages = parseSitemap(sitemap.text);
+  if (pages.size === 0) throw emptySourceError('sitemap had no event pages', sitemap);
   const refetched = new Map<string, IngestedShow[]>();
   const next: Record<string, string> = {};
   const log: string[] = [`${pages.size} event pages in sitemap`];

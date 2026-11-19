@@ -5,7 +5,7 @@
 // pattern as the Hard Rock adapter: sitemap, then only new or changed pages.
 // Most events are art sales, sound baths and classes, so music is picked by
 // keywords and any other event that mentions music is logged for a person.
-import { fetchText } from '../lib/http.ts';
+import { emptySourceError, fetchResponse, fetchText } from '../lib/http.ts';
 import { matchArtist } from '../lib/artists.ts';
 import { classifyEvent } from '../lib/classify.ts';
 import { deferToHandEntered, type IngestedShow } from '../lib/store.ts';
@@ -98,8 +98,9 @@ export interface RunResult {
 
 /** @param state slug -> lastmod from the previous run; pages with an unchanged lastmod aren't fetched. */
 export async function run(state: Record<string, string>, today: string, full = false): Promise<RunResult> {
-  const pages = parseSitemap(await fetchText(SITEMAP));
-  if (pages.size === 0) throw new Error('sitemap had no event pages; refusing to treat every listing as removed');
+  const sitemap = await fetchResponse(SITEMAP);
+  const pages = parseSitemap(sitemap.text);
+  if (pages.size === 0) throw emptySourceError('sitemap had no event pages', sitemap);
   const refetched = new Map<string, IngestedShow[]>();
   const next: Record<string, string> = {};
   const log: string[] = [`${pages.size} event pages in sitemap`];

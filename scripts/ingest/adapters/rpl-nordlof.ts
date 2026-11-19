@@ -7,7 +7,7 @@
 // tags are inconsistent), so music is picked by keywords and everything
 // skipped is logged. Library times are often door times; a hand-entered show
 // on the same date (usually from the presenter) wins and the mismatch is logged.
-import { fetchText } from '../lib/http.ts';
+import { emptySourceError, fetchResponse } from '../lib/http.ts';
 import { parseIcs, type IcsEvent } from '../lib/ics.ts';
 import { matchArtist } from '../lib/artists.ts';
 import { deferToHandEntered, type IngestedShow } from '../lib/store.ts';
@@ -64,8 +64,9 @@ export interface RunResult {
 
 /** The feed is one request, so every run re-reads everything; no state. */
 export async function run(_state: Record<string, string>, today: string): Promise<RunResult> {
-  const events = parseIcs(await fetchText(FEED));
-  if (events.length === 0) throw new Error('feed had no events; refusing to treat every listing as removed');
+  const feed = await fetchResponse(FEED);
+  const events = parseIcs(feed.text);
+  if (events.length === 0) throw emptySourceError('feed had no events', feed);
   const refetched = new Map<string, IngestedShow[]>();
   const log: string[] = [`${events.length} Nordlof Center events in feed`];
   const skipped = new Set<string>();
