@@ -207,6 +207,15 @@ A second screenshot of the same November line-up (2026-11-06 inbox, same
 six dates and times, still no town) is in `waiting/` as
 `2026-11_rascals-november-lineup-2.png`. Nothing new.
 
+New (2026-11-19 inbox): a band photo flyer reading "Saturday, November 21st
+/ Rascals Bar • Loves Park / 8pm" (Nov 21, 2026 is a Saturday). It's the
+first source to name the town, which supports the directories' Loves Park
+address (5223 Torque Rd) but still isn't the bar's own word or a street
+address. The act isn't named on the image; the line-up has Wait, What? that
+night (8–11), so it's probably their post. Not published: no venue record
+yet, and the act is a guess. In `waiting/` as
+`2026-11_rascals-loves-park-nov-21.jpg`.
+
 ## RPL Nordlof Center: library times vs. Crossroads times
 
 The library calendar lists every Music Off the Rock show at 5 PM (Oct 28 at

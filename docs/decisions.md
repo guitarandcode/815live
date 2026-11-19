@@ -1552,3 +1552,18 @@ Anderson Japanese Gardens (Guilford High School 6 PM, Voices of Harlem 7 PM)
 wasn't published: school choirs were left out before (Harlem High School's
 Kaleidoscope), but this one is inside a public ticketed event, so the scope
 call went to needs-review and the file to `waiting/`.
+
+## 2026-11-19: Inbox run (scheduled, morning)
+
+Three files, nothing new published. Nov 20, 2026 is a Friday.
+
+- **Re-confirmed, `checked` bumped:** Shattered Bar's November live-music
+  flyer (another copy): Hang 10 Nov 20 7 PM, Dirty Pop Nov 21, Rollin
+  Whiskey Nov 25, Sunset Strip Nov 27, Missing Links Nov 28 (all 8 PM),
+  all already listed; Nov 6–14 past. The Thursday Karaoke & Open Mic rule
+  was re-checked too (no time on this flyer; 8 PM unchanged). Filed as
+  `venues/shattered-saloon/2026-11_november-live-music-resave.jpeg`;
+  `source.file` stays on the original copy.
+- **Skipped:** The Rusty Fox open mic, Sterling, Nov 19 (out of area).
+- **Waiting:** a band flyer for Rascals Bar, Loves Park, Sat Nov 21, 8 PM
+  (act not named; first source with the town). See needs-review.
