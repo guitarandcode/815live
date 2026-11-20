@@ -1567,3 +1567,19 @@ Three files, nothing new published. Nov 20, 2026 is a Friday.
 - **Skipped:** The Rusty Fox open mic, Sterling, Nov 19 (out of area).
 - **Waiting:** a band flyer for Rascals Bar, Loves Park, Sat Nov 21, 8 PM
   (act not named; first source with the town). See needs-review.
+
+## 2026-11-20: Inbox run (scheduled, morning)
+
+Two files, both Shattered Bar (Loves Park). Nov 26, 2026 is a Thursday.
+
+- **Re-confirmed, `checked` bumped:** the bar's own post, "Karaoke every
+  Thursday Night at 8 pm", with its "Open Mic Night & Karaoke, every
+  Thursday" graphic. The Thursday rule stays `open-mic` at 8 PM (settled
+  2026-10-28). Filed as
+  `venues/shattered-saloon/2026-11_karaoke-thursdays-8pm-post.jpg`;
+  `source.file` stays on the original flyer.
+- **Added:** Thanksgiving Karaoke Night, Thu Nov 26, 7 PM, `karaoke`
+  (the host's Facebook event, venue address 5440 N 2nd St, Loves Park).
+  It falls within the dedupe window of the Thursday 8 PM rule, so it
+  replaces that night's open mic slot on the site, like Singo on Nov 12.
+  See needs-review.

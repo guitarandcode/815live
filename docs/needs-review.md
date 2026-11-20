@@ -722,3 +722,15 @@ call: list as `live-music` (new venue `anderson-japanese-gardens`, Census
 geocode; roundup source unless the gardens post it) or skip. The post's other
 item, Clark Kelly at Hard Rock Sat Nov 14, is past and already listed. In
 `waiting/` as `2026-12_anderson-gardens-illuminated-caroling.png`.
+
+## Shattered Bar, Thu Nov 26: Thanksgiving Karaoke Night (7 PM) vs. the Thursday open mic rule (8 PM)
+
+The karaoke host's Facebook event (screenshot 2026-11-20): "Thanksgiving
+Karaoke Night at Shattered", Thu Nov 26, 7 PM, 5440 N 2nd St, Loves Park.
+Published as a one-off `karaoke` show
+(`data/shows/2026-11-26-shattered-saloon-karaoke.json`). Being within two
+hours of the Thursday "Open Mic & Karaoke Night" rule (8 PM), it replaces
+that slot on the site for Nov 26. The event says karaoke only and starts an
+hour early; if the bar also runs the open mic that night, give it its own
+one-off. File in `venues/shattered-saloon/` as
+`2026-11_thanksgiving-karaoke-nov-26.jpg`.
