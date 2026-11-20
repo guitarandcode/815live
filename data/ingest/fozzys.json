@@ -1,28 +1,61 @@
 {
   "https://fozzys.net/events/dj-dez-live-dj-9/": {
-    "lastmod": "2026-10-30T02:36:14+00:00",
+    "lastmod": "2026-11-10T17:38:30+00:00",
     "postId": "5697",
     "event": {
       "summary": "DJ Dez — Live DJ",
-      "description": "DJ Dez at Fozzy’s Loves Park on Saturday, November 28th, 9 PM to 1:30 AM.\nDance, pop, EDM and hip hop from the 90s to today.\nNo cover.\nReserve your table: https://fozzys.net/reservations",
+      "description": "DJ Dez at Fozzy’s Loves Park on Saturday, November 28th, 9 PM to 1:30 AM.\nDance, pop, EDM and hip hop from the 90s to today.\nReserve your table: https://fozzys.net/reservations",
       "date": "2026-11-28",
       "time": "21:00",
       "url": "https://fozzys.net/events/dj-dez-live-dj-9/"
     }
   },
   "https://fozzys.net/events/dj-visio-live-dj-5/": {
-    "lastmod": "2026-10-30T02:36:11+00:00",
+    "lastmod": "2026-11-10T17:38:26+00:00",
     "postId": "5692",
     "event": {
       "summary": "DJ Visio — Live DJ",
-      "description": "DJ Visio at Fozzy’s Loves Park on Friday, November 27th, 9 PM to 1:30 AM.\nEDM, dance, hip hop, rock and pop mixes.\nNo cover.\nReserve your table: https://fozzys.net/reservations",
+      "description": "DJ Visio at Fozzy’s Loves Park on Friday, November 27th, 9 PM to 1:30 AM.\nEDM, dance, hip hop, rock and pop mixes.\nReserve your table: https://fozzys.net/reservations",
       "date": "2026-11-27",
       "time": "21:00",
       "url": "https://fozzys.net/events/dj-visio-live-dj-5/"
     }
   },
+  "https://fozzys.net/events/dj-dez-live-dj-8/": {
+    "lastmod": "2026-11-10T17:38:23+00:00",
+    "postId": "5684",
+    "event": {
+      "summary": "DJ Dez — Live DJ",
+      "description": "DJ Dez at Fozzy’s Loves Park on Friday, November 20th, 9 PM to 1:30 AM.\nDance, pop, EDM and hip hop from the 90s to today.\nReserve your table: https://fozzys.net/reservations",
+      "date": "2026-11-20",
+      "time": "21:00",
+      "url": "https://fozzys.net/events/dj-dez-live-dj-8/"
+    }
+  },
+  "https://fozzys.net/events/dj-dez-live-dj-7/": {
+    "lastmod": "2026-11-10T17:38:19+00:00",
+    "postId": "5672",
+    "event": {
+      "summary": "DJ Dez — Live DJ",
+      "description": "DJ Dez at Fozzy’s Loves Park on Saturday, November 14th, 9 PM to 1:30 AM.\nDance, pop, EDM and hip hop from the 90s to today.\nReserve your table: https://fozzys.net/reservations",
+      "date": "2026-11-14",
+      "time": "21:00",
+      "url": "https://fozzys.net/events/dj-dez-live-dj-7/"
+    }
+  },
+  "https://fozzys.net/events/vj-eddiemix-live-dj-3/": {
+    "lastmod": "2026-11-04T17:28:54+00:00",
+    "postId": "5699",
+    "event": {
+      "summary": "VJ Eddiemix — Live DJ",
+      "description": "VJ Eddiemix at Fozzy’s Loves Park on Saturday, November 21st, 9 PM to 1:30 AM.\nA live video mix, music and visuals together.\nNo cover.\nReserve your table: https://fozzys.net/reservations",
+      "date": "2026-11-21",
+      "time": "21:00",
+      "url": "https://fozzys.net/events/vj-eddiemix-live-dj-3/"
+    }
+  },
   "https://fozzys.net/events/vj-eddiemix-live-dj-2/": {
-    "lastmod": "2026-10-30T02:36:08+00:00",
+    "lastmod": "2026-11-04T17:28:20+00:00",
     "postId": "5670",
     "event": {
       "summary": "VJ Eddiemix — Live DJ",
@@ -30,28 +63,6 @@
       "date": "2026-11-13",
       "time": "21:00",
       "url": "https://fozzys.net/events/vj-eddiemix-live-dj-2/"
-    }
-  },
-  "https://fozzys.net/events/dj-dez-live-dj-8/": {
-    "lastmod": "2026-10-30T02:36:04+00:00",
-    "postId": "5684",
-    "event": {
-      "summary": "DJ Dez — Live DJ",
-      "description": "DJ Dez at Fozzy’s Loves Park on Friday, November 20th, 9 PM to 1:30 AM.\nDance, pop, EDM and hip hop from the 90s to today.\nNo cover.\nReserve your table: https://fozzys.net/reservations",
-      "date": "2026-11-20",
-      "time": "21:00",
-      "url": "https://fozzys.net/events/dj-dez-live-dj-8/"
-    }
-  },
-  "https://fozzys.net/events/dj-dez-live-dj-7/": {
-    "lastmod": "2026-10-30T02:36:01+00:00",
-    "postId": "5672",
-    "event": {
-      "summary": "DJ Dez — Live DJ",
-      "description": "DJ Dez at Fozzy’s Loves Park on Saturday, November 14th, 9 PM to 1:30 AM.\nDance, pop, EDM and hip hop from the 90s to today.\nNo cover.\nReserve your table: https://fozzys.net/reservations",
-      "date": "2026-11-14",
-      "time": "21:00",
-      "url": "https://fozzys.net/events/dj-dez-live-dj-7/"
     }
   },
   "https://fozzys.net/events/dj-dez-live-dj-6/": {
