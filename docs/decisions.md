@@ -1583,3 +1583,22 @@ Two files, both Shattered Bar (Loves Park). Nov 26, 2026 is a Thursday.
   It falls within the dedupe window of the Thursday 8 PM rule, so it
   replaces that night's open mic slot on the site, like Singo on Nov 12.
   See needs-review.
+
+## 2026-11-20: Inbox run (scheduled, evening)
+
+Five screenshots. Weekdays all match 2026 (Nov 20 Fri, Nov 21 Sat).
+
+- **Added:** That Gurl at Ho-Chunk Gaming Beloit, tonight (Fri Nov 20),
+  8–10 PM, `live-music` (the band's own post: "tonight has been changed to
+  8–10p"; Facebook's event card shows "Today at 8 PM" on the Nov 20
+  screenshot). New artist `that-gurl`.
+- **Added:** Rockstar Karaoke at New Mill Tap, Sat Nov 21, 7 PM, `karaoke`
+  (venue's own share; host name and light-show details left out).
+- **Re-confirmed, `checked` bumped:** Shattered Bar's "Thanksgiving Week"
+  graphic (Rollin Whiskey Wed 25, Karaoke Thu 26 7 PM, Sunset Strip Fri 27,
+  Missing Links Sat 28, all 8 PM); Rebel Hearts at Club Tavern Nov 21 6–10.
+  `source.file` stays on the earlier copies.
+- **Waiting:** Rebel Hearts flyer ("special guests from Sheez-It", act or
+  members unclear); a revised Murphy's November calendar (still no times).
+  A cropped Crossroads Blues Society post under the Murphy's calendar shows
+  only a headline (no date or venue), so nothing was taken from it.

@@ -632,6 +632,17 @@ In `waiting/` as `2026-11_district-hunks-bingo.png`.
   out (giveaway nights, no music named): Friendsgiving Nov 14, Black Friday
   ladies' night Nov 27, Spin the Wheel Nov 28. Publish each once the pub
   gives a time. In `waiting/` as `2026-11_murphys-november-events.jpg`.
+  Update 2026-11-20: a revised copy of the same graphic (screenshot Nov 20,
+  posted "4d") changes three nights and still gives no times: "Friends"
+  trivia is now **Tue Nov 24** (not Thu Nov 19); Thu Nov 26 is
+  "Thanksgiving Day, Bears game & karaoke" (karaoke time not given; the
+  Thursday rule says 9 PM); Sat Nov 28 is now "Saturday Night Party", DJ
+  Jbhvnfun (`dj`, replaces Spin the Wheel). Unchanged: EDM Dance Party with
+  DJ Wyld Rice Sat Nov 21, Black Wednesday Party with DJ Eddie Wed Nov 25
+  (that's also the Wednesday open mic night, 7 PM rule; unclear if both
+  run), Black Friday ladies' night Nov 27 (giveaways, no music named).
+  Nov 13 and 14 are past. In `waiting/` as
+  `2026-11_murphys-november-events-2.jpg`.
 - **Poison Ivy: Ryan V Music, Thu Nov 12, 5:30–8:30 PM.** The act's own
   graphic ("Poison Ivy, Thursday 11/12"). No venue record and no town or
   address on the graphic, so not published (and it's past after tonight).
@@ -734,3 +745,19 @@ that slot on the site for Nov 26. The event says karaoke only and starts an
 hour early; if the bar also runs the open mic that night, give it its own
 one-off. File in `venues/shattered-saloon/` as
 `2026-11_thanksgiving-karaoke-nov-26.jpg`.
+Update 2026-11-20 (evening): the bar's own "Events, Thanksgiving Week"
+graphic also says Thu 26 "Karaoke 7PM" (no open mic), so the one-off
+matches the bar. Filed as
+`venues/shattered-saloon/2026-11_thanksgiving-week-events.jpg`.
+
+## Club Tavern, Sat Nov 21: is Sheez-It on the bill with Rebel Hearts?
+
+A Rebel Hearts flyer shared in Rockford's Local Music Scene (screenshot
+2026-11-20) says "with special guests from Sheez-It", Nov 21, 6–10 PM,
+The Club Tavern, 1975 Porter Ave, Beloit. Date, time and venue match our
+listing (`data/shows/2026-11-21-club-tavern-rebel-hearts.json`, from the
+band's own event; `checked` bumped). Kevin's post title reads "Rebel Hearts
+wsg. Sheetz It", but "guests from Sheez-It" could mean members sitting in
+rather than a Sheez-It set. If Sheez-It plays, add the existing `sheez-it`
+artist to the listing. In `waiting/` as
+`2026-11_club-tavern-rebel-hearts-sheez-it.jpg`.

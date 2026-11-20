@@ -1,0 +1,15 @@
+{
+  "date": "2026-11-20",
+  "startTime": "20:00",
+  "endTime": "22:00",
+  "venue": "ho-chunk-gaming-beloit",
+  "category": "live-music",
+  "artists": [
+    "that-gurl"
+  ],
+  "checked": "2026-11-20",
+  "source": {
+    "type": "manual",
+    "file": "bands/that-gurl/2026-11_that-gurl-ho-chunk-nov-20.jpg"
+  }
+}
