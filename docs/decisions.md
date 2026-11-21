@@ -1626,3 +1626,61 @@ nights, all accounted for:
   item updated), 9-ball tournaments Nov 29 and Dec 30, line dancing Dec 2
   (as before). Cropped neighbouring posts aren't events.
 - Nothing skipped or moved to waiting.
+
+## 2026-11-21: Inbox run (scheduled, evening)
+
+36 files (two of them byte-identical copies of one flyer). Weekdays checked against
+2026: Nov 21 Sat, Nov 25 Wed, Nov 28 Sat, Dec 1 Tue, Dec 4/11/18/25 Fri,
+Dec 5/12/19 Sat, Dec 15/29 Tue, Dec 31 Thu. Image cropping wasn't allowed
+in this run, so small print was read from the full-size images.
+
+- **Added:**
+  - Thanksgiving Mega Bash, Apollo Night Club (new venue; flyer brands it
+    "Apollo Activity Center", kept as an alias), 104 N State St, Belvidere
+    (Census match), Wed Nov 25, doors 8 PM–2 AM, $30 presale, 17+: Banda
+    Potrillos, Banda El Recuerdo, La Ultima Banda, DJ Mannu Mixx (all new
+    artists). A nightclub banda bill, not an arena concert, so in scope.
+  - New Year's Eve Karaoke, The Town Club (new venue), 1900 St Lawrence
+    Ave, Beloit WI (Census match), Thu Dec 31, 4 PM (host's event; host
+    name left out).
+  - District Friendsgiving Party, Sat Nov 21, doors 9 PM, `dj`: DJ Tydal
+    Wave and new DJ Famous Shon (District's own post). The two other people
+    pictured are billed with nicknames, not as DJs, so left out.
+  - Hot Rod Nellie's karaoke after Candle Bingo, Wed Nov 25, 9 PM (bar's
+    event).
+  - Pig Minds Christmas Music Bingo, Sat Dec 5, 7–9 PM, free (`bingo`;
+    post text says "Friday", see needs-review).
+  - Whiskey's Roadhouse: Toys for Tots Winter Festival, Sat Dec 12, music
+    2–10 PM, admission one unopened toy, six readable acts (new: Gilded
+    Cages, Jackson Strong, Austin Karr & The Rock River Revival Band),
+    `lineupPartial`; Christmas Onesie Party, Sat Dec 19, 8 PM–midnight, no
+    cover, Acoustic Millennium Band + two unnamed bands, `lineupPartial`.
+  - Rural On Tap December (calendar + three events): Christmas Movie
+    Trivia Tue Dec 1 7 PM; DJ nights Fri Dec 4 (Santa's After Dark), Dec 11
+    (Not So Silent Night, new DJ Vanny G), Dec 18 (Grinchmas), Dec 25,
+    all 10 PM; White Elephant Bingo Tue Dec 15 and Top Tunes Bingo Tue
+    Dec 29, 7 PM. Christmas PJ Karaoke (Dec 12, 9 PM) and Ugly Sweater
+    Karaoke (Dec 19) are covered by the Saturday 9 PM rule (`checked`
+    bumped). Left out: Joker Jackpot Wednesdays, free pizza and darts
+    nights, Pie Raffle Dec 5, cookie exchange Dec 14, ornament decorating
+    Dec 20, NYE balloon drop/champagne toast (no music named).
+- **Changed:** Grand Avenue Pub Sat Nov 21 is now BloodBrothers, 7–11 PM
+  (event by the band and the pub), replacing Soul 2 Soul 8–12 from the
+  cropped November calendar. New artist `blood-brothers`.
+- **Re-confirmed, `checked` bumped:** Tipsy Hog EJ Kane Nov 25 and Mother
+  of All Duos Nov 28 (6–9 PM); Rollin' Whiskey at Shattered Nov 25 8 PM;
+  Turkey Day Hangover at The Witches Haven Nov 28; Thanks Killing Show at
+  Whiskey's Nov 28 (fourth logo still unreadable). Past and matching, filed
+  only: Danny Grams at Rock-A-Bago Nov 20, Anthony Geraci at RPL Nordlof
+  Nov 20, Best Dam Bar karaoke Nov 20 (8 PM).
+- **Skipped:** Wisconsin Comedy Takeover at The Rusty Fox (Sterling, out
+  of area); The Second City at Hard Rock Live, Nov 27–28 (touring Hard Rock
+  Live show); First Fridays in Downtown Rockford, Dec 4 (district-wide
+  event, no act or venue named); Rural On Tap pie raffle; Greater Rockford
+  Chamber annual dinner (out of scope); old posts from a Facebook search
+  for "rockford new years eve" (Embassy Suites NYE 2025, Embers Rise NYE
+  2023, Music Box NYE 2024 and December 2025, Buster's NYE 2025, Top Dog
+  NYE 2025): all past.
+- **Waiting:** Music Box Redwood Duo Nov 28 (time and act differ),
+  Mortimer's Blackout Wednesday (no date, venue unconfirmed, mixed night),
+  AudioDrive at the SM&SF Club (still no address).

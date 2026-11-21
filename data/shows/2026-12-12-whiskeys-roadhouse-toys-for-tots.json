@@ -1,0 +1,25 @@
+{
+  "date": "2026-12-12",
+  "startTime": "14:00",
+  "endTime": "22:00",
+  "venue": "whiskeys-roadhouse",
+  "category": "live-music",
+  "title": "Toys for Tots Winter Festival",
+  "artists": [
+    "gilded-cages",
+    "mckenna-faith-winters",
+    "jackson-strong",
+    "ej-kane",
+    "stereotype",
+    "austin-karr-and-the-rock-river-revival-band"
+  ],
+  "lineupPartial": true,
+  "notes": "Admission: one unopened toy. Music 2–10 PM; set times not posted. One more act's logo on the flyer isn't readable.",
+  "checked": "2026-11-21",
+  "source": {
+    "type": "manual",
+    "url": "https://www.facebook.com/whiskeys.roadhouse",
+    "kind": "venue",
+    "file": "venues/whiskeys-roadhouse/2026-12_toys-for-tots-winter-festival.jpg"
+  }
+}

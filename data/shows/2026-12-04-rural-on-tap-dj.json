@@ -1,0 +1,15 @@
+{
+  "date": "2026-12-04",
+  "startTime": "22:00",
+  "venue": "rural-on-tap",
+  "category": "dj",
+  "title": "Santa's After Dark: Naughty or Nice Party",
+  "artists": [],
+  "checked": "2026-11-21",
+  "source": {
+    "type": "manual",
+    "url": "https://www.facebook.com/RuralOnTapRockford/",
+    "kind": "venue",
+    "file": "venues/rural-on-tap/2026-12_december-calendar.png"
+  }
+}

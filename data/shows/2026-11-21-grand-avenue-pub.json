@@ -1,17 +1,17 @@
 {
   "date": "2026-11-21",
-  "startTime": "20:00",
-  "endTime": "00:00",
+  "startTime": "19:00",
+  "endTime": "23:00",
   "venue": "grand-avenue-pub",
   "category": "live-music",
   "artists": [
-    "soul-2-soul"
+    "blood-brothers"
   ],
-  "checked": "2026-10-26",
+  "checked": "2026-11-21",
   "source": {
     "type": "manual",
     "url": "https://www.grandavenuebeloit.com/",
     "kind": "venue",
-    "file": "venues/grand-avenue-pub/2026-11_november-calendar.jpg"
+    "file": "venues/grand-avenue-pub/2026-11_bloodbrothers-event.png"
   }
 }

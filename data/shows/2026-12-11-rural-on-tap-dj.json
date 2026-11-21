@@ -1,0 +1,17 @@
+{
+  "date": "2026-12-11",
+  "startTime": "22:00",
+  "venue": "rural-on-tap",
+  "category": "dj",
+  "title": "Not So Silent Night",
+  "artists": [
+    "dj-vanny-g"
+  ],
+  "checked": "2026-11-21",
+  "source": {
+    "type": "manual",
+    "url": "https://www.facebook.com/RuralOnTapRockford/",
+    "kind": "venue",
+    "file": "venues/rural-on-tap/2026-12_not-so-silent-night.png"
+  }
+}

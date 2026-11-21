@@ -1,0 +1,15 @@
+{
+  "date": "2026-12-29",
+  "startTime": "19:00",
+  "venue": "rural-on-tap",
+  "category": "bingo",
+  "title": "Top Tunes Bingo",
+  "artists": [],
+  "checked": "2026-11-21",
+  "source": {
+    "type": "manual",
+    "url": "https://www.facebook.com/RuralOnTapRockford/",
+    "kind": "venue",
+    "file": "venues/rural-on-tap/2026-12_december-calendar.png"
+  }
+}

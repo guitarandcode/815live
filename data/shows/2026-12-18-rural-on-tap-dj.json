@@ -1,0 +1,15 @@
+{
+  "date": "2026-12-18",
+  "startTime": "22:00",
+  "venue": "rural-on-tap",
+  "category": "dj",
+  "title": "Grinchmas",
+  "artists": [],
+  "checked": "2026-11-21",
+  "source": {
+    "type": "manual",
+    "url": "https://www.facebook.com/RuralOnTapRockford/",
+    "kind": "venue",
+    "file": "venues/rural-on-tap/2026-12_december-calendar.png"
+  }
+}

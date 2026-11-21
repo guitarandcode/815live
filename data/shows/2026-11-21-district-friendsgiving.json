@@ -1,0 +1,19 @@
+{
+  "date": "2026-11-21",
+  "startTime": "21:00",
+  "venue": "district",
+  "category": "dj",
+  "title": "Friendsgiving Party",
+  "artists": [
+    "dj-tydal-wave",
+    "dj-famous-shon"
+  ],
+  "notes": "Doors 9 PM.",
+  "checked": "2026-11-21",
+  "source": {
+    "type": "manual",
+    "url": "https://www.facebook.com/districtbarandgrillrockford/",
+    "kind": "venue",
+    "file": "venues/district/2026-11_friendsgiving-party.png"
+  }
+}

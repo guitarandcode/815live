@@ -1,0 +1,21 @@
+{
+  "date": "2026-12-19",
+  "startTime": "20:00",
+  "endTime": "00:00",
+  "venue": "whiskeys-roadhouse",
+  "category": "live-music",
+  "title": "Christmas Onesie Party",
+  "artists": [
+    "acoustic-millennium-band"
+  ],
+  "cover": null,
+  "lineupPartial": true,
+  "notes": "Three bands, hosted by Acoustic Millennium Band; the other two aren't named.",
+  "checked": "2026-11-21",
+  "source": {
+    "type": "manual",
+    "url": "https://www.facebook.com/whiskeys.roadhouse",
+    "kind": "venue",
+    "file": "venues/whiskeys-roadhouse/2026-12_christmas-onesie-party.png"
+  }
+}

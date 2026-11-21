@@ -114,10 +114,9 @@ October flyer stays in `waiting/`.
 From the bar's events list (user paste; pasted again 2026-10-26, now in
 `waiting/2026-10_hot-rod-nellies-events.txt`). It isn't clear whether Holly
 is a musician, a DJ or a bartender. Publish as live music if Holly performs.
-The same list's Nov 25 "candle bingo & karaoke following" still has no
-karaoke start time. (2026-11-21: the bar's holiday flyer still says only
-"karaoke w/Pablo to follow" after the 7 PM bingo; the bingo is now listed,
-the karaoke isn't.)
+~~The same list's Nov 25 "candle bingo & karaoke following" has no karaoke
+start time~~: resolved 2026-11-21 (evening). The bar's own Facebook event
+says "karaoke w/Pablo @9PM"; published as a 9 PM `karaoke` one-off.
 
 ## Broadway Joe's: Halloween party with DJ Karlo, Sat Oct 31 (no start time)
 
@@ -251,8 +250,9 @@ Not published:
   at HydeOut Bar ... rock til midnight", posted Nov 6) adds an 8 PM–midnight
   end time but still no town. In `waiting/` as
   `2026-11_stereotype-hydeout-post.png`.
-- **Sat Dec 12, Whiskey's Roadhouse "Toys for Tots" show**: Stereotype opens
-  ("early for us"), so other acts follow; no start time given.
+- ~~Sat Dec 12, Whiskey's Roadhouse "Toys for Tots" show~~: resolved
+  2026-11-21. Whiskey's own flyer gives music 2–10 PM; published as one
+  listing with every readable act (`lineupPartial`, one logo unreadable).
 - ~~Thu Dec 31, Shattered Saloon, NYE masquerade party~~: resolved 2026-11-01.
   Shattered's own December flyer gives "NYE with Stereotype 8 PM"; published.
 
@@ -545,6 +545,10 @@ In `waiting/` as `2026-11_district-hunks-bingo.png`.
   were re-confirmed; its Sunday football and Christmas Day game parties are
   out of scope. In `waiting/` as `2026-12_best-dam-bar-december-events.jpg`;
   move it to `venues/best-dam-bar/` once the karaoke time is settled.
+  Update 2026-11-21: the karaoke host's flyer for Fri Nov 20 (past) says
+  8 PM at Best Dam Bar. That's one night's flyer, so it isn't applied to the
+  December Fridays yet; if the host confirms 8 PM is regular, publish them
+  at 8 PM. Flyer in `venues/best-dam-bar/2026-11_stix-karaoke-nov-20.jpg`.
 - **Broadway Joe's: DJ Marshun, "Tonight", date unknown.** The bar's graphic
   ("Tonight at Broadway Joe's! Featuring DJ Marshun") has no date or time.
   It was saved Sun Nov 8 at 9:12 AM, so "tonight" was probably Sat Nov 7
@@ -580,7 +584,10 @@ In `waiting/` as `2026-11_district-hunks-bingo.png`.
   7–10 PM.** The band's flyer gives no town or address, and a web search
   found no "SM&SF Club" (maybe a sportsmen's or fraternal club). `audio-drive`
   exists. Publish once the venue's name and address are known. In `waiting/`
-  as `2026-12_smsf-club-audiodrive-nye.jpeg`.
+  as `2026-12_smsf-club-audiodrive-nye.jpeg`. A second screenshot (2026-11-21,
+  the band's Oct 28 post, "More details coming soon") shows the club has a
+  Facebook page ("SM&SF CLUB") but still no town, address or time. In
+  `waiting/` as `2026-12_smsf-club-audiodrive-nye-2.png`.
 - **Lino's (State St location): "Jazz Thursday".** Lino's Facebook post
   mentions a weekly Jazz Thursday at its State St location, with no time or
   performer. No venue record. Add a Thursday `live-music` rule once there's a
@@ -594,6 +601,13 @@ In `waiting/` as `2026-11_district-hunks-bingo.png`.
   only matched 105 **E** Grove St (42.37145, -88.81786), so the address
   isn't confirmed. Publish once the address is settled. In `waiting/` as
   `2026-11_mortimers-extreme-music-bingo.png`.
+  Also waiting on this venue (2026-11-21): a DJ service's "Blackout
+  Wednesday Neon Glow Party" flyer at Mortimer's Roadhouse, party starts
+  8 PM, "karaoke & dancing under the black lights". No date is printed
+  (Blackout Wednesday is Thanksgiving Eve, so probably Wed Nov 25), and
+  karaoke plus dancing makes it a mixed `karaoke`/`dj` night. Two identical
+  copies in `waiting/` as `2026-11_mortimers-blackout-wednesday.jpg` and
+  `-2.jpg`.
 
 ## 2026-11-11 inbox run
 
@@ -662,7 +676,8 @@ In `waiting/` as `2026-11_district-hunks-bingo.png`.
 - **Whiskey's Roadhouse, Nov 28: fourth band.** "The Thanks Killing Show"
   is published with three acts; the flyer's fourth logo (lower right, looks
   like "Hallowed ... Ground") can't be read. Add the artist once it's known
-  (`data/shows/2026-11-28-whiskeys-roadhouse.json`).
+  (`data/shows/2026-11-28-whiskeys-roadhouse.json`). A second copy of the
+  flyer (2026-11-21) is no clearer.
 
 ## After the Vine: Trifecta Trio, Fri Nov 20, 6–9 PM (venue address)
 
@@ -689,7 +704,13 @@ it's now weekly, which would make it a recurring rule), then publish as
 `karaoke`. In `waiting/` as
 `2026-11_mulligans-back-yard-karaoke-thursday-post.png`.
 
-## Grand Avenue Pub, Sat Nov 21: Blood Brothers or Soul 2 Soul?
+## ~~Grand Avenue Pub, Sat Nov 21: Blood Brothers or Soul 2 Soul?~~
+
+Resolved 2026-11-21 (evening): a Facebook event by BloodBrothers and Grand
+Avenue Pub gives "The BLOODBROTHERS @ The Grand Ave Pub", Nov 21, 7–11 PM.
+The listing now points to new artist `blood-brothers` at 7–11 PM; both
+screenshots are in `venues/grand-avenue-pub/`. `data/artists/soul-2-soul.json`
+has no shows left; delete it if Soul 2 Soul isn't coming back.
 
 The pub's own weekend post (screenshot 2026-11-17, posted that day) lists
 Thursday "Bingo & Blues featuring Ivy Ford", Friday Blue Olives, Saturday
@@ -763,3 +784,24 @@ wsg. Sheetz It", but "guests from Sheez-It" could mean members sitting in
 rather than a Sheez-It set. If Sheez-It plays, add the existing `sheez-it`
 artist to the listing. In `waiting/` as
 `2026-11_club-tavern-rebel-hearts-sheez-it.jpg`.
+
+## 2026-11-21 inbox run (evening)
+
+- **Music Box, Sat Nov 28 (Stroll on State): time and act name.** Our
+  listing (`data/shows/2026-11-28-the-music-box.json`, from the venue's
+  site, checked 2026-10-24) says Redwood Band at 6:30 PM. A newer flyer
+  ("Stroll on State, Redwood Duo, live at The Music Box of Rockford",
+  Saturday Nov 28, 7–10 PM, 218 E State St) says Redwood Duo, 7–10 PM. It
+  doesn't show who posted it. Nothing changed. If the flyer is right, set
+  7–10 PM and decide whether the duo is the same act as `redwood-band`. In
+  `waiting/` as `2026-11_music-box-redwood-duo-stroll-on-state.jpeg`.
+- **Pig Minds Brewing, Christmas Music Bingo: "Friday" vs. Saturday.**
+  The brewery's post text says "Friday, December 5th", but its graphic says
+  "Saturday Dec. 5", 7–9 PM, and Dec 5, 2026 is a Saturday. Published on
+  Sat Dec 5 (`data/shows/2026-12-05-pig-minds-brewing-music-bingo.json`);
+  fix if the brewery means Fri Dec 4.
+- **Apollo Night Club (Belvidere), Wed Nov 25: third band's name.** The
+  flyer says "La Ultima Banda"; the post tags "La Ultimona". Published as
+  La Ultima Banda (`data/artists/la-ultima-banda.json`); rename if the band
+  goes by La Ultimona. The flyer and post are from the promoter's side, not
+  the club's own page, and the bit.ly ticket link in the post wasn't stored.

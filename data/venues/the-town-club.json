@@ -1,0 +1,13 @@
+{
+  "name": "The Town Club",
+  "aliases": [
+    "The Townclub"
+  ],
+  "address": "1900 St Lawrence Ave",
+  "city": "Beloit",
+  "state": "WI",
+  "zip": "53511",
+  "lat": 42.50345,
+  "lng": -89.06141,
+  "description": "Club on St. Lawrence Avenue in Beloit, Wisconsin, with karaoke nights."
+}

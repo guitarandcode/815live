@@ -1,0 +1,16 @@
+{
+  "date": "2026-11-25",
+  "startTime": "21:00",
+  "venue": "hot-rod-nellies",
+  "category": "karaoke",
+  "title": "Karaoke",
+  "artists": [],
+  "notes": "After Candle Bingo (7 PM).",
+  "checked": "2026-11-21",
+  "source": {
+    "type": "manual",
+    "url": "https://www.facebook.com/hotrodnellies/",
+    "kind": "venue",
+    "file": "venues/hot-rod-nellies/2026-11_candle-bingo-karaoke-event.png"
+  }
+}

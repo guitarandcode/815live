@@ -1,0 +1,13 @@
+{
+  "date": "2026-12-31",
+  "startTime": "16:00",
+  "venue": "the-town-club",
+  "category": "karaoke",
+  "title": "New Year's Eve Karaoke",
+  "artists": [],
+  "checked": "2026-11-21",
+  "source": {
+    "type": "manual",
+    "file": "venues/the-town-club/2026-12_nye-karaoke-event.png"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "name": "Apollo Night Club",
+  "aliases": [
+    "Apollo Activity Center"
+  ],
+  "address": "104 N State St",
+  "city": "Belvidere",
+  "state": "IL",
+  "zip": "61008",
+  "lat": 42.25935,
+  "lng": -88.84331,
+  "description": "Nightclub on North State Street in downtown Belvidere that hosts banda and Latin dance nights."
+}

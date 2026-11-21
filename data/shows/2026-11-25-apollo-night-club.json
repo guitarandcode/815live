@@ -1,0 +1,21 @@
+{
+  "date": "2026-11-25",
+  "startTime": "20:00",
+  "endTime": "02:00",
+  "venue": "apollo-night-club",
+  "category": "live-music",
+  "title": "Thanksgiving Mega Bash",
+  "artists": [
+    "banda-potrillos",
+    "banda-el-recuerdo",
+    "la-ultima-banda",
+    "dj-mannu-mixx"
+  ],
+  "cover": 30,
+  "notes": "Doors 8 PM. $30 presale (ticketon.com). 17+ to enter, 21+ to drink.",
+  "checked": "2026-11-21",
+  "source": {
+    "type": "manual",
+    "file": "venues/apollo-night-club/2026-11_thanksgiving-mega-bash.jpg"
+  }
+}

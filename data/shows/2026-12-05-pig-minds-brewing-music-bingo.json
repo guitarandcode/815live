@@ -1,0 +1,17 @@
+{
+  "date": "2026-12-05",
+  "startTime": "19:00",
+  "endTime": "21:00",
+  "venue": "pig-minds-brewing",
+  "category": "bingo",
+  "title": "Christmas Music Bingo",
+  "artists": [],
+  "cover": null,
+  "checked": "2026-11-21",
+  "source": {
+    "type": "manual",
+    "url": "https://www.facebook.com/PigMindsBrewingCo/",
+    "kind": "venue",
+    "file": "venues/pig-minds-brewing/2026-12_christmas-music-bingo.png"
+  }
+}
