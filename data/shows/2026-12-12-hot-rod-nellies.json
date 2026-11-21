@@ -1,0 +1,17 @@
+{
+  "date": "2026-12-12",
+  "startTime": "20:00",
+  "endTime": "00:00",
+  "venue": "hot-rod-nellies",
+  "category": "live-music",
+  "artists": [
+    "pablo-and-the-rhythmix"
+  ],
+  "checked": "2026-11-21",
+  "source": {
+    "type": "manual",
+    "url": "https://www.facebook.com/hotrodnellies/",
+    "kind": "venue",
+    "file": "venues/hot-rod-nellies/2026-11_holiday-events.jpg"
+  }
+}

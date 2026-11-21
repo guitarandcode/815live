@@ -115,7 +115,9 @@ From the bar's events list (user paste; pasted again 2026-10-26, now in
 `waiting/2026-10_hot-rod-nellies-events.txt`). It isn't clear whether Holly
 is a musician, a DJ or a bartender. Publish as live music if Holly performs.
 The same list's Nov 25 "candle bingo & karaoke following" still has no
-karaoke start time.
+karaoke start time. (2026-11-21: the bar's holiday flyer still says only
+"karaoke w/Pablo to follow" after the 7 PM bingo; the bingo is now listed,
+the karaoke isn't.)
 
 ## Broadway Joe's: Halloween party with DJ Karlo, Sat Oct 31 (no start time)
 

@@ -1602,3 +1602,27 @@ Five screenshots. Weekdays all match 2026 (Nov 20 Fri, Nov 21 Sat).
   members unclear); a revised Murphy's November calendar (still no times).
   A cropped Crossroads Blues Society post under the Murphy's calendar shows
   only a headline (no date or venue), so nothing was taken from it.
+
+## 2026-11-21: Inbox run (scheduled)
+
+One screenshot: Hot Rod Nellie's "Upcoming Events" holiday flyer (bar's own
+Facebook post), filed as `venues/hot-rod-nellies/2026-11_holiday-events.jpg`.
+The flyer has no weekdays or year; the next dates are 2026 and "Every
+Thursday" matches Thanksgiving (Thu Nov 26, 2026). 13 dated items + 2 weekly
+nights, all accounted for:
+- **Added:** Candle Bingo Wed Nov 25 7 PM and Christmas Bingo Wed Dec 9
+  7 PM (`bingo`, themed nights like Rockton Inn's Naughty Kat Bingo; the
+  10-25 call left Nellie's bingo out before `bingo` was a category); Free
+  Fall Sat Dec 5 8 PM–midnight (new artist); Ugly Christmas Sweater Party
+  with Three Good Men Sun Dec 6 2–5 PM (new artist); Pablo & the Rhythmix
+  Sat Dec 12 and Rollin' Whiskey Sat Dec 19, 8 PM–midnight; Karaoke Sat
+  Dec 26 8:30 PM; NYE Karaoke Thu Dec 31 8:30 PM (replaces that week's
+  7 PM Thursday slot via dedupe).
+- **New weekly rules:** Thursday karaoke 7 PM and Friday karaoke 8:30 PM
+  (hosts, Queen of Hearts and joker drawings left out). Thanksgiving's
+  "karaoke 7 PM" falls on the Thursday rule; dinner left out.
+- **Re-confirmed:** Jupiter Sky Sat Nov 28, 8 PM–midnight, `checked` bumped.
+- **Left out:** karaoke after the Nov 25 bingo (still no time; needs-review
+  item updated), 9-ball tournaments Nov 29 and Dec 30, line dancing Dec 2
+  (as before). Cropped neighbouring posts aren't events.
+- Nothing skipped or moved to waiting.

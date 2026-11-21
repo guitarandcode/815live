@@ -1,0 +1,15 @@
+{
+  "date": "2026-12-26",
+  "startTime": "20:30",
+  "venue": "hot-rod-nellies",
+  "category": "karaoke",
+  "title": "Karaoke",
+  "artists": [],
+  "checked": "2026-11-21",
+  "source": {
+    "type": "manual",
+    "url": "https://www.facebook.com/hotrodnellies/",
+    "kind": "venue",
+    "file": "venues/hot-rod-nellies/2026-11_holiday-events.jpg"
+  }
+}
