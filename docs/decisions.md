@@ -1684,3 +1684,14 @@ in this run, so small print was read from the full-size images.
 - **Waiting:** Music Box Redwood Duo Nov 28 (time and act differ),
   Mortimer's Blackout Wednesday (no date, venue unconfirmed, mixed night),
   AudioDrive at the SM&SF Club (still no address).
+
+## 2026-11-22: Inbox (scheduled, afternoon)
+
+1 file (Facebook event screenshot).
+
+- **Added:** McKenna Faith Winters with Leinaala & Dave at Legends Bar and
+  Grill, Sat Nov 28, 7–10 PM (weekday checks out for 2026; the post says
+  Machesney Park, so it's our `legends-bar-and-grill`, not the Erie IL
+  Legends skipped earlier). New artist `leinaala-and-dave`. No cover
+  stated. No `source.url`: the only event link visible is a truncated
+  browser status-bar URL, not certainly this event's.
