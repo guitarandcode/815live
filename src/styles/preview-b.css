@@ -1,0 +1,82 @@
+/* Self-hosted (public/fonts), latin subset only. */
+@font-face { font-family: 'Limelight'; font-style: normal; font-weight: 400; font-display: swap; src: url('/fonts/limelight-latin-400-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Barlow'; font-style: normal; font-weight: 400; font-display: swap; src: url('/fonts/barlow-latin-400-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Barlow'; font-style: normal; font-weight: 600; font-display: swap; src: url('/fonts/barlow-latin-600-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Barlow Condensed'; font-style: normal; font-weight: 600; font-display: swap; src: url('/fonts/barlow-condensed-latin-600-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Barlow Condensed'; font-style: normal; font-weight: 700; font-display: swap; src: url('/fonts/barlow-condensed-latin-700-normal.woff2') format('woff2'); }
+/* Direction B: Coronado Nights (theater marquee). Dark house, bulb-yellow, lit letter boards. */
+.pv-b {
+  --house: #150d0c;
+  --velvet: #241411;
+  --line: #4a2e27;
+  --text: #f6efdc;
+  --muted: #c2b09c;
+  --bulb: #ffc23d;
+  --neon: #ff5468;
+  --board: #f6efdc;
+  --board-ink: #1a1210;
+  --board-muted: #5a463c;
+  --board-red: #a3122a;
+  --sk-far: #2a1915;
+  --sk-tree: #1e1210;
+  --sk-bld: #0c0706;
+  --sk-win: var(--bulb);
+  --sk-river: #201311;
+  --sk-ripple: #ffc23d33;
+  --sk-glow: #ffc23d88;
+  --sk-bridge: #0c0706;
+  --sk-light: var(--bulb);
+  background: var(--house);
+  color: var(--text);
+  font: 400 16.5px/1.5 'Barlow', system-ui, sans-serif;
+}
+.pv-b a { color: var(--bulb); }
+.pv-b .mark815 .m-bg { fill: var(--velvet); }
+.pv-b .mark815 .m-board { fill: var(--board); }
+.pv-b .mark815 .m-bulb { fill: var(--bulb); }
+.pv-b .mark815 .m-ink { fill: var(--board-ink); }
+.pv-b .m-big { font: 400 46px 'Limelight', serif; }
+.pv-b .wm-live { font: 400 2rem/1 'Limelight', serif; color: var(--bulb); text-shadow: 0 0 12px #ffc23d66; }
+.pv-b .site-header { background: var(--velvet); border-bottom: 3px solid var(--bulb); }
+.pv-b .site-header nav a { font: 600 1.05rem 'Barlow Condensed', sans-serif; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text); text-decoration: none; }
+.pv-b .site-header nav a[aria-current] { color: var(--bulb); border-bottom: 2px solid var(--bulb); }
+.pv-b .submit-link { font: 700 0.95rem 'Barlow Condensed', sans-serif; text-transform: uppercase; letter-spacing: 0.06em; color: var(--house); background: var(--bulb); padding: 0.35rem 0.8rem; text-decoration: none; }
+.pv-b .tonight h1 { font: 400 clamp(2.4rem, 10vw, 3.8rem)/1 'Limelight', serif; color: var(--text); margin: 0.5rem 0 0.25rem; }
+.pv-b .accent { color: var(--bulb); text-shadow: 0 0 14px #ffc23d88; }
+.pv-b .tonight-tz { color: var(--muted); margin: 0 0 1rem; font-family: 'Barlow Condensed', sans-serif; font-size: 1.15rem; text-transform: uppercase; letter-spacing: 0.08em; }
+.pv-b .day-chip { background: var(--velvet); border: 1px solid var(--line); color: var(--text); }
+.pv-b .day-chip.is-today { border-color: var(--bulb); box-shadow: 0 0 0 1px var(--bulb), 0 0 16px #ffc23d44; }
+.pv-b .dc-label { font: 600 0.8rem 'Barlow Condensed', sans-serif; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
+.pv-b .day-chip.is-today .dc-label, .pv-b .dc-count { color: var(--bulb); }
+.pv-b .dc-day { font: 700 1.9rem/1.05 'Barlow Condensed', sans-serif; }
+.pv-b .dc-count { border-top: 1px dashed var(--line); }
+/* Each night is a lit marquee: bulb border, cream letter board, black block letters. */
+.pv-b .day {
+  margin: 1.75rem 0;
+  padding: 10px;
+  background:
+    radial-gradient(circle, var(--bulb) 0 3px, transparent 3.5px) 0 0 / 14px 14px repeat-x,
+    radial-gradient(circle, var(--bulb) 0 3px, transparent 3.5px) 0 100% / 14px 14px repeat-x,
+    radial-gradient(circle, var(--bulb) 0 3px, transparent 3.5px) 0 0 / 14px 14px repeat-y,
+    radial-gradient(circle, var(--bulb) 0 3px, transparent 3.5px) 100% 0 / 14px 14px repeat-y,
+    var(--velvet);
+}
+.pv-b .day-heading { margin: 0; padding: 0.45rem 0.75rem; background: var(--board-red); color: #fff; font: 400 1.4rem/1.1 'Limelight', serif; text-align: center; }
+.pv-b .day .show-card { background: var(--board); color: var(--board-ink); padding: 0.65rem 0.75rem; border-top: 3px solid var(--velvet); }
+.pv-b .show-time { font: 700 1.3rem/1.1 'Barlow Condensed', sans-serif; text-transform: uppercase; }
+.pv-b .show-card h3 { font: 700 1.3rem/1.1 'Barlow Condensed', sans-serif; text-transform: uppercase; letter-spacing: 0.02em; margin: 0; }
+.pv-b .category { font: 700 0.8rem 'Barlow Condensed', sans-serif; text-transform: uppercase; letter-spacing: 0.08em; color: var(--board-red); }
+.pv-b .meta, .pv-b .trust { color: var(--board-muted); }
+.pv-b .meta a { color: var(--board-ink); font-weight: 600; }
+.pv-b .bill-line { color: var(--board-ink); }
+.pv-b .free { color: #0f6b38; font-weight: 700; }
+.pv-b .day .more-link { margin: 0; padding: 0.5rem 0.75rem; background: var(--board); border-top: 3px solid var(--velvet); }
+.pv-b .day .more-link a { color: var(--board-red); font-weight: 700; }
+.pv-b .eyebrow { font: 600 0.9rem 'Barlow Condensed', sans-serif; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin: 0; }
+.pv-b .detail-sample .category { color: var(--neon); }
+.pv-b .detail-sample h1, .pv-b .section-heading { font: 400 clamp(2rem, 8vw, 2.8rem)/1.05 'Limelight', serif; color: var(--text); }
+.pv-b .facts { background: var(--velvet); border: 1px solid var(--line); border-left: 4px solid var(--bulb); }
+.pv-b .facts dt { color: var(--muted); font-family: 'Barlow Condensed', sans-serif; text-transform: uppercase; letter-spacing: 0.06em; }
+.pv-b .button { background: var(--bulb); color: var(--house); font: 700 1.05rem 'Barlow Condensed', sans-serif; text-transform: uppercase; letter-spacing: 0.06em; }
+.pv-b .site-footer { background: #0c0706; color: var(--muted); }
+.pv-b .site-footer a { color: var(--text); }
