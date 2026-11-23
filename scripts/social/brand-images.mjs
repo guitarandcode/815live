@@ -8,9 +8,12 @@
 //                                       middle 1200 px; the skyline runs edge to edge.
 //   public/og.png (+ a copy in docs)   1200x630 og:image, the cover's layout.
 //                                       Base.astro points og:image at /og.png.
+//   social/brand/intro.png             1080x1350 intro/welcome post for the feed.
+//   social/brand/intro-story.png       1080x1920 Story version; content stays out
+//                                       of the top and bottom 250 px.
 import { copyFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { C, h, render, skyline, tape, ticket } from './lib.mjs';
+import { C, FOOTER_H, footer, h, measure, render, skyline, tape, ticket, wordmark } from './lib.mjs';
 
 const ROOT = join(import.meta.dirname, '../..');
 const OUT = join(ROOT, 'docs/redesign/social');
@@ -50,3 +53,53 @@ await render(card(1640, 624, { sky: 290, url: 150, tag: 50, mark: 130, safe: 120
 await render(card(1200, 630, { sky: 250, url: 138, tag: 48, mark: 120, safe: 1100 }), 1200, 630, join(ROOT, 'public/og.png'));
 copyFileSync(join(ROOT, 'public/og.png'), join(OUT, 'og.png'));
 console.log(`copied public/og.png to ${join(OUT, 'og.png')}`);
+
+// Intro/welcome post: "Who's playing tonight? Now you know." as a show flyer,
+// laid out like the daily lineup (wordmark, Anton headline, tape, heavy rules,
+// skyline footer). The three blocks spread over the room between header and
+// footer; an image whose content doesn't fit stops the run instead of clipping.
+const INTRO_PAD = 64;
+const INTRO_INNER = 1080 - INTRO_PAD * 2;
+const INTRO_TOP = 44;
+const INTRO_GAP = 40; // above the footer
+const INTRO_MIN = 28; // least space between the three blocks
+const KINDS = ['Live bands', 'Karaoke', 'Open mics', 'Trivia & comedy'];
+
+function introBody(big) {
+  const head = h('div', { width: INTRO_INNER, flexDirection: 'column', flexShrink: 0 },
+    wordmark(58),
+    h('div', { marginTop: big ? 44 : 22, fontFamily: 'Anton', fontSize: big ? 138 : 116, lineHeight: 0.95, color: C.ink, textTransform: 'uppercase' }, "Who's playing tonight?"),
+    tape('Now you know.', big ? 84 : 76, { marginTop: big ? 30 : 22, marginLeft: -4 }),
+  );
+  const sub = h('div', { width: INTRO_INNER, flexShrink: 0, paddingTop: 22, borderTop: `6px solid ${C.ink}`, flexDirection: 'column', fontFamily: 'Atkinson', fontSize: big ? 38 : 34, lineHeight: 1.25, color: C.ink },
+    // Two lines on purpose, so "daily." never hangs alone.
+    h('div', {}, 'Every show around Rockford and the 815, in one place.'),
+    h('div', { fontWeight: 700 }, 'Posted daily.'));
+  const list = h('div', { width: INTRO_INNER, flexDirection: 'column', flexShrink: 0 },
+    KINDS.map((k, i) => h('div', {
+      width: INTRO_INNER, alignItems: 'center', paddingTop: big ? 16 : 11, paddingBottom: big ? 12 : 8,
+      borderTop: `${i ? 4 : 6}px solid ${C.ink}`, borderBottom: i === KINDS.length - 1 ? `6px solid ${C.ink}` : 'none',
+    },
+      h('div', { width: big ? 86 : 76, flexShrink: 0, fontFamily: 'Anton', fontSize: big ? 66 : 58, lineHeight: 1, color: C.accent }, String(i + 1).padStart(2, '0')),
+      h('div', { fontFamily: 'Anton', fontSize: big ? 74 : 64, lineHeight: 1.02, color: C.ink, textTransform: 'uppercase' }, k),
+    )),
+  );
+  return [head, sub, list];
+}
+
+async function intro(H, safe, file) {
+  const big = false; // the Story's safe area leaves only ~70 px more room than the feed
+  const blocks = introBody(big);
+  const room = H - safe * 2 - INTRO_TOP - INTRO_GAP - FOOTER_H;
+  const need = (u) => u + INTRO_MIN * (blocks.length - 1);
+  let used = 0;
+  for (const b of blocks) used += await measure(b, INTRO_INNER);
+  if (need(used) > room) throw new Error(`${file}: content overflows by ${Math.ceil(need(used) - room)} px`);
+  await render(h('div', { width: 1080, height: H, background: C.bg, flexDirection: 'column', alignItems: 'center' },
+    h('div', { width: 1080, height: safe + INTRO_TOP, flexShrink: 0 }),
+    h('div', { width: INTRO_INNER, flexGrow: 1, flexDirection: 'column', justifyContent: 'space-between', paddingBottom: INTRO_GAP }, blocks),
+    footer(1080, { safeBottom: safe, note: 'Playing a show? Send it in:' }),
+  ), 1080, H, join(ROOT, 'social/brand', file));
+}
+await intro(1350, 0, 'intro.png');
+await intro(1920, 250, 'intro-story.png');

@@ -243,7 +243,7 @@ Rendered from `data/` with satori + resvg (no browser needed). Output goes to
 npm run social:tonight                      # today's "Tonight in the 815" post + caption
 npm run social:tonight -- --date 2026-10-31 # any date
 npm run social:reel                         # today's graphic as a 15 s 9:16 Reel + short caption (needs ffmpeg)
-npm run social:brand                        # profile picture + FB cover (docs/redesign/social/) and public/og.png
+npm run social:brand                        # profile picture + FB cover (docs/redesign/social/), public/og.png, intro post (social/brand/)
 npm run social:archive                      # move past days' tonight-* files to social/archive/YYYY-MM/
 npm run social:handles                      # venues with missing or unverified social handles
 ```

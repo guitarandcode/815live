@@ -33,7 +33,7 @@ import { join } from 'node:path';
 import { CATEGORIES, CATEGORY_LABEL, isMusic } from '../../src/lib/categories.ts';
 import { titleBesideNames } from '../../src/lib/names.ts';
 import { nightOf } from '../../src/lib/shows.ts';
-import { C, h, measure, render, skyline, tape, wordmark } from './lib.mjs';
+import { C, FOOTER_H, footer, h, measure, render, tape, wordmark } from './lib.mjs';
 import { IG_CAP, fbPage, handleStatus, igHandle, noEmDash, planTags } from './venue-tags.mjs';
 
 const ROOT = join(import.meta.dirname, '../..');
@@ -160,9 +160,6 @@ const PAD = 64; // side margins
 const TOP = 44; // above the wordmark (inside the safe area)
 const GAP = 18; // header → body, body → footer
 const INNER = 1080 - PAD * 2;
-const SKY_H = 216; // 1080 wide at the skyline's 5:1
-const STRIP_H = 84; // the black strip under the skyline: 815live.com
-const FOOTER_H = SKY_H + STRIP_H;
 // Two densities: the tight one is tried before a busy night splits onto more images.
 const DENSITY = {
   normal: { act: 42, sub: 26, pad: 12, rule: 4, label: 28, more: 26 },
@@ -274,26 +271,7 @@ function headerEl(title, dateText, i, total) {
 }
 const headerH = (title, dateText) => measure(headerEl(title, dateText, 0, 2), INNER);
 
-function footerEl(f) {
-  return h(
-    'div',
-    { width: f.W, flexDirection: 'column', flexShrink: 0 },
-    h('div', { width: f.W, height: 6, background: C.ink }),
-    skyline(f.W, SKY_H - 6),
-    // Padding would widen a box in satori, so the strip centres an INNER-wide row instead.
-    h('div', { width: f.W, height: STRIP_H, background: C.ink, alignItems: 'center', justifyContent: 'center' },
-      h('div', { width: INNER, alignItems: 'center', justifyContent: 'space-between' },
-        h('div', { fontFamily: 'Anton', fontSize: 54, lineHeight: 1, color: C.yellow, textTransform: 'uppercase' }, '815live.com'),
-        h('div', { flexDirection: 'column', alignItems: 'flex-end', fontFamily: 'Atkinson', color: C.bg, fontSize: 22, lineHeight: 1.25 },
-          h('div', {}, 'Playing soon? Send it in:'),
-          h('div', { fontWeight: 700, fontSize: 25 }, 'shows@815live.com'),
-        ),
-      ),
-    ),
-    // Stories: the black continues under the app's bottom UI.
-    f.safeBottom ? h('div', { width: f.W, height: f.safeBottom, background: C.ink }) : null,
-  );
-}
+const footerEl = (f) => footer(f.W, { safeBottom: f.safeBottom, note: 'Playing soon? Send it in:' });
 
 const bodyRoom = (f, hdr) => f.H - f.safeTop - f.safeBottom - TOP - hdr - GAP * 2 - FOOTER_H;
 

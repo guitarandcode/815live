@@ -122,6 +122,35 @@ export function skyline(width, height) {
   return img(svg, width, height, { flexShrink: 0 });
 }
 
+export const SKY_H = 216; // 1080 wide at the skyline's 5:1
+export const STRIP_H = 84; // the black strip under the skyline: 815live.com
+export const FOOTER_H = SKY_H + STRIP_H;
+
+/**
+ * The footer of the daily lineup and the intro: a 6 px rule, the skyline,
+ * then an ink strip with 815LIVE.COM and `note` over shows@815live.com, inside
+ * 64 px margins. `safeBottom` (Stories) continues the black under the app's UI.
+ */
+export function footer(width, { safeBottom = 0, note }) {
+  return h(
+    'div',
+    { width, flexDirection: 'column', flexShrink: 0 },
+    h('div', { width, height: 6, background: C.ink }),
+    skyline(width, SKY_H - 6),
+    // Padding would widen a box in satori, so the strip centres an inner row instead.
+    h('div', { width, height: STRIP_H, background: C.ink, alignItems: 'center', justifyContent: 'center' },
+      h('div', { width: width - 128, alignItems: 'center', justifyContent: 'space-between' },
+        h('div', { fontFamily: 'Anton', fontSize: 54, lineHeight: 1, color: C.yellow, textTransform: 'uppercase' }, '815live.com'),
+        h('div', { flexDirection: 'column', alignItems: 'flex-end', fontFamily: 'Atkinson', color: C.bg, fontSize: 22, lineHeight: 1.25 },
+          h('div', {}, note),
+          h('div', { fontWeight: 700, fontSize: 25 }, 'shows@815live.com'),
+        ),
+      ),
+    ),
+    safeBottom ? h('div', { width, height: safeBottom, background: C.ink }) : null,
+  );
+}
+
 /** Laid-out height of `element` at `width`, from satori itself (so wrapping matches the render). */
 export async function measure(element, width) {
   const svg = await satori(h('div', { width, flexDirection: 'column' }, element), { width, fonts: FONTS });

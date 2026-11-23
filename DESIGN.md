@@ -96,6 +96,8 @@ this palette (`C`), the fonts, `ticket()`, `wordmark()`, `tape()` and
 | Profile picture | 1080×1080 | `npm run social:brand` | Ticket stub (no "ADMIT ONE") over LIVE at `PROFILE_SCALE` 1.28; the farthest ink (a ticket corner) is 513 px from centre, inside the 540 px circle crop. No small text. |
 | Facebook cover | 1640×624 | `npm run social:brand` | Ticket + 815LIVE.COM + tape tagline inside the middle 1200 px; skyline full width below a 6px rule. |
 | Link preview (og:image) | 1200×630 | `npm run social:brand` | The cover's layout; written to `public/og.png`. |
+| Intro post, feed | 1080×1350 | `npm run social:brand` | `social/brand/intro.png` (not committed). Wordmark; "Who's playing tonight?" (Anton 116); "Now you know." on tape (76); 6px rule; subline (Atkinson 34, "Posted daily." 700 on its own line); Live bands, Karaoke, Open mics, Trivia & comedy as Anton 64 rows numbered 01–04 in pink, 6px rules top and bottom, 4px between; the lineup's footer with "Playing a show? Send it in:". |
+| Intro post, Story | 1080×1920 | `npm run social:brand` | `social/brand/intro-story.png`: same sizes, top and bottom 250 px clear (the safe area leaves only ~70 px more room than the feed). |
 | Daily lineup, feed | 1080×1350 | `npm run social:tonight` | See below. |
 | Daily lineup, Story | 1080×1920 | `npm run social:tonight` | Same, with the top and bottom 250 px kept clear (the black under the footer is the river continuing). |
 
