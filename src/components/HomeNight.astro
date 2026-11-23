@@ -24,7 +24,7 @@ const { music, other } = splitMusic(shows);
   {
     other.length > 0 && (
       <div class="also-night" data-also>
-        <h4 class="also-heading">Also happening</h4>
+        <h4 class="also-heading">Also happening<span class="also-tonight"> tonight</span></h4>
         {other.map((show) => <ShowCard show={show} />)}
       </div>
     )

@@ -114,6 +114,7 @@ test('later window: through Sunday on weekdays, next 7 days on weekends', () => 
   assert.deepEqual(laterWindow('2026-10-30'), { start: '2026-10-31', end: '2026-11-01', label: 'Later this week' }); // Fri
   assert.deepEqual(laterWindow('2026-10-31'), { start: '2026-11-01', end: '2026-11-07', label: 'Next 7 days' }); // Sat
   assert.deepEqual(laterWindow('2026-11-01'), { start: '2026-11-02', end: '2026-11-08', label: 'Next 7 days' }); // Sun
+  assert.deepEqual(laterWindow('2026-10-26', true), { start: '2026-10-27', end: '2026-11-02', label: 'Next 7 days' }); // quiet Mon
 });
 
 test('build day part: Today before 5 PM Chicago, Tonight after', () => {

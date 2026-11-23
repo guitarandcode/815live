@@ -26,6 +26,6 @@ const empty = (await categoryCounts())[category] === 0;
   <h1>{page.heading}</h1>
   <p class="lede">{page.description}</p>
   <CategoryNav current={category} />
-  <ShowList shows={shows} empty={`No ${page.heading.toLowerCase()} listed right now.`} />
+  <ShowList shows={shows} empty={category === 'live-music' ? 'New shows are added every day. Check back soon or see the calendar.' : `No ${page.heading.toLowerCase()} listed right now.`} />
   <WeeklyList rules={weekly} />
 </Base>

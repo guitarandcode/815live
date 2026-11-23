@@ -62,15 +62,16 @@ export const dayPart = (now: Date): 'Today' | 'Tonight' => (chicagoHour(now) >= 
 /**
  * The home page's second section after a given night: tomorrow through
  * Sunday, or the next 7 days on Saturday and Sunday so it never shows a
- * single day. index.astro's inline script repeats this.
+ * single day. A quiet night (no music today) also gets the next 7 days, shown
+ * right under the "Quiet night" note. index.astro's inline script repeats this.
  */
-export function laterWindow(night: string): { start: string; end: string; label: string } {
+export function laterWindow(night: string, quiet = false): { start: string; end: string; label: string } {
   const wd = weekday(night);
-  const weekend = wd === 0 || wd === 6;
+  const week = quiet || wd === 0 || wd === 6;
   return {
     start: addDays(night, 1),
-    end: addDays(night, weekend ? 7 : 7 - wd),
-    label: weekend ? 'Next 7 days' : 'Later this week',
+    end: addDays(night, week ? 7 : 7 - wd),
+    label: week ? 'Next 7 days' : 'Later this week',
   };
 }
 

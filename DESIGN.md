@@ -93,7 +93,7 @@ this palette (`C`), the fonts, `ticket()`, `wordmark()`, `tape()` and
 
 | Image | Size | Script | Notes |
 | --- | --- | --- | --- |
-| Profile picture | 1080×1080 | `npm run social:brand` | Ticket stub (no "ADMIT ONE") over LIVE; all art within ~430 px of centre so the circle crop keeps it. No small text. |
+| Profile picture | 1080×1080 | `npm run social:brand` | Ticket stub (no "ADMIT ONE") over LIVE at `PROFILE_SCALE` 1.28; the farthest ink (a ticket corner) is 513 px from centre, inside the 540 px circle crop. No small text. |
 | Facebook cover | 1640×624 | `npm run social:brand` | Ticket + 815LIVE.COM + tape tagline inside the middle 1200 px; skyline full width below a 6px rule. |
 | Link preview (og:image) | 1200×630 | `npm run social:brand` | The cover's layout; written to `public/og.png`. |
 | Daily lineup, feed | 1080×1350 | `npm run social:tonight` | See below. |
@@ -118,3 +118,7 @@ else music on one tight image with other events in the room left (dropped
 karaoke-first with a "+ N more at 815live.com" line), else music split over
 images. Quiet nights (fewer than 3 music listings) are one "Tonight + coming
 up" image; posts never say "no live music listed".
+
+The site follows the same rule: it never says "no live music". A quiet night
+on the home page reads "Quiet night for live music. Here's what's coming up."
+with the next 7 days right under it, then "Also happening tonight".

@@ -113,12 +113,28 @@ test('home leads with tonight, a 7-day strip and a date picker', () => {
   assert.ok(existsSync('dist/og.png'));
 });
 
-test('nothing tonight: the home page says so and points to the next night with events', () => {
+test('quiet night: "Quiet night for live music", then the next 7 days right under it', () => {
   // A Tuesday; the fixtures' only weekly nights are Wednesday and Saturday.
   const { homeHtml } = buildAt('2027-06-01T18:00:00Z', { data: FIXTURES });
-  assert.match(homeHtml, /<p class="tonight-empty" data-home-empty>/);
-  assert.match(homeHtml, /Next up: <a href="\/tomorrow" data-day-link="2027-06-02">Wednesday, Jun 2<\/a>/);
+  assert.doesNotMatch(homeHtml, /no live music/i);
+  assert.match(homeHtml, /data-home="today" data-quiet>/);
+  assert.match(
+    homeHtml,
+    /<p class="tonight-empty" data-home-empty>Quiet night for live music\. Here's what's coming up\.<\/p>\s*<div class="quiet-slot" data-quiet-slot><section class="home-sec home-later"/,
+  );
+  assert.match(homeHtml, /<span data-later-label>Next 7 days<\/span>/);
+  assert.match(homeHtml, /Wed, Jun 2 – Tue, Jun 8/);
+  assert.match(homeHtml, /data-quiet-slot>[\s\S]*?data-night="2027-06-02">/);
   assert.match(homeHtml, /class="tonight-list" data-home-list hidden/);
+  assert.equal(homeHtml.match(/data-home="later"/g)?.length, 1);
+});
+
+test('a night with music: no quiet note, and the week section follows Tonight', () => {
+  const { homeHtml } = buildAt('2027-06-02T18:00:00Z', { data: FIXTURES }); // Wed: open mic
+  assert.doesNotMatch(homeHtml, /data-quiet>/);
+  assert.match(homeHtml, /<p class="tonight-empty" data-home-empty hidden>/);
+  assert.match(homeHtml, /<div class="quiet-slot" data-quiet-slot><\/div>/);
+  assert.match(homeHtml, /<\/section>\s*<section class="home-sec home-later"/);
 });
 
 test('home sections: today, later this week through Sunday, then coming up', () => {
@@ -403,17 +419,20 @@ test('JSON-LD: MusicEvent for music, SocialEvent for games and karaoke, no bands
   assert.equal(ld('2026-10-31-fixture-karaoke-saturday')['@type'], 'SocialEvent');
 });
 
-test('no music tonight: the empty note, then Also happening, and Next up skips non-music nights', () => {
+test('no music tonight: the quiet note, the next 7 days (music nights only), then Also happening tonight', () => {
   buildAt('2027-06-04T18:00:00Z', { data: FIXTURES }); // Fri: bingo only; Sat: karaoke only; Wed: open mic
   const read = (f: string) => readFileSync(`dist/${f}`, 'utf8');
   const home = read('index.html');
-  assert.match(home, /<p class="tonight-empty" data-home-empty>\s*No live music listed for/);
-  assert.match(home, /class="tonight-list" data-home-list>/); // shown, for the bingo
-  assert.match(home, /data-night="2027-06-04">[\s\S]*?data-also[\s\S]*?Fixture Bingo/);
-  assert.match(home, /Next up: <a href="\/date\/2027-06-09" data-day-link="2027-06-09">/);
+  assert.doesNotMatch(home, /no live music/i);
+  assert.match(home, /<p class="tonight-empty" data-home-empty>Quiet night for live music\./);
+  assert.match(home, /Sat, Jun 5 – Fri, Jun 11/);
+  const slot = home.slice(home.indexOf('data-quiet-slot'), home.indexOf('class="tonight-list"'));
+  assert.deepEqual([...slot.matchAll(/data-night="([\d-]+)">/g)].map((m) => m[1]), ['2027-06-09']); // Sat is karaoke only
+  assert.match(home, /class="tonight-list" data-home-list>/); // shown, for the bingo, after the week
+  assert.match(home, /data-night="2027-06-04">[\s\S]*?data-also[\s\S]*?Also happening<span class="also-tonight"> tonight[\s\S]*?Fixture Bingo/);
   assert.match(home, /<h2>Every week<\/h2>[\s\S]*Fixture Open Mic[\s\S]*<h2>Also every week<\/h2>[\s\S]*Fixture Karaoke/);
   const tonight = main(read('tonight.html'));
-  assert.match(tonight, /No live music listed for tonight/);
+  assert.match(tonight, /Quiet night for live music/);
   assert.ok(tonight.indexOf('Fixture Bingo') > tonight.indexOf('<section class="also"'));
   const free = main(read('free.html'));
   assert.ok(free.indexOf('Fixture Bingo') > free.indexOf('Also free') && free.indexOf('Fixture Open Mic') < free.indexOf('Also free'));

@@ -599,6 +599,25 @@ nav {
 .tonight-empty {
   margin: 0 0 0.75rem;
   font-size: 1.05rem;
+  font-weight: 700;
+}
+
+/* Quiet night (no music today): the week ahead sits right under the note,
+   then tonight's other events, labelled "Also happening tonight". */
+.quiet-slot .home-sec {
+  margin-top: 0.5rem;
+}
+
+.tonight[data-quiet] .tonight-list {
+  margin-top: 2rem;
+}
+
+.also-tonight {
+  display: none;
+}
+
+.tonight[data-quiet] .tonight-list .also-tonight {
+  display: inline;
 }
 
 .tonight-list {

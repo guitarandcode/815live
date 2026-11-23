@@ -1,0 +1,25 @@
+---
+// The home page's second section (src/lib/shows.ts laterWindow). index.astro
+// renders it after Tonight, or, on a quiet night, right under the "Quiet
+// night" note; its inline script moves it the same way for the visitor's night.
+import type { Show } from '../lib/data.ts';
+import { formatShortDay } from '../lib/time.ts';
+import HomeNight from './HomeNight.astro';
+
+interface Props {
+  window: { start: string; end: string; label: string };
+  nights: { date: string; shows: Show[]; where?: string }[];
+  anyOther: boolean;
+}
+const { window: w, nights, anyOther } = Astro.props;
+---
+
+<section class="home-sec home-later" aria-labelledby="later-heading" data-home="later">
+  <h2 id="later-heading" class="section-heading">
+    <span data-later-label>{w.label}</span>
+  </h2>
+  <p class="sec-range" data-later-range>{formatShortDay(w.start)} – {formatShortDay(w.end)}</p>
+  <p class="empty" data-home-empty hidden={nights.length > 0}>Nothing else is listed for these days yet. See the <a href="/calendar">calendar</a>.</p>
+  <div data-home-list>{nights.map((n) => <HomeNight {...n} />)}</div>
+  {anyOther && <p class="also-more"><a href="/other-events">Trivia, bingo, karaoke and comedy: other events →</a></p>}
+</section>

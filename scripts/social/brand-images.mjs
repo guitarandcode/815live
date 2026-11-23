@@ -15,13 +15,15 @@ import { C, h, render, skyline, tape, ticket } from './lib.mjs';
 const ROOT = join(import.meta.dirname, '../..');
 const OUT = join(ROOT, 'docs/redesign/social');
 
-// Profile: the ticket stub over LIVE, both big enough to read as a thumbnail.
-// The circle's radius is 540; the farthest corner of the art is about 430 out.
+// Profile: the ticket stub over LIVE, filling most of the circle. PROFILE_SCALE
+// is relative to the first version (ticket 300 px, LIVE 200 px). The circle's
+// radius is 540; check the farthest inked pixel after a size change.
+const PROFILE_SCALE = Number(process.env.PROFILE_SCALE ?? 1.28);
 const profile = h(
   'div',
   { width: 1080, height: 1080, background: C.bg, flexDirection: 'column', alignItems: 'center', justifyContent: 'center' },
-  ticket(300, { admit: false, rotate: -6 }),
-  h('div', { marginTop: 30, fontFamily: 'Anton', fontSize: 200, lineHeight: 1, color: C.ink, textTransform: 'uppercase' }, 'live'),
+  ticket(300 * PROFILE_SCALE, { admit: false, rotate: -6 }),
+  h('div', { marginTop: 30 * PROFILE_SCALE, fontFamily: 'Anton', fontSize: 200 * PROFILE_SCALE, lineHeight: 1, color: C.ink, textTransform: 'uppercase' }, 'live'),
 );
 
 // Cover and og card: ticket + 815LIVE.COM, a tape strip, the skyline below.
