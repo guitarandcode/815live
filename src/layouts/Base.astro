@@ -1,5 +1,7 @@
 ---
 import '../styles/global.css';
+import Mark815 from '../components/Mark815.astro';
+import RockfordSkyline from '../components/RockfordSkyline.astro';
 import { NOW } from '../lib/data.ts';
 import { OG_IMAGE, SITE_NAME } from '../lib/jsonld.ts';
 import { chicagoDate, formatStamp, TZ } from '../lib/time.ts';
@@ -19,6 +21,8 @@ const path = Astro.url.pathname.replace(/(\/index)?\.html$/, '') || '/';
 const canonical = new URL(path, site).href;
 const fullTitle = path === '/' ? title : `${title} | ${SITE_NAME}`;
 const ogImage = new URL(OG_IMAGE, site).href;
+// The Rockford skyline: a band under the header on the home page, above the footer everywhere else.
+const home = path === '/';
 const ld = jsonld ? (Array.isArray(jsonld) ? jsonld : [jsonld]) : [];
 // Phones scroll this row sideways already; Tomorrow is linked from the home page instead.
 const nav = [
@@ -55,6 +59,8 @@ const social = [
     <link rel="canonical" href={canonical} />
     {noindex && <meta name="robots" content="noindex" />}
     <meta name="color-scheme" content="light dark" />
+    <link rel="preload" href="/fonts/anton-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/atkinson-hyperlegible-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="alternate" type="application/rss+xml" title="815live upcoming shows" href="/rss.xml" />
     <link rel="alternate" type="text/calendar" title="815live calendar" href="/calendar.ics" />
@@ -78,25 +84,28 @@ const social = [
       document.documentElement.dataset.nowNight = night;
       document.documentElement.dataset.nowPart = hour >= 17 || hour < 4 ? 'Tonight' : 'Today';
     </script>
-    <meta name="theme-color" content="#c73a22" />
+    <meta name="theme-color" content="#e4e2dd" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#141414" media="(prefers-color-scheme: dark)" />
     {ld.map((obj) => <script type="application/ld+json" set:html={JSON.stringify(obj).replace(/</g, '\\u003c')} />)}
   </head>
   <body>
     <header class="site-header">
       <div class="wrap">
-        <a class="wordmark" href="/" aria-label="815live home"><span class="wm-num">815</span><span class="wm-live">live</span></a>
+        <a class="wordmark" href="/" aria-label="815live home"><Mark815 class="wm-mark" /><span class="wm-live">live</span></a>
         <nav aria-label="Main">
           {nav.map(([href, label]) => <a href={href} aria-current={path === href ? 'page' : undefined}>{label}</a>)}
         </nav>
         <a class="submit-link" href="/submit" aria-current={path === '/submit' ? 'page' : undefined}>Submit a show</a>
       </div>
+      {home && <RockfordSkyline class="sky-head" />}
     </header>
     <main class="wrap">
       <slot />
     </main>
     <footer class="site-footer">
+      {!home && <RockfordSkyline class="sky-foot" />}
       <div class="wrap">
-        <p class="footer-mark"><span class="wordmark small"><span class="wm-num">815</span><span class="wm-live">live</span></span> Live music in Rockford, Loves Park, Belvidere and the 815.</p>
+        <p class="footer-mark"><span class="wordmark small"><Mark815 class="wm-mark" /><span class="wm-live">live</span></span> Live music in Rockford, Loves Park, Belvidere and the 815.</p>
         <p>
           <a href="/tonight">Tonight</a> · <a href="/tomorrow">Tomorrow</a> · <a href="/this-weekend">This weekend</a> ·
           <a href="/free">Free shows</a>

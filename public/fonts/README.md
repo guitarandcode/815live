@@ -1,4 +1,7 @@
 Self-hosted web fonts (latin subset, woff2), copied from the @fontsource npm
-packages. All are under the SIL Open Font License 1.1:
-Anton, Archivo, Limelight, Barlow, Barlow Condensed, Big Shoulders Display,
-Atkinson Hyperlegible. Only the chosen direction's files stay after the redesign.
+packages; both are under the SIL Open Font License 1.1.
+
+- anton-latin-400-normal.woff2: Anton, headlines, times, numerals
+- atkinson-hyperlegible-latin-400-normal.woff2 / -700-: body text and bold
+
+@font-face rules are at the top of src/styles/global.css. See DESIGN.md.

@@ -1,52 +1,39 @@
 ---
-// The 815 area code as a graphic mark, in three treatments:
-// ticket (a torn admission stub), bulbs (a marquee lit with bulbs),
-// postmark (a round Rockford cancellation stamp with river-wave lines).
+// The 815 area code as a graphic mark. The site uses `ticket` (a torn
+// admission stub); `postmark` (a round Rockford cancellation stamp with
+// river-wave lines) is kept as the alternative: swap the `kind` in
+// src/layouts/Base.astro to change it everywhere. Colours and fonts come from
+// .mark815 rules in src/styles/global.css.
 interface Props {
-  kind: 'ticket' | 'bulbs' | 'postmark';
+  kind?: 'ticket' | 'postmark';
   class?: string;
-  label?: string;
 }
-const { kind, class: cls, label = '815' } = Astro.props;
-const bulbs: [number, number][] = [];
-if (kind === 'bulbs') {
-  for (let x = 8; x <= 152; x += 12) bulbs.push([x, 6], [x, 74]);
-  for (let y = 18; y <= 62; y += 11) bulbs.push([6, y], [154, y]);
-}
+const { kind = 'ticket', class: cls } = Astro.props;
 ---
 
 {
   kind === 'ticket' && (
-    <svg class:list={['mark815', 'mark-ticket', cls]} viewBox="0 0 168 80" role="img" aria-label={label}>
+    <svg class:list={['mark815', 'mark-ticket', cls]} viewBox="0 0 168 80" aria-hidden="true" focusable="false">
       <path class="m-bg" d="M6 4 H162 V30 A10 10 0 0 0 162 50 V76 H6 V50 A10 10 0 0 0 6 30 Z" />
-      <path class="m-ink" d="M44 10 V70" stroke-dasharray="3 4" stroke-width="2" fill="none" />
+      <path class="m-line" d="M44 10 V70" stroke-dasharray="3 4" stroke-width="2" fill="none" />
       <text class="m-ink m-small" x="25" y="40" text-anchor="middle" transform="rotate(-90 25 40)">ADMIT ONE</text>
       <text class="m-ink m-big" x="104" y="61" text-anchor="middle">815</text>
     </svg>
   )
 }
 {
-  kind === 'bulbs' && (
-    <svg class:list={['mark815', 'mark-bulbs', cls]} viewBox="0 0 160 80" role="img" aria-label={label}>
-      <rect class="m-bg" x="0" y="0" width="160" height="80" rx="4" />
-      <rect class="m-board" x="14" y="14" width="132" height="52" rx="2" />
-      {bulbs.map(([x, y]) => <circle class="m-bulb" cx={x} cy={y} r="3.2" />)}
-      <text class="m-ink m-big" x="80" y="58" text-anchor="middle">815</text>
-    </svg>
-  )
-}
-{
   kind === 'postmark' && (
-    <svg class:list={['mark815', 'mark-postmark', cls]} viewBox="0 0 172 100" role="img" aria-label={label}>
+    <svg class:list={['mark815', 'mark-postmark', cls]} viewBox="0 0 172 100" aria-hidden="true" focusable="false">
       <defs>
         <path id="pm-ring" d="M50 50 m-38 0 a38 38 0 1 1 76 0 a38 38 0 1 1 -76 0" />
       </defs>
+      <circle class="m-bg" cx="50" cy="50" r="46" />
       <circle class="m-line" cx="50" cy="50" r="46" fill="none" stroke-width="2.5" />
       <circle class="m-line" cx="50" cy="50" r="30" fill="none" stroke-width="1.5" />
       <text class="m-ink m-small">
         <textPath href="#pm-ring">ROCKFORD · ILLINOIS · FOREST CITY ·</textPath>
       </text>
-      <text class="m-ink m-big" x="50" y="60" text-anchor="middle">815</text>
+      <text class="m-ink m-big m-big-pm" x="50" y="62" text-anchor="middle">815</text>
       {[34, 46, 58, 70].map((y) => (
         <path class="m-line" d={`M100 ${y} q9 -6 18 0 t18 0 t18 0 t18 0`} fill="none" stroke-width="2.5" />
       ))}

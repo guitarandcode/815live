@@ -1,9 +1,10 @@
 # Redesign: audit and three directions (2026-11-22)
 
 Branch `redesign`. Visual only: no data, listing logic or URL changes.
-Previews: `/design-preview/a`, `/b`, `/c` (noindex, same real listings in each;
-deleted once a direction is applied). Screenshots in `previews/`, current site
-in `before/`.
+**Picked: A, with Atkinson Hyperlegible for body text** (2026-11-22). The
+previews (`/design-preview/a`, `/b`, `/c`) and their screenshots were deleted
+once A was applied; see `../../DESIGN.md` for the final spec. Screenshots of
+the site before and after are in `before/` and `after/`.
 
 ## What reads as "default AI site" today
 
