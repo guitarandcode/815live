@@ -31,6 +31,7 @@
 import { readdirSync, readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { CATEGORIES, CATEGORY_LABEL, isMusic } from '../../src/lib/categories.ts';
+import { titleBesideNames } from '../../src/lib/names.ts';
 import { nightOf } from '../../src/lib/shows.ts';
 import { C, h, measure, render, skyline, tape, wordmark } from './lib.mjs';
 import { IG_CAP, fbPage, handleStatus, igHandle, noEmDash, planTags } from './venue-tags.mjs';
@@ -97,7 +98,9 @@ const toEvent = (e) => {
     ...e,
     category: e.category ?? 'live-music',
     act: names.length ? names.join(' + ') : e.title,
-    eventTitle: names.length ? e.title : undefined,
+    // The title beside the acts, minus any act it repeats (names.ts):
+    // "Mana Kintorso (Black Wednesday)" shows as "Black Wednesday".
+    eventTitle: names.length ? titleBesideNames(e.title, names) : undefined,
     venueName: v.name,
     city: v.city,
     // Town shown after the venue: none for Rockford or when the name already says it.
@@ -172,10 +175,19 @@ function subLine(e, d, withDay) {
   // Venues with more than one room note it like "On the Council Oak stage."
   const stage = e.notes?.match(/^On the (.+?) stage\.?$/i)?.[1];
   const when = withDay ? `${dayShort(e.date)} · ${clock(e.startTime)}` : clock(e.startTime);
-  const rest = [e.eventTitle, e.venueName, stage, e.town].filter(Boolean).join(' · ');
+  // The venue stands out: Atkinson 700 in ink like the time, at the same size;
+  // the event title, stage and town stay 400 and muted (DESIGN.md).
+  const parts = [
+    e.eventTitle && { text: e.eventTitle },
+    { text: e.venueName, venue: true },
+    stage && { text: stage },
+    e.town && { text: e.town },
+  ].filter(Boolean);
+  // Plain inline spans (h() would make them flex boxes, breaking the line).
+  const span = (text, venue) => ({ type: 'span', props: { style: venue ? { fontWeight: 700, color: C.ink } : {}, children: text } });
   return h('div', { fontFamily: 'Atkinson', fontSize: d.sub, lineHeight: 1.3, color: C.muted, marginTop: 4 },
     h('div', { flexShrink: 0, fontWeight: 700, color: C.ink, whiteSpace: 'nowrap' }, when),
-    h('div', { flexShrink: 1 }, `\u00a0· ${rest}`));
+    h('div', { display: 'block', flexShrink: 1 }, parts.map((p, i) => [span(i ? ' · ' : '\u00a0· ', false), span(p.text, p.venue)])));
 }
 
 // A show: act(s) in Anton, wrapping as needed (never clamped), then time and venue.

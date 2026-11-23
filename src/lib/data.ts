@@ -2,6 +2,7 @@
 import { readFileSync } from 'node:fs';
 import { getCollection, type CollectionEntry } from 'astro:content';
 import { CATEGORIES, isMusic, type Category } from './categories.ts';
+import { namesNotInTitle } from './names.ts';
 import { DATA_DIR } from './paths.ts';
 import type { SOURCE_KINDS } from './sources.ts';
 import { buildNow, byStart, dedupeRecurring, listing, recurringDates, upcoming, WEEKDAYS } from './shows.ts';
@@ -174,8 +175,13 @@ export function billTitle(show: Show): string {
   return rest.length ? `${head} with ${rest.join(', ')}` : (head ?? '');
 }
 
-/** "The Moment, Joie De Vivre, …": the line-up under a titled show. */
-export const lineup = (show: Show) => show.artists.map((a) => a.data.name).join(', ');
+/**
+ * The line-up under a titled show, minus acts the title already names
+ * ("Mana Kintorso (Black Wednesday)" doesn't repeat Mana Kintorso); empty
+ * when the title names them all. See names.ts.
+ */
+export const lineupBesideTitle = (show: Show) =>
+  namesNotInTitle(show.title, show.artists.map((a) => a.data.name)).join(', ');
 
 /** The show's own title when it has one, otherwise its bill. */
 export const showTitle = (show: Show) => show.title ?? billTitle(show);

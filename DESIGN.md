@@ -109,9 +109,17 @@ Daily lineup (`scripts/social/tonight.mjs`), as a show flyer:
 | Date | Anton on a yellow tape strip | 42 px |
 | Section label (Live music, DJ…) | Anton, pink | 28 px (tight 24) |
 | Act(s) | Anton, uppercase, wraps | 42 px (tight 34) |
-| Time · event · venue · town | Atkinson 700 time, 400 rest, muted | 26 px (tight 23) |
+| Time · event · venue · stage · town | Atkinson 700 in ink for the time and the venue; 400 muted for the event title, stage and town | 26 px (tight 23), all one size |
 | Rules between shows | ink | 4 px (tight 3) |
 | Footer | skyline 1080×216, then a 84 px ink strip: 815LIVE.COM (Anton 54, yellow), "Playing soon? Send it in: shows@815live.com" (Atkinson 22/25, paper) | |
+
+The act's name appears once. When a show's title repeats an act's name
+(same name or one contains the other, ignoring case and punctuation), the
+image shows only the rest of the title beside the venue ("Mana Kintorso
+(Black Wednesday)" under MANA KINTORSO reads "Black Wednesday"), or no title
+if nothing is left. The site does the same the other way round: under a show
+title, the line-up skips acts the title already names. Both use
+`src/lib/names.ts`.
 
 Margins 64 px each side. Packing: everything at normal size, else tight,
 else music on one tight image with other events in the room left (dropped

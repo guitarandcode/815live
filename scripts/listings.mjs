@@ -9,6 +9,7 @@
 import { readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { dedupeRecurring, nightOf, recurringDates } from '../src/lib/shows.ts';
+import { namesNotInTitle } from '../src/lib/names.ts';
 import { addDays, formatDay, formatTime } from '../src/lib/time.ts';
 
 const ROOT = join(import.meta.dirname, '..');
@@ -47,7 +48,7 @@ console.log(`${formatDay(date)}: ${all.length} listings (night runs to 4 AM)`);
 for (const s of all) {
   const v = venues[s.venue.id];
   const names = (s.artists ?? []).map((a) => artists[a]?.name ?? a);
-  const act = [s.title, names.join(' + ')].filter(Boolean).join(': ');
+  const act = [s.title, namesNotInTitle(s.title, names).join(' + ')].filter(Boolean).join(': ');
   const aka = v.aliases?.length ? ` (aka ${v.aliases.join(', ')})` : '';
   const time = formatTime(s.startTime) + (s.endTime ? `-${formatTime(s.endTime)}` : '');
   const src = s.source?.uid ? 'venue feed' : s.source?.kind ? `${s.source.type}/${s.source.kind}` : s.source?.type;

@@ -2,7 +2,7 @@
 import type { GetStaticPaths } from 'astro';
 import Base from '../../layouts/Base.astro';
 import { CATEGORY_LABEL } from '../../lib/categories.ts';
-import { bestSource, coverLabel, lineup, loadAll, REPORT_EMAIL, reportHref, showPageTitles, showTitle, type Show } from '../../lib/data.ts';
+import { bestSource, coverLabel, lineupBesideTitle, loadAll, REPORT_EMAIL, reportHref, showPageTitles, showTitle, type Show } from '../../lib/data.ts';
 import { showEvent } from '../../lib/jsonld.ts';
 import { chicagoIso, formatDay, formatMediumDay, formatTime } from '../../lib/time.ts';
 
@@ -33,7 +33,7 @@ const mapUrl = `https://www.openstreetmap.org/?mlat=${v.data.lat}&mlon=${v.data.
     {show.placeholder && <span class="badge">Sample listing</span>}
     <p class="category">{CATEGORY_LABEL[show.category]}{show.recurring && ' · Weekly'}</p>
     <h1>{name}</h1>
-    {show.title && show.artists.length > 0 && <p class="lede">{lineup(show)}{show.lineupPartial && ', more TBA'}</p>}
+    {show.title && lineupBesideTitle(show) && <p class="lede">{lineupBesideTitle(show)}{show.lineupPartial && ', more TBA'}</p>}
     {show.status !== 'scheduled' && <p class="status">{show.status === 'cancelled' ? 'Cancelled' : 'Postponed'}</p>}
     <dl class="facts">
       <dt>When</dt>
