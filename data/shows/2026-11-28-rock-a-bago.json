@@ -1,14 +1,15 @@
 {
   "date": "2026-11-28",
   "startTime": "20:00",
+  "endTime": "23:59",
   "venue": "rock-a-bago",
   "category": "live-music",
   "artists": [
     "fast-lane"
   ],
-  "checked": "2026-10-26",
+  "checked": "2026-11-23",
   "source": {
     "type": "manual",
-    "file": "venues/rock-a-bago/2026-11_facebook-events.txt"
+    "file": "venues/rock-a-bago/2026-11_fast-lane-nov-28-event.png"
   }
 }

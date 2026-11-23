@@ -1,0 +1,16 @@
+{
+  "date": "2026-11-25",
+  "startTime": "21:00",
+  "venue": "district",
+  "category": "dj",
+  "title": "Y2K Pajama Jam",
+  "artists": [
+    "dj-tydal-wave"
+  ],
+  "notes": "Doors 9 PM. 21+.",
+  "checked": "2026-11-23",
+  "source": {
+    "type": "manual",
+    "file": "venues/district/2026-11_y2k-pajama-jam.jpeg"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "date": "2026-11-25",
+  "startTime": "20:00",
+  "endTime": "23:00",
+  "venue": "mill-saloon",
+  "category": "live-music",
+  "title": "Rock the Night Before",
+  "artists": [
+    "the-rocksurfers"
+  ],
+  "checked": "2026-11-23",
+  "source": {
+    "type": "manual",
+    "file": "venues/mill-saloon/2026-11_rocksurfers-thanksgiving-eve.png"
+  }
+}

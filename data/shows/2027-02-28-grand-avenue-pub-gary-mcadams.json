@@ -1,0 +1,18 @@
+{
+  "date": "2027-02-28",
+  "startTime": "15:00",
+  "venue": "grand-avenue-pub",
+  "category": "live-music",
+  "title": "Stateline All-Stars Musical Showcase: Gary's 25th Stateline Musical Anniversary",
+  "artists": [
+    "gary-mcadams"
+  ],
+  "lineupPartial": true,
+  "checked": "2026-11-23",
+  "source": {
+    "type": "manual",
+    "url": "https://www.grandavenuebeloit.com/",
+    "kind": "venue",
+    "file": "venues/grand-avenue-pub/2027-02_garys-25th-stateline-anniversary.jpg"
+  }
+}

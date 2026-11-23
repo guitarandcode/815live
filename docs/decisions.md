@@ -1695,3 +1695,30 @@ in this run, so small print was read from the full-size images.
   Legends skipped earlier). New artist `leinaala-and-dave`. No cover
   stated. No `source.url`: the only event link visible is a truncated
   browser status-bar URL, not certainly this event's.
+
+## 2026-11-23: Inbox (scheduled, evening)
+
+14 files (5 flyers, 9 Facebook screenshots).
+
+- **Added:** District Naughty Bingo, Tue Nov 24, 7:30 PM (`bingo`, free to
+  play, so `cover: null`); District "Y2K Pajama Jam" with DJ Tydal Wave,
+  Wed Nov 25, doors 9 PM, 21+ (`dj`; contest prizes left out); New Mill Tap
+  "Rockstar Karaoke: The Night Before", Wed Nov 25, 7 PM (`karaoke`, host
+  name left out); The Rocksurfers at The Mill Saloon, Wed Nov 25, 8–11 PM
+  (new venue `mill-saloon`, 9032 N 2nd St, Machesney Park, Census
+  geocoded); Grand Avenue Pub "Stateline All-Stars Musical Showcase: Gary's
+  25th Stateline Musical Anniversary", Sun Feb 28, 2027, 3 PM (weekday
+  checks out; new artist `gary-mcadams`; `lineupPartial` because the
+  "regional musical icons" guests aren't named).
+- **Updated:** STEREOtype at Splitter's Nov 25 gets an 8 PM–midnight end
+  and its first `source.file` (band's post); Fast Lane at Rock-A-Bago Nov 28
+  gets the event's 11:59 PM end and points at its Facebook event screenshot.
+- **Re-confirmed, `checked` bumped:** Fozzy's Glow Party Nov 25, Tipsy Hog
+  EJ Kane Nov 25, Jupiter Sky at Hot Rod Nellie's Nov 28, McKenna Faith
+  Winters with Leinaala & Dave at Legends Nov 28. Extra copies filed in
+  the venue folders with `-2` names.
+- **Skipped:** The Rusty Fox (Rock Falls/Sterling): Golden Hour Nov 25 and
+  Wisconsin Comedy Takeover Nov 28, out of area.
+- **Waiting:** Chad Foster at Bootie's Main Tap, Pecatonica, Nov 25 (street
+  address only from search snippets; directory pages 403'd); Rollin'
+  Whiskey at Rascals Nov 28 (venue town still unconfirmed).

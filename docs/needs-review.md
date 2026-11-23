@@ -217,6 +217,12 @@ night (8–11), so it's probably their post. Not published: no venue record
 yet, and the act is a guess. In `waiting/` as
 `2026-11_rascals-loves-park-nov-21.jpg`.
 
+New (2026-11-23 inbox): Rollin' Whiskey's own Facebook event, "Rollin'
+Whiskey at Rascal's", Sat Nov 28, 8 PM (no end time), location "Rascals Bar
+and Grill" with no town or address. Matches the line-up's Nov 28 entry.
+Still held on the venue. In `waiting/` as
+`2026-11_rascals-rollin-whiskey-nov-28.png`.
+
 ## RPL Nordlof Center: library times vs. Crossroads times
 
 The library calendar lists every Music Off the Rock show at 5 PM (Oct 28 at
@@ -804,3 +810,16 @@ artist to the listing. In `waiting/` as
   La Ultima Banda (`data/artists/la-ultima-banda.json`); rename if the band
   goes by La Ultimona. The flyer and post are from the promoter's side, not
   the club's own page, and the bit.ly ticket link in the post wasn't stored.
+
+## Bootie's Main Tap (Pecatonica): Chad Foster, Wed Nov 25, 8 PM–midnight (venue address)
+
+Chad Foster's own Facebook event (screenshot 2026-11-23, event also by
+Bootie's Main Tap): "Chad Foster acoustic Blackout Wednesday", Wednesday
+8 PM–12 AM (Nov 25), acoustic covers, "out at Bootie's in Pecatonica". No
+venue or artist record yet. The post gives the town but no street address.
+A web search's directory results point to 411 Main St, Pecatonica 61063
+(Census matches it at 42.31376, -89.35949), but the directory pages
+themselves returned 403 and weren't read, so the number is unconfirmed (a
+LoopNet result also mentions 431 Main St). Confirm the address, then
+publish as `live-music` with new venue `booties-main-tap` and artist
+`chad-foster`. In `waiting/` as `2026-11_booties-main-tap-chad-foster.png`.
