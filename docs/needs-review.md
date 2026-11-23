@@ -441,11 +441,10 @@ Friendsgiving, Thanksgiving hours. In `waiting/` as
   jonhayesofficial.ticketspice.com, full link not shown). No start time or
   price. Add once the venue lists it. In `waiting/` as
   `2026-11_music-box-jon-hayes.jpg`.
-- **Pig Minds Brewing: 15th annual Black Wednesday, Wed Nov 25.** The
-  brewery's post: doors at noon, no cover, live music by Mana Kintorso and Jon
-  Bon Stamos (`jon-bon-stamos` exists), but no music start time ("all day
-  long"). Publish once set times are known. In `waiting/` as
-  `2026-11_pig-minds-black-wednesday.jpg`.
+- ~~Pig Minds Brewing: 15th annual Black Wednesday, Wed Nov 25~~: resolved
+  2026-11-23. The brewery's later post gives set times: Mana Kintorso 1–4 PM,
+  Jon Bon Stamos 5–8 PM, no cover. Published as two listings; both
+  screenshots moved to `venues/pig-minds-brewing/`.
 - **Louie's Tap House (Roscoe): Rollin' Whiskey, date conflict.** The band's
   Facebook event says Monday, December 7, 2026, 6–10 PM; its own graphic says
   Saturday, November 7, 7–11 PM. Address on the event: 5689 Elevator Rd,

@@ -1,0 +1,19 @@
+{
+  "date": "2026-11-25",
+  "startTime": "13:00",
+  "endTime": "16:00",
+  "venue": "pig-minds-brewing",
+  "category": "live-music",
+  "title": "Mana Kintorso (Black Wednesday)",
+  "artists": [
+    "mana-kintorso"
+  ],
+  "cover": null,
+  "checked": "2026-11-23",
+  "source": {
+    "type": "manual",
+    "url": "https://www.pigmindsbrewing.com/",
+    "kind": "venue",
+    "file": "venues/pig-minds-brewing/2026-11_black-wednesday-set-times.png"
+  }
+}
