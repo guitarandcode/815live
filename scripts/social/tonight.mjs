@@ -1,14 +1,19 @@
-// "Tonight in the 815": a 1080x1350 post image (Facebook/Instagram portrait)
-// built from data/, plus a ready-to-paste caption with tags.
+// "Tonight in the 815": the daily lineup as a show flyer (DESIGN.md), built
+// from data/: a 1080x1350 feed image and a 1080x1920 Story, plus
+// ready-to-paste captions with tags.
 //
 //   node scripts/social/tonight.mjs                 # today (Chicago)
 //   node scripts/social/tonight.mjs --date 2026-10-31
+//   node scripts/social/tonight.mjs --date 2026-10-31 --out /some/dir   # samples
 //
-// Writes social/tonight-YYYY-MM-DD[-2].png, the Instagram caption
+// Writes social/tonight-YYYY-MM-DD.png (feed) and -story.png (Story; content
+// stays out of the top and bottom 250 px), the Instagram caption
 // social/tonight-YYYY-MM-DD-instagram.txt, the Facebook caption -fb.txt, the
 // image-tag list -tags.txt and the Facebook venues to tag by hand
 // -fb-tag-by-hand.txt, then reports venues missing social handles.
-// Busy nights spill onto extra images (post them together as one album).
+// Busy nights first switch to a tighter layout, then spill onto more images:
+// -1.png, -2.png and -story-1.png, -story-2.png, each marked "1 of 2" (post the
+// feed ones together as one album). reel.mjs reads only the feed images.
 // Quiet nights (fewer than QUIET music listings) get one "Tonight + Coming Up"
 // image instead: tonight's listings on top, then up to WEEK_MAX one-off shows
 // from the next 7 days in the room left, soonest first. Coming-up highlights
@@ -19,19 +24,21 @@
 // bingo, karaoke, comedy; see src/lib/categories.ts) follow. Music always
 // fits (busy nights spill onto more images); other events take the room
 // left on the last image, and when they don't fit, rows are dropped in
-// DROP_FIRST order and a "+ N more at 815live.com" line is added. Text never
-// shrinks. Titles wrap to two lines instead of being cut off.
+// DROP_FIRST order and a "+ N more at 815live.com" line is added. Shows are
+// never cut off: acts wrap to as many lines as they need, every block is
+// measured by satori before it's placed, and an image that would still
+// overflow stops the run with an error instead of clipping.
 import { readdirSync, readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { CATEGORIES, CATEGORY_LABEL, isMusic } from '../../src/lib/categories.ts';
 import { nightOf } from '../../src/lib/shows.ts';
-import { C, h, measure, render, wordmark } from './lib.mjs';
+import { C, h, measure, render, skyline, tape, wordmark } from './lib.mjs';
 import { IG_CAP, fbPage, handleStatus, igHandle, noEmDash, planTags } from './venue-tags.mjs';
 
 const ROOT = join(import.meta.dirname, '../..');
-const OUT = join(ROOT, 'social');
-const W = 1080;
-const H = 1350;
+// --out DIR writes somewhere else (samples); the daily job uses social/.
+const argOut = process.argv.indexOf('--out');
+const OUT = argOut > -1 ? process.argv[argOut + 1] : join(ROOT, 'social');
 
 // ---------- data ----------
 const load = (dir) =>
@@ -136,224 +143,261 @@ const isToday = date === chicagoToday();
 const heading = isToday ? 'Tonight' : longDate.split(',')[0];
 
 // ---------- layout ----------
-const PAD = 72; // side margins
-const TOP = 64;
-const BOTTOM = 44;
-const HEADER = 372; // wordmark + two-line heading + date + rule
-const FOOTER = 120;
-const SECTION_H = 58;
-const ROW_H = 88;
-const MORE_H = 58;
-const WRAP_H = 48; // a title's second line (42 px type at 1.1, rounded up)
-const BODY = H - TOP - BOTTOM - HEADER - FOOTER - 24;
-const INNER = W - PAD * 2;
-const TIME_W = 170;
-const DAY_TIME_W = 230; // the week list: weekday and date over the time
-const TITLE = { fontFamily: 'Cond', fontWeight: 800, fontSize: 42, lineHeight: 1.1 };
+// A show flyer (DESIGN.md): newsprint, the date on a yellow tape strip, acts
+// in Anton, time and venue in Atkinson Hyperlegible, heavy black rules
+// between shows, the Rockford skyline with 815live.com at the bottom.
+// Every block is measured by satori before packing, so nothing is clipped.
+const FORMATS = {
+  // Feed posts (Instagram and Facebook portrait).
+  feed: { W: 1080, H: 1350, safeTop: 0, safeBottom: 0, suffix: '' },
+  // Stories: the apps cover the top and bottom 250 px, so content stays out of them.
+  story: { W: 1080, H: 1920, safeTop: 250, safeBottom: 250, suffix: '-story' },
+};
+const PAD = 64; // side margins
+const TOP = 44; // above the wordmark (inside the safe area)
+const GAP = 18; // header → body, body → footer
+const INNER = 1080 - PAD * 2;
+const SKY_H = 216; // 1080 wide at the skyline's 5:1
+const STRIP_H = 84; // the black strip under the skyline: 815live.com
+const FOOTER_H = SKY_H + STRIP_H;
+// Two densities: the tight one is tried before a busy night splits onto more images.
+const DENSITY = {
+  normal: { act: 42, sub: 26, pad: 12, rule: 4, label: 28, more: 26 },
+  tight: { act: 34, sub: 23, pad: 7, rule: 3, label: 24, more: 23 },
+};
 
-// Titles wrap to at most two lines; satori measures them so rows can be sized.
-const titleLines = async (text, width) =>
-  Math.min(2, Math.max(1, Math.round((await measure(h('div', { width, ...TITLE }, text), width)) / 46)));
-for (const e of all) e.lines = await titleLines(e.act, INNER - TIME_W);
-for (const e of week) e.lines = await titleLines(e.act, INNER - DAY_TIME_W);
-const rowH = (e, base) => base + (e.lines - 1) * WRAP_H;
+const dayShort = (d) => shortDay(d).replace(',', ''); // 'Thu Oct 29'
 
-// Other events in the room left: drop rows (DROP_FIRST) until they and the
-// "+ N more" line fit. Returns page items, grouped by category.
-function fitOthers(room, base) {
+function subLine(e, d, withDay) {
+  // Venues with more than one room note it like "On the Council Oak stage."
+  const stage = e.notes?.match(/^On the (.+?) stage\.?$/i)?.[1];
+  const when = withDay ? `${dayShort(e.date)} · ${clock(e.startTime)}` : clock(e.startTime);
+  const rest = [e.eventTitle, e.venueName, stage, e.town].filter(Boolean).join(' · ');
+  return h('div', { fontFamily: 'Atkinson', fontSize: d.sub, lineHeight: 1.3, color: C.muted, marginTop: 4 },
+    h('div', { flexShrink: 0, fontWeight: 700, color: C.ink, whiteSpace: 'nowrap' }, when),
+    h('div', { flexShrink: 1 }, `\u00a0· ${rest}`));
+}
+
+// A show: act(s) in Anton, wrapping as needed (never clamped), then time and venue.
+// `first` rows in a section get no rule above them (the label sits there).
+function rowEl(e, d, { withDay = false, first = false } = {}) {
+  return h(
+    'div',
+    { width: INNER, flexShrink: 0, flexDirection: 'column', paddingTop: d.pad, paddingBottom: d.pad, borderTop: first ? 'none' : `${d.rule}px solid ${C.ink}` },
+    h('div', { display: 'block', fontFamily: 'Anton', fontSize: d.act, lineHeight: 1.02, color: C.ink, textTransform: 'uppercase' }, e.act),
+    subLine(e, d, withDay),
+  );
+}
+const labelEl = (text, d) =>
+  h('div', { width: INNER, flexShrink: 0, paddingTop: d.pad + 4, paddingBottom: 2, fontFamily: 'Anton', fontSize: d.label, lineHeight: 1.1, color: C.accent, textTransform: 'uppercase', borderTop: `${d.rule}px solid ${C.ink}` }, text);
+const moreEl = (n, d) =>
+  h('div', { width: INNER, flexShrink: 0, paddingTop: d.pad, paddingBottom: d.pad, borderTop: `${d.rule}px solid ${C.ink}`, fontFamily: 'Atkinson', fontWeight: 700, fontSize: d.more, color: C.ink }, `+ ${n} more at 815live.com`);
+
+// Items: { label }, { row, withDay?, first? } or { more }. Labels open with a rule,
+// so the row right after a label skips its own.
+const itemEl = (it, d) => (it.label ? labelEl(it.label, d) : it.more ? moreEl(it.more, d) : rowEl(it.row, d, it));
+const heights = new Map();
+async function itemH(it, d) {
+  const key = `${d.act}|${it.label ?? ''}|${it.more ?? ''}|${it.row ? `${it.row.venue}|${it.row.date}|${it.row.startTime}|${it.row.act}|${!!it.withDay}|${!!it.first}` : ''}`;
+  if (!heights.has(key)) heights.set(key, await measure(itemEl(it, d), INNER));
+  return heights.get(key);
+}
+const sumH = async (items, d) => {
+  let n = 0;
+  for (const it of items) n += await itemH(it, d);
+  return n;
+};
+// Mark the first row after each label.
+const firstAfterLabels = (items) => items.map((it, i) => (it.row && items[i - 1]?.label ? { ...it, first: true } : it));
+
+const sectionItems = (list, { withDay = false } = {}) => {
+  const items = [];
+  for (const [cat, label] of SECTIONS) {
+    const rows = list.filter((e) => e.category === cat);
+    if (rows.length) items.push({ label }, ...rows.map((row) => ({ row, withDay })));
+  }
+  return firstAfterLabels(items);
+};
+
+// Other events in `room`: drop rows (DROP_FIRST, latest first) until they and
+// the "+ N more" line fit. Music is never dropped.
+async function fitOthers(room, d) {
   const kept = [...others];
-  const height = () =>
-    new Set(kept.map((e) => e.category)).size * SECTION_H +
-    kept.reduce((n, e) => n + rowH(e, base), 0) +
-    (kept.length < others.length ? MORE_H : 0);
-  while (kept.length && height() > room) {
+  const build = () => {
+    const items = sectionItems(kept);
+    const more = others.length - kept.length;
+    return more ? [...items, { more }] : items;
+  };
+  while (kept.length && (await sumH(build(), d)) > room) {
     const cat = DROP_FIRST.find((c) => kept.some((e) => e.category === c));
     kept.splice(kept.findLastIndex((e) => e.category === cat), 1);
   }
-  const items = [];
-  for (const [cat, label] of SECTIONS) {
-    const rows = kept.filter((e) => e.category === cat);
-    if (rows.length) items.push({ label }, ...rows.map((row) => ({ row })));
+  let items = build();
+  if (!kept.length && (await sumH(items, d)) > room) {
+    console.warn(`no room for the "+ ${others.length} more" line`);
+    items = [];
   }
-  const more = others.length - kept.length;
-  if (more && MORE_H <= room) items.push({ more });
-  else if (more) console.warn(`no room for the "+ ${more} more" line`);
-  return { items, height: kept.length || (more && MORE_H <= room) ? height() : 0 };
+  return { items, height: await sumH(items, d) };
 }
 
-// Pack music sections and rows into pages by height; other events go on the last.
-const pages = [];
-let page = [];
-let used = 0;
-const musicSections = SECTIONS.filter(([c]) => isMusic(c));
-// The last music row also leaves room under it for a "+ N more" line.
-const lastMusic = musicSections.flatMap(([c]) => events.filter((e) => e.category === c)).at(-1);
-for (const [cat, label] of musicSections) {
-  const rows = events.filter((e) => e.category === cat);
-  if (!rows.length) continue;
-  let first = true;
-  let continued = false;
-  for (const row of rows) {
-    const need = rowH(row, ROW_H) + (first ? SECTION_H : 0) + (row === lastMusic && others.length ? MORE_H : 0);
-    // Start a new page rather than overflow (and never strand a label at the bottom).
-    if (used + need > BODY && page.length) {
-      pages.push(page);
-      page = [];
-      used = 0;
-      continued = !first;
-      first = true;
-    }
-    if (first) {
-      page.push({ label: continued ? `${label} (cont.)` : label });
-      used += SECTION_H;
+// The header: wordmark (and "1 of 2"), the title in Anton with 815 in pink,
+// the date on a strip of tape.
+function headerEl(title, dateText, i, total) {
+  const words = title.split(' ');
+  return h(
+    'div',
+    { width: INNER, flexDirection: 'column', flexShrink: 0 },
+    h('div', { justifyContent: 'space-between', alignItems: 'center' },
+      wordmark(58),
+      total > 1 ? h('div', { background: C.ink, color: C.yellow, fontFamily: 'Anton', fontSize: 36, lineHeight: 1, padding: '10px 16px 8px', textTransform: 'uppercase' }, `${i + 1} of ${total}`) : null,
+    ),
+    h('div', { flexWrap: 'wrap', marginTop: 20, fontFamily: 'Anton', fontSize: 88, lineHeight: 0.95, textTransform: 'uppercase' },
+      words.map((w, n) => h('div', { color: w === '815' ? C.accent : C.ink, marginRight: n < words.length - 1 ? 20 : 0 }, w)),
+    ),
+    tape(dateText, 42, { marginTop: 18, marginLeft: -4 }),
+  );
+}
+const headerH = (title, dateText) => measure(headerEl(title, dateText, 0, 2), INNER);
+
+function footerEl(f) {
+  return h(
+    'div',
+    { width: f.W, flexDirection: 'column', flexShrink: 0 },
+    h('div', { width: f.W, height: 6, background: C.ink }),
+    skyline(f.W, SKY_H - 6),
+    // Padding would widen a box in satori, so the strip centres an INNER-wide row instead.
+    h('div', { width: f.W, height: STRIP_H, background: C.ink, alignItems: 'center', justifyContent: 'center' },
+      h('div', { width: INNER, alignItems: 'center', justifyContent: 'space-between' },
+        h('div', { fontFamily: 'Anton', fontSize: 54, lineHeight: 1, color: C.yellow, textTransform: 'uppercase' }, '815live.com'),
+        h('div', { flexDirection: 'column', alignItems: 'flex-end', fontFamily: 'Atkinson', color: C.bg, fontSize: 22, lineHeight: 1.25 },
+          h('div', {}, 'Playing soon? Send it in:'),
+          h('div', { fontWeight: 700, fontSize: 25 }, 'shows@815live.com'),
+        ),
+      ),
+    ),
+    // Stories: the black continues under the app's bottom UI.
+    f.safeBottom ? h('div', { width: f.W, height: f.safeBottom, background: C.ink }) : null,
+  );
+}
+
+const bodyRoom = (f, hdr) => f.H - f.safeTop - f.safeBottom - TOP - hdr - GAP * 2 - FOOTER_H;
+
+function pageEl(f, title, dateText, items, d, i, total) {
+  return h(
+    'div',
+    { width: f.W, height: f.H, background: C.bg, flexDirection: 'column', alignItems: 'center', overflow: 'hidden' },
+    h('div', { width: f.W, height: f.safeTop + TOP, flexShrink: 0 }),
+    headerEl(title, dateText, i, total),
+    h('div', { width: INNER, flexGrow: 1, marginTop: GAP, marginBottom: GAP, flexDirection: 'column' }, items.map((it) => itemEl(it, d))),
+    footerEl(f),
+  );
+}
+
+// Busy and average nights: everything on one image if it fits, at normal size
+// and then tight; then music on one tight image with other events in the room
+// left; then music split over images (tight), other events on the last one.
+async function planNight(room) {
+  const music = sectionItems(events);
+  for (const d of [DENSITY.normal, DENSITY.tight]) {
+    const all = [...music, ...sectionItems(others)];
+    if ((await sumH(all, d)) <= room) return { d, pages: [all] };
+  }
+  const d = DENSITY.tight;
+  const musicH = await sumH(music, d);
+  if (musicH <= room) return { d, pages: [[...music, ...(await fitOthers(room - musicH, d)).items]] };
+
+  const pages = [];
+  let page = [];
+  let used = 0;
+  const moreRoom = others.length ? await itemH({ more: others.length }, d) : 0;
+  // The last music row also leaves room under it for a "+ N more" line.
+  const lastMusic = sectionItems(events).filter((it) => it.row).at(-1)?.row;
+  for (const [cat, label] of SECTIONS.filter(([c]) => isMusic(c))) {
+    const rows = events.filter((e) => e.category === cat);
+    let first = true; // the next row opens this section on this image (label above it)
+    let continued = false;
+    for (const row of rows) {
+      const labelH = await itemH({ label }, d);
+      const need = (first ? labelH : 0) + (await itemH({ row, first }, d)) + (row === lastMusic ? moreRoom : 0);
+      // Start a new image rather than overflow (and never strand a label at the bottom).
+      if (used + need > room && page.length) {
+        pages.push(page);
+        page = [];
+        used = 0;
+        continued = !first;
+        first = true;
+      }
+      if (first) {
+        const l = { label: continued ? `${label} (cont.)` : label };
+        page.push(l);
+        used += await itemH(l, d);
+      }
+      const it = { row, first };
+      page.push(it);
+      used += await itemH(it, d);
       first = false;
     }
-    page.push({ row });
-    used += rowH(row, ROW_H);
   }
-}
-if (!quiet) {
-  page.push(...fitOthers(BODY - used, ROW_H).items);
+  page.push(...(await fitOthers(room - used, d)).items);
   pages.push(page);
+  return { d, pages };
 }
 
-const ellipsis = { whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' };
+const feedRoomFor = async (title, dateText) => bodyRoom(FORMATS.feed, await headerH(title, dateText));
 
-// withDay: the week list, with weekday and date over the time.
-// base: the row's height with a one-line title.
-function rowEl(e, { withDay = false, base = ROW_H } = {}) {
-  const timeW = withDay ? DAY_TIME_W : TIME_W;
-  // Venues with more than one room note it like "On the Council Oak stage."
-  const stage = e.notes?.match(/^On the (.+?) stage\.?$/i)?.[1];
-  const sub = [e.eventTitle, e.venueName, stage, e.town].filter(Boolean).join(' · ');
-  return h(
-    'div',
-    { width: INNER, height: rowH(e, base), flexShrink: 0, alignItems: 'center', borderBottom: `2px solid ${C.line}` },
-    withDay
-      ? h('div', { width: timeW, flexShrink: 0, flexDirection: 'column', fontFamily: 'Cond', fontWeight: 700 },
-          h('div', { fontSize: 26, color: C.ink, textTransform: 'uppercase' }, shortDay(e.date).split(',')[0]),
-          h('div', { fontSize: 30, color: C.accent }, `${shortDay(e.date).split(', ')[1]} · ${clock(e.startTime)}`))
-      : h('div', { width: timeW, flexShrink: 0, fontFamily: 'Cond', fontWeight: 700, fontSize: 36, color: C.accent }, clock(e.startTime)),
-    h(
-      'div',
-      { flexDirection: 'column', width: INNER - timeW },
-      h('div', { ...TITLE, color: C.ink, display: 'block', lineClamp: 2 }, e.act),
-      h('div', { fontFamily: 'Sans', fontSize: 25, lineHeight: 1.3, color: C.muted, marginTop: 2, ...ellipsis }, sub),
-    ),
-  );
-}
-
-const sectionLabel = (text) =>
-  h('div', { height: SECTION_H, flexShrink: 0, alignItems: 'flex-end', paddingBottom: 6, fontFamily: 'Cond', fontWeight: 800, fontSize: 28, letterSpacing: 3, color: C.accent, textTransform: 'uppercase' }, text);
-const moreEl = (n) =>
-  h('div', { height: MORE_H, flexShrink: 0, alignItems: 'center', fontFamily: 'Sans', fontWeight: 600, fontSize: 26, color: C.muted }, `+ ${n} more at 815live.com`);
-const itemEl = (it, base = ROW_H) => (it.label ? sectionLabel(it.label) : it.more ? moreEl(it.more) : rowEl(it.row, { base }));
-
-function pageEl(items, i, total) {
-  return h(
-    'div',
-    { width: W, height: H, background: C.bg, flexDirection: 'column', alignItems: 'center', paddingTop: TOP },
-    // header
-    h(
-      'div',
-      { width: INNER, height: HEADER, flexDirection: 'column' },
-      h('div', { justifyContent: 'space-between', alignItems: 'center' },
-        wordmark(46),
-        total > 1 ? h('div', { fontFamily: 'Cond', fontWeight: 700, fontSize: 30, color: C.muted }, `${i + 1} / ${total}`) : null,
-      ),
-      h('div', { flexDirection: 'column', fontFamily: 'Cond', fontWeight: 900, fontSize: 112, lineHeight: 0.92, textTransform: 'uppercase', letterSpacing: -1, marginTop: 26 },
-        h('div', { color: C.ink }, heading),
-        h('div', { color: C.accent }, 'in the 815'),
-      ),
-      h('div', { fontFamily: 'Sans', fontWeight: 600, fontSize: 30, color: C.muted, marginTop: 16 }, longDate),
-      h('div', { height: 4, background: C.accent, width: 120, marginTop: 20 }),
-    ),
-    // body
-    h(
-      'div',
-      { width: INNER, height: BODY, marginTop: 12, marginBottom: 12, flexDirection: 'column', justifyContent: 'center' },
-      items.map((it) => itemEl(it)),
-    ),
-    footerEl(),
-  );
-}
-
-function footerEl() {
-  return h(
-    'div',
-    { width: INNER, height: FOOTER, alignItems: 'center', justifyContent: 'space-between', borderTop: `2px solid ${C.line}` },
-    h('div', { flexDirection: 'column' },
-      h('div', { fontFamily: 'Cond', fontWeight: 800, fontSize: 40, color: C.ink }, '815live.com'),
-      h('div', { fontFamily: 'Sans', fontSize: 22, color: C.muted, marginTop: 4 }, 'Full calendar, cover prices, directions'),
-    ),
-    h('div', { flexDirection: 'column', alignItems: 'flex-end' },
-      h('div', { fontFamily: 'Sans', fontSize: 22, color: C.muted }, 'Playing soon? Send it in:'),
-      h('div', { fontFamily: 'Sans', fontWeight: 600, fontSize: 25, color: C.ink, marginTop: 4 }, 'shows@815live.com'),
-    ),
-  );
-}
-
-// Quiet nights: one page with tonight (all of it, or "nothing listed" for
-// music), then as much of the week as fits.
-const Q_HEADER = 300;
-const Q_ROW = 80;
-const Q_BODY = H - TOP - BOTTOM - Q_HEADER - FOOTER - 24;
-const qMusic = [];
-for (const [cat, label] of SECTIONS.filter(([c]) => isMusic(c))) {
-  const rows = events.filter((e) => e.category === cat);
-  if (rows.length) qMusic.push({ label }, ...rows.map((row) => ({ row })));
-}
-const qMusicH = qMusic.reduce((n, it) => n + (it.label ? SECTION_H : rowH(it.row, Q_ROW)), 0);
-const qOthers = quiet ? fitOthers(Q_BODY - qMusicH, Q_ROW) : { items: [], height: 0 };
-// The week gets what tonight leaves.
-const weekShown = [];
-let weekRoom = Q_BODY - qMusicH - qOthers.height - SECTION_H;
-for (const e of week) {
-  if (rowH(e, Q_ROW) > weekRoom) break;
-  weekShown.push(e);
-  weekRoom -= rowH(e, Q_ROW);
-}
-// Posts never say "No live music listed" (user rule, 2026-11-07): a night with
-// nothing on it posts only "Coming Up", and with nothing coming up, nothing.
+// Quiet nights (fewer than QUIET music listings): one image with tonight, then
+// as much of the coming week as fits. The week list is chosen on the feed
+// image (the captions use it); the taller Story shows the same list.
 const nothingTonight = !all.length;
-if (nothingTonight && !weekShown.length) {
-  console.log(`Nothing listed for ${date} and no room for the week. No image made.`);
-  process.exit(0);
-}
-const qTitle = nothingTonight ? ['Coming up', 'in the 815'] : weekShown.length ? [`${heading} +`, 'Coming up'] : [heading, 'in the 815'];
-
-function quietEl() {
-  return h(
-    'div',
-    { width: W, height: H, background: C.bg, flexDirection: 'column', alignItems: 'center', paddingTop: TOP },
-    h(
-      'div',
-      { width: INNER, height: Q_HEADER, flexDirection: 'column' },
-      wordmark(46),
-      h('div', { flexDirection: 'column', fontFamily: 'Cond', fontWeight: 900, fontSize: 92, lineHeight: 0.92, textTransform: 'uppercase', letterSpacing: -1, marginTop: 24 },
-        h('div', { color: C.ink }, qTitle[0]),
-        h('div', { color: C.accent }, qTitle[1]),
-      ),
-      h('div', { fontFamily: 'Sans', fontWeight: 600, fontSize: 30, color: C.muted, marginTop: 16 }, weekShown.length && !nothingTonight ? `${longDate} · in the 815` : longDate),
-      h('div', { height: 4, background: C.accent, width: 120, marginTop: 20 }),
-    ),
-    h(
-      'div',
-      { width: INNER, height: Q_BODY, marginTop: 12, marginBottom: 12, flexDirection: 'column', justifyContent: 'center' },
-      qMusic.map((it) => itemEl(it, Q_ROW)),
-      qOthers.items.map((it) => itemEl(it, Q_ROW)),
-      weekShown.length && !nothingTonight ? sectionLabel('Coming up') : null,
-      weekShown.map((e) => rowEl(e, { withDay: true, base: Q_ROW })),
-    ),
-    footerEl(),
-  );
+const dateLine = longDate;
+let weekShown = [];
+let quietItems = [];
+let qTitle = '';
+if (quiet) {
+  const d = DENSITY.normal;
+  const tonightItems = sectionItems(events);
+  // Room is figured with the longest title this night could get.
+  const room = await feedRoomFor(nothingTonight ? 'Coming up in the 815' : `${heading} + coming up`, dateLine);
+  const musicH = await sumH(tonightItems, d);
+  const qOthers = await fitOthers(room - musicH, d);
+  let weekRoom = room - musicH - qOthers.height - (nothingTonight ? 0 : await itemH({ label: 'Coming up' }, d));
+  for (const [n, e] of week.entries()) {
+    const it = { row: e, withDay: true, first: n === 0 };
+    const rh = await itemH(it, d);
+    if (rh > weekRoom) break;
+    weekShown.push(e);
+    weekRoom -= rh;
+  }
+  // Posts never say "No live music listed" (user rule, 2026-11-07): a night with
+  // nothing on it posts only "Coming up", and with nothing coming up, nothing.
+  if (nothingTonight && !weekShown.length) {
+    console.log(`Nothing listed for ${date} and no room for the week. No image made.`);
+    process.exit(0);
+  }
+  qTitle = nothingTonight ? 'Coming up in the 815' : weekShown.length ? `${heading} + coming up` : `${heading} in the 815`;
+  const weekItems = weekShown.map((row, n) => ({ row, withDay: true, first: n === 0 && nothingTonight }));
+  quietItems = firstAfterLabels([
+    ...tonightItems,
+    ...qOthers.items,
+    ...(weekShown.length && !nothingTonight ? [{ label: 'Coming up' }] : []),
+    ...weekItems,
+  ]);
 }
 
 mkdirSync(OUT, { recursive: true });
-if (quiet) await render(quietEl(), W, H, join(OUT, `tonight-${date}.png`));
-else for (const [i, items] of pages.entries()) {
-  const suffix = pages.length > 1 ? `-${i + 1}` : '';
-  await render(pageEl(items, i, pages.length), W, H, join(OUT, `tonight-${date}${suffix}.png`));
+for (const f of Object.values(FORMATS)) {
+  const title = quiet ? qTitle : `${heading} in the 815`;
+  const hdr = await headerH(title, dateLine);
+  const room = bodyRoom(f, hdr);
+  const plan = quiet ? { d: DENSITY.normal, pages: [quietItems] } : await planNight(room);
+  for (const [i, items] of plan.pages.entries()) {
+    // Checked after packing too: nothing may run off the image.
+    const used = await sumH(items, plan.d);
+    if (used > room) throw new Error(`${f.suffix || 'feed'} image ${i + 1} overflows by ${Math.ceil(used - room)} px`);
+    const n = plan.pages.length > 1 ? `-${i + 1}` : '';
+    const file = join(OUT, `tonight-${date}${f.suffix}${n}.png`);
+    await render(pageEl(f, title, dateLine, items, plan.d, i, plan.pages.length), f.W, f.H, file);
+  }
 }
 
 // ---------- caption ----------

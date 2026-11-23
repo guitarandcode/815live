@@ -1,30 +1,29 @@
-// Shared bits for the social images: brand colors, fonts, a tiny element
-// helper for satori, and render-to-PNG. No browser needed.
+// Shared bits for the social images: the DESIGN.md palette and fonts, a tiny
+// element helper for satori, the 815 ticket mark, tape strips, the Rockford
+// skyline, and render-to-PNG. No browser and no network: fonts are the woff
+// files in ./fonts, so every run renders the same.
 import { readFileSync, mkdirSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
-import { createRequire } from 'node:module';
 import satori from 'satori';
 import { Resvg } from '@resvg/resvg-js';
 
-const require = createRequire(import.meta.url);
-const font = (pkg, file) =>
-  readFileSync(join(dirname(require.resolve(`${pkg}/package.json`)), 'files', file));
+const ROOT = join(import.meta.dirname, '../..');
+const fontFile = (file) => readFileSync(join(import.meta.dirname, 'fonts', file));
 
+// DESIGN.md, light palette. Keys kept from the old palette (reel.mjs uses C.bg).
 export const C = {
-  bg: '#12110f',
-  panel: '#1c1a17',
-  ink: '#f2eee7',
-  muted: '#a59d91',
-  accent: '#ff6a4d',
-  line: 'rgba(255,255,255,0.09)',
+  bg: '#e4e2dd', // newsprint
+  ink: '#141414',
+  muted: '#45423d',
+  accent: '#b0124f', // poster pink
+  yellow: '#ffd21a', // tape
+  white: '#ffffff',
 };
 
 const FONTS = [
-  { name: 'Cond', weight: 700, data: font('@fontsource/roboto-condensed', 'roboto-condensed-latin-700-normal.woff') },
-  { name: 'Cond', weight: 800, data: font('@fontsource/roboto-condensed', 'roboto-condensed-latin-800-normal.woff') },
-  { name: 'Cond', weight: 900, data: font('@fontsource/roboto-condensed', 'roboto-condensed-latin-900-normal.woff') },
-  { name: 'Sans', weight: 400, data: font('@fontsource/inter', 'inter-latin-400-normal.woff') },
-  { name: 'Sans', weight: 600, data: font('@fontsource/inter', 'inter-latin-600-normal.woff') },
+  { name: 'Anton', weight: 400, style: 'normal', data: fontFile('anton-latin-400-normal.woff') },
+  { name: 'Atkinson', weight: 400, style: 'normal', data: fontFile('atkinson-hyperlegible-latin-400-normal.woff') },
+  { name: 'Atkinson', weight: 700, style: 'normal', data: fontFile('atkinson-hyperlegible-latin-700-normal.woff') },
 ];
 
 /** h('div', {style}, ...children): satori's element shape without JSX. */
@@ -39,28 +38,93 @@ export function h(type, style = {}, ...children) {
   };
 }
 
-/** The wordmark: "815" in a coral pill, then "live" and a glowing dot. `size` is the type size in px. */
-export function wordmark(size) {
-  const dot = Math.round(size * 0.24);
+const img = (svg, width, height, style = {}) => ({
+  type: 'img',
+  props: { src: `data:image/svg+xml;base64,${Buffer.from(svg).toString('base64')}`, width, height, style: { width, height, ...style } },
+});
+
+/**
+ * The 815 ticket stub (src/components/Mark815.astro), `height` px tall.
+ * `admit: false` drops the small "ADMIT ONE" (profile picture: no small text).
+ */
+export function ticket(height, { admit = true, rotate = -4 } = {}) {
+  const u = height / 80; // viewBox units → px
+  const width = 168 * u;
+  const shape = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 168 80" width="${width}" height="${height}">
+    <path d="M6 4 H162 V30 A10 10 0 0 0 162 50 V76 H6 V50 A10 10 0 0 0 6 30 Z" fill="${C.yellow}" stroke="${C.ink}" stroke-width="3"/>
+    ${admit ? `<path d="M44 10 V70" stroke="${C.ink}" stroke-dasharray="3 4" stroke-width="2" fill="none"/>` : ''}</svg>`;
   return h(
     'div',
-    { alignItems: 'center', fontFamily: 'Cond', fontWeight: 800, fontSize: size, lineHeight: 1, letterSpacing: -size / 84, color: C.ink },
+    { position: 'relative', width, height, flexShrink: 0, transform: `rotate(${rotate}deg)` },
+    img(shape, width, height, { position: 'absolute', left: 0, top: 0 }),
+    // "815" over the stub's right part (x 44–162), or the whole stub without the tear line.
     h('div', {
-      background: C.accent, color: C.bg, borderRadius: size * 0.155,
-      padding: `${size * 0.08}px ${size * 0.18}px ${size * 0.06}px`,
+      position: 'absolute', left: (admit ? 44 : 8) * u, top: 0, width: (admit ? 118 : 152) * u, height,
+      alignItems: 'center', justifyContent: 'center',
+      fontFamily: 'Anton', fontSize: (admit ? 50 : 60) * u, lineHeight: 1, color: C.ink, paddingTop: 3 * u,
     }, '815'),
-    h('div', { marginLeft: size * 0.13 }, 'live'),
-    h('div', {
-      width: dot, height: dot, borderRadius: dot, background: C.accent, marginLeft: size * 0.08,
-      alignSelf: 'flex-start', marginTop: size * 0.06,
-      boxShadow: `0 0 0 ${Math.round(dot * 0.3)}px rgba(255,106,77,0.18)`,
-    }),
+    admit
+      ? h('div', {
+          position: 'absolute', left: -10 * u, top: 33 * u, width: 70 * u, height: 14 * u,
+          alignItems: 'center', justifyContent: 'center', transform: 'rotate(-90deg)',
+          fontFamily: 'Atkinson', fontWeight: 700, fontSize: 9.5 * u, letterSpacing: 0.6 * u, color: C.ink,
+        }, 'ADMIT ONE')
+      : null,
   );
+}
+
+/** The wordmark: ticket stub, then LIVE in Anton. `size` is the type size in px. */
+export function wordmark(size) {
+  return h(
+    'div',
+    { alignItems: 'center' },
+    ticket(size * 1.08),
+    h('div', { marginLeft: size * 0.22, fontFamily: 'Anton', fontSize: size, lineHeight: 1, color: C.ink, textTransform: 'uppercase' }, 'live'),
+  );
+}
+
+/** A strip of yellow tape: black Anton on yellow, slightly crooked, offset shadow. */
+export function tape(text, size, style = {}) {
+  return h('div', {
+    alignSelf: 'flex-start', padding: `${size * 0.16}px ${size * 0.38}px ${size * 0.1}px`,
+    background: C.yellow, color: C.ink, fontFamily: 'Anton', fontSize: size, lineHeight: 1.1,
+    textTransform: 'uppercase', transform: 'rotate(-1.4deg)', boxShadow: `${Math.round(size / 10)}px ${Math.round(size / 10)}px 0 ${C.ink}`,
+    ...style,
+  }, text);
+}
+
+// The skyline, read from the site's component so both stay identical. Each
+// <g class="sk-…"> gets its DESIGN.md ink as a plain fill (resvg, no CSS vars).
+const INKS = {
+  far: C.accent, tree: C.ink, bld: C.ink, win: C.yellow, river: C.ink,
+  ripple: C.bg, glow: C.yellow, bridge: C.accent, light: C.yellow,
+};
+const skySrc = readFileSync(join(ROOT, 'src/components/RockfordSkyline.astro'), 'utf8');
+const skyBody = skySrc
+  .slice(skySrc.indexOf('>', skySrc.indexOf('<svg')) + 1, skySrc.indexOf('</svg>'))
+  .replace(/<g class="sk-(\w+)">/g, (_, k) => `<g fill="${INKS[k]}">`);
+
+/**
+ * The skyline band at `width` x `height` px, cropped like CSS
+ * `xMidYMax slice`: the river stays at the bottom, the sides or the sky trim.
+ */
+export function skyline(width, height) {
+  const [VW, VH] = [1200, 240];
+  let vb;
+  if (width / height >= VW / VH) {
+    const vh = (VW * height) / width;
+    vb = `0 ${VH - vh} ${VW} ${vh}`;
+  } else {
+    const vw = (VH * width) / height;
+    vb = `${(VW - vw) / 2} 0 ${vw} ${VH}`;
+  }
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${vb}" width="${width}" height="${height}">${skyBody}</svg>`;
+  return img(svg, width, height, { flexShrink: 0 });
 }
 
 /** Laid-out height of `element` at `width`, from satori itself (so wrapping matches the render). */
 export async function measure(element, width) {
-  const svg = await satori(element, { width, fonts: FONTS });
+  const svg = await satori(h('div', { width, flexDirection: 'column' }, element), { width, fonts: FONTS });
   return Number(svg.match(/height="([\d.]+)"/)[1]);
 }
 

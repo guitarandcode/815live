@@ -43,7 +43,8 @@ Files:
   `atkinson-hyperlegible-latin-{400,700}-normal.woff2` (`@font-face` at the
   top of `global.css`; Anton and Atkinson 400 are preloaded in `Base.astro`).
 - Social images: satori can't read woff2, so the same fonts are committed as
-  woff in `scripts/social/fonts/`. Load them from there; nothing is fetched.
+  woff in `scripts/social/fonts/` (with their OFL licences). Load them from
+  there; nothing is fetched.
 
 Fallbacks: Anton → `'Arial Narrow', Impact, sans-serif`;
 Atkinson → `system-ui, sans-serif`.
@@ -82,5 +83,38 @@ Atkinson → `system-ui, sans-serif`.
   windows, reflections and lamps `#ffd21a`; ripples `#e4e2dd`. On the home
   page it sits under the header; elsewhere it's a band above the footer.
 - **Paper grain:** a tiny inline SVG noise tile at 9% alpha (site only).
-- **Favicon:** `public/favicon.svg` (`scripts/design/favicon.mjs`);
-  link preview `public/og.png` (`scripts/og-image.mjs`).
+- **Favicon:** `public/favicon.svg` (`scripts/design/favicon.mjs`).
+
+## Social images
+
+All rendered with satori + resvg from `scripts/social/lib.mjs`, which holds
+this palette (`C`), the fonts, `ticket()`, `wordmark()`, `tape()` and
+`skyline()` (read from the site's skyline component). Light palette only.
+
+| Image | Size | Script | Notes |
+| --- | --- | --- | --- |
+| Profile picture | 1080×1080 | `npm run social:brand` | Ticket stub (no "ADMIT ONE") over LIVE; all art within ~430 px of centre so the circle crop keeps it. No small text. |
+| Facebook cover | 1640×624 | `npm run social:brand` | Ticket + 815LIVE.COM + tape tagline inside the middle 1200 px; skyline full width below a 6px rule. |
+| Link preview (og:image) | 1200×630 | `npm run social:brand` | The cover's layout; written to `public/og.png`. |
+| Daily lineup, feed | 1080×1350 | `npm run social:tonight` | See below. |
+| Daily lineup, Story | 1080×1920 | `npm run social:tonight` | Same, with the top and bottom 250 px kept clear (the black under the footer is the river continuing). |
+
+Daily lineup (`scripts/social/tonight.mjs`), as a show flyer:
+
+| Part | Font | Size |
+| --- | --- | --- |
+| Wordmark | ticket stub + Anton LIVE | 58 px |
+| "1 of 2" (busy nights) | Anton, yellow on ink | 36 px |
+| Title ("Tonight in the 815", 815 pink) | Anton | 88 px / 0.95 |
+| Date | Anton on a yellow tape strip | 42 px |
+| Section label (Live music, DJ…) | Anton, pink | 28 px (tight 24) |
+| Act(s) | Anton, uppercase, wraps | 42 px (tight 34) |
+| Time · event · venue · town | Atkinson 700 time, 400 rest, muted | 26 px (tight 23) |
+| Rules between shows | ink | 4 px (tight 3) |
+| Footer | skyline 1080×216, then a 84 px ink strip: 815LIVE.COM (Anton 54, yellow), "Playing soon? Send it in: shows@815live.com" (Atkinson 22/25, paper) | |
+
+Margins 64 px each side. Packing: everything at normal size, else tight,
+else music on one tight image with other events in the room left (dropped
+karaoke-first with a "+ N more at 815live.com" line), else music split over
+images. Quiet nights (fewer than 3 music listings) are one "Tonight + coming
+up" image; posts never say "no live music listed".

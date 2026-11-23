@@ -1,64 +1,50 @@
-// Facebook profile picture and cover photo, in the site's brand.
-// Run: node scripts/social/brand-images.mjs   (writes to social/)
+// Profile picture, Facebook cover and the site's link-preview card, in the
+// DESIGN.md look. Run by hand after a brand change: npm run social:brand
+//
+//   docs/redesign/social/profile.png   1080x1080. Facebook and Instagram crop it
+//                                       to a circle, so the mark sits well inside it.
+//   docs/redesign/social/cover.png     1640x624 Facebook cover. Phones crop the
+//                                       sides, so text and key art stay in the
+//                                       middle 1200 px; the skyline runs edge to edge.
+//   public/og.png (+ a copy in docs)   1200x630 og:image, the cover's layout.
+//                                       Base.astro points og:image at /og.png.
+import { copyFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { C, h, render, wordmark } from './lib.mjs';
+import { C, h, render, skyline, tape, ticket } from './lib.mjs';
 
-const OUT = join(import.meta.dirname, '../../social');
+const ROOT = join(import.meta.dirname, '../..');
+const OUT = join(ROOT, 'docs/redesign/social');
 
-// Profile picture: Facebook crops it to a circle, so everything sits well inside it.
+// Profile: the ticket stub over LIVE, both big enough to read as a thumbnail.
+// The circle's radius is 540; the farthest corner of the art is about 430 out.
 const profile = h(
   'div',
-  {
-    width: 720, height: 720, background: C.bg,
-    flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
-    fontFamily: 'Cond', color: C.ink,
-  },
-  h('div', {
-    background: C.accent, color: C.bg, fontWeight: 900, fontSize: 250, lineHeight: 1,
-    letterSpacing: -4, borderRadius: 44, padding: '22px 44px 14px',
-  }, '815'),
-  h(
+  { width: 1080, height: 1080, background: C.bg, flexDirection: 'column', alignItems: 'center', justifyContent: 'center' },
+  ticket(300, { admit: false, rotate: -6 }),
+  h('div', { marginTop: 30, fontFamily: 'Anton', fontSize: 200, lineHeight: 1, color: C.ink, textTransform: 'uppercase' }, 'live'),
+);
+
+// Cover and og card: ticket + 815LIVE.COM, a tape strip, the skyline below.
+function card(width, height, { sky, url, tag, mark, safe }) {
+  return h(
     'div',
-    { alignItems: 'center', marginTop: 18, fontWeight: 800, fontSize: 132, lineHeight: 1, letterSpacing: -1 },
-    'live',
-    h('div', {
-      width: 34, height: 34, borderRadius: 34, background: C.accent, marginLeft: 14,
-      alignSelf: 'flex-start', marginTop: 10, boxShadow: '0 0 0 10px rgba(255,106,77,0.18)',
-    }),
-  ),
-);
-
-// Cover photo: 1640x624. Facebook centers the round profile picture over the
-// cover, so the middle stays empty: headline in the left third, tagline and URL
-// in the right third.
-const side = (align, ...kids) =>
-  h('div', { width: 500, flexDirection: 'column', alignItems: align, justifyContent: 'center' }, ...kids);
-const cover = h(
-  'div',
-  { width: 1640, height: 624, background: C.bg, alignItems: 'center', justifyContent: 'center', color: C.ink },
-  h('div', { width: 1500, justifyContent: 'space-between', alignItems: 'center' },
-    side('flex-start',
-      h('div', { fontFamily: 'Cond', fontWeight: 900, fontSize: 84, lineHeight: 0.95, textTransform: 'uppercase', flexDirection: 'column', whiteSpace: 'nowrap' },
-        h('div', {}, 'Live music'),
-        h('div', {}, 'in Rockford'),
-        h('div', { color: C.accent }, '& the 815'),
+    { width, height, background: C.bg, flexDirection: 'column', alignItems: 'center' },
+    h(
+      'div',
+      { width: safe, height: height - sky, flexDirection: 'column', alignItems: 'center', justifyContent: 'center' },
+      h('div', { alignItems: 'center' },
+        ticket(mark),
+        h('div', { marginLeft: mark * 0.28, fontFamily: 'Anton', fontSize: url, lineHeight: 1, color: C.ink, textTransform: 'uppercase' }, '815live.com'),
       ),
+      tape('Live music in Rockford & the 815', tag, { alignSelf: 'center', marginTop: tag * 0.55 }),
     ),
-    side('flex-end',
-      h('div', { fontFamily: 'Sans', fontSize: 32, lineHeight: 1.35, color: C.muted, flexDirection: 'column', alignItems: 'flex-end' },
-        h('div', {}, 'Bands, karaoke, DJ nights,'),
-        h('div', {}, 'open mics and comedy.'),
-        h('div', { color: C.ink, fontWeight: 600 }, 'Tonight and every night.'),
-      ),
-      h('div', {
-        marginTop: 30, fontFamily: 'Cond', fontWeight: 700, fontSize: 42, color: C.bg, background: C.accent,
-        borderRadius: 999, padding: '10px 34px 8px', letterSpacing: 1,
-      }, '815live.com'),
-    ),
-  ),
-);
+    h('div', { width, height: 6, background: C.ink }),
+    skyline(width, sky - 6),
+  );
+}
 
-await render(profile, 720, 720, join(OUT, 'profile.png'));
-await render(cover, 1640, 624, join(OUT, 'cover.png'));
-// A wordmark-only strip is handy for flyers and stories.
-await render(h('div', { width: 900, height: 260, background: C.bg, alignItems: 'center', justifyContent: 'center' }, wordmark(150)), 900, 260, join(OUT, 'wordmark.png'));
+await render(profile, 1080, 1080, join(OUT, 'profile.png'));
+await render(card(1640, 624, { sky: 290, url: 150, tag: 50, mark: 130, safe: 1200 }), 1640, 624, join(OUT, 'cover.png'));
+await render(card(1200, 630, { sky: 250, url: 138, tag: 48, mark: 120, safe: 1100 }), 1200, 630, join(ROOT, 'public/og.png'));
+copyFileSync(join(ROOT, 'public/og.png'), join(OUT, 'og.png'));
+console.log(`copied public/og.png to ${join(OUT, 'og.png')}`);

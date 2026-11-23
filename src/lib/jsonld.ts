@@ -5,7 +5,7 @@ import { chicagoIso } from './time.ts';
 
 export const SITE_NAME = '815live';
 
-/** The site-wide social card (scripts/og-image.mjs); Base.astro uses it for og:image. */
+/** The site-wide social card (npm run social:brand); Base.astro uses it for og:image. */
 export const OG_IMAGE = '/og.png';
 
 const abs = (path: string, site: URL) => new URL(path, site).href;
