@@ -109,7 +109,7 @@ Daily lineup (`scripts/social/tonight.mjs`), as a show flyer:
 | Date | Anton on a yellow tape strip | 42 px |
 | Section label (Live music, DJ…) | Anton, pink | 28 px (tight 24) |
 | Act(s) | Anton, uppercase, wraps | 42 px (tight 34) |
-| Time · event · venue · stage · town | Atkinson 700 in ink for the time and the venue; 400 muted for the event title, stage and town | 26 px (tight 23), all one size |
+| Time · event · venue · stage · town | Atkinson 700 in ink for the time and the venue; 400 muted for the event title, stage and town | 26 px (tight 23), all one size; a wrapped line starts at the left edge |
 | Rules between shows | ink | 4 px (tight 3) |
 | Footer | skyline 1080×216, then a 84 px ink strip: 815LIVE.COM (Anton 54, yellow), "Playing soon? Send it in: shows@815live.com" (Atkinson 22/25, paper) | |
 

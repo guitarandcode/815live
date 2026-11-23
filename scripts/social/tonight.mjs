@@ -183,11 +183,14 @@ function subLine(e, d, withDay) {
     stage && { text: stage },
     e.town && { text: e.town },
   ].filter(Boolean);
-  // Plain inline spans (h() would make them flex boxes, breaking the line).
-  const span = (text, venue) => ({ type: 'span', props: { style: venue ? { fontWeight: 700, color: C.ink } : {}, children: text } });
-  return h('div', { fontFamily: 'Atkinson', fontSize: d.sub, lineHeight: 1.3, color: C.muted, marginTop: 4 },
-    h('div', { flexShrink: 0, fontWeight: 700, color: C.ink, whiteSpace: 'nowrap' }, when),
-    h('div', { display: 'block', flexShrink: 1 }, parts.map((p, i) => [span(i ? ' · ' : '\u00a0· ', false), span(p.text, p.venue)])));
+  // One block of plain inline spans (h() would make them flex boxes), so a
+  // wrapped line starts at the left edge, not under the venue (2026-11-23).
+  // The time's spaces don't break, so it always stays on one line.
+  const bold = { fontWeight: 700, color: C.ink };
+  const span = (text, style = {}) => ({ type: 'span', props: { style, children: text } });
+  return h('div', { display: 'block', fontFamily: 'Atkinson', fontSize: d.sub, lineHeight: 1.3, color: C.muted, marginTop: 4 },
+    span(when.replace(/ /g, '\u00a0'), bold),
+    parts.map((p, i) => [span(i ? ' · ' : '\u00a0· '), span(p.text, p.venue ? bold : {})]));
 }
 
 // A show: act(s) in Anton, wrapping as needed (never clamped), then time and venue.
