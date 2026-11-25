@@ -1722,3 +1722,23 @@ in this run, so small print was read from the full-size images.
 - **Waiting:** Chad Foster at Bootie's Main Tap, Pecatonica, Nov 25 (street
   address only from search snippets; directory pages 403'd); Rollin'
   Whiskey at Rascals Nov 28 (venue town still unconfirmed).
+
+## 2026-11-25: Inbox (user session)
+
+8 Facebook screenshots.
+
+- **Added:** Rat Baxter "Thanksgiving Bash" at Benny's @ Nest, Sat Nov 28,
+  7-11 PM; The Real Deal at Screw City Tavern, Sat Nov 28, 8 PM-midnight
+  (both from the act's own event; weekdays check out; no `source.url` since
+  no event link is visible).
+- **Updated:** Whiskey's Christmas Onesie Party Dec 19 now names all three
+  bands. The sharper screenshot plus the earlier copy show logos for Osiris
+  and Gravel Creek Band (new artists); with Acoustic Millennium Band that
+  makes the stated three, so `lineupPartial` is dropped. Hogleg and Lonely
+  Teenage at Mary's Place Nov 27 gets its first `source.file`.
+- **Re-confirmed, `checked` bumped:** Hot Rod Nellie's holiday flyer (same
+  flyer as 2026-11-21, 13 dated rows plus the weekly rules; pool tournaments and
+  line dancing left out as before). Nov 26 karaoke is the Thursday rule.
+- **Past, already listed:** Blue Olives Nov 20 and BloodBrothers Nov 21 at
+  Grand Avenue Pub; filed only.
+- **Waiting:** Music Box December Open Mic - Karaoke, Dec 1 and 15 (no time).

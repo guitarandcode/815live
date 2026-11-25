@@ -823,3 +823,14 @@ themselves returned 403 and weren't read, so the number is unconfirmed (a
 LoopNet result also mentions 431 Main St). Confirm the address, then
 publish as `live-music` with new venue `booties-main-tap` and artist
 `chad-foster`. In `waiting/` as `2026-11_booties-main-tap-chad-foster.png`.
+
+## Music Box: December Open Mic - Karaoke, Tue Dec 1 and Dec 15 (no time)
+
+A performer's post (Nov 25, screenshot same day) shares the Music Box's
+Facebook event "DECEMBER Open Mic - Karaoke", "Tue, Dec 1 - Dec 15"; the post
+says next Tuesday, so Dec 1 is certain. The older graphic on it gives "Two
+Tuesdays a month" and only Oct 6 to Nov 17 dates. No start time is shown
+(Nov 3 ran 7-10 PM, sign-ups 6:30), and Dec 15 is read from the event's date
+range. Once the time is confirmed, publish both as `karaoke`, "Karaoke & Open
+Mic Night", like the November nights. In `waiting/` as
+`2026-12_music-box-open-mic-karaoke.jpg`.

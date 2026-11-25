@@ -6,12 +6,13 @@
   "category": "live-music",
   "title": "Christmas Onesie Party",
   "artists": [
-    "acoustic-millennium-band"
+    "acoustic-millennium-band",
+    "osiris",
+    "gravel-creek-band"
   ],
   "cover": null,
-  "lineupPartial": true,
-  "notes": "Three bands, hosted by Acoustic Millennium Band; the other two aren't named.",
-  "checked": "2026-11-21",
+  "notes": "Hosted by Acoustic Millennium Band.",
+  "checked": "2026-11-25",
   "source": {
     "type": "manual",
     "url": "https://www.facebook.com/whiskeys.roadhouse",

@@ -1,0 +1,16 @@
+{
+  "date": "2026-11-28",
+  "startTime": "20:00",
+  "endTime": "00:00",
+  "venue": "screw-city-tavern",
+  "category": "live-music",
+  "artists": [
+    "the-real-deal"
+  ],
+  "checked": "2026-11-25",
+  "source": {
+    "type": "manual",
+    "kind": "artist",
+    "file": "venues/screw-city-tavern/2026-11_the-real-deal-event.jpg"
+  }
+}
