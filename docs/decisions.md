@@ -1742,3 +1742,26 @@ in this run, so small print was read from the full-size images.
 - **Past, already listed:** Blue Olives Nov 20 and BloodBrothers Nov 21 at
   Grand Avenue Pub; filed only.
 - **Waiting:** Music Box December Open Mic - Karaoke, Dec 1 and 15 (no time).
+
+## 2026-11-26: Inbox (scheduled)
+
+9 files (2 flyers, 7 Facebook screenshots).
+
+- **Added:** Music Box "Karaoke & Open Mic Night", Tue Dec 1 and Tue Dec 15,
+  7–10 PM (`karaoke`, as in November). The venue's Facebook event screenshot
+  gives "Dec 1 at 7 PM – Dec 15 at 7 PM" and "7PM to 10PM", which answers
+  the open time question; the needs-review item is closed and the earlier
+  waiting file moved to `venues/the-music-box/`. Event link stored (visible
+  in the address bar). Wait, What? at The Mill Saloon, Sat Nov 28, 8 PM
+  (band's post). The Mystery Dates at Grand Avenue Pub, Fri Dec 18,
+  8 PM–11:59 PM (event by the band and pub; its "8:01 PM" start entered as
+  8 PM).
+- **Re-confirmed, `checked` bumped:** Shattered Bar's Thanksgiving week
+  (Rollin Whiskey Nov 25 past; Karaoke Nov 26 7 PM; Sunset Strip Nov 27 8 PM,
+  also from the bar's own event; Missing Links Nov 28 8 PM); Sheila's
+  Thirsty Thursday Karaoke rule (7–11 PM; phone numbers and host names left
+  out); Whiskey's Christmas Onesie Party Dec 19 (third copy).
+- **Skipped:** Crazy Times Pub & Grub "11th Annual Billy Bigley Memorial
+  Race", Sat Nov 28 (food times only, no music or other listable event).
+- **Waiting:** Best Dam Bar Sat Nov 28: a new flyer says GR3 (Guitar Ronnie
+  Trio) at 8 PM where we list The Mystery Dates.

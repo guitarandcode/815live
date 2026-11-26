@@ -824,13 +824,13 @@ LoopNet result also mentions 431 Main St). Confirm the address, then
 publish as `live-music` with new venue `booties-main-tap` and artist
 `chad-foster`. In `waiting/` as `2026-11_booties-main-tap-chad-foster.png`.
 
-## Music Box: December Open Mic - Karaoke, Tue Dec 1 and Dec 15 (no time)
+## Best Dam Bar, Sat Nov 28, 8 PM: The Mystery Dates or GR3?
 
-A performer's post (Nov 25, screenshot same day) shares the Music Box's
-Facebook event "DECEMBER Open Mic - Karaoke", "Tue, Dec 1 - Dec 15"; the post
-says next Tuesday, so Dec 1 is certain. The older graphic on it gives "Two
-Tuesdays a month" and only Oct 6 to Nov 17 dates. No start time is shown
-(Nov 3 ran 7-10 PM, sign-ups 6:30), and Dec 15 is read from the event's date
-range. Once the time is confirmed, publish both as `karaoke`, "Karaoke & Open
-Mic Night", like the November nights. In `waiting/` as
-`2026-12_music-box-open-mic-karaoke.jpg`.
+Our listing (`data/shows/2026-11-28-best-dam-bar.json`, checked 2026-10-26,
+from the bar's Facebook events list pasted in October) has The Mystery Dates
+at 8 PM. A new flyer (2026-11-26 inbox, poster not shown) carries the Best
+Dam Bar logo and says "GR3, Guitar Ronnie Trio, Live at Best Dam Bar,
+Saturday Nov 28, 8PM" (Nov 28, 2026 is a Saturday). Nothing changed. If
+GR3 replaced The Mystery Dates, swap the act (new artist `gr3`, "GR3 (Guitar
+Ronnie Trio)"); if both play, add it. In `waiting/` as
+`2026-11_best-dam-bar-gr3-guitar-ronnie-trio.jpg`.

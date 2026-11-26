@@ -1,0 +1,15 @@
+{
+  "date": "2026-12-18",
+  "startTime": "20:00",
+  "endTime": "23:59",
+  "venue": "grand-avenue-pub",
+  "category": "live-music",
+  "artists": [
+    "the-mystery-dates"
+  ],
+  "checked": "2026-11-26",
+  "source": {
+    "type": "manual",
+    "file": "venues/grand-avenue-pub/2026-12_mystery-dates-dec-18.png"
+  }
+}
