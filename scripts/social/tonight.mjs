@@ -28,11 +28,16 @@
 // never cut off: acts wrap to as many lines as they need, every block is
 // measured by satori before it's placed, and an image that would still
 // overflow stops the run with an error instead of clipping.
+//
+// One entry per act per venue per night on the images (lineup.mjs): an act
+// with two slots at one venue gets one row, "at 6:30 and 9". The captions
+// keep one line per slot.
 import { readdirSync, readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { CATEGORIES, CATEGORY_LABEL, isMusic } from '../../src/lib/categories.ts';
 import { titleBesideNames } from '../../src/lib/names.ts';
 import { nightOf } from '../../src/lib/shows.ts';
+import { mergeSlots, slotTimes } from './lineup.mjs';
 import { C, FOOTER_H, footer, h, measure, render, tape, wordmark } from './lib.mjs';
 import { IG_CAP, fbPage, handleStatus, igHandle, noEmDash, planTags } from './venue-tags.mjs';
 
@@ -114,11 +119,16 @@ const byStart = (a, b) =>
 const all = [...oneOffs, ...recurring].filter((s) => nightOf(s) === date).map(toEvent).sort(byStart);
 const events = all.filter((e) => isMusic(e.category));
 const others = all.filter((e) => !isMusic(e.category));
+// The images' rows: one per act per venue per night (lineup.mjs).
+const imgEvents = mergeSlots(events, nightOf);
+const imgOthers = mergeSlots(others, nightOf);
 const quiet = events.length < QUIET;
 const weekEnd = addDays(date, WEEK_DAYS);
-const week = quiet
-  ? allShows.filter((s) => nightOf(s) > date && nightOf(s) <= weekEnd && isHighlight(s)).map(toEvent).sort(byStart).slice(0, WEEK_MAX)
+const weekAll = quiet
+  ? allShows.filter((s) => nightOf(s) > date && nightOf(s) <= weekEnd && isHighlight(s)).map(toEvent).sort(byStart)
   : [];
+// Merged before the cap, so a double-slot act takes one place, not two.
+const week = mergeSlots(weekAll, nightOf).slice(0, WEEK_MAX);
 
 if (!events.length && !week.length && !others.length) {
   console.log(`Nothing listed for ${date} or the 7 days after. No image made.`);
@@ -170,8 +180,12 @@ const dayShort = (d) => shortDay(d).replace(',', ''); // 'Thu Oct 29'
 
 function subLine(e, d, withDay) {
   // Venues with more than one room note it like "On the Council Oak stage."
-  const stage = e.notes?.match(/^On the (.+?) stage\.?$/i)?.[1];
-  const when = withDay ? `${dayShort(e.date)} · ${clock(e.startTime)}` : clock(e.startTime);
+  // A merged row (lineup.mjs) shows a stage only when every slot shares it.
+  const stageOf = (s) => s.notes?.match(/^On the (.+?) stage\.?$/i)?.[1];
+  const stages = [...new Set((e.slots ?? [e]).map(stageOf))];
+  const stage = stages.length === 1 ? stages[0] : undefined;
+  const time = e.times?.length > 1 ? slotTimes(e.times) : clock(e.startTime);
+  const when = withDay ? `${dayShort(e.date)} · ${time}` : time;
   // The venue stands out: Atkinson 700 in ink like the time, at the same size;
   // the event title, stage and town stay 400 and muted (DESIGN.md).
   const parts = [
@@ -210,7 +224,7 @@ const moreEl = (n, d) =>
 const itemEl = (it, d) => (it.label ? labelEl(it.label, d) : it.more ? moreEl(it.more, d) : rowEl(it.row, d, it));
 const heights = new Map();
 async function itemH(it, d) {
-  const key = `${d.act}|${it.label ?? ''}|${it.more ?? ''}|${it.row ? `${it.row.venue}|${it.row.date}|${it.row.startTime}|${it.row.act}|${!!it.withDay}|${!!it.first}` : ''}`;
+  const key = `${d.act}|${it.label ?? ''}|${it.more ?? ''}|${it.row ? `${it.row.venue}|${it.row.date}|${it.row.times?.join(',') ?? it.row.startTime}|${it.row.act}|${!!it.withDay}|${!!it.first}` : ''}`;
   if (!heights.has(key)) heights.set(key, await measure(itemEl(it, d), INNER));
   return heights.get(key);
 }
@@ -234,10 +248,10 @@ const sectionItems = (list, { withDay = false } = {}) => {
 // Other events in `room`: drop rows (DROP_FIRST, latest first) until they and
 // the "+ N more" line fit. Music is never dropped.
 async function fitOthers(room, d) {
-  const kept = [...others];
+  const kept = [...imgOthers];
   const build = () => {
     const items = sectionItems(kept);
-    const more = others.length - kept.length;
+    const more = imgOthers.length - kept.length;
     return more ? [...items, { more }] : items;
   };
   while (kept.length && (await sumH(build(), d)) > room) {
@@ -246,7 +260,7 @@ async function fitOthers(room, d) {
   }
   let items = build();
   if (!kept.length && (await sumH(items, d)) > room) {
-    console.warn(`no room for the "+ ${others.length} more" line`);
+    console.warn(`no room for the "+ ${imgOthers.length} more" line`);
     items = [];
   }
   return { items, height: await sumH(items, d) };
@@ -290,9 +304,9 @@ function pageEl(f, title, dateText, items, d, i, total) {
 // and then tight; then music on one tight image with other events in the room
 // left; then music split over images (tight), other events on the last one.
 async function planNight(room) {
-  const music = sectionItems(events);
+  const music = sectionItems(imgEvents);
   for (const d of [DENSITY.normal, DENSITY.tight]) {
-    const all = [...music, ...sectionItems(others)];
+    const all = [...music, ...sectionItems(imgOthers)];
     if ((await sumH(all, d)) <= room) return { d, pages: [all] };
   }
   const d = DENSITY.tight;
@@ -302,11 +316,11 @@ async function planNight(room) {
   const pages = [];
   let page = [];
   let used = 0;
-  const moreRoom = others.length ? await itemH({ more: others.length }, d) : 0;
+  const moreRoom = imgOthers.length ? await itemH({ more: imgOthers.length }, d) : 0;
   // The last music row also leaves room under it for a "+ N more" line.
-  const lastMusic = sectionItems(events).filter((it) => it.row).at(-1)?.row;
+  const lastMusic = sectionItems(imgEvents).filter((it) => it.row).at(-1)?.row;
   for (const [cat, label] of SECTIONS.filter(([c]) => isMusic(c))) {
-    const rows = events.filter((e) => e.category === cat);
+    const rows = imgEvents.filter((e) => e.category === cat);
     let first = true; // the next row opens this section on this image (label above it)
     let continued = false;
     for (const row of rows) {
@@ -348,7 +362,7 @@ let quietItems = [];
 let qTitle = '';
 if (quiet) {
   const d = DENSITY.normal;
-  const tonightItems = sectionItems(events);
+  const tonightItems = sectionItems(imgEvents);
   // Room is figured with the longest title this night could get.
   const room = await feedRoomFor(nothingTonight ? 'Coming up in the 815' : `${heading} + coming up`, dateLine);
   const musicH = await sumH(tonightItems, d);
@@ -408,7 +422,7 @@ const captionRows = [];
 for (const [cat] of SECTIONS) for (const e of all.filter((e) => e.category === cat)) captionRows.push(e);
 const appearances = [
   ...captionRows.map((e) => ({ venue: e.venue, category: e.category })),
-  ...weekShown.map((e) => ({ venue: e.venue, category: e.category, coming: true })),
+  ...weekShown.flatMap((w) => w.slots).map((e) => ({ venue: e.venue, category: e.category, coming: true })),
 ];
 const plan = planTags(appearances, venues);
 
@@ -423,7 +437,7 @@ function caption(venueLabel, sep, { calendar = 'https://815live.com' } = {}) {
   }
   if (weekShown.length) {
     lines.push('COMING UP');
-    for (const e of weekShown) lines.push(`• ${shortDay(e.date)}: ${e.act} ${sep} ${venueLabel(e)}${e.town ? ` (${e.town})` : ''}, ${clock(e.startTime)}`);
+    for (const e of weekShown.flatMap((w) => w.slots)) lines.push(`• ${shortDay(e.date)}: ${e.act} ${sep} ${venueLabel(e)}${e.town ? ` (${e.town})` : ''}, ${clock(e.startTime)}`);
     lines.push('');
   }
   lines.push(`Full calendar: ${calendar}`, 'Got a show? shows@815live.com', '', '#Rockford #RockfordIL #LiveMusic #815');
