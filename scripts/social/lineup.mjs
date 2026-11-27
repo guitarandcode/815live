@@ -2,7 +2,8 @@
 // When the same act plays more than one slot at the same venue on the same
 // night, the image shows one row with every start time on it: "at 6:30 and 9",
 // "at 6, 7:30 and 9" (user rule, 2026-11-27).
-// Images only: captions, the site and data/ keep one listing per slot.
+// The tonight images and their captions use it; the site and data/ keep one
+// listing per slot.
 
 // Act names match ignoring case and extra whitespace.
 export const actKey = (act) => String(act ?? '').toLowerCase().replace(/\s+/g, ' ').trim();

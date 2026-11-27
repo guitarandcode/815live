@@ -29,9 +29,9 @@
 // measured by satori before it's placed, and an image that would still
 // overflow stops the run with an error instead of clipping.
 //
-// One entry per act per venue per night on the images (lineup.mjs): an act
-// with two slots at one venue gets one row, "at 6:30 and 9". The captions
-// keep one line per slot.
+// One entry per act per venue per night on the images and in the captions
+// (lineup.mjs): an act with two slots at one venue gets one row or caption
+// line, "at 6:30 and 9". The site and data/ keep one listing per slot.
 import { readdirSync, readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { CATEGORIES, CATEGORY_LABEL, isMusic } from '../../src/lib/categories.ts';
@@ -149,6 +149,9 @@ function clock(t) {
   return m === '00' ? `${hr} ${ampm}` : `${hr}:${m} ${ampm}`;
 }
 
+// A row's time: "8 PM", or "at 6:30 and 9" for an act merged from more slots (lineup.mjs).
+const timeText = (e) => (e.times?.length > 1 ? slotTimes(e.times) : clock(e.startTime));
+
 const longDate = new Intl.DateTimeFormat('en-US', { weekday: 'long', month: 'long', day: 'numeric', timeZone: 'UTC' }).format(noon);
 const dayFmt = new Intl.DateTimeFormat('en-US', { weekday: 'short', month: 'short', day: 'numeric', timeZone: 'UTC' });
 const shortDay = (d) => dayFmt.format(new Date(`${d}T12:00:00Z`)); // 'Thu, Oct 29'
@@ -184,7 +187,7 @@ function subLine(e, d, withDay) {
   const stageOf = (s) => s.notes?.match(/^On the (.+?) stage\.?$/i)?.[1];
   const stages = [...new Set((e.slots ?? [e]).map(stageOf))];
   const stage = stages.length === 1 ? stages[0] : undefined;
-  const time = e.times?.length > 1 ? slotTimes(e.times) : clock(e.startTime);
+  const time = timeText(e);
   const when = withDay ? `${dayShort(e.date)} · ${time}` : time;
   // The venue stands out: Atkinson 700 in ink like the time, at the same size;
   // the event title, stage and town stay 400 and muted (DESIGN.md).
@@ -419,25 +422,27 @@ for (const f of Object.values(FORMATS)) {
 // when none). All start with tonight-DATE so the daily job's cleanup removes
 // them. See venue-tags.mjs for the order.
 const captionRows = [];
-for (const [cat] of SECTIONS) for (const e of all.filter((e) => e.category === cat)) captionRows.push(e);
+// Captions list the merged rows too: one line per act per venue per night.
+const captionAll = [...imgEvents, ...imgOthers];
+for (const [cat] of SECTIONS) for (const e of captionAll.filter((e) => e.category === cat)) captionRows.push(e);
 const appearances = [
   ...captionRows.map((e) => ({ venue: e.venue, category: e.category })),
-  ...weekShown.flatMap((w) => w.slots).map((e) => ({ venue: e.venue, category: e.category, coming: true })),
+  ...weekShown.map((e) => ({ venue: e.venue, category: e.category, coming: true })),
 ];
 const plan = planTags(appearances, venues);
 
 function caption(venueLabel, sep, { calendar = 'https://815live.com' } = {}) {
   const lines = [nothingTonight ? 'Coming Up in the 815 🎶' : `${isToday ? 'Tonight' : longDate}${weekShown.length ? ' + Coming Up' : ''} in the 815 🎶`, ''];
   for (const [cat, label] of SECTIONS) {
-    const rows = all.filter((e) => e.category === cat);
+    const rows = captionAll.filter((e) => e.category === cat);
     if (!rows.length) continue;
     lines.push(`${label.toUpperCase()}`);
-    for (const e of rows) lines.push(`• ${e.act} ${sep} ${venueLabel(e)}${e.town ? ` (${e.town})` : ''}, ${clock(e.startTime)}`);
+    for (const e of rows) lines.push(`• ${e.act} ${sep} ${venueLabel(e)}${e.town ? ` (${e.town})` : ''}, ${timeText(e)}`);
     lines.push('');
   }
   if (weekShown.length) {
     lines.push('COMING UP');
-    for (const e of weekShown.flatMap((w) => w.slots)) lines.push(`• ${shortDay(e.date)}: ${e.act} ${sep} ${venueLabel(e)}${e.town ? ` (${e.town})` : ''}, ${clock(e.startTime)}`);
+    for (const e of weekShown) lines.push(`• ${shortDay(e.date)}: ${e.act} ${sep} ${venueLabel(e)}${e.town ? ` (${e.town})` : ''}, ${timeText(e)}`);
     lines.push('');
   }
   lines.push(`Full calendar: ${calendar}`, 'Got a show? shows@815live.com', '', '#Rockford #RockfordIL #LiveMusic #815');

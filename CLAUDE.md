@@ -62,8 +62,9 @@ area. Astro static site; data is one JSON file per record in `data/`
   (interactive sessions only; unattended runs already have it, see below).
 - Lineup images: one entry per act per venue per day; multiple slots merge
   onto one line as 'at 6:30 and 9'. (`scripts/social/lineup.mjs`, used by
-  `tonight.mjs` for tonight and the "Coming up" week rows. Images only:
-  captions, the site and `data/` keep one listing per slot.)
+  `tonight.mjs` for tonight and the "Coming up" week rows, on the images and
+  in the Instagram and Facebook captions. The site and `data/` keep one
+  listing per slot.)
 - Before pushing: `npm test` and `npm run build` must pass. The daily bot
   also pushes, so `git pull --rebase` if a push is rejected.
 
