@@ -1,0 +1,14 @@
+{
+  "date": "2026-11-27",
+  "startTime": "20:00",
+  "venue": "splitters",
+  "category": "live-music",
+  "artists": [
+    "wait-what"
+  ],
+  "checked": "2026-11-27",
+  "source": {
+    "type": "manual",
+    "file": "venues/splitters/2026-11_wait-what-nov-27.jpg"
+  }
+}
